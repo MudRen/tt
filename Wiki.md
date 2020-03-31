@@ -1195,11 +1195,11 @@ CIRCLED|将绕着角。
 CONVERT|将使用元转换绘制文本。
 CROSSED|将越过角。
 CURSIVE|将用草书字母绘制文本。
-FILLED|将填满圆圈和jewels。
+FILLED|将填满圆圈和菱形。
 GRID|将表格绘制为网格。
 HORIZONTAL|如果可能的话，将水平绘制。
 HUGE|将用巨大的字母绘制文本。
-JEWELED|will diamond the corners。
+JEWELED|将在角绘制菱形。
 JOINTED|将绘制角。
 LEFT|如果可能的话，将在左侧绘制。
 NUMBERED|将绘制编号，主要用于调试。
@@ -1208,7 +1208,7 @@ RIGHT|如果可能的话，将在右侧绘制。
 ROUNDED|将绕过角。
 SCROLL|将在滚动区域中绘制。
 SHADOWED|将给大文本加阴影。
-TEED|will tee the corners。
+TEED|将在角绘制T型。
 TRACED|将追踪大文本。
 TOP|如果可能的话，将在顶部绘制。
 TUBED|将绘制管而不是线。
