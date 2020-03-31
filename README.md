@@ -18,7 +18,7 @@
 北大侠客行是一个MUDs文字游戏，  
 Termux是一个安卓系统上的终端模拟器，  
 Tintin++ 是一个跨平台的MUDs客户端。  
-支持：
+支持：  
 Mac OS X,IOS,Android,Linux,Windows。  
 
 北大侠客行可使用 Tintin++ 客户端连接，  

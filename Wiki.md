@@ -108,8 +108,9 @@
 
 - **TinTin++**
 
-这是一个MUDs游戏客户端，支持：  
-`Mac OS X,IOS,Android,Linux,Windows`。
+这是一个MUDs游戏客户端，  
+支持：    
+Mac OS X,IOS,Android,Linux,Windows。
 
 在这个页面上，  
 你会发现使用  TinTin++ 的使用介绍。    
@@ -2921,18 +2922,18 @@ d	   |01|整数掷骰子随机
 
 MSDP 是 #port 功能的一部分。请参阅 `#help event` 附加文档，因为所有 MSDP 事件都可以作为常规事件。
 
-可以使用 [MSDP 协议](https://tintin.sourceforge.io/protocols/msdp) 查询可用的 MSDP 事件，如文档中所述。
+可以使用[ MSDP 协议 ](https://tintin.sourceforge.io/protocols/msdp) 查询可用的 MSDP 事件，如文档中所述。
 
 另可参见：[Event](#event),[Port](#port).
 
 ## MSLP
 
-TinTin++ 支持MSLP（Mud服务器链接协议）。 请参阅 `#help event` 附加文档，因为所有MSLP事件都可以作为常规事件使用。
+TinTin++ 支持MSLP（Mud服务器链接协议)。请参阅 `#help event` 附加文档，因为所有 MSLP 事件都可以作为常规事件使用。
 
-可以使用 [ MSLP 协议 ](https://tintin.mudhalla.net/protocols/mslp) 查询可用的 MSLP 事件，如文档中所述。
+可以使用[ MSLP 协议 ](https://tintin.mudhalla.net/protocols/mslp) 查询可用的 MSLP 事件，如文档中所述。
 
 
-另可参见：[Event](#event) and [Port](#port).
+另可参见：[Event](#event),[Port](#port).
 
 ## Nop
 
