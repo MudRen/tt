@@ -12,17 +12,19 @@
 
 ### 这是做什么的？
 
-本仓库用于存储 xgg@pkuxkx 的游戏配置，<br>
+本仓库用于存储 xgg@pkuxkx 的游戏配置，  
 以及部分相关脚本和文档。
 
-北大侠客行是一个MUDs文字游戏，<br>
-Termux是一个安卓系统上的终端模拟器，<br>
-Tintin++ 是一个跨平台的MUDs客户端。<br>
+北大侠客行是一个MUDs文字游戏，  
+Termux是一个安卓系统上的终端模拟器，  
+Tintin++ 是一个跨平台的MUDs客户端。  
+支持：
+Mac OS X,IOS,Android,Linux,Windows。  
 
-北大侠客行可使用 Tintin++ 客户端连接，<br>
+北大侠客行可使用 Tintin++ 客户端连接，  
 Tintin++可以运行在Termux上。
 
-So：tintin++ on termux for pkuxkx。
+So：TinTin++ on Termux for pkuxkx。
 
 注：客户端用法与其他平台一致。
 
@@ -45,6 +47,8 @@ Termux需要安装 MUDs 客户端，比如：TinTin++ 、Go-Mud ，
 - 4.启动游戏客户端
 
 这时候启动游戏即可。
+
+注：其他平台安装使用可访问[官网](https://tintin.mudhalla.net/install.php)。
 
 ***
 请细致地阅读文中内容，<br>
@@ -190,8 +194,10 @@ alias ck='vim ~/.termux/termux.properties'
 
 ## 2。screen、vim中文乱码
 
-__Tintin++原生不支持GBK编码，<br>
-使用screen进行转码。__
+__Tintin++ 老版本不支持GBK编码，  
+新版本2.02以后添加了对中文的支持，  
+新版本使用 #config chaset 设置编码，  
+旧版本使用 screen 进行转码。__
 
 ### 利用screen给tt++转码
 

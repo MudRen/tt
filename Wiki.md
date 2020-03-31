@@ -22,6 +22,7 @@
 |[ Continue ](#continue)|  
 |[ Coordinates ](#coordinates)
 |[ Cursor ](#cursor)|  
+|[ Daemon ](#daemon)
 |[ Debug ](#debug)
 |[ Default ](#default)
 |[ Delay ](#delay)
@@ -59,7 +60,8 @@
 |[ Mathematics ](#mathematics) 
 |[ Message ](#message)|  
 |[ Metric System ](#metric-system)
-|[ MSDP ](#msdp)|  
+|[ MSDP ](#msdp)
+|[ MSLP ](#mslp)|  
 |[ Nop ](#nop)|   
 |[ Parse ](#parse)
 |[ Path ](#path)
@@ -93,7 +95,8 @@
 |[ System ](#system)|  
 |[ Tab ](#tab)
 |[ Textin ](#textin)
-|[ Ticker ](#ticker)|  
+|[ Ticker ](#ticker)
+|[ Time ](#time)|  
 |[ Variable ](#variable)|  
 |[ While ](#while)
 |[ WildCards ](#wildcards)
@@ -105,10 +108,12 @@
 
 - **TinTin++**
 
-这是一个MUDs游戏客户端，支持：<br>
-`Mac OS X,Android,Linux,Windows`。
+这是一个MUDs游戏客户端，支持：  
+`Mac OS X,IOS,Android,Linux,Windows`。
 
-在这个页面上，你会发现使用TinTin++的介绍。其他信息可以在各个帮助部分找到。
+在这个页面上，  
+你会发现使用  TinTin++ 的使用介绍。    
+其他信息可以在各个帮助部分找到。
 
 - **启动及结束**
 
@@ -134,7 +139,7 @@
 
 键入时，TinTin++ 的所有命令可以缩写。
 
-> 示例: #he <br>
+> 示例: #he   
     -- #he 等效于 #help。
 
 所有命令都可以用 ';' 分隔。
@@ -1092,6 +1097,25 @@ The low setting logs mud output before triggers,默认值为高。
 当按下 alt-delete 时，光标右侧的所有输入都被清除，默认情况下，该输入被设置为 ctrl-k。
 
 另可参见: [Alias](#alias), [History](#history), [Keypad](#keybord), [Macro](#macro), [Speedwalk](#speedwalk) and [Tab](#tab).
+
+## Daemon
+
+> 语法：#daemon {attach|detach|kill|list} [name]
+
+#daemon 守护程序提供类似于 screen 和 tmux 的功能。  
+
+- #daemon attach [name]  
+attach 附加选项将尝试找到一个守护中的 tintin 实例，并且接管控制权。Name 参数是可选的。  
+- #daemon detach [name]  
+detach 分离选项将屏蔽tintin，将其变成后台进程。Name 参数是可选的，如果您有
+几个守护中的 tt++ 实例正在运行，可以用来将它们分开。  
+- #daemon kill [name]  
+杀死所有或具有匹配名称的守护程序。  
+- #daemon list [name]  
+列出所有或具有匹配名称的守护程序。
+
+另可参见：[Script](#script),[System](#system) and [Run](#run).
+
 
 ## Debug
 
@@ -2713,7 +2737,7 @@ ROOMWEIGHT.
 
 #map roomflag avoid: 设置时，“地图查找” 将避免穿过该房间的路线。避免陷阱和攻击性暴徒很有用。
 
-#map roomflag hide: 设置时，“# map” 将不会在这个房间之外显示地图。当映射重叠的区域或不一致构建的区域时，除非使用空房间，否则您也需要此标志来防止自动链接。
+#map roomflag hide: 设置时，“#map” 将不会在这个房间之外显示地图。当映射重叠的区域或不一致构建的区域时，除非使用空房间，否则您也需要此标志来防止自动链接。
 
 #map roomflag leave: 当你带着这个标志进入房间时，你会自动离开地图。当设置在带有随机出口的迷宫入口处时很有用。
 
@@ -2895,11 +2919,20 @@ d	   |01|整数掷骰子随机
 
 ## MSDP
 
-MSDP 是 #port 功能的一部分。请参阅 #help event 附加文档，因为所有 MSDP 事件都可以作为定期事件。
+MSDP 是 #port 功能的一部分。请参阅 `#help event` 附加文档，因为所有 MSDP 事件都可以作为常规事件。
 
-可以使用 [MSDP 协议](https://tintin.sourceforge.io/protocols/msdp) 查询可用的 MSDP 事件，如规范中所述。
+可以使用 [MSDP 协议](https://tintin.sourceforge.io/protocols/msdp) 查询可用的 MSDP 事件，如文档中所述。
 
 另可参见：[Event](#event),[Port](#port).
+
+## MSLP
+
+TinTin++ 支持MSLP（Mud服务器链接协议）。 请参阅 `#help event` 附加文档，因为所有MSLP事件都可以作为常规事件使用。
+
+可以使用 [ MSLP 协议 ](https://tintin.mudhalla.net/protocols/mslp) 查询可用的 MSLP 事件，如文档中所述。
+
+
+另可参见：[Event](#event) and [Port](#port).
 
 ## Nop
 
@@ -3142,7 +3175,7 @@ $return
 
 此命令的工作方式与替代命令substitute非常相似，仅在拆分模式#split下工作。如果没有给出行号，它将替换 mud 消息并将其放在拆分行中。
 
-可选参数row允许提示自定义拆分屏幕。正数将写入提示 # rows up 从屏幕底部。负数将写下提示 # rows down 从屏幕顶部。
+可选参数row允许提示自定义拆分屏幕。正数将写入提示 #rows up 从屏幕底部。负数将写下提示 #rows down 从屏幕顶部。
 
 有关模式匹配的信息，请参见正则表达式[Regular Expressions'](#regular-expressions)一节。
 
@@ -3763,33 +3796,76 @@ Tab 命令将完成 word 添加到选项卡完成列表中。按下 “tab” �
 
 > 示例: #ticker {autosave} {save} {300}
 
-这将使TinTin每 300 秒执行一次save命令。
+这将使 TinTin 每 300 秒执行一次save命令。
 
 注意: 您可以使用 #untic 命令删除定时器。
 
 另可参见: [Delay](#delay) and [Event](#event).
 
+## Time
+
+> 语法：#format {variable} {%t} {argument}
+
+#format 命令的 %t 参数使 strftime() 打印日期。
+
+默认情况下，使用的时间戳是当前时间，如果要打印过去或将来的日期，请使用:
+
+> 指令：#format {variable} {%t} {{argument} {{epoch time}}
+
+当前时间戳是使用 #format {time} {%T} 获得的。
+
+使用 %t 时，参数应包含 strftime 格式说明符。输出值可能因您的本地化设置而异。
+
+参数|说明
+:-|:-
+%a|星期几的缩写名称(周一...周日)
+%A|星期几的全名(周一...周日)
+%b|月份的缩写名称 (1月..12月)
+%B|月份的全名(1月...12月)
+%C|2位数字 世纪。(19...20)
+%H|2位数字 24 小时制。(00...23)
+%I|2位数字 12 小时制。(01...12)
+%j|一年中的 3 位数数字日 (001...366)
+%m|2位数字 年份中的月份 (01...12)
+%M|2位数字 小时中的分钟 (00...59)
+%p|缩写 12 小时制 (AM...PM)
+%P|缩写 12 小时制 (am...pm)
+%S|2位数字 分钟中的秒 (00...59)
+%u|1位数字 星期几 (1...7)
+%U|2位数字 一年中的下周日 (00...53)
+%w|1位数字 一周中的第几天 (0...6)
+%W|2位数字 一年中的下周一 (00...53)
+%y|2位数字 年份(70...38)
+%Y|4位数字 年份(1970...2038)
+%z|5位时区偏移量(-1200...+1400)
+%Z|时区的缩写名称
+
+另可参见：[Echo](#echo),[Event](#event) and [Format](#format).
+
 ## Variable
 
 > 语法: #variable {name} {string}
 
-变量不同于 %0-99 个参数，因为您可以将完整单词指定为变量，除非它们被更改，否则它们会保留在完整会话的内存中。它们可以保存在 coms 文件中，如果您同时运行两个或多个会话，则可以将它们设置为不同的值。变量对于每个会话都是全局的，可以通过在变量名之前添加 $ 来访问。
+变量不同于 %0-99 个参数，因为您可以将完整单词指定为变量，除非它们被更改，否则它们会保留在完整会话的内存中。它们可以保存在 coms 文件中，如果您同时运行两个或多个会话，则可以将它们设置为不同的值。变量对于每个会话都是全局的，可以通过在变量名之前添加 $ 来访问。  
+
 ```
 示例:
 #alias {target} {#var target %0}
 #alias {x} {cast 'acid blast' $target}
-```
-变量的名称必须只存在字母、数字、下划线，变量名称的第一个字符必须始终是字母。如果不满足这些要求，请不要惊慌，只需将变量封装在大括号中。
+```  
+变量的名称必须只存在字母、数字、下划线，变量名称的第一个字符必须始终是字母。如果不满足这些要求，请不要惊慌，只需将变量封装在大括号中。  
+
 ```
 示例: #variable {cool website!} {http://tintin.sourceforge.net} 
 chat I was on ${cool website!} yesterday!
-```
-可以使用括号嵌套变量，使变量的行为类似于关联数组。
+```  
+可以使用括号嵌套变量，使变量的行为类似于关联数组。  
+
 ```
 示例: 
 #var hp[self] 34;
 #var hp[target] 46
-```
+```  
 使用 `$variable[+1]` 可以看到变量的第一个嵌套的值，使用 `$variable[-1]` 可以看到最后一个嵌套的值。使用 `$variable[-2]` 将报告倒数第二个值，依此类推。
 
 您可以使用 `*variable[+1]` 看到变量第一个嵌套的键，查看所有键使用 `*variable[]` 或 `*variable[%*]`。
