@@ -6,9 +6,15 @@
 #tic {rnd.emote} {dor} {999};
 
 #nop 获取上一条表情发出者id;
-#act {^【闲聊】%*(%2 ||} {#var lastid @trim{%2}};
-#nop 对上一条表情发出者做随机表情;
-#alias {chatl} {chatt $lastid};
+#act {^【闲聊】%*%0。(%2 ||} {#var lastid
+@trim{%2}};
+#nop 对上一条表情发出者做指定或随机表情;
+#alias {chatl} {
+  #switch {"%1"} {
+     #case {""}{getr;chat* $r $lastid};
+     #default {chat* %1 $lastid}
+  }
+};
 
 #nop 对指定id做随机表情;
 #alias {chatt %0} {getr;chat* $r %0};
