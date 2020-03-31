@@ -2,7 +2,8 @@
 
 # 导航
 
-|[ 总览 ](#总览)|[ 关于 ](#关于)|<br>
+|[ 总览 ](#总览)
+|[ 关于 ](#关于)|  
 |[ Action ](#action)
 |[ Alias ](#alias)
 |[ All ](#all)|  
@@ -44,6 +45,7 @@
 |[ History](#history)|  
 |[ If ](#if)
 |[ Ignore ](#ignore)
+|[ Index ](#总览)
 |[ Info ](#info)|  
 |[ Keypad ](#keypad)
 |[ Kill ](#kill)|  
@@ -1076,13 +1078,16 @@ The low setting logs mud output before triggers,默认值为高。
 
 #Cr 如果启用了重复输入配置选项，并且在不重复最后一个命令的情况下需要输入，则很有用。
 
-一个很好的选择是在没有参数的情况下使用 #send，或者使用命令分隔符; 插入 enter。
+一个很好的选择是在没有参数的情况下使用 #send，或者使用命令分隔符 `;` 插入 enter。
 
-如果你想在 DikuMUD 服务器上发送多个返回，最好使用 `#send {\n \n}` (空格是有意的) 由于许多 DikuMUD 服务器将连续返回视为一次返回。
+如果你想在 DikuMUD 服务器上发送多个返回，最好使用 `#send {\n \n}` (空格是有意的)，因为许多 DikuMUD 服务器将连续的返回视为一次返回。
 
-> 示例: #ticker {idle} {#send} {300}
+```
+示例: 
+#ticker {idle} {#send} {300}
 
 这将每 300 秒 (5 分钟) 向mud发送一次回车，这将阻止大多数mud和网络因不活动而断开您的连接。
+```
 
 另可参见: [Bell](#bell)and [Forall](#forall).
 
@@ -3499,9 +3504,7 @@ Screen 屏幕命令提供了各种屏幕操作命令和实用程序。
 
 > 语法：#config {SCREEN READER} {ON|OFF}
 
-屏幕阅读器模式通过使用 `#config screen on` 启用。屏幕阅读器模式的主要目的是向服务器报告屏幕阅读器正在使用 MTTS 标准。MTTS 规格可在以下位置获得:
-
-http://tintin.sourceforge.net/protocols/mtts
+屏幕阅读器模式通过使用 `#config screen on` 启用。屏幕阅读器模式的主要目的是向服务器报告屏幕阅读器正在使用 [MTTS 标准](http://tintin.sourceforge.net/protocols/mtts)。  
 
 启用屏幕阅读器模式后，TinTin++ 将尝试删除可能可视的元素。
 
@@ -3550,7 +3553,9 @@ http://tintin.sourceforge.net/protocols/mtts
 
 直接将文本发送到 MUD，如果你想从 escape 代码开始，这很有用。
 
-#Send 将自动附加换行，您可以用 \ 结束换行，以防止这种情况。
+#Send 将自动附加换行府，您可以用 \ 结束换行，以防止这种情况发生。
+
+另可参见：[Textin](#textin).
 
 ## Session
 
