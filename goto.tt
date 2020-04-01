@@ -1145,11 +1145,11 @@
 #action {^鼓楼小院${SUF}$} {set_position {gl}};
 #action {^看来快到蒙古人的驻地了。$} {set_position {myr}};
 #action {^珠都巴殿${SUF}$} {set_position {lh}};
-#action {^%s%s武林大会主持 天天好味道(Jason npc)$} {set_position {bw}};
+#action {^%s武林大会主持 天天好味道(Jason npc)$} {set_position {bw}};
 
 
 #nop 利用地点描述匹配16个口岸;
-#action {^%s%s这里是长江北岸的渡口，扼守扬州的门户} {set_position {jb1}};
+#action {^%s这里是长江北岸的渡口，扼守扬州的门户} {set_position {jb1}};
 #action {^%s%s这里是长江北岸的渡口，扼守建康府的门户} {set_position {jb2}};
 #action {^%s%s这里是长江北岸的渡口。$} {set_position {jb3}};
 #action {^%s%s这里是长江北岸的渡口。东面不远就是华容道，关羽义释曹操的地方} {set_position {jb4}};
