@@ -1,0 +1,783 @@
+#ACTION {#PATH WALK: #END OF PATH.}
+{
+     chat* sweat
+}
+
+#ACTION {这个方向没有出路。}
+{
+     patherror;
+     chat* stomachache
+}
+
+
+#ALIAS {gebib}
+{
+     e;
+     #2 s;
+     #3 e
+}
+
+#ALIAS {gebif}
+{
+     #showme 这里 n 路径随机
+     #3 w;
+     #2 n;
+     w
+}
+
+#ALIAS {pathend}
+{
+     chat 当前地区地图绘制结束
+}
+
+#ALIAS {patherror}
+{
+     #path stop
+}
+
+#ALIAS {river}
+{
+     cross
+}
+
+#ALIAS {shenghub}
+{
+     w;
+     #5 s
+}
+
+#ALIAS {shenghuf}
+{
+     n;
+     #5 e
+}
+
+
+#CONFIG           {TINTIN CHAR}  {#}
+
+#PATHDIR          {d}  {u}  {32}
+#PATHDIR          {e}  {w}  {2}
+#PATHDIR          {ed}  {wu}  {34}
+#PATHDIR          {enter}  {out}  {28}
+#PATHDIR          {eu}  {wd}  {18}
+#PATHDIR          {n}  {s}  {1}
+#PATHDIR          {nd}  {su}  {33}
+#PATHDIR          {ne}  {sw}  {3}
+#PATHDIR          {nu}  {sd}  {17}
+#PATHDIR          {nw}  {se}  {9}
+#PATHDIR          {out}  {enter}  {35}
+#PATHDIR          {s}  {n}  {4}
+#PATHDIR          {sd}  {nu}  {36}
+#PATHDIR          {se}  {nw}  {6}
+#PATHDIR          {su}  {nd}  {20}
+#PATHDIR          {sw}  {ne}  {12}
+#PATHDIR          {u}  {d}  {16}
+#PATHDIR          {w}  {e}  {8}
+#PATHDIR          {wd}  {eu}  {40}
+#PATHDIR          {wu}  {ed}  {24}
+
+#VARIABLE         {bj0}  {#3 w;n;#2 w}
+#VARIABLE         {bj1}  {#2 e;s;w;e;s;w;e}
+#VARIABLE         {bj10}  {#5 n;e;s}
+#VARIABLE         {bj11}  {u;d;#2 n;s;e}
+#VARIABLE         {bj12}  {s;#2 n;s;e}
+#VARIABLE         {bj13}  {#3 w;#2 n;#2 e}
+#VARIABLE         {bj14}  {#2 e;w;s;#2 n;e}
+#VARIABLE         {bj15}  {#3 w;e;n;w}
+#VARIABLE         {bj16}  {#5 e;e;se;nw;ne;sw}
+#VARIABLE         {bj17}  {#4 w;n;e;#2 w}
+#VARIABLE         {bj18}  {n;e;n;e;n}
+#VARIABLE         {bj19}  {s;w;n;u;d;s;w;#2 n}
+#VARIABLE         {bj2}  {#2 s}
+#VARIABLE         {bj20}  {s;w;n;#5 s}
+#VARIABLE         {bj21}  {#3 n;w;#4 n}
+#VARIABLE         {bj22}  {#5 s;n;w}
+#VARIABLE         {bj23}  {#2 n;#4 s;n}
+#VARIABLE         {bj24}  {w;s;#4 n}
+#VARIABLE         {bj25}  {s;w;s;w;#2 n}
+#VARIABLE         {bj26}  {#2 s;e;w;e;#2 s}
+#VARIABLE         {bj27}  {w;#2 e;s;e;w}
+#VARIABLE         {bj28}  {#5 w;e}
+#VARIABLE         {bj29}  {#3 e;s;#2 w;pathend}
+#VARIABLE         {bj3}  {#3 n}
+#VARIABLE         {bj4}  {e;s;#2 n;e;w}
+#VARIABLE         {bj5}  {s;#2 e;#2 s;w}
+#VARIABLE         {bj6}  {n;#3 s}
+#VARIABLE         {bj7}  {#2 s}
+#VARIABLE         {bj8}  {#4 n;w;s}
+#VARIABLE         {bj9}  {n;#2 e;#5 s}
+#VARIABLE         {ca0}  {#3 s;#3 w;n}
+#VARIABLE         {ca1}  {s;e;s;#2 n;s;e;s}
+#VARIABLE         {ca10}  {#4 s;w;#2 e;w}
+#VARIABLE         {ca11}  {#2 s;#3 e;w}
+#VARIABLE         {ca12}  {n;e;w;n;#2 s}
+#VARIABLE         {ca13}  {w;#2 s;#2 n;w}
+#VARIABLE         {ca14}  {w;#2 s;e;w}
+#VARIABLE         {ca15}  {#2 n;w;#2 n;#2 w}
+#VARIABLE         {ca16}  {#2 e;#2 n;#2 e}
+#VARIABLE         {ca17}  {#5 s;e;n}
+#VARIABLE         {ca18}  {#2 s;n;w;s;#2 e}
+#VARIABLE         {ca19}  {#2 e;#3 n;#2 e}
+#VARIABLE         {ca2}  {#2 n;s;e;nw;se;ne;sw}
+#VARIABLE         {ca20}  {#3 e;#4 w}
+#VARIABLE         {ca21}  {w;sw;ne;#5 n}
+#VARIABLE         {ca22}  {s;w;s;#2 n;s;w}
+#VARIABLE         {ca23}  {#3 s;#4 n}
+#VARIABLE         {ca24}  {s;w;s;#2 n;s;w}
+#VARIABLE         {ca25}  {sw;ne;se;nw;#2 n;ne;nu}
+#VARIABLE         {ca26}  {sd;#3 w;#3 e;sw}
+#VARIABLE         {ca27}  {#3 s;n;w;s;#2 n}
+#VARIABLE         {ca28}  {s;w;s;#2 n;s;w}
+#VARIABLE         {ca29}  {s;#2 n;u;d;s;w}
+#VARIABLE         {ca3}  {n;#2 s;sw;#3 w}
+#VARIABLE         {ca30}  {n;#2 s;e;w;s;e}
+#VARIABLE         {ca31}  {w;s;e;w;s;se;nw}
+#VARIABLE         {ca32}  {#3 w;nw;se;#2 e}
+#VARIABLE         {ca33}  {#2 e;w;s;e;w}
+#VARIABLE         {ca34}  {#3 s;n;e;s;#2 n;pathend}
+#VARIABLE         {ca4}  {#3 e;ne;n;e;s}
+#VARIABLE         {ca5}  {#2 n;s;e;s;#2 n}
+#VARIABLE         {ca6}  {s;e;s;#2 n;s;e;s}
+#VARIABLE         {ca7}  {#2 n;#2 e;s;#2 n;s}
+#VARIABLE         {ca8}  {#2 w;#2 n;#2 w;#2 n}
+#VARIABLE         {ca9}  {w;n;s;w;#2 n}
+#VARIABLE         {cd0}  {#2 s;e;se;e}
+#VARIABLE         {cd1}  {w;nw;ne;sw;w}
+#VARIABLE         {cd10}  {n;#3 s;e;ne;sw}
+#VARIABLE         {cd11}  {se;ne;e;w;sw;s;#2 e}
+#VARIABLE         {cd12}  {#3 e;#2 ed;#2 wu}
+#VARIABLE         {cd13}  {#2 w;se;e;sw;ne;n;s}
+#VARIABLE         {cd14}  {sw;w;e;su;nd;sw;ne}
+#VARIABLE         {cd15}  {ne;w;nw;#3 w;s}
+#VARIABLE         {cd16}  {sw;se;e;pathend}
+#VARIABLE         {cd2}  {#3 s;#2 w;#2 e}
+#VARIABLE         {cd3}  {nw;se;#5 n}
+#VARIABLE         {cd4}  {#2 s;w;sw;n;nu}
+#VARIABLE         {cd5}  {sd;s;ne;nw;sw;ne}
+#VARIABLE         {cd6}  {n;#3 w;#2 n}
+#VARIABLE         {cd7}  {#2 s;#5 e}
+#VARIABLE         {cd8}  {n;s;#2 w;n;nw}
+#VARIABLE         {cd9}  {se;ne;nw;se;e;#2 n}
+#VARIABLE         {dl0}  {s;w;s;w}
+#VARIABLE         {dl1}  {e;#2 n;s;#2 e;n}
+#VARIABLE         {dl10}  {#3 w;wu;su;wu;wd;nd;w}
+#VARIABLE         {dl11}  {e;su;eu;ed;nd;ed;#3 e}
+#VARIABLE         {dl12}  {n;#2 nw;w;sw;ne;e}
+#VARIABLE         {dl13}  {#2 se;s;su;se;#3 s}
+#VARIABLE         {dl14}  {nw;n;nw;se;ne;e;enter}
+#VARIABLE         {dl15}  {#3 u;#3 d;out}
+#VARIABLE         {dl16}  {#2 s;w;#2 e;w}
+#VARIABLE         {dl17}  {#2 s;#4 n}
+#VARIABLE         {dl18}  {w;n;nu;ne;sw;enter;out;w}
+#VARIABLE         {dl19}  {e;sd;s;sw;nw;#3 n}
+#VARIABLE         {dl2}  {#2 s;n;w;s;e;w}
+#VARIABLE         {dl20}  {nu;nd;su;e;n;#2 s;n}
+#VARIABLE         {dl21}  {e;#2 w;sd;#3 s;sw}
+#VARIABLE         {dl22}  {ne;se;s;se;s;#2 w}
+#VARIABLE         {dl23}  {nu;enter;out;sd;s;n;wu}
+#VARIABLE         {dl24}  {#2 wd;n;w;enter;out;#2 e}
+#VARIABLE         {dl25}  {w;ne;w;nu;n;s;sd}
+#VARIABLE         {dl26}  {#4 s;wu;w;e;ed}
+#VARIABLE         {dl27}  {se;s;n;e;w;nw;#2 n}
+#VARIABLE         {dl28}  {#2 eu;ed;s;sw;se;e}
+#VARIABLE         {dl29}  {enter;n;u;#2 e;n}
+#VARIABLE         {dl3}  {s;#3 n;e;u;d;w}
+#VARIABLE         {dl30}  {s;w;n;s;#2 w;n}
+#VARIABLE         {dl31}  {s;e;d;s;out;#2 e}
+#VARIABLE         {dl32}  {w;#3 s;se;#3 su}
+#VARIABLE         {dl33}  {s;n;#3 nd;nw;s;w}
+#VARIABLE         {dl34}  {w;#2 e;#4 n;e}
+#VARIABLE         {dl35}  {n;#4 s;e;w;#2 sw}
+#VARIABLE         {dl36}  {n;u;d;s;w;e;s;n}
+#VARIABLE         {dl37}  {#2 ne;s;e;n;#2 u}
+#VARIABLE         {dl38}  {#2 d;#2 s;n;e;#2 w}
+#VARIABLE         {dl39}  {se;s;n;sw;s;#2 n}
+#VARIABLE         {dl4}  {n;#2 w;#4 e;w}
+#VARIABLE         {dl40}  {w;e;s;w;e;ne;nw}
+#VARIABLE         {dl41}  {#5 n;e;ne;s}
+#VARIABLE         {dl42}  {#2 n;w;#2 n;#2 s}
+#VARIABLE         {dl43}  {e;nu;eu;ed;e;ne;e;s}
+#VARIABLE         {dl44}  {u;d;n;e;se;eu;ed;su}
+#VARIABLE         {dl45}  {nd;ne;e;u;d;w;sw}
+#VARIABLE         {dl46}  {sw;su;sd;e;n;e;u;d}
+#VARIABLE         {dl47}  {w;s;e;w;s;eu;wd;n}
+#VARIABLE         {dl48}  {w;nu;nd;ne;wu;wd;nw;#2 w}
+#VARIABLE         {dl49}  {nw;w;wd;#3 n;#3 s}
+#VARIABLE         {dl5}  {s;#2 n;s;w;n;w}
+#VARIABLE         {dl50}  {w;enter;#6 u}
+#VARIABLE         {dl51}  {#6 d;out}
+#VARIABLE         {dl52}  {w;wu;sd;nu;nw;wu;w}
+#VARIABLE         {dl53}  {s;#2 n;s}
+#VARIABLE         {dl54}  {wd;w;n}
+#VARIABLE         {dl55}  {#5 s;w;s;w;pathend}
+#VARIABLE         {dl6}  {#4 n;w;#2 e;w;n}
+#VARIABLE         {dl7}  {#5 s;#2 e;n}
+#VARIABLE         {dl8}  {s;w;#5 n;ne}
+#VARIABLE         {dl9}  {ne;#2 sw;nw;sd;nu;nd}
+#VARIABLE         {fs0}  {e;#2 s}
+#VARIABLE         {fs1}  {n;u;d;#2 n;s;e;s}
+#VARIABLE         {fs10}  {sd;s;s;e;#2 s}
+#VARIABLE         {fs2}  {n;#4 e;w}
+#VARIABLE         {fs3}  {#5 w;#2 s}
+#VARIABLE         {fs4}  {s;w;#2 e;n;s;w}
+#VARIABLE         {fs5}  {s;w;enter;out;e;n}
+#VARIABLE         {fs6}  {#3 n;w;s;n;w}
+#VARIABLE         {fs7}  {n;s;#4 w}
+#VARIABLE         {fs8}  {nw;se;#5 e}
+#VARIABLE         {fs9}  {e;#2 n;nu;nd;su;pathend}
+#VARIABLE         {gw0}  {#2 w}
+#VARIABLE         {gw1}  {#2 e;s;w;e;se;e}
+#VARIABLE         {gw10}  {se;e;se;e;n;s;e}
+#VARIABLE         {gw11}  {eu;su;eu;e;eu;se;sw}
+#VARIABLE         {gw12}  {e;s;wd;s;n;wu;sw}
+#VARIABLE         {gw13}  {n;s;ne;n;nd;su}
+#VARIABLE         {gw14}  {e;ne;nw;wd;w;wd}
+#VARIABLE         {gw15}  {nd;wd;#2 w;nw;w;nw}
+#VARIABLE         {gw16}  {river}
+#VARIABLE         {gw17}  {s;w;sw;#4 w;pathend}
+#VARIABLE         {gw2}  {w;nw;#5 s}
+#VARIABLE         {gw3}  {#2 sw;s;#3 sw}
+#VARIABLE         {gw4}  {#3 ne;n;#2 ne}
+#VARIABLE         {gw5}  {#7 n}
+#VARIABLE         {gw6}  {w;s;n;e;s}
+#VARIABLE         {gw7}  {e;s;n;#2 ne;enter;out}
+#VARIABLE         {gw8}  {#2 sw;e;ne;e;n}
+#VARIABLE         {gw9}  {river}
+#VARIABLE         {hs0}  {}
+#VARIABLE         {hs1}  {ne;sw;#2 su;#2 eu}
+#VARIABLE         {hs10}  {sw;s;se;e;ne;sw}
+#VARIABLE         {hs11}  {#2 se;s;#2 e;#2 w}
+#VARIABLE         {hs12}  {s;w;nw;se;e}
+#VARIABLE         {hs13}  {#4 s;se;nw}
+#VARIABLE         {hs14}  {#6 n}
+#VARIABLE         {hs15}  {#5 e;pathend}
+#VARIABLE         {hs2}  {su;#2 eu;#2 wd}
+#VARIABLE         {hs3}  {nd;#2 wd;#2 nd}
+#VARIABLE         {hs4}  {nw;#2 w;s;n;w;n}
+#VARIABLE         {hs5}  {s;w;n;#2 s;e}
+#VARIABLE         {hs6}  {w;n;w;nw;sw;ne;nw}
+#VARIABLE         {hs7}  {w;n;s;nw;n;ne}
+#VARIABLE         {hs8}  {n;w;e;ne;sw;#2 s}
+#VARIABLE         {hs9}  {w;#2 e;w;s;#2 n}
+#VARIABLE         {hz0}  {#3 s;#2 e}
+#VARIABLE         {hz1}  {#2 w;n;e;w;n}
+#VARIABLE         {hz10}  {w;#2 e;w;n;se}
+#VARIABLE         {hz11}  {s;#2 w;#4 e}
+#VARIABLE         {hz12}  {#2 w;n;ne;e;su}
+#VARIABLE         {hz13}  {sd;s;w;sw;n;e}
+#VARIABLE         {hz14}  {w;s;e;w;wu;w}
+#VARIABLE         {hz15}  {e;n;#5 nd}
+#VARIABLE         {hz16}  {e;ne;n;ne;w;#2 e}
+#VARIABLE         {hz17}  {w;s;w;e;#3 s}
+#VARIABLE         {hz18}  {w;n;#2 s;n;e}
+#VARIABLE         {hz19}  {s;e;#2 n;e;w}
+#VARIABLE         {hz2}  {e;w;n;e;u;d}
+#VARIABLE         {hz20}  {#4 n;e;enter}
+#VARIABLE         {hz21}  {out;w;#4 n}
+#VARIABLE         {hz22}  {#2 s;e;#2 w;s}
+#VARIABLE         {hz23}  {#5 s;w;wu}
+#VARIABLE         {hz24}  {#2 wu;w;e;#2 ed}
+#VARIABLE         {hz25}  {ed;e;s;w;e;s;wu}
+#VARIABLE         {hz26}  {ed;n;#3 e;#2 w}
+#VARIABLE         {hz27}  {w;#2 n;#2 e;nu}
+#VARIABLE         {hz28}  {sd;#2 e;enter;out;w}
+#VARIABLE         {hz29}  {s;#2 wu;#2 wd;w;n}
+#VARIABLE         {hz3}  {w;n;e;#2 w;#2 nu}
+#VARIABLE         {hz30}  {#3 e;n;e;#2 w}
+#VARIABLE         {hz31}  {w;ne;sw;#2 e;n;#2 e;pathend}
+#VARIABLE         {hz4}  {#2 sd;w;#2 n;s}
+#VARIABLE         {hz5}  {#2 s;se;ne;se;ne}
+#VARIABLE         {hz6}  {n;ne;#4 w}
+#VARIABLE         {hz7}  {sw;s;sw;w;sw;n}
+#VARIABLE         {hz8}  {enter;n;s;out;s;nw}
+#VARIABLE         {hz9}  {n;w;#2 e;w;#2 s}
+#VARIABLE         {jz0}  {n;#2 e}
+#VARIABLE         {jz1}  {#2 w;s;w;n;#2 s}
+#VARIABLE         {jz10}  {#3 s;sd;s;enter;out}
+#VARIABLE         {jz11}  {n;nu;#4 n}
+#VARIABLE         {jz12}  {#2 u;#2 d;s;e}
+#VARIABLE         {jz13}  {#2 s;#3 n;s}
+#VARIABLE         {jz14}  {#3 e;#3 w}
+#VARIABLE         {jz15}  {#2 w;#3 n;nu}
+#VARIABLE         {jz16}  {n;s;nw;se;e;w}
+#VARIABLE         {jz17}  {sd;s;w;#2 e}
+#VARIABLE         {jz18}  {w;s;w;#3 e;pathend}
+#VARIABLE         {jz2}  {n;w;#3 n;nu}
+#VARIABLE         {jz3}  {ed;e;w;wu;sd;#2 s}
+#VARIABLE         {jz4}  {s;#3 w;#3 e}
+#VARIABLE         {jz5}  {#2 s;sd;eu;e;eu}
+#VARIABLE         {jz6}  {w;#2 e;w;s}
+#VARIABLE         {jz7}  {#5 s;n}
+#VARIABLE         {jz8}  {#6 n}
+#VARIABLE         {jz9}  {w;#2 e;w;n;e}
+#VARIABLE         {kf0}  {n;#2 e}
+#VARIABLE         {kf1}  {#2 w;s;#2 n;nu}
+#VARIABLE         {kf10}  {#2 w;#2 e;#2 n}
+#VARIABLE         {kf11}  {#2 e;n;s;#2 w}
+#VARIABLE         {kf12}  {#4 s;w;#2 e}
+#VARIABLE         {kf13}  {w;#4 s;#2 e}
+#VARIABLE         {kf14}  {enter;out;#2 w;#3 s}
+#VARIABLE         {kf15}  {se;e;w;se;#2 nw}
+#VARIABLE         {kf16}  {#2 sw;w;e;#2 ne}
+#VARIABLE         {kf17}  {#3 n;e;w;n}
+#VARIABLE         {kf18}  {w;e;#3 n;w}
+#VARIABLE         {kf19}  {#2 e;w;#3 n}
+#VARIABLE         {kf2}  {nd;#3 n;wu;ed}
+#VARIABLE         {kf20}  {#2 n;#2 nd;n;s}
+#VARIABLE         {kf21}  {#2 su;s;#2 w;wd}
+#VARIABLE         {kf22}  {#2 n;eu;ed;wu;wd}
+#VARIABLE         {kf23}  {#3 w;u;d;e}
+#VARIABLE         {kf24}  {#2 e;n;#3 e}
+#VARIABLE         {kf25}  {su;sd;w;#2 e;w}
+#VARIABLE         {kf26}  {e;#2 w;e;s;w;#3 e;pathend}
+#VARIABLE         {kf3}  {#2 s;#4 e}
+#VARIABLE         {kf4}  {n;s;w;s;wu;wd;eu}
+#VARIABLE         {kf5}  {ed;#2 e;n;s;e}
+#VARIABLE         {kf6}  {#3 w;#4 s}
+#VARIABLE         {kf7}  {#2 e;w;s;w;n}
+#VARIABLE         {kf8}  {w;n;w;#2 s;e}
+#VARIABLE         {kf9}  {n;#3 w;s;w}
+#VARIABLE         {km0}  {#2 s;#2 w}
+#VARIABLE         {km1}  {#2 e;n;e;#2 w}
+#VARIABLE         {km10}  {n;ne;#4 n}
+#VARIABLE         {km11}  {#4 s;sw;s}
+#VARIABLE         {km12}  {#6 s}
+#VARIABLE         {km13}  {sw;s;w;#4 s}
+#VARIABLE         {km14}  {w;nu;u;d;sd}
+#VARIABLE         {km15}  {#6 w}
+#VARIABLE         {km16}  {#6 s;sw}
+#VARIABLE         {km17}  {#2 s;#2 n;ne;#2 n}
+#VARIABLE         {km18}  {#2 n;e;#3 w;pathend}
+#VARIABLE         {km2}  {e;n;u;d;#2 w}
+#VARIABLE         {km3}  {#3 w;#2 sw;ne}
+#VARIABLE         {km4}  {#2 ne;sw;#3 e}
+#VARIABLE         {km5}  {#2 e;#2 n;#2 s}
+#VARIABLE         {km6}  {#6 e}
+#VARIABLE         {km7}  {nu;u;d;sd;e;n}
+#VARIABLE         {km8}  {#3 n;e;n;ne}
+#VARIABLE         {km9}  {#6 n}
+#VARIABLE         {laz0}  {#2 n;e}
+#VARIABLE         {laz1}  {#2 w;e;#3 n}
+#VARIABLE         {laz10}  {#5 s;#2 se}
+#VARIABLE         {laz11}  {e;#2 s;se;#2 e}
+#VARIABLE         {laz12}  {#2 w;nw;#2 n;w}
+#VARIABLE         {laz13}  {#2 nw;#4 n}
+#VARIABLE         {laz14}  {#2 n;#4 e}
+#VARIABLE         {laz15}  {sw;ne;nu;sd;#2 w}
+#VARIABLE         {laz16}  {w;n;w;n;e;pathend}
+#VARIABLE         {laz2}  {#2 nw;n;s;#2 se}
+#VARIABLE         {laz3}  {s;#3 w;n;s}
+#VARIABLE         {laz4}  {#3 w;#4 e}
+#VARIABLE         {laz5}  {#2 e;#4 s;w}
+#VARIABLE         {laz6}  {#2 s;#2 n;#2 w}
+#VARIABLE         {laz7}  {wd;#2 w;nw;w;e}
+#VARIABLE         {laz8}  {se;#2 w;#4 e}
+#VARIABLE         {laz9}  {eu;#3 e;s;e;w}
+#VARIABLE         {liz0}  {s;#2 e}
+#VARIABLE         {liz1}  {#2 w;#2 s;#2 sw}
+#VARIABLE         {liz10}  {ne;#3 n;e;w}
+#VARIABLE         {liz11}  {#2 w;#2 e;#2 s}
+#VARIABLE         {liz12}  {ne;n;ne;enter;out;nw}
+#VARIABLE         {liz13}  {nd;#3 n;#3 s}
+#VARIABLE         {liz14}  {su;se;sw;s;sw;s}
+#VARIABLE         {liz15}  {sw;#2 w;s;#2 e;pathend}
+#VARIABLE         {liz2}  {#2 sw;#4 ne}
+#VARIABLE         {liz3}  {#2 n;w;e;n;#2 n}
+#VARIABLE         {liz4}  {#2 s;w;s;#2 n;open door}
+#VARIABLE         {liz5}  {#2 n;s;w;#2 e}
+#VARIABLE         {liz6}  {w;#2 s;w;s;n}
+#VARIABLE         {liz7}  {nw;w;wu;ed;e;se}
+#VARIABLE         {liz8}  {n;s;w;#3 e}
+#VARIABLE         {liz9}  {e;s;#2 n;s;e}
+#VARIABLE         {lx0}  {#5 s;nw}
+#VARIABLE         {lx1}  {wu;#2 nu;eu;e;w}
+#VARIABLE         {lx2}  {#2 nu;n;w;e;open door}
+#VARIABLE         {lx3}  {e;w;nu;#2 u;w;e}
+#VARIABLE         {lx4}  {e;w;e;#2 w;e}
+#VARIABLE         {lx5}  {#2 d;sd;e;#2 w}
+#VARIABLE         {lx6}  {e;s;#2 sd;e}
+#VARIABLE         {lx7}  {w;wd;#2 sd;ed;pathend}
+#VARIABLE         {ly0}  {s;#2 e}
+#VARIABLE         {ly1}  {#2 w;s;w;u;d;w}
+#VARIABLE         {ly10}  {#2 n;s;#2 w;wd;eu}
+#VARIABLE         {ly11}  {wd;#5 w}
+#VARIABLE         {ly12}  {#5 e;eu}
+#VARIABLE         {ly13}  {#3 e;s;#2 n;s}
+#VARIABLE         {ly14}  {e;s;#2 n;s;e}
+#VARIABLE         {ly15}  {#2 s;#3 n;s}
+#VARIABLE         {ly16}  {e;n;#2 s;n;e}
+#VARIABLE         {ly17}  {#7 s}
+#VARIABLE         {ly18}  {s;#3 e;#3 n}
+#VARIABLE         {ly19}  {n;e;n;s;w;#2 s}
+#VARIABLE         {ly2}  {#3 e;w;s;w;e}
+#VARIABLE         {ly20}  {#2 s;e;ne;#3 n}
+#VARIABLE         {ly21}  {n;#2 e;ed;#2 e}
+#VARIABLE         {ly22}  {#2 w;wu;w;w;#2 n}
+#VARIABLE         {ly23}  {#2 w;n;#2 e;n}
+#VARIABLE         {ly24}  {#2 s;w;#3 s;n}
+#VARIABLE         {ly25}  {w;n;#2 s;n;w;s}
+#VARIABLE         {ly26}  {#3 n;#2 s;w;n}
+#VARIABLE         {ly27}  {#2 s;n;w;n;w}
+#VARIABLE         {ly28}  {#2 e;#3 u;#2 d}
+#VARIABLE         {ly29}  {d;w;n;w;#2 e;w}
+#VARIABLE         {ly3}  {#3 e;#4 w}
+#VARIABLE         {ly30}  {n;w;#2 e;w;n;w}
+#VARIABLE         {ly31}  {#4 e;#3 w}
+#VARIABLE         {ly32}  {#6 n;#2 s}
+#VARIABLE         {ly33}  {#8 s}
+#VARIABLE         {ly34}  {s;w;#3 e;pathend}
+#VARIABLE         {ly4}  {e;s;#2 e;#3 w}
+#VARIABLE         {ly5}  {e;s;w;e;s}
+#VARIABLE         {ly6}  {w;#2 e;w;s;w}
+#VARIABLE         {ly7}  {#3 e;#2 w;#2 s}
+#VARIABLE         {ly8}  {#2 s;#3 n;#2 w}
+#VARIABLE         {ly9}  {#2 w;nw;#3 n}
+#VARIABLE         {pathbj}  {w;w;w;n;w;w;e;e;s;w;e;s;w;e;s;s;n;n;n;e;s;n;n;e;w;s;e;e;s;s;w;n;s;s;s;s;s;n;n;n;n;w;s;n;e;e;s;s;s;s;s;n;n;n;n;n;e;s;u;d;n;n;s;e;s;n;n;s;e;w;w;w;n;n;e;e;e;e;w;s;n;n;e;w;w;w;e;n;w;e;e;e;e;e;e;se;nw;ne;sw;w;w;w;w;n;e;w;w;n;e;n;e;n;s;w;n;u;d;s;w;n;n;s;w;n;s;s;s;s;s;n;n;n;w;n;n;n;n;s;s;s;s;s;n;w;n;n;s;s;s;s;n;w;s;n;n;n;n;s;w;s;w;n;n;s;s;e;w;e;s;s;w;e;e;s;e;w;w;w;w;w;w;e;e;e;e;s;w;w}
+#VARIABLE         {pathbj0}  {e;e;n;w;w;w;w;e;e;e;e;e;e;w;n;w;w;e;n;n;w;e;w;n;n;s;s;e;n;e;n;s;s;s;s;n;e;s;n;n;n;n;s;s;e;s;n;n;n;n;n;s;s;s;s;e;s;s;s;n;n;n;n;n;s;e;n;s;s;e;n;u;d;s;e;n;s;w;s;w;s;e;e;w;s;e;e;e;e;ne;sw;se;nw;w;w;w;w;w;w;e;s;w;e;e;e;w;s;s;n;e;w;w;w;w;s;s;e;e;e;w;n;s;s;n;w;n;s;s;u;d;n;w;s;s;s;s;s;n;n;n;n;n;w;w;s;n;e;s;s;s;s;n;n;n;n;n;s;e;n;n;w;w;n;e;w;s;s;n;w;s;s;s;n;n;w;e;n;w;e;n;w;w;e;e;s;e;e;e}
+#VARIABLE         {pathca}  {s;s;s;w;w;w;n;s;e;s;n;n;s;e;s;n;n;s;e;nw;se;ne;sw;n;s;s;sw;w;w;w;e;e;e;ne;n;e;s;n;n;s;e;s;n;n;s;e;s;n;n;s;e;s;n;n;e;e;s;n;n;s;w;w;n;n;w;w;n;n;w;n;s;w;n;n;s;s;s;s;w;e;e;w;s;s;e;e;e;w;n;e;w;n;s;s;w;s;s;n;n;w;w;s;s;e;w;n;n;w;n;n;w;w;e;e;n;n;e;e;s;s;s;s;s;e;n;s;s;n;w;s;e;e;e;e;n;n;n;e;e;e;e;e;w;w;w;w;w;sw;ne;n;n;n;n;n;s;w;s;n;n;s;w;s;s;s;n;n;n;n;s;w;s;n;n;s;w;sw;ne;se;nw;n;n;ne;nu;sd;w;w;w;e;e;e;sw;s;s;s;n;w;s;n;n;s;w;s;n;n;s;w;s;n;n;u;d;s;w;n;s;s;e;w;s;e;w;s;e;w;s;se;nw;w;w;w;nw;se;e;e;e;e;w;s;e;w;s;s;s;n;e;s;n;n}
+#VARIABLE         {pathca0}  {s;s;n;w;s;n;n;n;e;w;n;e;w;w;w;w;nw;se;e;e;e;se;nw;n;e;w;n;e;w;n;e;w;n;n;s;e;n;u;d;s;s;n;e;n;s;s;n;e;n;s;s;n;e;s;n;n;n;ne;w;w;w;e;e;e;nu;sd;sw;s;s;se;nw;sw;ne;e;n;s;s;n;e;n;s;s;s;s;n;n;n;e;n;s;s;n;e;n;s;s;s;s;s;sw;ne;e;e;e;e;e;w;w;w;w;w;s;s;s;w;w;w;w;n;e;s;n;n;s;w;n;n;n;n;n;w;w;s;s;w;w;e;e;s;s;e;s;s;e;w;n;n;e;e;s;s;n;n;e;n;n;s;e;w;s;e;w;w;w;n;n;e;w;w;e;n;n;n;n;s;s;e;n;s;e;s;s;e;e;s;s;e;e;n;s;s;n;w;w;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;s;sw;w;w;w;e;e;e;ne;n;n;s;ne;sw;nw;se;w;n;s;s;n;w;n;s;s;n;w;n;s;e;e;e;n;n;n}
+#VARIABLE         {pathcd}  {s;s;e;se;e;w;nw;ne;sw;w;s;s;s;w;w;e;e;nw;se;n;n;n;n;n;s;s;w;sw;n;nu;sd;s;ne;nw;sw;ne;n;w;w;w;n;n;s;s;e;e;e;e;e;n;s;w;w;n;nw;se;ne;nw;se;e;n;n;n;s;s;s;e;ne;sw;se;ne;e;w;sw;s;e;e;e;e;e;ed;ed;wu;wu;w;w;se;e;sw;ne;n;s;sw;w;e;su;nd;sw;ne;ne;w;nw;w;w;w;s;sw;se;e}
+#VARIABLE         {pathcd0}  {w;nw;ne;n;e;e;e;se;e;sw;sw;ne;su;nd;w;e;ne;n;s;sw;ne;w;nw;e;e;ed;ed;wu;wu;w;w;w;w;w;n;ne;e;w;sw;nw;ne;sw;w;n;n;n;s;s;s;w;nw;se;sw;nw;se;s;e;e;n;s;w;w;w;w;w;n;n;s;s;e;e;e;s;sw;ne;se;sw;n;nu;sd;s;ne;e;n;n;s;s;s;s;s;nw;se;w;w;e;e;n;n;n;e;ne;sw;se;e;w;nw;w;n;n}
+#VARIABLE         {pathdl}  {s;w;s;w;e;n;n;s;e;e;n;s;s;n;w;s;e;w;s;n;n;n;e;u;d;w;n;w;w;e;e;e;e;w;s;n;n;s;w;n;w;n;n;n;n;w;e;e;w;n;s;s;s;s;s;e;e;n;s;w;n;n;n;n;n;ne;ne;sw;sw;nw;sd;nu;nd;w;w;w;wu;su;wu;wd;nd;w;e;su;eu;ed;nd;ed;e;e;e;n;nw;nw;w;sw;ne;e;se;se;s;su;se;s;s;s;nw;n;nw;se;ne;e;enter;u;u;u;d;d;d;out;s;s;w;e;e;w;s;s;n;n;n;n;w;n;nu;ne;sw;enter;out;w;e;sd;s;sw;nw;n;n;n;nu;nd;su;e;n;s;s;n;e;w;w;sd;s;s;s;sw;ne;se;s;se;s;w;w;nu;enter;out;sd;s;n;wu;wd;wd;n;w;enter;out;e;e;w;ne;w;nu;n;s;sd;s;s;s;s;wu;w;e;ed;se;s;n;e;w;nw;n;n;eu;eu;ed;s;sw;se;e;enter;n;u;e;e;n;s;w;n;s;w;w;n;s;e;d;s;out;e;e;w;s;s;s;se;su;su;su;s;n;nd;nd;nd;nw;s;w;w;e;e;n;n;n;n;e;n;s;s;s;s;e;w;sw;sw;n;u;d;s;w;e;s;n;ne;ne;s;e;n;u;u;d;d;s;s;n;e;w;w;se;s;n;sw;s;n;n;w;e;s;w;e;ne;nw;n;n;n;n;n;e;ne;s;n;n;w;n;n;s;s;e;nu;eu;ed;e;ne;e;s;u;d;n;e;se;eu;ed;su;nd;ne;e;u;d;w;sw;sw;su;sd;e;n;e;u;d;w;s;e;w;s;eu;wd;n;w;nu;nd;ne;wu;wd;nw;w;w;nw;w;wd;n;n;n;s;s;s;w;enter;u;u;u;u;u;u;d;d;d;d;d;d;out;w;wu;sd;nu;nw;wu;w;s;n;n;s;wd;w;n;s;s;s;s;s;w;s;w}
+#VARIABLE         {pathdl0}  {e;n;e;n;n;n;n;n;s;e;eu;n;s;s;n;e;ed;se;sd;nu;ed;e;enter;u;u;u;u;u;u;d;d;d;d;d;d;out;e;n;n;n;s;s;s;eu;e;se;e;e;se;eu;ed;sw;su;sd;e;s;eu;wd;n;e;w;n;e;u;d;w;s;w;nu;nd;ne;ne;e;u;d;w;sw;su;nd;wu;wd;nw;w;s;u;d;n;w;sw;w;wu;wd;sd;w;n;n;s;s;e;s;s;n;sw;w;s;s;s;s;s;se;sw;w;e;n;w;e;s;s;n;ne;s;n;nw;e;e;w;s;n;n;u;u;d;d;s;w;n;sw;sw;s;n;w;e;n;u;d;s;ne;ne;e;w;n;n;n;n;s;w;s;s;s;s;w;w;e;e;n;se;su;su;su;s;n;nd;nd;nd;nw;n;n;n;e;w;w;enter;n;u;w;n;s;e;e;n;s;e;n;s;w;w;d;s;out;w;nw;ne;n;wu;wd;wd;s;s;se;e;w;s;n;nw;wu;w;e;ed;n;n;n;n;nu;n;s;sd;e;sw;e;w;w;enter;out;e;s;eu;eu;ed;s;n;nu;enter;out;sd;e;e;n;nw;n;nw;sw;ne;n;n;n;nu;e;e;w;s;n;n;s;w;nd;su;sd;s;s;s;se;ne;n;nu;w;e;enter;out;ne;sw;sd;s;e;s;s;s;s;n;n;e;w;w;e;n;n;enter;u;u;u;d;d;d;out;w;sw;nw;se;s;se;n;n;n;nw;nd;n;nw;nw;w;sw;ne;e;se;se;s;w;w;w;wu;su;wu;wd;nd;w;e;su;eu;ed;nd;ed;e;e;e;su;sd;nu;se;ne;ne;sw;sw;s;s;s;s;s;e;n;s;w;w;n;n;n;n;n;s;e;w;w;e;s;s;s;s;e;s;e;n;s;s;n;e;w;w;w;w;e;e;s;e;u;d;w;s;s;s;n;e;w;n;e;s;n;n;s;w;w;n;s;s;w;e;n;e;n}
+#VARIABLE         {pathfs}  {e;s;s;n;u;d;n;n;s;e;s;n;e;e;e;e;w;w;w;w;w;w;s;s;s;w;e;e;n;s;w;s;w;enter;out;e;n;n;n;n;w;s;n;w;n;s;w;w;w;w;nw;se;e;e;e;e;e;e;n;n;nu;nd;su;sd;s;s;e;s;s}
+#VARIABLE         {pathfs0}  {n;n;w;n;n;nu;nd;su;sd;s;s;w;w;w;w;w;w;nw;se;e;e;e;e;n;s;e;s;n;e;s;s;s;s;w;enter;out;e;n;e;n;s;w;w;e;n;n;n;e;e;e;e;e;e;w;w;w;w;s;n;w;n;s;s;u;d;s;n;n;w}
+#VARIABLE         {pathgw}  {w;w;e;e;s;w;e;se;e;w;nw;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;n;n;w;s;n;e;s;e;s;n;ne;ne;enter;out;sw;sw;e;ne;e;n;river;se;e;se;e;n;s;e;eu;su;eu;e;eu;se;sw;e;s;wd;s;n;wu;sw;n;s;ne;n;nd;su;e;ne;nw;wd;w;wd;nd;wd;w;w;nw;w;nw;river;s;w;sw;w;w;w;w}
+#VARIABLE         {pathgw0}  {e;e;e;e;ne;e;n;river;se;e;se;e;e;eu;su;eu;e;eu;se;sw;w;nd;su;s;sw;n;s;ne;ed;s;n;eu;n;w;ne;nw;wd;w;wd;nd;wd;w;n;s;w;nw;w;nw;river;s;w;sw;w;ne;ne;enter;out;sw;sw;s;n;w;n;w;s;n;e;s;s;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;se;e;w;nw;w;e;n;w;w;e;e}
+#VARIABLE         {pathhs}  {ne;sw;su;su;eu;eu;su;eu;eu;wd;wd;nd;wd;wd;nd;nd;nw;w;w;s;n;w;n;s;w;n;s;s;e;w;n;w;nw;sw;ne;nw;w;n;s;nw;n;ne;n;w;e;ne;sw;s;s;w;e;e;w;s;n;n;sw;s;se;e;ne;sw;se;se;s;e;e;w;w;s;w;nw;se;e;s;s;s;s;se;nw;n;n;n;n;n;n;e;e;e;e;e}
+#VARIABLE         {pathhs0}  {w;w;w;w;w;s;s;s;s;s;s;se;nw;n;n;n;n;w;nw;se;e;n;e;e;w;w;n;nw;nw;ne;sw;w;nw;n;ne;s;s;n;e;w;w;e;n;n;ne;sw;w;e;s;sw;s;se;n;s;e;se;sw;ne;se;e;s;e;w;n;n;s;e;n;s;e;s;n;e;e;se;su;su;eu;eu;su;eu;eu;wd;wd;nd;wd;wd;nd;nd;ne;sw}
+#VARIABLE         {pathhz}  {s;s;s;e;e;w;w;n;e;w;n;e;w;n;e;u;d;w;n;e;w;w;nu;nu;sd;sd;w;n;n;s;s;s;se;ne;se;ne;n;ne;w;w;w;w;sw;s;sw;w;sw;n;enter;n;s;out;s;nw;n;w;e;e;w;s;s;w;e;e;w;n;se;s;w;w;e;e;e;e;w;w;n;ne;e;su;sd;s;w;sw;n;e;w;s;e;w;wu;w;e;n;nd;nd;nd;nd;nd;e;ne;n;ne;w;e;e;w;s;w;e;s;s;s;w;n;s;s;n;e;s;e;n;n;e;w;n;n;n;n;e;enter;out;w;n;n;n;n;s;s;e;w;w;s;s;s;s;s;s;w;wu;wu;wu;w;e;ed;ed;ed;e;s;w;e;s;wu;ed;n;e;e;e;w;w;w;n;n;e;e;nu;sd;e;e;enter;out;w;s;wu;wu;wd;wd;w;n;e;e;e;n;e;w;w;w;ne;sw;e;e;n;e;e}
+#VARIABLE         {pathhz0}  {w;w;s;w;w;ne;sw;e;e;e;w;s;w;w;w;s;e;eu;eu;ed;ed;n;e;enter;out;w;w;nu;sd;w;w;s;s;e;e;e;w;w;w;s;wu;ed;n;w;e;n;w;wu;wu;wu;w;e;ed;ed;ed;e;n;n;n;n;n;n;e;e;w;n;n;s;s;s;s;e;enter;out;w;s;s;s;s;e;w;s;s;w;n;w;s;n;n;s;e;n;n;n;w;e;n;e;w;w;e;sw;s;sw;w;su;su;su;su;su;s;w;e;ed;e;w;n;e;w;s;ne;e;n;nu;nd;w;sw;s;e;e;w;w;w;w;e;e;n;nw;s;e;w;w;e;n;n;e;w;w;e;s;se;n;enter;n;s;out;s;ne;e;ne;n;ne;e;e;e;e;sw;s;sw;nw;sw;nw;n;n;n;s;s;e;nu;nu;sd;sd;e;e;w;s;e;u;d;w;s;e;w;s;e;w;s;e;e;w;w;n;n;n}
+#VARIABLE         {pathjz}  {n;e;e;w;w;s;w;n;s;s;n;w;n;n;n;nu;ed;e;w;wu;sd;s;s;s;w;w;w;e;e;e;s;s;sd;eu;e;eu;w;e;e;w;s;s;s;s;s;s;n;n;n;n;n;n;n;w;e;e;w;n;e;s;s;s;sd;s;enter;out;n;nu;n;n;n;n;u;u;d;d;s;e;s;s;n;n;n;s;e;e;e;w;w;w;w;w;n;n;n;nu;n;s;nw;se;e;w;sd;s;w;e;e;w;s;w;e;e;e}
+#VARIABLE         {pathjz0}  {w;w;w;e;n;e;w;w;e;n;nu;e;w;nw;se;n;s;sd;s;s;s;e;e;e;e;e;w;w;w;n;s;s;s;n;n;w;n;u;u;d;d;s;s;s;s;sd;s;enter;out;n;nu;n;n;n;w;s;e;w;w;e;s;s;s;s;s;s;s;n;n;n;n;n;n;e;w;w;e;wd;w;wd;nu;n;n;w;w;w;e;e;e;n;n;n;nu;ed;e;w;wu;sd;s;s;s;e;s;n;n;s;e;n;e;e;w;w;s}
+#VARIABLE         {pathkf}  {n;e;e;w;w;s;n;n;nu;nd;n;n;n;wu;ed;s;s;e;e;e;e;n;s;w;s;wu;wd;eu;ed;e;e;n;s;e;w;w;w;s;s;s;s;e;e;w;s;w;n;w;n;w;s;s;e;n;w;w;w;s;w;w;w;e;e;n;n;e;e;n;s;w;w;s;s;s;s;w;e;e;w;s;s;s;s;e;e;enter;out;w;w;s;s;s;se;e;w;se;nw;nw;sw;sw;w;e;ne;ne;n;n;n;e;w;n;w;e;n;n;n;w;e;e;w;n;n;n;n;n;nd;nd;n;s;su;su;s;w;w;wd;n;n;eu;ed;wu;wd;w;w;w;u;d;e;e;e;n;e;e;e;su;sd;w;e;e;w;e;w;w;e;s;w;e;e;e}
+#VARIABLE         {pathkf0}  {w;w;w;e;n;w;e;e;w;e;w;w;e;nu;nd;w;w;w;s;w;w;w;u;d;e;e;e;eu;ed;wu;wd;s;s;eu;e;e;n;nd;nd;n;s;su;su;s;s;s;s;s;e;w;w;e;s;s;s;w;e;s;e;w;s;s;s;sw;sw;w;e;ne;ne;se;se;nw;e;w;nw;n;n;n;e;e;enter;out;w;w;n;n;n;n;e;w;w;e;n;n;n;n;e;e;n;s;w;w;s;s;w;w;e;e;e;n;e;e;e;s;w;n;n;e;s;e;s;e;n;e;w;w;n;n;n;n;e;e;e;w;n;s;w;w;wu;wd;eu;ed;n;e;n;s;w;w;w;w;n;n;wu;ed;s;s;s;su;sd;s;s;n;e;e;w;w;s}
+#VARIABLE         {pathkm}  {s;s;w;w;e;e;n;e;w;w;e;n;u;d;w;w;w;w;w;sw;sw;ne;ne;ne;sw;e;e;e;e;e;n;n;s;s;e;e;e;e;e;e;nu;u;d;sd;e;n;n;n;n;e;n;ne;n;n;n;n;n;n;n;ne;n;n;n;n;s;s;s;s;sw;s;s;s;s;s;s;s;sw;s;w;s;s;s;s;w;nu;u;d;sd;w;w;w;w;w;w;s;s;s;s;s;s;sw;s;s;n;n;ne;n;n;n;n;e;w;w;w}
+#VARIABLE         {pathkm0}  {e;e;e;w;s;s;s;s;sw;s;s;n;n;ne;n;n;n;n;n;n;e;e;e;e;e;e;nu;u;d;sd;e;n;n;n;n;e;n;ne;n;n;n;n;n;n;n;ne;n;n;n;n;s;s;s;s;sw;s;s;s;s;s;s;s;sw;s;w;s;s;s;s;w;nu;u;d;sd;w;w;w;w;w;w;n;n;s;s;w;w;w;w;w;ne;sw;sw;sw;ne;ne;e;e;e;e;e;u;d;s;w;e;e;w;s;w;w;e;e;n;n}
+#VARIABLE         {pathlaz}  {n;n;e;w;w;e;n;n;n;nw;nw;n;s;se;se;s;w;w;w;n;s;w;w;w;e;e;e;e;e;e;s;s;s;s;w;s;s;n;n;w;w;wd;w;w;nw;w;e;se;w;w;e;e;e;e;eu;e;e;e;s;e;w;s;s;s;s;s;se;se;e;s;s;se;e;e;w;w;nw;n;n;w;nw;nw;n;n;n;n;n;n;e;e;e;e;sw;ne;nu;sd;w;w;w;n;w;n;e}
+#VARIABLE         {pathlaz0}  {w;s;e;s;e;e;e;nu;sd;sw;ne;w;w;w;w;s;s;s;s;s;s;se;se;e;s;s;se;e;e;w;w;nw;n;n;w;nw;nw;n;n;n;n;n;e;w;n;w;w;w;wd;w;w;w;w;e;e;nw;w;e;se;e;e;eu;e;e;s;s;n;n;e;n;n;n;n;w;w;w;w;w;w;e;e;e;n;s;e;e;e;n;nw;nw;n;s;se;se;s;s;s;w;e;e;w;s;s}
+#VARIABLE         {pathliz}  {s;e;e;w;w;s;s;sw;sw;sw;sw;ne;ne;ne;ne;n;n;w;e;n;n;n;s;s;w;s;n;n;open door;n;n;s;w;e;e;w;s;s;w;s;n;nw;w;wu;ed;e;se;n;s;w;e;e;e;e;s;n;n;s;e;ne;n;n;n;e;w;w;w;e;e;s;s;ne;n;ne;enter;out;nw;nd;n;n;n;s;s;s;su;se;sw;s;sw;s;sw;w;w;s;e;e}
+#VARIABLE         {pathliz0}  {w;w;n;e;e;ne;n;ne;n;ne;nw;nd;n;n;n;s;s;s;su;se;enter;out;sw;s;sw;n;n;w;w;e;e;e;w;s;s;s;sw;w;n;s;s;n;w;w;w;w;e;n;s;nw;w;wu;ed;e;se;s;n;e;n;n;e;w;w;e;n;s;s;open door;s;s;n;e;n;n;s;s;s;w;e;s;s;sw;sw;sw;sw;ne;ne;ne;ne;n;n;e;e;w;w;n}
+#VARIABLE         {pathlx}  {s;s;s;s;s;nw;wu;nu;nu;eu;e;w;nu;nu;n;w;e;open door;e;w;nu;u;u;w;e;e;w;e;w;w;e;d;d;sd;e;w;w;e;s;sd;sd;e;w;wd;sd;sd;ed}
+#VARIABLE         {pathlx0}  {wu;nu;nu;eu;e;w;nu;nu;n;w;e;e;w;nu;u;u;w;e;e;w;e;w;w;e;d;d;sd;e;w;open door;w;e;s;sd;sd;e;w;wd;sd;sd;ed;se;n;n;n;n;n}
+#VARIABLE         {pathly}  {s;e;e;w;w;s;w;u;d;w;e;e;e;w;s;w;e;e;e;e;w;w;w;w;e;s;e;e;w;w;w;e;s;w;e;s;w;e;e;w;s;w;e;e;e;w;w;s;s;s;s;n;n;n;w;w;w;w;nw;n;n;n;n;n;s;w;w;wd;eu;wd;w;w;w;w;w;e;e;e;e;e;eu;e;e;e;s;n;n;s;e;s;n;n;s;e;s;s;n;n;n;s;e;n;s;s;n;e;s;s;s;s;s;s;s;s;e;e;e;n;n;n;n;e;n;s;w;s;s;s;s;e;ne;n;n;n;n;e;e;ed;e;e;w;w;wu;w;w;n;n;w;w;n;e;e;n;s;s;w;s;s;s;n;w;n;s;s;n;w;s;n;n;n;s;s;w;n;s;s;n;w;n;w;e;e;u;u;u;d;d;d;w;n;w;e;e;w;n;w;e;e;w;n;w;e;e;e;e;w;w;w;n;n;n;n;n;n;s;s;s;s;s;s;s;s;s;s;s;w;e;e;e}
+#VARIABLE         {pathly0}  {w;w;w;e;n;n;n;n;n;n;n;n;n;n;n;s;s;s;s;s;s;e;e;e;w;w;w;w;e;s;e;w;w;e;s;e;w;w;e;s;e;u;u;u;d;d;d;w;w;e;s;e;s;n;n;s;e;n;n;s;s;s;n;e;s;n;n;s;e;s;n;n;n;e;n;n;s;w;w;s;e;e;s;s;e;e;ed;e;e;w;w;wu;w;w;s;s;s;s;sw;w;n;n;n;n;e;n;s;w;s;s;s;s;w;w;w;n;n;n;n;n;n;n;n;w;s;n;n;s;w;n;s;s;s;n;n;w;n;s;s;n;w;n;s;s;n;w;w;w;wd;w;w;w;w;w;e;e;e;e;e;eu;wd;eu;e;e;n;s;s;s;s;s;se;e;e;e;e;s;s;s;n;n;n;n;e;e;w;w;w;e;n;e;w;w;e;n;w;e;n;w;e;e;e;w;w;n;w;e;e;e;e;w;w;w;w;e;n;e;w;w;w;e;u;d;e;n;e;e;w;w;n}
+#VARIABLE         {pathqz}  {se;nw;e;w;s;n;w;w;w;sw;sw;sw;ne;ne;ne;sw;sw;sw;ne;ne;ne;e;e;e;n;n;n;n;n;e;w;w;w;n;s;w;e;e;e;n;e;w;w;e;n;n;nu;sd;s;w;su;nd;n;enter;n;s;out;s;w;s;n;n;s;w;w;w;n;s;nw;nw;se;se;e;e;e;e;e;e;su;nd;e;e;e;n;s;eu;n;s;wd;w;w;w;w;s;s;s;s;s;s;s;se}
+#VARIABLE         {pathqz0}  {nw;n;n;n;n;n;n;n;e;e;e;e;eu;n;s;wd;n;s;w;w;w;su;nd;w;w;w;w;w;w;nw;nw;se;se;n;s;e;e;e;n;s;s;n;e;n;enter;n;s;out;s;su;nd;e;n;nu;sd;s;s;w;e;e;w;s;w;w;w;e;n;s;e;e;e;w;s;s;s;s;s;w;w;w;sw;sw;sw;ne;ne;ne;sw;sw;sw;ne;ne;ne;e;e;e;s;n;e;w;se;nw}
+#VARIABLE         {pathss}  {e;e;w;w;w;e;s;n;n;n;e;e;e;n;s;w;w;w;n;e;n;e;w;s;w;s;w;s;e;w;eu;ed;s;n;wu;wd;n;n;n;n;nu;nw;w;e;nu;nu;sd;sd;se;ne;sw;sd;s;s;s;w;nu;nu;wu;nu;nu;nu;e;eu;nu;nu;nu;n;w;e;e;w;s;sd;sd;sd;wd;w;sd;sd;sd;ed;sd;sd;w;nu;w;n;n;s;s;nw;se;ne;sw;e;sd;e;e;e;n;n;n;w;e;n;w;nw;nw;se;sw;ne;se;e;n;nw;se;ne;sw;s;s;s;s;s;s;s;e;e}
+#VARIABLE         {pathss0}  {w;w;n;n;n;n;n;n;n;ne;sw;nw;se;s;w;nw;sw;ne;nw;se;se;e;s;w;e;s;s;s;w;w;w;nu;w;ne;sw;nw;se;n;n;s;s;e;sd;e;nu;nu;wu;nu;nu;nu;e;eu;nu;nu;nu;n;e;w;w;e;s;sd;sd;sd;wd;w;sd;sd;sd;ed;sd;sd;e;n;n;n;nu;ne;sw;nw;nu;nu;sd;sd;w;e;se;sd;s;s;s;s;eu;ed;s;n;wu;wd;e;w;n;e;n;e;n;e;w;s;w;s;e;e;e;n;s;w;w;w;s;s;s;n;w;e;e;e;w;w}
+#VARIABLE         {pathsz}  {n;e;e;w;w;n;e;w;w;e;n;n;nw;sw;ne;sw;s;n;n;w;nw;se;e;s;ne;se;sw;s;w;n;s;w;n;n;s;s;w;e;s;s;e;n;s;w;n;n;e;e;n;ne;s;s;s;s;s;e;e;e;e;n;nw;w;w;e;e;ne;n;s;sw;se;s;w;e;n;s;s;n;e;s;n;e;s;n;se;nw;e;w;w;w;w;w;s;n;n;s;nw;w;sw;s;s;n;w;s;s;w;e;e;n;s;e;s;e;s;n;w;n;w;w;s;e;w;w;e;s;e;w;w;w;w;s;n;e;e;e;e;w;s;s;sw;ne;e;eu;ed;ne;e;w;sw;wu;wd;w;n;n;n;n;n;n;w;s;n;n;s;w;s;n;n;s;w;w;w;w;n;s;w;e;e;e;e;e;e;e;n;n;w;e;e;e}
+#VARIABLE         {pathsz0}  {w;w;w;e;s;s;w;w;w;w;w;w;w;e;n;s;e;e;e;e;n;s;s;n;e;n;s;s;n;e;s;s;s;s;s;s;e;eu;ed;ne;e;w;sw;wu;wd;w;sw;ne;n;n;e;w;w;w;w;s;n;e;e;e;e;w;n;w;e;e;w;n;e;e;s;e;s;n;w;n;w;n;s;w;w;e;n;n;e;s;n;n;ne;e;se;n;s;s;n;e;e;e;e;e;w;se;nw;s;n;w;s;n;w;s;n;n;s;w;e;n;nw;ne;n;s;sw;w;w;e;e;se;s;w;w;w;w;n;n;n;n;n;sw;s;w;w;s;s;e;n;s;w;n;n;w;e;n;n;s;s;e;n;s;e;n;ne;nw;sw;n;w;nw;se;e;s;s;n;ne;sw;ne;se;s;s;w;e;e;w;s;e;e;w;w;s}
+#VARIABLE         {pathwdj}  {s;w;s;w;e;n;e;s;s;s;s;s;s;se;sw;s;w;nw;e;w;nw;n;s;sw;n;w;e;s;se;sw;ne;se;s;n;nw;nw;w;n;s;w;s;n;w;w;s;s;se;se;nw;nw;n;n;river;w;n;e;s;e;n;n;s;n;w;w;e;e;n;se;su;su;su;s;n;nd;nd;nd;nw;n;n;n;w;e;e;s;s;s;s;se;sw;s;w}
+#VARIABLE         {pathwdj0}  {e;n;ne;nw;n;n;n;n;w;w;e;s;s;s;se;su;su;su;s;n;nd;nd;nd;nw;s;w;w;e;e;s;e;e;s;s;w;w;n;n;w;s;e;river;s;s;se;se;nw;nw;n;n;e;e;s;n;e;n;s;e;se;se;s;n;nw;sw;ne;nw;n;w;e;s;ne;n;s;se;e;w;se;e;n;ne;nw;n;n;n;n;n;n;w;s;w;e;n;e;n}
+#VARIABLE         {pathwg}  {e;n;n;s;s;e;e;e;ne;sw;w;w;w;s;s;e;s;w;s;s;n;se;s;n;e;w;nw;n;w;e;n;w;nw;n;n;n;u;d;s;w;e;s;w;n;s;s;n;w;ne;eu;ne;sw;se;nw;wd;nu;nw;n;s;sw;ne;nw;se;se;sd;sw;e;e;e;n;n}
+#VARIABLE         {pathwg0}  {s;s;w;w;w;ne;nu;nw;nw;se;sw;ne;n;s;se;sd;eu;se;nw;ne;sw;wd;sw;e;s;n;n;s;e;n;w;e;n;u;d;s;s;s;se;e;s;w;e;s;se;e;w;s;n;nw;s;n;n;e;n;w;n;n;e;e;e;ne;sw;w;w;w;n;n;s;s;w}
+#VARIABLE         {pathxiyu}  {su;s;ed;nw;n;s;nw;se;se;wu;n;nu;wu;wu;nu;sd;e;n;s;s;n;e;w;w;ed;ed;sd;nd;n;ne;nw;sw;w;e;se;s;wu;nu;n;s;sd;ed;su;s;ed;se;sw;w;w;w;e;n;shenghuf}
+#VARIABLE         {pathxiyu0}  {shenghub;s;w;e;e;e;ne;nw;wu;n;nd;wu;nu;n;s;sd;ed;n;nw;w;e;ne;se;sw;s;su;nu;wu;wu;e;e;w;s;n;n;s;w;nu;sd;ed;ed;sd;s;ed;nw;nw;se;n;s;se;wu;n;nd}
+#VARIABLE         {pathxiyu1}  {e;e;n;n;wu;s;s;s;w;w;s;wu;ed;n;e;e;s;s;s;wu;wu;su;s;sd;enter;out;ed;eu;wd;wu;nu;n;nd;ed;ed;e;e;nw;wu;nu;sd;ed;se;n;n;n;s;s;s;w;w;n;n;n;n;n;n;ed;s;s;w;w;shenghub}
+#VARIABLE         {pathxiyu10}  {shenghuf;e;e;n;n;wu;s;s;s;s;s;s;e;e;n;n;n;s;s;s;nw;wu;nu;sd;ed;se;w;w;wu;wu;su;s;sd;ed;eu;wd;wu;enter;out;nu;n;nd;ed;ed;n;n;n;w;w;s;wu;ed;n;e;e;n;n;n;ed;s;s;w;w}
+#VARIABLE         {pathxiyu2}  {s;e;e;ne;e;se;e;e;eu;e;e;w;w;wd;w;w;w;w;s;n;gebif}
+#VARIABLE         {pathxiyu20}  {gebib;s;n;e;e;e;e;eu;e;e;w;w;wd;w;w;nw;w;sw;w;w;n}
+#VARIABLE         {pathxiyu3}  {w;w;w;wu;wu;w;w;e;e;nu;nu;nu;sd;sd;sd;ed;ed;e;e;s;s;se;se;n;s;s;n;nw;nw;sw;sw;ne;ne;ne;ne;sw;sw;nw;nw;se;se;n;n;e;wu;w;w;wu;su;w;nw;w;nu;eu;su;su;su;s;w;ne;se;w;s;s;n;n;n;nd;nd;nd;wd;sd;e;se;e;nd;ed;e;e;ed;gebib}
+#VARIABLE         {pathxiyu30}  {gebif;wu;w;w;wu;su;w;nw;w;nu;eu;su;su;su;s;s;s;n;n;e;nw;sw;e;n;nd;nd;nd;wd;sd;e;se;e;nd;ed;e;e;ed;w;s;s;nw;nw;se;se;ne;ne;sw;sw;sw;sw;ne;ne;se;se;s;n;n;s;nw;nw;n;n;w;w;wu;wu;nu;nu;nu;sd;sd;sd;w;w;e;e;ed;ed;e;e;e}
+#VARIABLE         {pathxiyu4}  {w;ne;ne;sw;nu;nu;ne;n;n;w;e;s;s;sw;sd;sd;sw;s;n;w;s;n;w;n;e;w;nu;nu;sd;sd;w;n;n;w;sw;ne;e;s;s;e;s;e;e;e}
+#VARIABLE         {pathxiyu40}  {w;w;w;n;w;n;n;w;sw;ne;e;s;s;e;nu;nu;sd;sd;e;w;s;e;s;n;e;s;n;ne;nu;nu;ne;n;n;w;e;s;s;sw;sd;sd;ne;sw;sw;e}
+#VARIABLE         {pathxy}  {e;e;n;n;n;w;n;s;w;n;n;s;w;e;e;w;s;w;n;s;w;n;s;w;e;s;w;e;s;ne;sw;s;s;w;e;e;w;s;s;n;n;n;e;s;n;e;w;w;w;n;s;s;n;w;w;w;e;e;nu;nu;nu;nu;ne;ed;ed;ed;ed;n;w;e;e;w;n;s;s;eu;eu;eu;eu;se;sd;sd;sd;sd;e;e;n;s;w;w;su;su;su;su;sw;wd;wd;wd;wd;wu;wu;wu;wu;nw;nd;nd;nd;nd;e;e;e;e;s;s;s;s;s;w;e;e;w;n;n;w;e;e;w;n;w;e;e;w;n;w;e;e;w;n;n;n;s;s;e;s;n;n;s;e;s;e;w;w;e;n;e;n;s;s;n;e;w;w;n;n;e;w;n;e;w;n;s;w;n}
+#VARIABLE         {pathxy0}  {s;e;n;s;e;w;s;e;w;s;s;e;e;w;s;n;n;s;w;s;w;e;e;w;n;w;n;s;s;n;w;n;n;s;s;s;e;w;w;e;s;e;w;w;e;s;e;w;w;e;s;s;e;w;w;e;n;n;n;n;n;w;w;w;w;su;su;su;su;se;ed;ed;ed;ed;eu;eu;eu;eu;ne;nd;nd;nd;nd;e;e;n;s;w;w;nu;nu;nu;nu;nw;wd;wd;wd;wd;n;n;s;e;w;w;e;s;wu;wu;wu;wu;sw;sd;sd;sd;sd;w;w;e;e;e;s;n;n;s;e;e;e;w;s;n;w;s;s;s;n;n;e;w;w;e;n;n;ne;sw;n;w;e;n;w;e;n;s;e;n;s;e;n;e;w;w;e;n;s;s;e;n;s;e;s;s;s;w;w}
+#VARIABLE         {pathyl}  {su;s;ed;nw;n;s;nw;se;se;wu;n;nu;wu;wu;nu;sd;e;n;s;s;n;e;w;w;ed;ed;sd;nd;n;ne;nw;sw;w;e;se;s;wu;nu;n;s;sd;ed;su;s;ed;se;e;w;sw;w;e;ne;nw;n;s;nw;e;e;w;w;w;e;n;s;se;se}
+#VARIABLE         {pathyl0}  {nw;nw;n;s;w;e;e;e;w;w;se;n;s;se;sw;w;e;ne;e;w;nw;wu;n;nd;wu;nu;n;s;sd;ed;n;nw;w;e;ne;se;sw;s;su;nu;wu;wu;e;e;w;s;n;n;s;w;nu;sd;ed;ed;sd;s;ed;nw;nw;se;n;s;se;wu;n;nd}
+#VARIABLE         {pathyz}  {e;s;n;n;s;e;s;n;n;s;e;n;s;e;e;ne;n;n;s;s;sw;se;s;n;nw;w;w;s;s;s;s;w;w;w;w;n;n;n;s;w;u;d;w;e;e;e;w;s;w;e;s;w;w;w;w;n;e;s;e;e;e;s;s;s;s;su;nd;n;n;se;s;n;e;ne;e;nw;nw;w;e;n;s;se;se;se;e;s;s;n;ne;se;s;s;n;n;sw;s;w;e;n;ne;nw;sw;n;w;nw;nw;nw;w;w;w;w;n;n;n;n;w;e;e;w;n;e;u;d;w;n;w;w;w;w;n;nw;w;e;ne;e;s;s;e;e;e;n;n;n;e;w;n;s;s;s;s;s;s;s;w;s;n;n;s;w;n;n;n;s;s;s;s;n;n;s;w;s;n;w;s;n;sw;sw;ne;ne;w;w;w;w;e;e;e;e;sw;sw;sw;sw;wu;ed;ne;ne;ne;ne;e;e;e;e}
+#VARIABLE         {pathyz0}  {w;w;w;w;sw;sw;sw;sw;wu;ed;ne;ne;ne;ne;w;w;w;w;e;e;e;e;sw;sw;ne;ne;s;n;e;s;n;e;n;s;s;n;n;n;n;s;s;s;e;n;s;s;n;e;n;n;n;n;n;n;n;s;e;w;s;s;s;w;w;w;n;n;w;sw;w;e;se;s;e;e;e;e;s;e;u;d;w;s;e;w;w;e;s;s;s;s;e;e;e;e;se;se;se;e;s;ne;se;sw;s;w;e;n;ne;s;s;n;n;nw;sw;s;n;n;w;nw;nw;nw;n;s;w;e;se;se;w;sw;w;s;n;nw;s;s;su;nd;n;n;n;n;w;w;w;n;w;s;e;e;e;e;n;w;e;n;e;w;w;w;e;u;d;e;n;s;s;s;e;e;e;e;n;n;n;n;e;e;se;s;n;nw;ne;n;n;s;s;sw;w;w;n;s;w;n;s;s;n;w;n;s;s;n;w}
+#VARIABLE         {pathzn}  {e;n;n;s;s;w;w;w;ne;nu;nw;n;s;nw;se;sw;ne;se;sd;eu;ne;nu;nu;e;nu;w;nu;sd;sd;sd;sd;sw;se;eu;n;w;nw;w;s;n;e;se;e;e;w;nu;nu;nu;wu;wu;nu;nu;n;w;nw;w;e;n;ed;wu;nu;nu;nu;nu;nu;se;eu;nu;nu;sd;sd;su;su;su;s;n;nd;nd;e;nu;nu;nu;n;s;sd;sd;sd;eu;wd;w;nd;wd;nw;sd;sd;wu;nd;su;nw;nd;nd;n;nd;nd;nd;su;su;su;s;su;su;se;wu;sd;nu;nu;wu;wu;su;eu;sd;sd;s;s;su;sw;sw;s;s;w;e;n;e;se;nw;w;n;ne;ne;nd;n;n;nu;nu;wd;nd;ed;ed;sd;sd;nu;ed;ed;sd;sd;sd;s;se;e;s;sd;sd;ed;ed;sd;sd;sd;s;wd;nw;ne;nu;nu;nu;nu;sd;e;sd;w;sd;sd;sw;wd;sw;e;e;e;n;n}
+#VARIABLE         {pathzn0}  {s;s;w;w;w;ne;eu;ne;nu;nu;e;nu;w;nu;sd;sd;sd;sd;sw;se;eu;n;nu;nu;nu;wu;wu;nu;nu;n;w;nw;n;nu;nu;nu;wu;wu;sd;nu;nu;wu;wu;su;eu;sd;sd;s;s;su;sw;sw;s;e;se;nw;w;s;w;e;n;n;ne;ne;nd;n;n;nu;nu;wd;nd;ed;ed;sd;sd;nu;ed;nw;nd;nd;n;nd;nd;nd;su;su;su;s;su;su;se;nd;su;ed;nu;nu;se;eu;su;e;eu;wd;nu;nu;nu;n;s;sd;sd;sd;w;su;su;s;n;nd;nd;nd;nu;nu;sd;sd;wd;nw;sd;sd;sd;sd;sd;ed;wu;s;w;e;se;e;s;sd;sd;ed;ed;sd;sd;sd;e;w;w;nw;w;s;n;e;se;e;s;wd;nw;ne;nu;nu;nu;nu;sd;e;sd;w;sd;sd;sw;wd;nu;nw;sw;ne;nw;se;n;s;se;sd;sw;e;e;e;n;n;s;s;w}
+#VARIABLE         {pathzz}  {n;e;e;w;w;w;w;nw;enter;out;se;e;e;n;w;w;w;e;e;n;s;s;n;e;e;n;s;s;n;w;n;w;w;n;n;s;s;w;n;s;w;e;e;e;e;e;e;w;w;n;w;e;e;w;n;n;n;n;n;n;s;s;s;s;s;s;s;s;s;s;w;s;n;w;n;s;w;n;s;w;u;d;w;w;w;w;w;w;e;e;e;e;e;e;e;e;e;e;s;w;e;e;s;enter;s;sw;sw;sw;n;n;s;e;w;w;d;e;w;u;e;s;s;w;e;e;w;s;s;s;w;w;e;e;n;n;n;n;n;n;n;e;e;se;e;e;n;s;e;e;e;w;w;w;w;w;nw;n;s;w;w;n;e;u;d;e}
+#VARIABLE         {pathzz0}  {w;u;d;w;s;e;e;n;s;se;e;e;e;e;e;w;w;w;n;s;w;w;nw;w;w;s;s;s;s;s;s;s;w;w;e;e;n;n;n;e;w;w;e;n;n;w;d;e;w;u;e;e;w;n;s;s;ne;ne;ne;n;out;n;w;w;e;n;w;w;w;w;w;w;w;w;w;w;e;e;e;e;e;e;u;d;e;n;s;e;n;s;e;s;n;e;n;n;n;n;n;n;n;n;n;n;s;s;s;s;s;s;e;w;w;e;s;e;e;w;w;w;w;w;w;e;n;s;e;n;n;s;s;e;e;s;e;s;n;n;s;w;w;s;n;n;s;w;w;e;e;e;s;w;w;nw;enter;out;se;e;e;e;e;w;w;s}
+#VARIABLE         {qz0}  {se}
+#VARIABLE         {qz1}  {nw;e;w;s;n;#2 w}
+#VARIABLE         {qz10}  {s;#3 w;n;s;nw}
+#VARIABLE         {qz11}  {nw;#2 se;#4 e}
+#VARIABLE         {qz12}  {#2 e;su;nd;#3 e}
+#VARIABLE         {qz13}  {n;s;eu;n;s;wd;w}
+#VARIABLE         {qz14}  {#3 w;#3 s}
+#VARIABLE         {qz15}  {#4 s;se;pathend}
+#VARIABLE         {qz2}  {w;#3 sw;#3 ne}
+#VARIABLE         {qz3}  {#3 sw;#3 ne;e}
+#VARIABLE         {qz4}  {#2 e;#4 n}
+#VARIABLE         {qz5}  {n;e;#3 w;n;s}
+#VARIABLE         {qz6}  {w;#3 e;n;e}
+#VARIABLE         {qz7}  {#2 w;e;#2 n;nu;sd}
+#VARIABLE         {qz8}  {s;w;su;nd;n;enter;n}
+#VARIABLE         {qz9}  {s;out;s;w;s;#2 n}
+#VARIABLE         {ss0}  {#2 e}
+#VARIABLE         {ss1}  {#3 w;e;s;n}
+#VARIABLE         {ss10}  {#2 nu;wu;#3 nu;e}
+#VARIABLE         {ss11}  {eu;#3 nu;n}
+#VARIABLE         {ss12}  {w;#2 e;w;s;sd}
+#VARIABLE         {ss13}  {#2 sd;wd;w;#2 sd}
+#VARIABLE         {ss14}  {sd;ed;#2 sd;w;nu}
+#VARIABLE         {ss15}  {w;#2 n;#2 s;nw}
+#VARIABLE         {ss16}  {se;ne;sw;e;sd;e}
+#VARIABLE         {ss17}  {#2 e;#3 n}
+#VARIABLE         {ss18}  {w;e;n;w;#2 nw}
+#VARIABLE         {ss19}  {se;sw;ne;se;e;n}
+#VARIABLE         {ss2}  {#2 n;#3 e;n}
+#VARIABLE         {ss20}  {nw;se;ne;sw;#3 s}
+#VARIABLE         {ss21}  {#4 s;#2 e;pathend}
+#VARIABLE         {ss3}  {s;#3 w;n;e}
+#VARIABLE         {ss4}  {n;e;w;s;w;s}
+#VARIABLE         {ss5}  {w;s;e;w;eu;ed}
+#VARIABLE         {ss6}  {s;n;wu;wd;#2 n}
+#VARIABLE         {ss7}  {#2 n;nu;nw;w;e}
+#VARIABLE         {ss8}  {#2 nu;#2 sd;se;ne}
+#VARIABLE         {ss9}  {sw;sd;#3 s;w}
+#VARIABLE         {sz0}  {n;#2 e}
+#VARIABLE         {sz1}  {#2 w;n;e;#2 w}
+#VARIABLE         {sz10}  {#4 e;n;nw}
+#VARIABLE         {sz11}  {#2 w;#2 e;ne;n}
+#VARIABLE         {sz12}  {s;sw;se;s;w;e}
+#VARIABLE         {sz13}  {n;#2 s;n;e;s}
+#VARIABLE         {sz14}  {n;e;s;n;se;nw}
+#VARIABLE         {sz15}  {e;#5 w}
+#VARIABLE         {sz16}  {s;#2 n;s;nw;w}
+#VARIABLE         {sz17}  {sw;#2 s;n;w;#2 s}
+#VARIABLE         {sz18}  {w;#2 e;n;s;e}
+#VARIABLE         {sz19}  {s;e;s;n;w;n}
+#VARIABLE         {sz2}  {e;#2 n;nw;sw;ne}
+#VARIABLE         {sz20}  {#2 w;s;e;#2 w}
+#VARIABLE         {sz21}  {e;s;e;#4 w}
+#VARIABLE         {sz22}  {s;n;#4 e}
+#VARIABLE         {sz23}  {w;#2 s;sw;ne;e}
+#VARIABLE         {sz24}  {eu;ed;ne;e;w;sw}
+#VARIABLE         {sz25}  {wu;wd;w;#3 n}
+#VARIABLE         {sz26}  {#3 n;w;s;#2 n}
+#VARIABLE         {sz27}  {s;w;s;#2 n;s}
+#VARIABLE         {sz28}  {#4 w;n;s;w}
+#VARIABLE         {sz29}  {#7 e}
+#VARIABLE         {sz3}  {sw;s;#2 n;w}
+#VARIABLE         {sz30}  {#2 n;w;#3 e;pathend}
+#VARIABLE         {sz4}  {nw;se;e;s;ne}
+#VARIABLE         {sz5}  {se;sw;s;w;n;s}
+#VARIABLE         {sz6}  {w;#2 n;#2 s;w}
+#VARIABLE         {sz7}  {e;#2 s;e;n;s}
+#VARIABLE         {sz8}  {w;#2 n;#2 e;n}
+#VARIABLE         {sz9}  {ne;#5 s}
+#VARIABLE         {wdj0}  {s;w;s;w;e;n;e;#6 s;se;sw;s;w}
+#VARIABLE         {wdj1}  {nw;e;w;nw;n;s;sw}
+#VARIABLE         {wdj10}  {n}
+#VARIABLE         {wdj11}  {s}
+#VARIABLE         {wdj12}  {n}
+#VARIABLE         {wdj13}  {#2 w;#2 e;n;se}
+#VARIABLE         {wdj14}  {#3 su;s;n;#3 nd}
+#VARIABLE         {wdj15}  {nw;#3 n;w;#2 e}
+#VARIABLE         {wdj16}  {#4 s;se;sw;s;w;pathend}
+#VARIABLE         {wdj2}  {n;w;e;s;se;sw;ne}
+#VARIABLE         {wdj3}  {se;s;n;#2 nw;w}
+#VARIABLE         {wdj4}  {n;s;w;s;n;#2 w}
+#VARIABLE         {wdj5}  {#2 s;#2 se;#2 nw;#2 n}
+#VARIABLE         {wdj6}  {river}
+#VARIABLE         {wdj7}  {w;n;e;s}
+#VARIABLE         {wdj8}  {e}
+#VARIABLE         {wdj9}  {n}
+#VARIABLE         {wg0}  {e;#2 n}
+#VARIABLE         {wg1}  {#2 s;#3 e;ne}
+#VARIABLE         {wg10}  {n;s;sw;ne;nw;#2 se}
+#VARIABLE         {wg11}  {sd;sw;#3 e;#2 n;pathend}
+#VARIABLE         {wg2}  {sw;#3 w;#2 s}
+#VARIABLE         {wg3}  {e;s;w;#2 s;n}
+#VARIABLE         {wg4}  {se;s;n;e;w;nw}
+#VARIABLE         {wg5}  {n;w;e;n;w;nw}
+#VARIABLE         {wg6}  {#3 n;u;d;s}
+#VARIABLE         {wg7}  {w;e;s;w;n;#2 s}
+#VARIABLE         {wg8}  {n;w;ne;eu;ne;sw}
+#VARIABLE         {wg9}  {se;nw;wd;nu;nw}
+#VARIABLE         {xiyu0}  {su;s;ed;nw;n}
+#VARIABLE         {xiyu1}  {s;nw;#2 se;wu;n}
+#VARIABLE         {xiyu10}  {#2 e;#2 n;wu}
+#VARIABLE         {xiyu11}  {#3 s;#2 w;s}
+#VARIABLE         {xiyu12}  {wu;ed;n;#2 e;s}
+#VARIABLE         {xiyu13}  {#2 s;#2 wu;su;s;sd}
+#VARIABLE         {xiyu14}  {enter;out;ed;eu;wd;wu;nu}
+#VARIABLE         {xiyu15}  {n;nd;#2 ed;#2 e;nw}
+#VARIABLE         {xiyu16}  {wu;nu;sd;ed;se;#2 n}
+#VARIABLE         {xiyu17}  {n;#3 s;#2 w;n}
+#VARIABLE         {xiyu18}  {#5 n;ed}
+#VARIABLE         {xiyu19}  {#2 s;#2 w}
+#VARIABLE         {xiyu2}  {nu;#2 wu;nu;sd;e}
+#VARIABLE         {xiyu20}  {#showme 向西到圣湖}
+#VARIABLE         {xiyu21}  {s;#2 e;ne;e;se;e}
+#VARIABLE         {xiyu22}  {e;eu;#2 e;#2 w;wd}
+#VARIABLE         {xiyu23}  {#4 w;s;n}
+#VARIABLE         {xiyu24}  {#showme 深山向西到戈壁滩}
+#VARIABLE         {xiyu25}  {#3 w;#2 wu;#2 w}
+#VARIABLE         {xiyu26}  {#2 e;#3 nu;#2 sd}
+#VARIABLE         {xiyu27}  {sd;#2 ed;#2 e;#2 s}
+#VARIABLE         {xiyu28}  {#2 se;n;#2 s;n;nw}
+#VARIABLE         {xiyu29}  {nw;#2 sw;#2 ne}
+#VARIABLE         {xiyu3}  {n;#2 s;n;e;#2 w}
+#VARIABLE         {xiyu30}  {#2 ne;#2 sw;#2 nw;#2 se}
+#VARIABLE         {xiyu31}  {#2 n;e;wu;#2 w;wu}
+#VARIABLE         {xiyu32}  {su;w;nw;w;nu;eu;su}
+#VARIABLE         {xiyu33}  {#2 su;s;w;ne;se;w}
+#VARIABLE         {xiyu34}  {#2 s;#3 n;#2 nd}
+#VARIABLE         {xiyu35}  {nd;wd;sd;e;se;e}
+#VARIABLE         {xiyu36}  {nd;ed;#2 e;ed}
+#VARIABLE         {xiyu37}  {#showme 昆仑山下向东到戈壁滩}
+#VARIABLE         {xiyu38}  {#2 e;nw;w;nw}
+#VARIABLE         {xiyu39}  {#showme 天山脚下西南到南疆沙漠}
+#VARIABLE         {xiyu4}  {#2 ed;sd;nd;n}
+#VARIABLE         {xiyu40}  {#showme 丝绸之路向西到大沙漠}
+#VARIABLE         {xiyu41}  {#showme 大沙漠向西到白驼山庄戈壁}
+#VARIABLE         {xiyu42}  {w;#2 ne;sw;#2 nu}
+#VARIABLE         {xiyu43}  {ne;#2 n;w;e;#2 s;sw}
+#VARIABLE         {xiyu44}  {#2 sd;sw;s;n;w;s}
+#VARIABLE         {xiyu45}  {n;w;n;e;w;#2 nu}
+#VARIABLE         {xiyu46}  {#2 sd;w;#2 n;w}
+#VARIABLE         {xiyu47}  {sw;ne;e;#2 s;e}
+#VARIABLE         {xiyu48}  {s;#3 e}
+#VARIABLE         {xiyu49}  {#showme 白驼山庄戈壁向东到大沙漠}
+#VARIABLE         {xiyu5}  {ne;nw;sw;w;e}
+#VARIABLE         {xiyu50}  {#2 nw;n;pathend}
+#VARIABLE         {xiyu6}  {se;s;wu;nu;n;s}
+#VARIABLE         {xiyu7}  {sd;ed;su;s;ed;se}
+#VARIABLE         {xiyu8}  {sw;#3 w;e;n}
+#VARIABLE         {xiyu9}  {#showme 向北到圣湖}
+#VARIABLE         {xy0}  {#2 e;#3 n;w;n}
+#VARIABLE         {xy1}  {s;w;#2 n;s;w}
+#VARIABLE         {xy10}  {#3 nu;ne;#2 ed}
+#VARIABLE         {xy11}  {#2 ed;n;w;#2 e}
+#VARIABLE         {xy12}  {w;n;#2 s;#2 eu}
+#VARIABLE         {xy13}  {#2 eu;se;#4 sd}
+#VARIABLE         {xy14}  {#2 e;n;s;#2 w}
+#VARIABLE         {xy15}  {#4 su;sw;wd}
+#VARIABLE         {xy16}  {#3 wd;#4 wu}
+#VARIABLE         {xy17}  {nw;#4 nd;#2 e}
+#VARIABLE         {xy18}  {#2 e;#5 s}
+#VARIABLE         {xy19}  {w;#2 e;w;#2 n}
+#VARIABLE         {xy2}  {#2 e;w;s;w;n}
+#VARIABLE         {xy20}  {w;#2 e;w;n;w}
+#VARIABLE         {xy21}  {#2 e;w;n;w;#2 e}
+#VARIABLE         {xy22}  {w;#3 n;#2 s}
+#VARIABLE         {xy23}  {e;s;#2 n;s;e}
+#VARIABLE         {xy24}  {s;e;#2 w;e;n}
+#VARIABLE         {xy25}  {e;n;#2 s;n;e}
+#VARIABLE         {xy26}  {#2 w;#2 n}
+#VARIABLE         {xy27}  {e;w;n;e;w}
+#VARIABLE         {xy28}  {n;s;w;n;pathend}
+#VARIABLE         {xy3}  {s;w;n;s;w;e}
+#VARIABLE         {xy4}  {s;w;e;s;ne;sw}
+#VARIABLE         {xy5}  {#2 s;w;#2 e;w}
+#VARIABLE         {xy6}  {#2 s;#3 n;e}
+#VARIABLE         {xy7}  {s;n;e;w}
+#VARIABLE         {xy8}  {#2 w;n;#2 s;n}
+#VARIABLE         {xy9}  {w;#2 w;#2 e;nu}
+#VARIABLE         {yl0}  {su;s;ed;nw;n}
+#VARIABLE         {yl1}  {s;nw;#2 se;wu;n}
+#VARIABLE         {yl10}  {s;#2 se}
+#VARIABLE         {yl11}  {#showme 丝绸之路向西到大沙漠}
+#VARIABLE         {yl12}  {w;#2 ne;sw;#2 nu}
+#VARIABLE         {yl13}  {ne;#2 n;w;e;#2 s;sw}
+#VARIABLE         {yl14}  {#2 sd;sw;s;n;w;s}
+#VARIABLE         {yl15}  {n;w;n;e;w;#2 nu}
+#VARIABLE         {yl16}  {#2 sd;w;#2 n;w}
+#VARIABLE         {yl17}  {sw;ne;e;#2 s;e}
+#VARIABLE         {yl18}  {s;#3 e}
+#VARIABLE         {yl19}  {#showme 白驼山庄戈壁向东到大沙漠}
+#VARIABLE         {yl2}  {nu;#2 wu;nu;sd;e}
+#VARIABLE         {yl20}  {ne;nw;sw;w;e}
+#VARIABLE         {yl21}  {#2 nw;n;pathend}
+#VARIABLE         {yl3}  {n;#2 s;n;e;#2 w}
+#VARIABLE         {yl4}  {#2 ed;sd;nd;n}
+#VARIABLE         {yl5}  {ne;nw;sw;w;e}
+#VARIABLE         {yl6}  {se;s;wu;nu;n;s}
+#VARIABLE         {yl7}  {sd;ed;su;s;ed;se;e}
+#VARIABLE         {yl8}  {w;sw;w;e;ne;nw;n}
+#VARIABLE         {yl9}  {s;nw;#2 e;#3 w;e;n}
+#VARIABLE         {yz0}  {}
+#VARIABLE         {yz1}  {e;s;#2 n;s;e;s}
+#VARIABLE         {yz10}  {e;s;#3 e;s}
+#VARIABLE         {yz11}  {#3 s;su;nd;#2 n}
+#VARIABLE         {yz12}  {se;s;n;e;ne;e}
+#VARIABLE         {yz13}  {#2 nw;w;e;n;s}
+#VARIABLE         {yz14}  {#3 se;e;#2 s;n}
+#VARIABLE         {yz15}  {ne;se;#2 s;#2 n}
+#VARIABLE         {yz16}  {sw;s;w;e;n;ne}
+#VARIABLE         {yz17}  {nw;sw;n;w;#3 nw}
+#VARIABLE         {yz18}  {#4 w;#3 n}
+#VARIABLE         {yz19}  {n;w;#2 e;w;n}
+#VARIABLE         {yz2}  {#2 n;s;e;n;s}
+#VARIABLE         {yz20}  {e;u;d;w;n}
+#VARIABLE         {yz21}  {#4 w;n;nw;w}
+#VARIABLE         {yz22}  {e;ne;e;#2 s;#2 e}
+#VARIABLE         {yz23}  {e;#3 n;e;w;n}
+#VARIABLE         {yz24}  {#7 s}
+#VARIABLE         {yz25}  {w;s;#2 n;s;w}
+#VARIABLE         {yz26}  {#3 n;#3 s}
+#VARIABLE         {yz27}  {s;#2 n;s;w;s}
+#VARIABLE         {yz28}  {n;w;s;n;#2 sw}
+#VARIABLE         {yz29}  {#2 ne;#4 w}
+#VARIABLE         {yz3}  {#2 e;ne;#2 n;#2 s}
+#VARIABLE         {yz30}  {#4 e;#2 sw}
+#VARIABLE         {yz31}  {#2 sw;wu;ed;#3 ne}
+#VARIABLE         {yz32}  {ne;#4 e;pathend}
+#VARIABLE         {yz4}  {sw;se;s;n;nw;#2 w}
+#VARIABLE         {yz5}  {#4 s;#2 w}
+#VARIABLE         {yz6}  {#2 w;#3 n;s}
+#VARIABLE         {yz7}  {w;u;d;w;#3 e}
+#VARIABLE         {yz8}  {w;s;w;e}
+#VARIABLE         {yz9}  {s;#4 w;n}
+#VARIABLE         {zn0}  {e;#2 n}
+#VARIABLE         {zn1}  {#2 s;#3 w;ne}
+#VARIABLE         {zn10}  {#3 nu;#2 nu;se;eu}
+#VARIABLE         {zn11}  {#2 nu;#2 sd;#3 su}
+#VARIABLE         {zn12}  {s;n;#2 nd;e;#2 nu}
+#VARIABLE         {zn13}  {nu;n;s;#3 sd;eu}
+#VARIABLE         {zn14}  {wd;w;nd;wd;nw;#2 sd}
+#VARIABLE         {zn15}  {wu;nd;su;nw;#2 nd}
+#VARIABLE         {zn16}  {n;#3 nd;#3 su}
+#VARIABLE         {zn17}  {s;#2 su;se;wu;sd}
+#VARIABLE         {zn18}  {#2 nu;#2 wu;su;eu}
+#VARIABLE         {zn19}  {#2 sd;#2 s;su;#2 sw}
+#VARIABLE         {zn2}  {nu;nw;n;s;nw;se;sw}
+#VARIABLE         {zn20}  {#2 s;w;e;n;e}
+#VARIABLE         {zn21}  {se;nw;w;n;#2 ne}
+#VARIABLE         {zn22}  {nd;#2 n;#2 nu;wd;nd}
+#VARIABLE         {zn23}  {#2 ed;#2 sd;nu;#2 ed}
+#VARIABLE         {zn24}  {#3 sd;s;se;e;s}
+#VARIABLE         {zn25}  {#2 sd;#2 ed;#3 sd}
+#VARIABLE         {zn26}  {s;wd;nw;ne;#2 nu}
+#VARIABLE         {zn27}  {#2 nu;sd;e;sd;w}
+#VARIABLE         {zn28}  {#2 sd;sw;wd;sw}
+#VARIABLE         {zn29}  {#3 e;#2 n;pathend}
+#VARIABLE         {zn3}  {ne;se;sd;eu}
+#VARIABLE         {zn4}  {ne;#2 nu;e;nu;w;nu}
+#VARIABLE         {zn5}  {#4 sd;sw;se;eu}
+#VARIABLE         {zn6}  {n;w;nw;w;s;n;e}
+#VARIABLE         {zn7}  {se;#2 e;w;#3 nu}
+#VARIABLE         {zn8}  {#2 wu;#2 nu;n;w}
+#VARIABLE         {zn9}  {nw;w;e;n;ed;wu}
+#VARIABLE         {zz0}  {n;#2 e}
+#VARIABLE         {zz1}  {#4 w;nw;enter;out}
+#VARIABLE         {zz10}  {#7 s}
+#VARIABLE         {zz11}  {#2 s;w;s;n;w}
+#VARIABLE         {zz12}  {n;s;w;n;s;w;u}
+#VARIABLE         {zz13}  {d;#6 w}
+#VARIABLE         {zz14}  {#7 e}
+#VARIABLE         {zz15}  {#3 e;s;w;#2 e}
+#VARIABLE         {zz16}  {s;enter;s;#3 sw}
+#VARIABLE         {zz17}  {#2 n;s;e;#2 w}
+#VARIABLE         {zz18}  {d;e;w;u;e;#2 s}
+#VARIABLE         {zz19}  {w;#2 e;w;#3 s}
+#VARIABLE         {zz2}  {se;#2 e;n;#3 w}
+#VARIABLE         {zz20}  {#2 w;#2 e;#2 n}
+#VARIABLE         {zz21}  {#3 n;#2 n;#2 e}
+#VARIABLE         {zz22}  {se;#2 e;n;s;e}
+#VARIABLE         {zz23}  {#2 e;#4 w}
+#VARIABLE         {zz24}  {w;nw;n;s;#2 w}
+#VARIABLE         {zz25}  {n;e;u;d;e;pathend}
+#VARIABLE         {zz3}  {#2 e;n;#2 s;n}
+#VARIABLE         {zz4}  {#2 e;n;#2 s;n}
+#VARIABLE         {zz5}  {w;n;#2 w;#2 n}
+#VARIABLE         {zz6}  {#2 s;w;n;s;w;e}
+#VARIABLE         {zz7}  {#5 e;#2 w}
+#VARIABLE         {zz8}  {n;w;#2 e;w;n}
+#VARIABLE         {zz9}  {#5 n;s}

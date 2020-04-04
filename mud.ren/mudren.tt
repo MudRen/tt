@@ -1,0 +1,4 @@
+#nop 炎黄（mud.ren）连接信息;
+#nop #event {SCREEN RESIZE} {#split};
+#split;
+#ses mudren mud.ren 6666
