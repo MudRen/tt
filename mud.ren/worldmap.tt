@@ -19,10 +19,15 @@
 
 #ALIAS {gebif}
 {
-     #showme 这里 n 路径随机
+     #showme 这里 n 路径随机;
      #3 w;
      #2 n;
      w
+}
+
+#ALIAS {mf}
+{
+     #map info
 }
 
 #ALIAS {pathend}
@@ -781,3 +786,4 @@
 #VARIABLE         {zz7}  {#5 e;#2 w}
 #VARIABLE         {zz8}  {n;w;#2 e;w;n}
 #VARIABLE         {zz9}  {#5 n;s}
+
