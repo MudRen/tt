@@ -37,7 +37,7 @@
 
 #ALIAS {patherror}
 {
-     #path stop
+     #map undo
 }
 
 #ALIAS {river}
