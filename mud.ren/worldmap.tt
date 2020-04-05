@@ -45,6 +45,16 @@
      cross
 }
 
+#ALIAS {rmn}
+{
+     #map set roomname %1
+}
+
+#ALIAS {rms}
+{
+     #map set roomsymbol %1
+}
+
 #ALIAS {shenghub}
 {
      w;
