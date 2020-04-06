@@ -25,6 +25,21 @@
      w
 }
 
+#ALIAS {mapoff}
+{
+     #map flag static off
+}
+
+#ALIAS {mapon}
+{
+     #map flag static on
+}
+
+#ALIAS {mdn}
+{
+     #map dig %1 new
+}
+
 #ALIAS {mf}
 {
      #map info
@@ -43,6 +58,11 @@
 #ALIAS {river}
 {
      cross
+}
+
+#ALIAS {rma}
+{
+     #map set roomarea %1
 }
 
 #ALIAS {rmn}
