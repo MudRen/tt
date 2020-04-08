@@ -32,6 +32,18 @@
      w
 }
 
+#ALIAS {gps}
+{
+     #if {"%1"==""}
+     {
+          #echo 请输入目的地名称或编号!
+     };
+     #else
+     {
+          #map list %1
+     }
+}
+
 #ALIAS {mapoff}
 {
      #map flag static off
@@ -50,6 +62,18 @@
 #ALIAS {mf}
 {
      #map info
+}
+
+#ALIAS {mr}
+{
+     #if {"%1"==""}
+     {
+          #echo 请输入目的地名称或编号!
+     };
+     #else
+     {
+          #map run %1
+     }
 }
 
 #ALIAS {pathend}
