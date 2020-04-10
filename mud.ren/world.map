@@ -15,9 +15,9 @@ CUSER <258>
 
 F 8207
 
-G 0
+G 99
 
-I 22
+I 21
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -548,6 +548,30 @@ R {   97} {0} {} {} { } {} {} {} {} {} {1.000} {}
 R {   98} {0} {} {} { } {} {} {} {} {} {1.000} {}
 
 R {   99} {0} {} {} { } {} {} {} {} {} {1.000} {}
+E {    1} {rideto gc} {rideto gc} {0} {0} {} {1.000} {}
+E {    1} {rideto yangzhou} {rideto yangzhou} {0} {0} {} {1.000} {}
+E {    2} {rideto suzhou} {rideto suzhou} {0} {0} {} {1.000} {}
+E {    3} {rideto zhongzhou} {rideto zhongzhou} {0} {0} {} {1.000} {}
+E {    4} {rideto xiangyang} {rideto xiangyang} {0} {0} {} {1.000} {}
+E {    5} {rideto jingzhou} {rideto jingzhou} {0} {0} {} {1.000} {}
+E {    6} {rideto fuzhou} {rideto fuzhou} {0} {0} {} {1.000} {}
+E {    7} {rideto quanzhou} {rideto quanzhou} {0} {0} {} {1.000} {}
+E {    8} {rideto foshan} {rideto foshan} {0} {0} {} {1.000} {}
+E {    9} {rideto hengyang} {rideto hengyang} {0} {0} {} {1.000} {}
+E {   10} {rideto luoyang} {rideto luoyang} {0} {0} {} {1.000} {}
+E {   11} {rideto changan} {rideto changan} {0} {0} {} {1.000} {}
+E {   12} {rideto hangzhou} {rideto hangzhou} {0} {0} {} {1.000} {}
+E {   13} {rideto lanzhou} {rideto lanzhou} {0} {0} {} {1.000} {}
+E {   14} {rideto chengdu} {rideto chengdu} {0} {0} {} {1.000} {}
+E {   15} {rideto beijing} {rideto beijing} {0} {0} {} {1.000} {}
+E {   16} {rideto nanyang} {rideto nanyang} {0} {0} {} {1.000} {}
+E {   17} {rideto kaifeng} {rideto kaifeng} {0} {0} {} {1.000} {}
+E {   18} {rideto kunming} {rideto kunming} {0} {0} {} {1.000} {}
+E {   19} {rideto dali} {rideto dali} {0} {0} {} {1.000} {}
+E {   20} {rideto guanwai} {rideto guanwai} {0} {0} {} {1.000} {}
+E {   21} {rideto lingzhou} {rideto lingzhou} {0} {0} {} {1.000} {}
+
+R {  100} {0} {} {} { } {} {} {} {} {} {1.000} {}
 
 R {  101} {0} {} {东大街} { } {} {city} {} {} {} {1.000} {dongdajie1}
 E {    1} {w} {w} {8} {0} {} {1.000} {}
