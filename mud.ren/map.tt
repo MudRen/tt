@@ -1,19 +1,21 @@
 #ACTION {#PATH WALK: #END OF PATH.}
 {
-     chat* sweat
+     pathend
 }
 
 #ACTION {%1 - /d/%2/%3}
 {
-     #map set roomname %1;
-     #map set roomarea %2;
-     #map set roomid %3
+     #if {$mapset}
+     {
+          #map set roomname %1;
+          #map set roomarea %2;
+          #map set roomid %3
+     }
 }
 
 #ACTION {这个方向没有出路。}
 {
-     patherror;
-     chat* stomachache
+     patherror
 }
 
 
@@ -44,14 +46,15 @@
      }
 }
 
-#ALIAS {mapoff}
+#ALIAS {init}
 {
-     #map flag static off
+     #map goto %1;
+     #map flag static on
 }
 
-#ALIAS {mapon}
+#ALIAS {mapping}
 {
-     #map flag static on
+     #map flag static off
 }
 
 #ALIAS {mdn}
@@ -78,12 +81,12 @@
 
 #ALIAS {pathend}
 {
-     chat 当前地区地图绘制结束
+     chat* sweat
 }
 
 #ALIAS {patherror}
 {
-     #map undo
+     chat* stomachache
 }
 
 #ALIAS {river}
@@ -123,6 +126,11 @@
      #split 0 1 0 -80;
      #map offset 1 81 -4 -1;
      #map flag vtmap on
+}
+
+#ALIAS {static}
+{
+     #map flag static
 }
 
 #ALIAS {walk}
