@@ -131,6 +131,12 @@
      #map set roomsymbol %1
 }
 
+#ALIAS {savemap}
+{
+     #map write world.map;
+     #echo 地图数据保存完成！
+}
+
 #ALIAS {shenghub}
 {
      w;
