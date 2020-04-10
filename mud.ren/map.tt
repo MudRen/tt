@@ -46,10 +46,17 @@
      }
 }
 
-#ALIAS {init}
+#ALIAS {initmap}
 {
      #map goto %1;
-     #map flag static on
+     #map flag static on;
+     split
+}
+
+#ALIAS {maphelp}
+{
+     #showme -== 炎黄地图导航系统 ==-;
+     #showme 使用方法:\n\t1. 输入 loadmap 载入地图；\n\t2. 到达扬州中央广场后输入 initmap 1 初始化地图；
 }
 
 #ALIAS {mapping}
@@ -519,6 +526,7 @@
 #VARIABLE         {ly7}  {#3 e;#2 w;#2 s}
 #VARIABLE         {ly8}  {#2 s;#3 n;#2 w}
 #VARIABLE         {ly9}  {#2 w;nw;#3 n}
+#VARIABLE         {mapset}  {0}
 #VARIABLE         {pathbj}  {w;w;w;n;w;w;e;e;s;w;e;s;w;e;s;s;n;n;n;e;s;n;n;e;w;s;e;e;s;s;w;n;s;s;s;s;s;n;n;n;n;w;s;n;e;e;s;s;s;s;s;n;n;n;n;n;e;s;u;d;n;n;s;e;s;n;n;s;e;w;w;w;n;n;e;e;e;e;w;s;n;n;e;w;w;w;e;n;w;e;e;e;e;e;e;se;nw;ne;sw;w;w;w;w;n;e;w;w;n;e;n;e;n;s;w;n;u;d;s;w;n;n;s;w;n;s;s;s;s;s;n;n;n;w;n;n;n;n;s;s;s;s;s;n;w;n;n;s;s;s;s;n;w;s;n;n;n;n;s;w;s;w;n;n;s;s;e;w;e;s;s;w;e;e;s;e;w;w;w;w;w;w;e;e;e;e;s;w;w}
 #VARIABLE         {pathbj0}  {e;e;n;w;w;w;w;e;e;e;e;e;e;w;n;w;w;e;n;n;w;e;w;n;n;s;s;e;n;e;n;s;s;s;s;n;e;s;n;n;n;n;s;s;e;s;n;n;n;n;n;s;s;s;s;e;s;s;s;n;n;n;n;n;s;e;n;s;s;e;n;u;d;s;e;n;s;w;s;w;s;e;e;w;s;e;e;e;e;ne;sw;se;nw;w;w;w;w;w;w;e;s;w;e;e;e;w;s;s;n;e;w;w;w;w;s;s;e;e;e;w;n;s;s;n;w;n;s;s;u;d;n;w;s;s;s;s;s;n;n;n;n;n;w;w;s;n;e;s;s;s;s;n;n;n;n;n;s;e;n;n;w;w;n;e;w;s;s;n;w;s;s;s;n;n;w;e;n;w;e;n;w;w;e;e;s;e;e;e}
 #VARIABLE         {pathca}  {s;s;s;w;w;w;n;s;e;s;n;n;s;e;s;n;n;s;e;nw;se;ne;sw;n;s;s;sw;w;w;w;e;e;e;ne;n;e;s;n;n;s;e;s;n;n;s;e;s;n;n;s;e;s;n;n;e;e;s;n;n;s;w;w;n;n;w;w;n;n;w;n;s;w;n;n;s;s;s;s;w;e;e;w;s;s;e;e;e;w;n;e;w;n;s;s;w;s;s;n;n;w;w;s;s;e;w;n;n;w;n;n;w;w;e;e;n;n;e;e;s;s;s;s;s;e;n;s;s;n;w;s;e;e;e;e;n;n;n;e;e;e;e;e;w;w;w;w;w;sw;ne;n;n;n;n;n;s;w;s;n;n;s;w;s;s;s;n;n;n;n;s;w;s;n;n;s;w;sw;ne;se;nw;n;n;ne;nu;sd;w;w;w;e;e;e;sw;s;s;s;n;w;s;n;n;s;w;s;n;n;s;w;s;n;n;u;d;s;w;n;s;s;e;w;s;e;w;s;e;w;s;se;nw;w;w;w;nw;se;e;e;e;e;w;s;e;w;s;s;s;n;e;s;n;n}
