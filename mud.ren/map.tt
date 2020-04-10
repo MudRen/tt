@@ -28,7 +28,7 @@
 
 #ALIAS {gebif}
 {
-     #showme 这里 n 路径随机;
+     #echo {这里 n 路径随机};
      #3 w;
      #2 n;
      w
@@ -48,15 +48,30 @@
 
 #ALIAS {initmap}
 {
-     #map goto %1;
+     #echo 载入地图系统...;
+     loadmap;
+     #echo 初始化地图数据...;
+     #if {"%1"==""}
+     {
+          #map goto 1
+     };
+     #else
+     {
+          #map goto %1
+     };
      #map flag static on;
      split
 }
 
+#ALIAS {loadmap}
+{
+     #map read world.map
+}
+
 #ALIAS {maphelp}
 {
-     #showme -== 炎黄地图导航系统 ==-;
-     #showme 使用方法:\n\t1. 输入 loadmap 载入地图；\n\t2. 到达扬州中央广场后输入 initmap 1 初始化地图；
+     #echo {-== 炎黄地图导航系统 ==-};
+     #echo {使用方法: 到达扬州中央广场后输入 initmap 载入地图并初始化位置}
 }
 
 #ALIAS {mapping}
@@ -699,11 +714,11 @@
 #VARIABLE         {xiyu18}  {#5 n;ed}
 #VARIABLE         {xiyu19}  {#2 s;#2 w}
 #VARIABLE         {xiyu2}  {nu;#2 wu;nu;sd;e}
-#VARIABLE         {xiyu20}  {#showme 向西到圣湖}
+#VARIABLE         {xiyu20}  {#echo 向西到圣湖}
 #VARIABLE         {xiyu21}  {s;#2 e;ne;e;se;e}
 #VARIABLE         {xiyu22}  {e;eu;#2 e;#2 w;wd}
 #VARIABLE         {xiyu23}  {#4 w;s;n}
-#VARIABLE         {xiyu24}  {#showme 深山向西到戈壁滩}
+#VARIABLE         {xiyu24}  {#echo 深山向西到戈壁滩}
 #VARIABLE         {xiyu25}  {#3 w;#2 wu;#2 w}
 #VARIABLE         {xiyu26}  {#2 e;#3 nu;#2 sd}
 #VARIABLE         {xiyu27}  {sd;#2 ed;#2 e;#2 s}
@@ -717,12 +732,12 @@
 #VARIABLE         {xiyu34}  {#2 s;#3 n;#2 nd}
 #VARIABLE         {xiyu35}  {nd;wd;sd;e;se;e}
 #VARIABLE         {xiyu36}  {nd;ed;#2 e;ed}
-#VARIABLE         {xiyu37}  {#showme 昆仑山下向东到戈壁滩}
+#VARIABLE         {xiyu37}  {#echo 昆仑山下向东到戈壁滩}
 #VARIABLE         {xiyu38}  {#2 e;nw;w;nw}
-#VARIABLE         {xiyu39}  {#showme 天山脚下西南到南疆沙漠}
+#VARIABLE         {xiyu39}  {#echo 天山脚下西南到南疆沙漠}
 #VARIABLE         {xiyu4}  {#2 ed;sd;nd;n}
-#VARIABLE         {xiyu40}  {#showme 丝绸之路向西到大沙漠}
-#VARIABLE         {xiyu41}  {#showme 大沙漠向西到白驼山庄戈壁}
+#VARIABLE         {xiyu40}  {#echo 丝绸之路向西到大沙漠}
+#VARIABLE         {xiyu41}  {#echo 大沙漠向西到白驼山庄戈壁}
 #VARIABLE         {xiyu42}  {w;#2 ne;sw;#2 nu}
 #VARIABLE         {xiyu43}  {ne;#2 n;w;e;#2 s;sw}
 #VARIABLE         {xiyu44}  {#2 sd;sw;s;n;w;s}
@@ -730,13 +745,13 @@
 #VARIABLE         {xiyu46}  {#2 sd;w;#2 n;w}
 #VARIABLE         {xiyu47}  {sw;ne;e;#2 s;e}
 #VARIABLE         {xiyu48}  {s;#3 e}
-#VARIABLE         {xiyu49}  {#showme 白驼山庄戈壁向东到大沙漠}
+#VARIABLE         {xiyu49}  {#echo 白驼山庄戈壁向东到大沙漠}
 #VARIABLE         {xiyu5}  {ne;nw;sw;w;e}
 #VARIABLE         {xiyu50}  {#2 nw;n;pathend}
 #VARIABLE         {xiyu6}  {se;s;wu;nu;n;s}
 #VARIABLE         {xiyu7}  {sd;ed;su;s;ed;se}
 #VARIABLE         {xiyu8}  {sw;#3 w;e;n}
-#VARIABLE         {xiyu9}  {#showme 向北到圣湖}
+#VARIABLE         {xiyu9}  {#echo 向北到圣湖}
 #VARIABLE         {xy0}  {#2 e;#3 n;w;n}
 #VARIABLE         {xy1}  {s;w;#2 n;s;w}
 #VARIABLE         {xy10}  {#3 nu;ne;#2 ed}
@@ -769,7 +784,7 @@
 #VARIABLE         {yl0}  {su;s;ed;nw;n}
 #VARIABLE         {yl1}  {s;nw;#2 se;wu;n}
 #VARIABLE         {yl10}  {s;#2 se}
-#VARIABLE         {yl11}  {#showme 丝绸之路向西到大沙漠}
+#VARIABLE         {yl11}  {#echo 丝绸之路向西到大沙漠}
 #VARIABLE         {yl12}  {w;#2 ne;sw;#2 nu}
 #VARIABLE         {yl13}  {ne;#2 n;w;e;#2 s;sw}
 #VARIABLE         {yl14}  {#2 sd;sw;s;n;w;s}
@@ -777,7 +792,7 @@
 #VARIABLE         {yl16}  {#2 sd;w;#2 n;w}
 #VARIABLE         {yl17}  {sw;ne;e;#2 s;e}
 #VARIABLE         {yl18}  {s;#3 e}
-#VARIABLE         {yl19}  {#showme 白驼山庄戈壁向东到大沙漠}
+#VARIABLE         {yl19}  {#echo 白驼山庄戈壁向东到大沙漠}
 #VARIABLE         {yl2}  {nu;#2 wu;nu;sd;e}
 #VARIABLE         {yl20}  {ne;nw;sw;w;e}
 #VARIABLE         {yl21}  {#2 nw;n;pathend}
