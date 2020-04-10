@@ -215,7 +215,7 @@ L {MUDFONT CURVED} {N E} {\u2818}
 L {MUDFONT CURVED} {S E} {\u28A0}
 L {MUDFONT CURVED} {S W} {\u2844}
 L {MUDFONT CURVED} {N W} {\u2803}
-L {UNICODE GRAPHICS} {NO DIAGONAL} { }
+L {UNICODE GRAPHICS} {NO DIAGONAL} {}
 L {UNICODE GRAPHICS} {SE} {\u2E0C}
 L {UNICODE GRAPHICS} {NE} {\u2E1D}
 L {UNICODE GRAPHICS} {SE NE} {>}
@@ -690,6 +690,7 @@ E {  134} {e} {e} {2} {0} {} {1.000} {}
 R {  137} {0} {} {客店} {@} {} {city} {} {} {} {1.000} {kedian}
 E {  134} {w} {w} {8} {0} {} {1.000} {}
 E {  171} {s} {s} {4} {0} {} {1.000} {}
+E { 3455} {u} {give 10 silver to xiao er;up} {16} {0} {} {1.000} {}
 
 R {  138} {0} {} {北大街} { } {} {city} {} {} {} {1.000} {beidajie2}
 E {  134} {s} {s} {4} {0} {} {1.000} {}
@@ -14139,3 +14140,10 @@ E { 3452} {se} {se} {6} {0} {} {1.000} {}
 
 R { 3454} {0} {} {蛇园} {!} {} {baituo} {} {} {} {1.000} {sheyuan}
 E { 3452} {sw} {sw} {12} {0} {} {1.000} {}
+
+R { 3455} {0} {} {客店二楼} { } {} {city} {} {} {} {1.000} {kedian2}
+E {  137} {d} {d} {32} {0} {} {1.000} {}
+E { 3456} {enter} {enter} {28} {0} {} {1.000} {}
+
+R { 3456} {0} {} {客店二楼} { } {} {city} {} {} {} {1.000} {kedian3}
+E { 3455} {out} {out} {35} {0} {} {1.000} {}
