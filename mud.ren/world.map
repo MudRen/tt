@@ -17,7 +17,7 @@ F 8207
 
 G 99
 
-I 21
+I 99
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -570,6 +570,12 @@ E {   18} {rideto kunming} {rideto kunming} {0} {0} {} {1.000} {}
 E {   19} {rideto dali} {rideto dali} {0} {0} {} {1.000} {}
 E {   20} {rideto guanwai} {rideto guanwai} {0} {0} {} {1.000} {}
 E {   21} {rideto lingzhou} {rideto lingzhou} {0} {0} {} {1.000} {}
+E {   30} {rideto baituo} {rideto baituo} {0} {0} {} {1.000} {}
+E {   31} {rideto gumu} {rideto gumu} {0} {0} {} {1.000} {}
+E {   32} {rideto heimuya} {rideto heimuya} {0} {0} {} {1.000} {}
+E {   33} {rideto kunlun} {rideto kunlun} {0} {0} {} {1.000} {}
+E {   34} {rideto lingjiu} {rideto lingjiu} {0} {0} {} {1.000} {}
+E {   35} {rideto mingjiao} {rideto mingjiao} {0} {0} {} {1.000} {}
 
 R {  100} {0} {} {} { } {} {} {} {} {} {1.000} {}
 
@@ -6989,7 +6995,7 @@ R { 1682} {4104} {} {} { } {} {} {} {} {} {1.000} {}
 E { 1680} {e} {e} {2} {0} {} {1.000} {}
 E { 1679} {w} {w} {8} {0} {} {1.000} {}
 
-R { 1683} {2577} {} {大沙漠} {:} {} {xingxiu} {} {} {} {1.000} {shamo4}
+R { 1683} {2581} {} {大沙漠} {:} {} {xingxiu} {} {} {} {1.000} {shamo4}
 E { 1694} {e} {e} {2} {0} {} {1.000} {}
 E { 3405} {w} {w} {8} {0} {} {1.000} {}
 
