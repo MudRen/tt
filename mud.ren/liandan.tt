@@ -1,0 +1,106 @@
+#CLASS {liandan} OPEN
+
+#ACTION {东西到手，快去交了吧。}
+{
+     #variable step 3;
+     #unticker caiyao;
+     #map find 2364;
+     #path run 0.5
+}
+
+#ACTION {你将原料药材一一放进炉中，盘腿坐下，闭目静待。}
+{
+     #variable step 4
+}
+
+#ACTION {你炼成了「%1」。}
+{
+     #variable step 5;
+     finish
+}
+
+#ACTION {回春堂药店内厅}
+{
+     #if {$step == 1 || $step == 4}
+     {
+          yaocai
+     };
+     #elseif {$step == 2}
+     {
+          goCaiyao
+     };
+     #elseif {$step == 3}
+     {
+          caoyao
+     }
+}
+
+#ACTION {姚春对你微笑道：炼丹是个修身养性的过程，你能成功，很不错！}
+{
+     ldan
+}
+
+#ACTION {姚春对你点了点头，说道：炼丹是考验人的定力修为，心不静则事不成}
+{
+     #variable step 1;
+     s;
+     yaocai
+}
+
+#ACTION {小童对你说道：好吧，那你去城西的林子里挖几样新鲜的草药来。}
+{
+     #variable step 2;
+     goCaiyao
+}
+
+#ACTION {看起来%1想杀死你}
+{
+     kill du
+}
+
+#ALIAS {caiyao}
+{
+     #ticker caiyao {cai yao} 5
+}
+
+#ALIAS {caoyao}
+{
+     #delay 1;
+     give cao yao to xiao tong;
+     #delay 1;
+     #2 n;
+     fullme;
+     liandan
+}
+
+#ALIAS {finish}
+{
+     s;
+     ldan
+}
+
+#ALIAS {fullme}
+{
+     eat gan liang;
+     drink shui dai
+}
+
+#ALIAS {goCaiyao}
+{
+     #map find 城西后林;
+     #path run 0.5;
+     caiyao
+}
+
+#ALIAS {ldan}
+{
+     ask yao chun about liandan
+}
+
+#ALIAS {yaocai}
+{
+     ask xiao tong about yaocai
+}
+
+
+#CLASS {liandan} CLOSE
