@@ -120,6 +120,19 @@
 
 #ALIAS {mf}
 {
+     #if {"%1"==""}
+     {
+          #echo 请输入目的地名称或编号!
+     };
+     #else
+     {
+          #map find %1;
+          #path run 0.5
+     }
+}
+
+#ALIAS {mi}
+{
      #map info
 }
 
