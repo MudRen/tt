@@ -1,3 +1,5 @@
+#CLASS {map} OPEN
+
 #ACTION {#PATH WALK: #END OF PATH.}
 {
      pathend
@@ -17,7 +19,6 @@
 {
      patherror
 }
-
 
 #ALIAS {gebib}
 {
@@ -207,9 +208,6 @@
      #path save position position
 }
 
-
-#CONFIG           {TINTIN CHAR}  {#}
-
 #PATHDIR          {d}  {u}  {32}
 #PATHDIR          {e}  {w}  {2}
 #PATHDIR          {ed}  {wu}  {34}
@@ -230,7 +228,6 @@
 #PATHDIR          {w}  {e}  {8}
 #PATHDIR          {wd}  {eu}  {40}
 #PATHDIR          {wu}  {ed}  {24}
-
 #VARIABLE         {mapset}  {0}
 #VARIABLE         {pathbj}  {w;w;w;n;w;w;e;e;s;w;e;s;w;e;s;s;n;n;n;e;s;n;n;e;w;s;e;e;s;s;w;n;s;s;s;s;s;n;n;n;n;w;s;n;e;e;s;s;s;s;s;n;n;n;n;n;e;s;u;d;n;n;s;e;s;n;n;s;e;w;w;w;n;n;e;e;e;e;w;s;n;n;e;w;w;w;e;n;w;e;e;e;e;e;e;se;nw;ne;sw;w;w;w;w;n;e;w;w;n;e;n;e;n;s;w;n;u;d;s;w;n;n;s;w;n;s;s;s;s;s;n;n;n;w;n;n;n;n;s;s;s;s;s;n;w;n;n;s;s;s;s;n;w;s;n;n;n;n;s;w;s;w;n;n;s;s;e;w;e;s;s;w;e;e;s;e;w;w;w;w;w;w;e;e;e;e;s;w;w}
 #VARIABLE         {pathbj0}  {e;e;n;w;w;w;w;e;e;e;e;e;e;w;n;w;w;e;n;n;w;e;w;n;n;s;s;e;n;e;n;s;s;s;s;n;e;s;n;n;n;n;s;s;e;s;n;n;n;n;n;s;s;s;s;e;s;s;s;n;n;n;n;n;s;e;n;s;s;e;n;u;d;s;e;n;s;w;s;w;s;e;e;w;s;e;e;e;e;ne;sw;se;nw;w;w;w;w;w;w;e;s;w;e;e;e;w;s;s;n;e;w;w;w;w;s;s;e;e;e;w;n;s;s;n;w;n;s;s;u;d;n;w;s;s;s;s;s;n;n;n;n;n;w;w;s;n;e;s;s;s;s;n;n;n;n;n;s;e;n;n;w;w;n;e;w;s;s;n;w;s;s;s;n;n;w;e;n;w;e;n;w;w;e;e;s;e;e;e}
@@ -294,3 +291,4 @@
 #VARIABLE         {pathzz0}  {w;u;d;w;s;e;e;n;s;se;e;e;e;e;e;w;w;w;n;s;w;w;nw;w;w;s;s;s;s;s;s;s;w;w;e;e;n;n;n;e;w;w;e;n;n;w;d;e;w;u;e;e;w;n;s;s;ne;ne;ne;n;out;n;w;w;e;n;w;w;w;w;w;w;w;w;w;w;e;e;e;e;e;e;u;d;e;n;s;e;n;s;e;s;n;e;n;n;n;n;n;n;n;n;n;n;s;s;s;s;s;s;e;w;w;e;s;e;e;w;w;w;w;w;w;e;n;s;e;n;n;s;s;e;e;s;e;s;n;n;s;w;w;s;n;n;s;w;w;e;e;e;s;w;w;nw;enter;out;se;e;e;e;e;w;w;s}
 #VARIABLE         {position}  {202}
 
+#CLASS {map} CLOSE
