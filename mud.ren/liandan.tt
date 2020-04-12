@@ -17,6 +17,12 @@
 }
 {1}
 
+#ACTION {“啪”的一声一颗仙丹掉到你面前。}
+{
+     get dan;
+     store dan
+}
+
 #ACTION {东西到手，快去交了吧。}
 {
      cyback
@@ -30,6 +36,11 @@
 #ACTION {你炼成了「%1」。}
 {
      finish
+}
+
+#ACTION {你现在的精神不太好，没法和别人套瓷。}
+{
+     ldan
 }
 
 #ACTION {别在这浪费时间了，快走吧。}
@@ -78,7 +89,7 @@
 
 #ALIAS {caoyao}
 {
-     #delay 1 {give cao yao to xiao tong;fullme};
+     #delay 1 {give cao yao to xiao tong};
      #delay 1 {#2 n;liandan}
 }
 
@@ -117,14 +128,14 @@
 {
      #map find 姚春内室;
      #path run 0.5;
-     #delay 1 {ask yao chun about liandan}
+     #delay 1 {fullme;ask yao chun about liandan}
 }
 
 #ALIAS {yaocai}
 {
      #map find 回春堂药店内厅;
      #path run 0.5;
-     #delay 1 {ask xiao tong about yaocai}
+     #delay 1 {fullme;ask xiao tong about yaocai}
 }
 
 
