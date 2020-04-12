@@ -1,24 +1,5 @@
 #CLASS {liandan} OPEN
 
-#ACTION {东西到手，快去交了吧。}
-{
-     #variable step 3;
-     #unticker caiyao;
-     #map find 2364;
-     #path run 0.5
-}
-
-#ACTION {你将原料药材一一放进炉中，盘腿坐下，闭目静待。}
-{
-     #variable step 4
-}
-
-#ACTION {你炼成了「%1」。}
-{
-     #variable step 5;
-     finish
-}
-
 #ACTION {回春堂药店内厅}
 {
      #if {$step == 1 || $step == 4}
@@ -34,6 +15,33 @@
           caoyao
      }
 }
+{1}
+
+#ACTION {东西到手，快去交了吧。}
+{
+     cyback
+}
+
+#ACTION {你将原料药材一一放进炉中，盘腿坐下，闭目静待。}
+{
+     #variable step 4
+}
+
+#ACTION {你炼成了「%1」。}
+{
+     finish
+}
+
+#ACTION {别在这浪费时间了，快走吧。}
+{
+     yaocai
+}
+
+#ACTION {原料都没有，炼什么啊？}
+{
+     #variable step 1;
+     #delay 1 {#2 s}
+}
 
 #ACTION {姚春对你微笑道：炼丹是个修身养性的过程，你能成功，很不错！}
 {
@@ -43,7 +51,6 @@
 #ACTION {姚春对你点了点头，说道：炼丹是考验人的定力修为，心不静则事不成}
 {
      #variable step 1;
-     s;
      yaocai
 }
 
@@ -53,6 +60,12 @@
      goCaiyao
 }
 
+#ACTION {正当你昏昏然的时候，一阵刺鼻的气味从炉中冲出，你急忙开炉取药}
+{
+     #variable step 1;
+     #delay 1 {#2 s}
+}
+
 #ACTION {看起来%1想杀死你}
 {
      kill du
@@ -60,27 +73,35 @@
 
 #ALIAS {caiyao}
 {
-     #ticker caiyao {cai yao} 5
+     #ticker caiyao {fullme;cai yao} 5
 }
 
 #ALIAS {caoyao}
 {
-     #delay 1;
-     give cao yao to xiao tong;
-     #delay 1;
-     #2 n;
-     fullme;
-     liandan
+     #delay 1 {give cao yao to xiao tong;fullme};
+     #delay 1 {#2 n;liandan}
+}
+
+#ALIAS {cyback}
+{
+     #variable step 3;
+     #unticker caiyao;
+     #map find 回春堂药店内厅;
+     #path run 0.5
 }
 
 #ALIAS {finish}
 {
-     s;
+     #variable step 5;
+     store dan;
+     fullme;
      ldan
 }
 
 #ALIAS {fullme}
 {
+     exert recover;
+     exert regenerate;
      eat gan liang;
      drink shui dai
 }
@@ -94,12 +115,16 @@
 
 #ALIAS {ldan}
 {
-     ask yao chun about liandan
+     #map find 姚春内室;
+     #path run 0.5;
+     #delay 1 {ask yao chun about liandan}
 }
 
 #ALIAS {yaocai}
 {
-     ask xiao tong about yaocai
+     #map find 回春堂药店内厅;
+     #path run 0.5;
+     #delay 1 {ask xiao tong about yaocai}
 }
 
 
