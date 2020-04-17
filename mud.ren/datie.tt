@@ -1,0 +1,58 @@
+#CLASS {datie} OPEN
+
+#ACTION {^你现在的精神不太好，没法和别人套瓷。}
+{
+     #delay 5 job
+}
+
+#ACTION {^铁匠说道：你还是歇会儿吧！要是出了人命我可承担不起。}
+{
+     eatdan;
+     #delay 5 job
+}
+
+#ACTION {铁匠对你道：干得不坏，这是给你的工钱。}
+{
+     #variable job 0;
+     #delay 3 {job}
+}
+
+#ACTION {铁匠说道：去帮我把这些刚出炉的淬(cuihuo)一下火。}
+{
+     #if {$job}
+     {
+          cuihuo
+     }
+}
+
+#ACTION {铁匠说道：好！你帮我鼓(gu)一会儿风箱。}
+{
+     #if {$job}
+     {
+          gu
+     }
+}
+
+#ACTION {铁匠说道：这样吧，你帮我打(dapi)一下坯吧！}
+{
+     #if {$job}
+     {
+          dapi
+     }
+}
+
+#ALIAS {eatdan}
+{
+     eat dabu dan
+}
+
+#ALIAS {job}
+{
+     fullme;
+     ask tie jiang about job;
+     #variable job 1
+}
+
+#VARIABLE         {job}  {0}
+
+#CLASS {datie} CLOSE
