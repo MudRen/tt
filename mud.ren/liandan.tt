@@ -38,6 +38,11 @@
      finish
 }
 
+#ACTION {你炼成了珍品「%1」。}
+{
+     finish
+}
+
 #ACTION {你现在的精神不太好，没法和别人套瓷。}
 {
      ldan
@@ -62,13 +67,19 @@
 #ACTION {姚春对你点了点头，说道：炼丹是考验人的定力修为，心不静则事不成}
 {
      #variable step 1;
-     yaocai
+     s
 }
 
 #ACTION {小童对你说道：好吧，那你去城西的林子里挖几样新鲜的草药来。}
 {
      #variable step 2;
      goCaiyao
+}
+
+#ACTION {您已经发呆超过%1分钟了，开始研究发呆神功。}
+{
+     rideto beijing;
+     ldan
 }
 
 #ACTION {正当你昏昏然的时候，一阵刺鼻的气味从炉中冲出，你急忙开炉取药}
