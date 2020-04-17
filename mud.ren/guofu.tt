@@ -211,7 +211,7 @@
 {
      hp;
      #unticker work;
-     #delay 3 {mgo 1001; #delay 1 {mgo 995}}
+     #delay 5 {mgo 1001; #delay 1 {mgo 995}}
 }
 
 #ALIAS {tool}
