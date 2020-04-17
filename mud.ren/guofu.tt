@@ -52,7 +52,7 @@
           #unticker food;
           drop rice;
           drop tea;
-          #delay 1 {mgo 985}
+          #delay 1 {mgo 985;#delay 1 job}
      }
 }
 
