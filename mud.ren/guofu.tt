@@ -19,6 +19,14 @@
      }
 }
 
+#ACTION {^【 精 气 】%s%d/%s%d}
+{
+     #if {%2 < 30}
+     {
+          eat yinxin dan
+     }
+}
+
 #ACTION {^【 食 物 】%s%d/%s%d%s【 潜 能 】  %d}
 {
      #if {%2 < 50}
