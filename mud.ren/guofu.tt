@@ -21,7 +21,7 @@
 
 #ACTION {^【 精 气 】%s%d/%s%d}
 {
-     #if {%2 < 30}
+     #if {%2 < 50}
      {
           eat yinxin dan
      }
@@ -59,6 +59,18 @@
 #ACTION {^你渴得要虚脱了。}
 {
      drink shui dai
+}
+
+#ACTION {^你现在的精神不太好，没法和别人套瓷。}
+{
+     #if {$status ==2}
+     {
+          #delay 5 {tool}
+     };
+     #else
+     {
+          #delay 5 jobss
+     }
 }
 
 #ACTION {^你饿得头晕眼花，看来要赶快找点吃的了。}
