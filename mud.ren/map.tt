@@ -60,14 +60,14 @@
      #map goto 64
 }
 
-#ACTION {^你到了峨眉半山，下了车。}
-{
-     #map goto 66
-}
-
 #ACTION {^你到了峨嵋山，下了车。}
 {
      #map goto 65
+}
+
+#ACTION {^你到了峨眉半山，下了车。}
+{
+     #map goto 66
 }
 
 #ACTION {^你到了开封，下了车。}
@@ -143,6 +143,11 @@
 #ACTION {^你到了长安，下了车。}
 {
      #map goto 62
+}
+
+#ACTION {^你的动作还没有完成，不能移动。}
+{
+     #map undo
 }
 
 #ACTION {这个方向没有出路。}

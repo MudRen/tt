@@ -1,0 +1,172 @@
+#CLASS {guofu} OPEN
+
+#ACTION {^%1管事对你说：干的不错，好了，你可以去向耶律大爷覆命(task ok)了。}
+{
+     #variable status 4;
+     taskback
+}
+
+#ACTION {^%1管事对着你点了点头。}
+{
+     #if {$status == 3}
+     {
+          wield $tool;
+          work
+     };
+     #else
+     {
+          taskback
+     }
+}
+
+#ACTION {^你又饥又渴，觉得自己快要死了。}
+{
+     #variable status 9
+}
+
+#ACTION {^你已经喝太多了，再也灌不下一滴水了。}
+{
+     #if {$status == 9}
+     {
+          #variable status 1;
+          #unticker food;
+          drop rice;
+          drop tea;
+          #delay 1 {mgo 985}
+     }
+}
+
+#ACTION {^你渴得要虚脱了。}
+{
+     #variable status 9
+}
+
+#ACTION {^厨师将热气腾腾的饭菜递到你手中，笑道：你慢用。}
+{
+     #ticker food {eat rice;drink tea} 1
+}
+
+#ACTION {^武修文交给你一把工具。}
+{
+     #variable status 3;
+     mgo $vnum
+}
+
+#ACTION {^武修文对着你点了点头。}
+{
+     #if {$status == 2}
+     {
+          tool
+     };
+     #elseif {$status == 4}
+     {
+          unwield $tool;
+          give $tool to wu xiuwen;
+          mgo 985;
+          #delay 1 {task ok}
+     }
+}
+
+#ACTION {^耶律齐看着你会心地一笑。}
+{
+     #switch {$status}
+     {
+          #case {0}
+          {
+               hi
+          };
+          #case {8}
+          {
+               xuexi
+          };
+          #case {9}
+          {
+               food
+          };
+          #default
+          {
+               job
+          }
+     }
+}
+
+#ACTION {^耶律齐说道：…嗯…你先到物品房领工具，然后去后院「%1」吧。}
+{
+     #if {$status == 1}
+     {
+          #variable status 2;
+          #switch {"%1"}
+          {
+               #case {"打扫马房"}
+               {
+                    #variable tool {sao zhou};
+                    #variable work {sao mafang};
+                    #variable vnum 1010
+               };
+               #case {"锯木头"}
+               {
+                    #variable tool {ju zi};
+                    #variable work {ju mutou};
+                    #variable vnum 1011
+               };
+               #case {"劈柴"}
+               {
+                    #variable tool {chai dao};
+                    #variable work {pi chai};
+                    #variable vnum 1007
+               };
+               #case {"浇菜地"}
+               {
+                    #variable tool {shui piao};
+                    #variable work {jiao shui};
+                    #variable vnum 1013
+               };
+               #case {"锄草"}
+               {
+                    #variable tool {chu tou};
+                    #variable work {chu cao};
+                    #variable vnum 1014
+               }
+          };
+          tool
+     }
+}
+
+#ALIAS {food}
+{
+     mgo 1003;
+     serve
+}
+
+#ALIAS {job}
+{
+     #variable status 1;
+     ask yelv qi about 工作
+}
+
+#ALIAS {stop}
+{
+     #unticker work;
+     #variable status 0
+}
+
+#ALIAS {taskback}
+{
+     hp;
+     #unticker work;
+     #delay 3 {mgo 1001; #delay 1 {mgo 995}}
+}
+
+#ALIAS {tool}
+{
+     mgo 995;
+     #delay 1 {ask wu xiuwen about 工具}
+}
+
+#ALIAS {work}
+{
+     #ticker work {$work} 1
+}
+
+
+#CLASS {guofu} CLOSE
