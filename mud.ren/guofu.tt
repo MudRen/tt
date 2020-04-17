@@ -19,6 +19,18 @@
      }
 }
 
+#ACTION {^【 食 物 】%s%d/%s%d%s【 潜 能 】  %d}
+{
+     #if {%2 < 50}
+     {
+          #variable status 9
+     };
+     #elseif {%6 > $max_qn}
+     {
+          #variable status 8
+     }
+}
+
 #ACTION {^你又饥又渴，觉得自己快要死了。}
 {
      #variable status 9
@@ -38,7 +50,12 @@
 
 #ACTION {^你渴得要虚脱了。}
 {
-     #variable status 9
+     drink shui dai
+}
+
+#ACTION {^你饿得头晕眼花，看来要赶快找点吃的了。}
+{
+     eat gan liang
 }
 
 #ACTION {^厨师将热气腾腾的饭菜递到你手中，笑道：你慢用。}
@@ -58,13 +75,18 @@
      {
           tool
      };
-     #elseif {$status == 4}
+     #else
      {
           unwield $tool;
           give $tool to wu xiuwen;
           mgo 985;
           #delay 1 {task ok}
      }
+}
+
+#ACTION {^然而你今天太累了，无法再进行任何学习了。}
+{
+     eatdan
 }
 
 #ACTION {^耶律齐看着你会心地一笑。}
@@ -132,10 +154,25 @@
      }
 }
 
+#ACTION {^花茶里的花茶已经被喝得一滴也不剩了。}
+{
+     #if {$status == 9}
+     {
+          drop rice;
+          drop tea;
+          serve
+     }
+}
+
+#ALIAS {eatdan}
+{
+     eat yinxin dan
+}
+
 #ALIAS {food}
 {
      mgo 1003;
-     serve
+     #delay 2 serve
 }
 
 #ALIAS {job}
@@ -166,6 +203,12 @@
 #ALIAS {work}
 {
      #ticker work {$work} 1
+}
+
+#ALIAS {xuexi}
+{
+     mgo 994;
+     #ticker {xuexi} {xue wu $skill 100} 3
 }
 
 
