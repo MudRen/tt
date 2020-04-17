@@ -15,6 +15,136 @@
      }
 }
 
+#ACTION {^你到了中州，下了车。}
+{
+     #map goto 85
+}
+
+#ACTION {^你到了伊犁，下了车。}
+{
+     #map goto 83
+}
+
+#ACTION {^你到了佛山，下了车。}
+{
+     #map goto 67
+}
+
+#ACTION {^你到了兰州，下了车。}
+{
+     #map goto 75
+}
+
+#ACTION {^你到了关外，下了车。}
+{
+     #map goto 69
+}
+
+#ACTION {^你到了北京，下了车。}
+{
+     #map goto 61
+}
+
+#ACTION {^你到了南阳，下了车。}
+{
+     #map goto 78
+}
+
+#ACTION {^你到了嘉兴，下了车。}
+{
+     #map goto 71
+}
+
+#ACTION {^你到了大理，下了车。}
+{
+     #map goto 64
+}
+
+#ACTION {^你到了峨眉半山，下了车。}
+{
+     #map goto 66
+}
+
+#ACTION {^你到了峨嵋山，下了车。}
+{
+     #map goto 65
+}
+
+#ACTION {^你到了开封，下了车。}
+{
+     #map goto 73
+}
+
+#ACTION {^你到了成都，下了车。}
+{
+     #map goto 63
+}
+
+#ACTION {^你到了扬州，下了车。}
+{
+     #map goto 60
+}
+
+#ACTION {^你到了昆明，下了车。}
+{
+     #map goto 74
+}
+
+#ACTION {^你到了武功镇，下了车。}
+{
+     #map goto 81
+}
+
+#ACTION {^你到了永登，下了车。}
+{
+     #map goto 84
+}
+
+#ACTION {^你到了泉州，下了车。}
+{
+     #map goto 79
+}
+
+#ACTION {^你到了洛阳，下了车。}
+{
+     #map goto 77
+}
+
+#ACTION {^你到了灵州，下了车。}
+{
+     #map goto 76
+}
+
+#ACTION {^你到了福州，下了车。}
+{
+     #map goto 68
+}
+
+#ACTION {^你到了苏州，下了车。}
+{
+     #map goto 80
+}
+
+#ACTION {^你到了荆州，下了车。}
+{
+     #map goto 72
+}
+
+#ACTION {^你到了衡阳，下了车。}
+{
+     #map goto 70
+}
+
+#ACTION {^你到了襄阳，下了车。}
+{
+     #map goto 82
+}
+
+#ACTION {^你到了长安，下了车。}
+{
+     #map goto 62
+}
+
 #ACTION {这个方向没有出路。}
 {
      patherror
