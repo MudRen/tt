@@ -76,7 +76,7 @@
      #delay 1 {mgo 985;#delay 1 job}
 }
 
-#ACTION {^你拿出十两白银，存进了银号。}
+#ACTION {^你拿出%1两白银，存进了银号。}
 {
      #delay 3 {mgo 985;#delay 1 job}
 }
