@@ -19,11 +19,16 @@
      }
 }
 
+#ACTION {^“啪”的一声一颗仙丹掉到你面前。}
+{
+     get dan
+}
+
 #ACTION {^【 精 气 】%s%d/%s%d}
 {
      #if {%2 < 50}
      {
-          eat yinxin dan
+          exert regenerate
      }
 }
 
@@ -44,16 +49,17 @@
      #variable status 9
 }
 
-#ACTION {^你已经喝太多了，再也灌不下一滴水了。}
+#ACTION {^你已经吃太饱了，再也塞不下任何东西了。}
 {
-     #if {$status == 9}
-     {
-          #variable status 1;
-          #unticker food;
-          drop rice;
-          drop tea;
-          #delay 1 {mgo 985;#delay 1 job}
-     }
+     #variable status 1;
+     #unticker food;
+     drop rice;
+     #delay 1 {mgo 985;#delay 1 job}
+}
+
+#ACTION {^你已经喝太多了，再也灌不下一滴水}
+{
+     drop tea
 }
 
 #ACTION {^你渴得要虚脱了。}
@@ -176,10 +182,17 @@
 
 #ACTION {^花茶里的花茶已经被喝得一滴也不剩了。}
 {
+     drop tea;
      #if {$status == 9}
      {
-          drop rice;
-          drop tea;
+          serve
+     }
+}
+
+#ACTION {^你将剩下的%1吃得干干净净。}
+{
+     #if {$status == 9}
+     {
           serve
      }
 }
@@ -201,6 +214,12 @@
      ask yelv qi about 工作
 }
 
+#ALIAS {setlearn}
+{
+     #variable max_qn %1;
+     #variable learn_guo %2
+}
+
 #ALIAS {stop}
 {
      #unticker work;
@@ -209,6 +228,7 @@
 
 #ALIAS {taskback}
 {
+     #delay 3 {eat wanshou dan};
      hp;
      #unticker work;
      #delay 5 {mgo 1001; #delay 1 {mgo 995}}
@@ -227,8 +247,16 @@
 
 #ALIAS {xuexi}
 {
-     mgo 994;
-     #ticker {xuexi} {xue wu $skill 100} 3
+     #if {$learn_guo}
+     {
+          mgo 1000;
+          #ticker {xuexi} {xue guo $skill 100} 3
+     };
+     #else
+     {
+          mgo 994;
+          #ticker {xuexi} {xue wu $skill 100} 3
+     }
 }
 
 

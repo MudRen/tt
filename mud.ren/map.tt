@@ -305,7 +305,7 @@
 
 #ALIAS {patherror}
 {
-     chat* stomachache
+     #echo 请在 patherror 别名设置路径错误的处理方式
 }
 
 #ALIAS {river}
