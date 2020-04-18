@@ -228,14 +228,7 @@
 #ALIAS {setlearn}
 {
      #variable max_qn %1;
-     #if {"%2" ==""}
-     {
-          #variable learn_guo 0
-     };
-     #else
-     {
-          #variable learn_guo %2
-     }
+     #variable learn %2
 }
 
 #ALIAS {stop}
@@ -270,10 +263,15 @@
 
 #ALIAS {xuexi}
 {
-     #if {$learn_guo}
+     #if {$learn == 2}
      {
           mgo 1000;
           #ticker {xuexi} {xue guo $skill 100} 3
+     };
+     #elseif {$learn == 1}
+     {
+          mgo 学堂;
+          #ticker {xuexi} {xue zhu $skill 100} 3
      };
      #else
      {
