@@ -26,7 +26,9 @@
 {
      #variable master %1;
      #variable target %2;
-     #variable target_place %3
+     #variable target_place %3;
+     quest;
+     @place{"%3"}
 }
 
 #ACTION {^%s$target($target_id)}
@@ -42,7 +44,7 @@
 #ALIAS {food}
 {
      eat gan liang;
-     drink jiudai
+     drink shui dai
 }
 
 #ALIAS {fullme}
@@ -71,6 +73,30 @@
 #ALIAS {todo}
 {
      give letter to $target_id
+}
+
+#FUNCTION {place}
+{
+     #switch {"%1"}
+     {
+          #case {"长安城"}
+          {
+               rideto changan
+          };
+          #case {"南海一带"}
+          {
+               rideto nanhai
+          };
+          #case {"北京城"}
+          {
+               rideto beijing
+          };
+          #case {"洛阳城"}
+          {
+               rideto luoyang
+          };
+     }
+     return ok;
 }
 
 
