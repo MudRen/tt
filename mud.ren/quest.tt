@@ -1,1 +1,77 @@
-#nop 师门任务机器人
+#CLASS {quest} OPEN
+
+#ACTION {$master(%1)}
+{
+     #variable master_id %1
+}
+
+#ACTION {^$target走了过来。}
+{
+     todo
+}
+
+#ACTION {^%1交给你一张回执。}
+{
+     questok
+}
+
+#ACTION {^%1吩咐你在%2月%3日之前把信件送到%4(%5)手中，取回执交差。}
+{
+     #variable master %1;
+     #variable target %4;
+     #variable target_id %5
+}
+
+#ACTION {^%1对你道：这封信你帮我交到%2手中，他现在应该在%3，然后把回执带回来给我！}
+{
+     #variable master %1;
+     #variable target %2;
+     #variable target_place %3
+}
+
+#ACTION {^%s$target($target_id)}
+{
+     todo
+}
+
+#ALIAS {finish}
+{
+     give receipt to $master_id
+}
+
+#ALIAS {food}
+{
+     eat gan liang;
+     drink jiudai
+}
+
+#ALIAS {fullme}
+{
+     exert recover;
+     exert regenerate;
+     food
+}
+
+#ALIAS {home}
+{
+     mgo 玄冥峰
+}
+
+#ALIAS {qm}
+{
+     quest $master_id
+}
+
+#ALIAS {questok}
+{
+     fullme;
+     #delay 2 {home;#delay 3 {finish}}
+}
+
+#ALIAS {todo}
+{
+     give letter to $target_id
+}
+
+
+#CLASS {quest} CLOSE
