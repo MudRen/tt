@@ -62,13 +62,18 @@
 {
      #variable status 1;
      #unticker food;
-     drop rice;
+     #3 drop rice;
      #delay 1 {mgo 帐房;#delay 1 {cun 10 silver}}
 }
 
 #ACTION {^你已经喝太多了，再也灌不下一滴水}
 {
      drop tea
+}
+
+#ACTION {^你带的白银不够。}
+{
+     #delay 1 {mgo 985;#delay 1 job}
 }
 
 #ACTION {^你拿出十两白银，存进了银号。}
@@ -223,7 +228,14 @@
 #ALIAS {setlearn}
 {
      #variable max_qn %1;
-     #variable learn_guo %2
+     #if {"%2" ==""}
+     {
+          #variable learn_guo 0
+     };
+     #else
+     {
+          #variable learn_guo %2
+     }
 }
 
 #ALIAS {stop}
