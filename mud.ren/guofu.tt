@@ -63,7 +63,7 @@
      #variable status 1;
      #unticker food;
      #3 drop rice;
-     #delay 1 {mgo 帐房;#delay 1 {cun 10 silver}}
+     #delay 1 {mgo 帐房;#delay 2 {cun 20 silver}}
 }
 
 #ACTION {^你已经喝太多了，再也灌不下一滴水}
@@ -100,6 +100,7 @@
 
 #ACTION {^你的潜能不够学习这么多次了。}
 {
+     #unticker xuexi;
      food
 }
 
@@ -234,6 +235,17 @@
 {
      #variable max_qn %1;
      #variable learn %2
+}
+
+#ALIAS {start}
+{
+     #read map.tt;
+     initmap 88;
+     n;
+     job;
+     #variable skill literate;
+     #variable max_qn 20000;
+     #variable learn 1
 }
 
 #ALIAS {stop}
