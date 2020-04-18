@@ -49,17 +49,31 @@
      #variable status 9
 }
 
+#ACTION {^你将剩下的%1吃得干干净净。}
+{
+     drop rice;
+     #if {$status == 9}
+     {
+          serve
+     }
+}
+
 #ACTION {^你已经吃太饱了，再也塞不下任何东西了。}
 {
      #variable status 1;
      #unticker food;
      drop rice;
-     #delay 1 {mgo 985;#delay 1 job}
+     #delay 1 {mgo 帐房;#delay 1 {cun 10 silver}}
 }
 
 #ACTION {^你已经喝太多了，再也灌不下一滴水}
 {
      drop tea
+}
+
+#ACTION {^你拿出十两白银，存进了银号。}
+{
+     #delay 3 {mgo 985;#delay 1 job}
 }
 
 #ACTION {^你渴得要虚脱了。}
@@ -75,7 +89,7 @@
      };
      #else
      {
-          #delay 5 jobss
+          #delay 5 job
      }
 }
 
@@ -189,14 +203,6 @@
      }
 }
 
-#ACTION {^你将剩下的%1吃得干干净净。}
-{
-     #if {$status == 9}
-     {
-          serve
-     }
-}
-
 #ALIAS {eatdan}
 {
      eat yinxin dan
@@ -228,10 +234,15 @@
 
 #ALIAS {taskback}
 {
-     #delay 3 {eat wanshou dan};
-     hp;
+     todo;
      #unticker work;
      #delay 5 {mgo 1001; #delay 1 {mgo 995}}
+}
+
+#ALIAS {todo}
+{
+     hp;
+     #delay 3 {eat wanshou dan}
 }
 
 #ALIAS {tool}

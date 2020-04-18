@@ -215,7 +215,7 @@ L {MUDFONT CURVED} {N E} {\u2818}
 L {MUDFONT CURVED} {S E} {\u28A0}
 L {MUDFONT CURVED} {S W} {\u2844}
 L {MUDFONT CURVED} {N W} {\u2803}
-L {UNICODE GRAPHICS} {NO DIAGONAL} { }
+L {UNICODE GRAPHICS} {NO DIAGONAL} {}
 L {UNICODE GRAPHICS} {SE} {\u2E0C}
 L {UNICODE GRAPHICS} {NE} {\u2E1D}
 L {UNICODE GRAPHICS} {SE NE} {>}
@@ -4272,7 +4272,7 @@ E {  981} {e} {e} {2} {0} {} {1.000} {}
 E {  980} {w} {w} {8} {0} {} {1.000} {}
 
 R {  984} {0} {} {郭府大院} {@} {} {wuguan} {} {} {} {1.000} {guofu_dayuan}
-E {  934} {s} {s} {4} {0} {} {1.000} {}
+E {  934} {s} {s} {4} {2} {} {1.000} {}
 E {  985} {n} {n} {1} {0} {} {1.000} {}
 E {  986} {w} {w} {8} {0} {} {1.000} {}
 E {  991} {e} {e} {2} {0} {} {1.000} {}
