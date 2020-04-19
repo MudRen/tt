@@ -108,7 +108,7 @@
 #ALIAS {questrun}
 {
      #path load ${path$placelist[$target_place][path]};
-     rideto $placelist[$target_place][id];
+     #send $placelist[$target_place][go];
      #delay 1 {#path run 0.5}
 }
 
@@ -125,36 +125,36 @@
 
 #VARIABLE {placelist}
 {
-     {北京城}{{id}{beijing}{path}{bj}}
-     {长安城}{{id}{changan}{path}{ca}}
-     {成都城}{{id}{chengdu}{path}{cd}}
-     {福州城}{{id}{fuzhou}{path}{fz}}
-     {杭州城}{{id}{hangzhou}{path}{hz}}
-     {荆州城}{{id}{jingzhou}{path}{jz}}
-     {开封城}{{id}{kaifeng}{path}{kf}}
-     {昆明城}{{id}{kunming}{path}{km}}
-     {兰州城}{{id}{lanzhou}{path}{laz}}
-     {灵州城}{{id}{lingzhou}{path}{liz}}
-     {洛阳城}{{id}{luoyang}{path}{ly}}
-     {泉州城}{{id}{quanzhou}{path}{qz}}
-     {苏州城}{{id}{suzhou}{path}{sz}}
-     {襄阳城}{{id}{xiangyang}{path}{xy}}
-     {扬州城}{{id}{yangzhou}{path}{yz}}
-     {中州城}{{id}{zhongzhou}{path}{zz}}
-     {武功镇}{{id}{wugong}{path}{wg}}
-     {终南山}{{id}{wugong}{path}{zn}}
-     {星宿海}{{id}{xingxiu}{path}{xx}}
-     {天山}{{id}{lingjiu}{path}{ts}}
-     {嵩山一带}{{id}{nanyang}{path}{ss}}
-     {汝州一带}{{id}{nanyang}{path}{ss}}
-     {佛山一带}{{id}{foshan}{path}{fs}}
-     {南海一带}{{id}{nanhai}{path}{nh}}
-     {大理一带}{{id}{dali}{path}{dl}}
-     {五毒教附近}{{id}{dali}{path}{wdj}}
-     {华山附近}{{id}{huashan}{path}{hs}}
-     {凌霄城附近}{{id}{chengdu}{path}{lx}}
-     {关外}{{id}{guanwai}{path}{gw}}
-     {西域}{{id}{xingxiu}{path}{xiyu}}
+     {北京城}{{go}{rideto beijing}{path}{bj}}
+     {长安城}{{go}{rideto changan}{path}{ca}}
+     {成都城}{{go}{rideto chengdu}{path}{cd}}
+     {福州城}{{go}{rideto fuzhou}{path}{fz}}
+     {杭州城}{{go}{rideto hangzhou}{path}{hz}}
+     {荆州城}{{go}{rideto jingzhou}{path}{jz}}
+     {开封城}{{go}{rideto kaifeng}{path}{kf}}
+     {昆明城}{{go}{rideto kunming}{path}{km}}
+     {兰州城}{{go}{rideto lanzhou}{path}{laz}}
+     {灵州城}{{go}{rideto lingzhou}{path}{liz}}
+     {洛阳城}{{go}{rideto luoyang}{path}{ly}}
+     {泉州城}{{go}{rideto quanzhou}{path}{qz}}
+     {苏州城}{{go}{rideto suzhou}{path}{sz}}
+     {襄阳城}{{go}{rideto xiangyang}{path}{xy}}
+     {扬州城}{{go}{rideto yangzhou}{path}{yz}}
+     {中州城}{{go}{rideto zhongzhou}{path}{zz}}
+     {武功镇}{{go}{rideto wugong}{path}{wg}}
+     {终南山}{{go}{rideto wugong}{path}{zn}}
+     {星宿海}{{go}{rideto xingxiu}{path}{xx}}
+     {天山}{{go}{rideto lingjiu}{path}{ts}}
+     {嵩山一带}{{go}{rideto nanyang}{path}{ss}}
+     {汝州一带}{{go}{rideto nanyang}{path}{ss}}
+     {佛山一带}{{go}{rideto foshan}{path}{fs}}
+     {南海一带}{{go}{rideto nanhai}{path}{nh}}
+     {大理一带}{{go}{rideto dali}{path}{dl}}
+     {五毒教附近}{{go}{rideto dali}{path}{wdj}}
+     {华山附近}{{go}{rideto huashan}{path}{hs}}
+     {凌霄城附近}{{go}{rideto chengdu}{path}{lx}}
+     {关外}{{go}{rideto guanwai}{path}{gw}}
+     {西域}{{go}{rideto xingxiu}{path}{xiyu}}
 }
 
 #CLASS {quest} CLOSE
