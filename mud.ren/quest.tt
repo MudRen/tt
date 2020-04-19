@@ -41,6 +41,11 @@
      #variable target_id %5
 }
 
+#ACTION {^据说此人前不久曾经在%1出没。}
+{
+     #variable target_place %1;
+}
+
 #ACTION {^%1对你道：这封信你帮我交到%2手中，他现在应该在%3，然后把回执带回来给我！}
 {
      #variable master %1;
