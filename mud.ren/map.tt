@@ -150,7 +150,7 @@
      #map undo
 }
 
-ACTION {^看来%1不打算让你过去。}
+#ACTION {^看来%1不打算让你过去。}
 {
      #map undo
 }
@@ -433,6 +433,6 @@ ACTION {^看来%1不打算让你过去。}
 #VARIABLE         {pathzn0}  {s;s;w;w;w;ne;eu;ne;nu;nu;e;nu;w;nu;sd;sd;sd;sd;sw;se;eu;n;nu;nu;nu;wu;wu;nu;nu;n;w;nw;n;nu;nu;nu;wu;wu;sd;nu;nu;wu;wu;su;eu;sd;sd;s;s;su;sw;sw;s;e;se;nw;w;s;w;e;n;n;ne;ne;nd;n;n;nu;nu;wd;nd;ed;ed;sd;sd;nu;ed;nw;nd;nd;n;nd;nd;nd;su;su;su;s;su;su;se;nd;su;ed;nu;nu;se;eu;su;e;eu;wd;nu;nu;nu;n;s;sd;sd;sd;w;su;su;s;n;nd;nd;nd;nu;nu;sd;sd;wd;nw;sd;sd;sd;sd;sd;ed;wu;s;w;e;se;e;s;sd;sd;ed;ed;sd;sd;sd;e;w;w;nw;w;s;n;e;se;e;s;wd;nw;ne;nu;nu;nu;nu;sd;e;sd;w;sd;sd;sw;wd;nu;nw;sw;ne;nw;se;n;s;se;sd;sw;e;e;e;n;n;s;s;w}
 #VARIABLE         {pathzz}  {n;e;e;w;w;w;w;nw;enter;out;se;e;e;n;w;w;w;e;e;n;s;s;n;e;e;n;s;s;n;w;n;w;w;n;n;s;s;w;n;s;w;e;e;e;e;e;e;w;w;n;w;e;e;w;n;n;n;n;n;n;s;s;s;s;s;s;s;s;s;s;w;s;n;w;n;s;w;n;s;w;u;d;w;w;w;w;w;w;e;e;e;e;e;e;e;e;e;e;s;w;e;e;s;enter;s;sw;sw;sw;n;n;s;e;w;w;d;e;w;u;e;s;s;w;e;e;w;s;s;s;w;w;e;e;n;n;n;n;n;n;n;e;e;se;e;e;n;s;e;e;e;w;w;w;w;w;nw;n;s;w;w;n;e;u;d;e}
 #VARIABLE         {pathzz0}  {w;u;d;w;s;e;e;n;s;se;e;e;e;e;e;w;w;w;n;s;w;w;nw;w;w;s;s;s;s;s;s;s;w;w;e;e;n;n;n;e;w;w;e;n;n;w;d;e;w;u;e;e;w;n;s;s;ne;ne;ne;n;out;n;w;w;e;n;w;w;w;w;w;w;w;w;w;w;e;e;e;e;e;e;u;d;e;n;s;e;n;s;e;s;n;e;n;n;n;n;n;n;n;n;n;n;s;s;s;s;s;s;e;w;w;e;s;e;e;w;w;w;w;w;w;e;n;s;e;n;n;s;s;e;e;s;e;s;n;n;s;w;w;s;n;n;s;w;w;e;e;e;s;w;w;nw;enter;out;se;e;e;e;e;w;w;s}
-#VARIABLE         {position}  {202}
+#VARIABLE         {position}  {0}
 
 #CLASS {map} CLOSE
