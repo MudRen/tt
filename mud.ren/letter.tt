@@ -1,4 +1,4 @@
-#CLASS {quest} OPEN
+#CLASS {letter} OPEN
 
 #ACTION {$master(%1)}
 {
@@ -169,4 +169,4 @@
      {西域}{{id}{mingjiao}{path}{xiyu}{vnum}{35}}
 }
 
-#CLASS {quest} CLOSE
+#CLASS {letter} CLOSE
