@@ -14,6 +14,7 @@
 {
      #path destroy;
      fullme;
+     rideto gc;
      #delay 3 {home;#delay 2 {finish}}
 }
 
