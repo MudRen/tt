@@ -13,7 +13,7 @@ CROOMS <178>
 CSYMBOLS <128>
 CUSER <258>
 
-F 8206
+F 8207
 
 G 99
 
@@ -215,7 +215,7 @@ L {MUDFONT CURVED} {N E} {\u2818}
 L {MUDFONT CURVED} {S E} {\u28A0}
 L {MUDFONT CURVED} {S W} {\u2844}
 L {MUDFONT CURVED} {N W} {\u2803}
-L {UNICODE GRAPHICS} {NO DIAGONAL} {}
+L {UNICODE GRAPHICS} {NO DIAGONAL} { }
 L {UNICODE GRAPHICS} {SE} {\u2E0C}
 L {UNICODE GRAPHICS} {NE} {\u2E1D}
 L {UNICODE GRAPHICS} {SE NE} {>}
@@ -10891,7 +10891,7 @@ E { 2615} {n} {n} {1} {0} {} {1.000} {}
 R { 2617} {0} {} {后花园} { } {} {quanzhen} {} {} {} {1.000} {houhuayuan1}
 E { 2615} {w} {w} {8} {0} {} {1.000} {}
 
-R { 2618} {0} {} {富家侧门} {!} {} {quanzhen} {} {} {} {1.000} {fu-cemen}
+R { 2618} {1} {} {富家侧门} {!} {} {quanzhen} {} {} {} {1.000} {fu-cemen}
 E { 2608} {e} {e} {2} {0} {} {1.000} {}
 E { 2601} {nw} {nw} {9} {0} {} {1.000} {}
 
