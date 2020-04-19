@@ -120,8 +120,13 @@
 
 #ALIAS {ready}
 {
-     eat haoyue dan;
+     eatdan;
      #delay 5 {qm}
+}
+
+#ALIAS {eatdan}
+{
+     eat haotian guo
 }
 
 #ALIAS {todo}
