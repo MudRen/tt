@@ -12,7 +12,26 @@
 
 #ACTION {^%1交给你一张回执。}
 {
-     questok
+     #path destroy;
+     fullme;
+     #delay 3 {home;#delay 2 {finish}}
+}
+
+#ACTION {^( 你已经陷入半昏迷状态，随时都可能摔倒晕去。)}
+{
+     fullme;
+     #end
+}
+
+#ACTION {^( 你看起来已经力不从心了。)}
+{
+     fullme;
+     #end
+}
+
+#ACTION {^你的眼前一黑，接著什么也不知道了....}
+{
+     #end
 }
 
 #ACTION {^%1吩咐你在%2月%3日之前把信件送到%4(%5)手中，取回执交差。}
@@ -28,12 +47,17 @@
      #variable target %2;
      #variable target_place %3;
      quest;
-     @place{"%3"}
+     #delay 2 {questrun}
 }
 
 #ACTION {^%s$target($target_id)}
 {
      todo
+}
+
+#ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
+{
+     ready
 }
 
 #ALIAS {finish}
@@ -56,6 +80,7 @@
 
 #ALIAS {home}
 {
+     rideto lingzhou;
      mgo 玄冥峰
 }
 
@@ -67,7 +92,20 @@
 #ALIAS {questok}
 {
      fullme;
-     #delay 2 {home;#delay 3 {finish}}
+     #delay 1 {home;#delay 2 {finish}}
+}
+
+#ALIAS {questrun}
+{
+     #path load ${path$placelist[$target_place][path]};
+     rideto $placelist[$target_place][id];
+     #delay 1 {#path run 0.5}
+}
+
+#ALIAS {ready}
+{
+     eat haoyue dan;
+     #delay 5 {qm}
 }
 
 #ALIAS {todo}
@@ -75,29 +113,38 @@
      give letter to $target_id
 }
 
-#FUNCTION {place}
+#VARIABLE {placelist}
 {
-     #switch {"%1"}
-     {
-          #case {"长安城"}
-          {
-               rideto changan
-          };
-          #case {"南海一带"}
-          {
-               rideto nanhai
-          };
-          #case {"北京城"}
-          {
-               rideto beijing
-          };
-          #case {"洛阳城"}
-          {
-               rideto luoyang
-          };
-     }
-     return ok;
+     {北京城}{{id}{beijing}{path}{bj}}
+     {长安城}{{id}{changan}{path}{ca}}
+     {成都城}{{id}{chengdu}{path}{cd}}
+     {福州城}{{id}{foshan}{path}{fs}}
+     {杭州城}{{id}{hangzhou}{path}{hz}}
+     {荆州城}{{id}{jingzhou}{path}{jz}}
+     {开封城}{{id}{kaifeng}{path}{kf}}
+     {昆明城}{{id}{kunming}{path}{km}}
+     {兰州城}{{id}{lanzhou}{path}{laz}}
+     {灵州城}{{id}{lingzhou}{path}{liz}}
+     {洛阳城}{{id}{luoyang}{path}{ly}}
+     {泉州城}{{id}{quanzhou}{path}{qz}}
+     {苏州城}{{id}{suzhou}{path}{sz}}
+     {襄阳城}{{id}{xiangyang}{path}{xy}}
+     {扬州城}{{id}{yangzhou}{path}{yz}}
+     {中州城}{{id}{zhongzhou}{path}{zz}}
+     {武功镇}{{id}{wugong}{path}{wg}}
+     {终南山}{{id}{wugong}{path}{zn}}
+     {嵩山一带}{{id}{nanyang}{path}{ss}}
+     {汝州一带}{{id}{nanyang}{path}{ss}}
+     {佛山一带}{{id}{foshan}{path}{fs}}
+     {南海一带}{{id}{foshan}{path}{fs}}
+     {大理一带}{{id}{dali}{path}{dl}}
+     {五毒教附近}{{id}{dali}{path}{wdj}}
+     {华山附近}{{id}{huashan}{path}{hs}}
+     {凌霄城附近}{{id}{chengdu}{path}{lx}}
+     {关外}{{id}{guanwai}{path}{gw}}
+     {星宿海}{{id}{xingxiu}{path}{xiyu}}
+     {天山}{{id}{xingxiu}{path}{xiyu}}
+     {西域}{{id}{xingxiu}{path}{xiyu}}
 }
-
 
 #CLASS {quest} CLOSE

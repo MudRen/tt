@@ -150,6 +150,11 @@
      #map undo
 }
 
+ACTION {^看来%1不打算让你过去。}
+{
+     #map undo
+}
+
 #ACTION {这个方向没有出路。}
 {
      patherror
