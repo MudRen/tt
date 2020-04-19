@@ -143,6 +143,8 @@
      {中州城}{{id}{zhongzhou}{path}{zz}}
      {武功镇}{{id}{wugong}{path}{wg}}
      {终南山}{{id}{wugong}{path}{zn}}
+     {星宿海}{{id}{xingxiu}{path}{xx}}
+     {天山}{{id}{lingjiu}{path}{ts}}
      {嵩山一带}{{id}{nanyang}{path}{ss}}
      {汝州一带}{{id}{nanyang}{path}{ss}}
      {佛山一带}{{id}{foshan}{path}{fs}}
@@ -152,8 +154,6 @@
      {华山附近}{{id}{huashan}{path}{hs}}
      {凌霄城附近}{{id}{chengdu}{path}{lx}}
      {关外}{{id}{guanwai}{path}{gw}}
-     {星宿海}{{id}{xingxiu}{path}{xiyu}}
-     {天山}{{id}{xingxiu}{path}{xiyu}}
      {西域}{{id}{xingxiu}{path}{xiyu}}
 }
 
