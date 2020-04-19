@@ -1,0 +1,28 @@
+#CLASS {fish} OPEN
+
+#ACTION {你的浮子忽然剧烈的震荡起来。}
+{
+     draw gan
+}
+
+#ACTION {你钓到了一条%1。}
+{
+     #delay 1 fullme;
+     #delay 2 fish;
+}
+
+#ACTION {“啪”的一声一颗仙丹掉到你面前。}
+{
+     get dan
+}
+
+#ALIAS {fullme}
+{
+     eat gan liang;
+     drink shui dai;
+     exert recover;
+     exert regenerate
+}
+
+
+#CLASS {fish} CLOSE

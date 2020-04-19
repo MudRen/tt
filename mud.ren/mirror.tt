@@ -1,0 +1,47 @@
+#CLASS {mirror} OPEN
+
+#ACTION {^乾坤宝镜显示%1现在所在地方的描述是}
+{
+     #var item %1;
+     #delay 3 {task}
+}
+
+#ACTION {^%1的$item(%2)}
+{
+    #var owner %1;
+    #var id %2
+}
+
+#ACTION {^%1说道：滚开，少啰嗦!}
+{
+    #var target %1;
+    l;
+    #delay 1 {aim $tid}
+}
+
+#ACTION {$target(%1)}
+{
+    #var tid %1
+}
+
+#ALIAS {aim}
+{
+    ask %1 about $item
+}
+
+#ALIAS {lt}
+{
+    #if {"%1"==""}
+    {
+        lt $id
+    };
+    #else
+    {
+        locate %1
+    }
+
+}
+
+#VARIABLE         {tasks}  {{1}{清法比丘}{2}{阿含经}{3}{ahjing}{4}{史松}{5}{云龙鞭法}{6}{bianfa}{7}{北丑}{8}{布衣}{9}{buyi}{10}{欧阳克}{11}{春宫图}{12}{cgtu}{13}{平一指}{14}{丹玉磨}{15}{danyumo}{16}{宋远桥}{17}{道德经}{18}{ddjing}{19}{陆菲青}{20}{芙蓉金针}{21}{frjz}{22}{梁兴禄}{23}{长安府官印}{24}{guanyin}{25}{唐楠}{26}{唐家家谱}{27}{jiapu}{28}{曾柔}{29}{金缕玉衣}{30}{jlyy}{31}{独孤求败}{32}{木剑}{33}{mujian}{34}{钱老本}{35}{杀猪刀}{36}{szdao}{37}{刘素素}{38}{檀香扇}{39}{txshan}{40}{李博渊}{41}{国子监学规}{42}{xuegui}{43}{阿庆嫂}{44}{胭脂水粉}{45}{yanzhi}}
+
+#CLASS {mirror} CLOSE
