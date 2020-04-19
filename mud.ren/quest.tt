@@ -109,6 +109,7 @@
 {
      #path load ${path$placelist[$target_place][path]};
      rideto $placelist[$target_place][id];
+     #map goto $placelist[$target_place][vnum];
      #delay 1 {#path run 0.5}
 }
 
@@ -125,36 +126,36 @@
 
 #VARIABLE {placelist}
 {
-     {北京城}{{id}{beijing}{path}{bj}}
-     {长安城}{{id}{changan}{path}{ca}}
-     {成都城}{{id}{chengdu}{path}{cd}}
-     {福州城}{{id}{fuzhou}{path}{fz}}
-     {杭州城}{{id}{hangzhou}{path}{hz}}
-     {荆州城}{{id}{jingzhou}{path}{jz}}
-     {开封城}{{id}{kaifeng}{path}{kf}}
-     {昆明城}{{id}{kunming}{path}{km}}
-     {兰州城}{{id}{lanzhou}{path}{laz}}
-     {灵州城}{{id}{lingzhou}{path}{liz}}
-     {洛阳城}{{id}{luoyang}{path}{ly}}
-     {泉州城}{{id}{quanzhou}{path}{qz}}
-     {苏州城}{{id}{suzhou}{path}{sz}}
-     {襄阳城}{{id}{xiangyang}{path}{xy}}
-     {扬州城}{{id}{yangzhou}{path}{yz}}
-     {中州城}{{id}{zhongzhou}{path}{zz}}
-     {武功镇}{{id}{wugong}{path}{wg}}
-     {终南山}{{id}{wugong}{path}{zn}}
-     {星宿海}{{id}{xingxiu}{path}{xx}}
-     {天山}{{id}{lingjiu}{path}{ts}}
-     {嵩山一带}{{id}{nanyang}{path}{ss}}
-     {汝州一带}{{id}{nanyang}{path}{ss}}
-     {佛山一带}{{id}{foshan}{path}{fs}}
-     {南海一带}{{id}{nanhai}{path}{nh}}
-     {大理一带}{{id}{dali}{path}{dl}}
-     {五毒教附近}{{id}{dali}{path}{wdj}}
-     {华山附近}{{id}{huashan}{path}{hs}}
-     {凌霄城附近}{{id}{chengdu}{path}{lx}}
-     {关外}{{id}{guanwai}{path}{gw}}
-     {西域}{{id}{xingxiu}{path}{xiyu}}
+     {北京城}{{id}{beijing}{path}{bj}{vnum}{15}}
+     {长安城}{{id}{changan}{path}{ca}{vnum}{11}}
+     {成都城}{{id}{chengdu}{path}{cd}{vnum}{14}}
+     {福州城}{{id}{fuzhou}{path}{fz}{vnum}{6}}
+     {杭州城}{{id}{hangzhou}{path}{hz}{vnum}{12}}
+     {荆州城}{{id}{jingzhou}{path}{jz}{vnum}{5}}
+     {开封城}{{id}{kaifeng}{path}{kf}{vnum}{17}}
+     {昆明城}{{id}{kunming}{path}{km}{vnum}{18}}
+     {兰州城}{{id}{lanzhou}{path}{laz}{vnum}{13}}
+     {灵州城}{{id}{lingzhou}{path}{liz}{vnum}{21}}
+     {洛阳城}{{id}{luoyang}{path}{ly}{vnum}{10}}
+     {泉州城}{{id}{quanzhou}{path}{qz}{vnum}{7}}
+     {苏州城}{{id}{suzhou}{path}{sz}{vnum}{2}}
+     {襄阳城}{{id}{xiangyang}{path}{xy}{vnum}{4}}
+     {扬州城}{{id}{yangzhou}{path}{yz}{vnum}{1}}
+     {中州城}{{id}{zhongzhou}{path}{zz}{vnum}{3}}
+     {武功镇}{{id}{wugong}{path}{wg}{vnum}{25}}
+     {终南山}{{id}{zhongnan}{path}{zn}{vnum}{26}}
+     {星宿海}{{id}{xingxiu}{path}{xx}{vnum}{45}}
+     {天山}{{id}{lingjiu}{path}{ts}{vnum}{34}}
+     {汝州一带}{{id}{nanyang}{path}{ss}{vnum}{16}}
+     {嵩山一带}{{id}{nanyang}{path}{ss}{vnum}{16}}
+     {佛山一带}{{id}{foshan}{path}{fs}{vnum}{8}}
+     {南海一带}{{id}{nanhai}{path}{nh}{vnum}{24}}
+     {大理一带}{{id}{dali}{path}{dl}{vnum}{19}}
+     {五毒教附近}{{id}{dali}{path}{wdj}{vnum}{19}}
+     {华山附近}{{id}{huashan}{path}{hs}{vnum}{38}}
+     {凌霄城附近}{{id}{chengdu}{path}{lx}{vnum}{14}}
+     {关外}{{id}{guanwai}{path}{gw}{vnum}{20}}
+     {西域}{{id}{mingjiao}{path}{xiyu}{vnum}{35}}
 }
 
 #CLASS {quest} CLOSE
