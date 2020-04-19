@@ -50,6 +50,11 @@
      #delay 2 {questrun}
 }
 
+#ACTION {^这里没有这个人，你怎么领任务？}
+{
+     #bell
+}
+
 #ACTION {^%s$target($target_id)}
 {
      todo
@@ -58,6 +63,11 @@
 #ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
 {
      ready
+}
+
+#ALIAS {dd}
+{
+     #end
 }
 
 #ALIAS {finish}
