@@ -2,20 +2,18 @@
 
 #ACTION {【 经 验 】  %1}
 {
-     #variable exp %1
-}
-
-#ACTION {^【当前等级】  %1}
-{
-     #variable lv %1;
-     #if {%1 < $base_lv}
+     #variable exp %1;
+     #if {%1 < $base_exp}
      {
           #untick fq
      }
 }
 
-#TICKER           {fq}  {fangqi exp;hp -m}  {3}
+#ALIAS {fq}
+{
+     #TICKER   {fq}  {fangqi exp;hp}  {3}
+}
 
-#VARIABLE         {base_lv}  {100}
+#VARIABLE {base_exp}  {100000}
 
 #CLASS {fangqi} CLOSE
