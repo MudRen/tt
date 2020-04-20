@@ -1,0 +1,42 @@
+#CLASS {dushu} OPEN
+
+#ACTION {^“啪”的一声一颗仙丹掉到你面前。}
+{
+     get dan;
+     store dan
+}
+
+#ACTION {^你刚服用过药}
+{
+     fullme
+}
+
+#ACTION {你现在太累了}
+{
+     eatdan1
+}
+
+#ACTION {你现在已经过于疲倦}
+{
+     eatdan2
+}
+
+#ALIAS {ds}
+{
+     du $book 100
+}
+
+#ALIAS {eatdan1}
+{
+     eat huoqi dan
+}
+
+#ALIAS {eatdan2}
+{
+     eat yinxin dan
+}
+
+#TICKER           {ds}  {ds}  {3}
+#VARIABLE         {book}  {book}
+
+#CLASS {dushu} CLOSE

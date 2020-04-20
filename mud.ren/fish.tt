@@ -11,6 +11,16 @@
      #delay 2 fish;
 }
 
+#ACTION {^你身上没有鱼饵了。}
+{
+     #delay 1 {buyer}
+}
+
+#ACTION {^你从刘老实那里买下了%1块鱼饵(Yu er)。}
+{
+     #delay 1 {gofish}
+}
+
 #ACTION {“啪”的一声一颗仙丹掉到你面前。}
 {
      get dan
@@ -24,5 +34,16 @@
      exert regenerate
 }
 
+#ALIAS {gofish}
+{
+     mgo 157;
+     #delay 2 fish
+}
+
+#ALIAS {buyer}
+{
+     mgo 1359;
+     #delay 2 {buy 100 yu er}
+}
 
 #CLASS {fish} CLOSE
