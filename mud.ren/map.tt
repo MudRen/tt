@@ -282,7 +282,7 @@
      #else
      {
           #map find %1;
-          #path run 0.5
+          #path run 0.1
      }
 }
 

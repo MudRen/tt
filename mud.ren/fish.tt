@@ -1,29 +1,40 @@
 #CLASS {fish} OPEN
 
-#ACTION {你的浮子忽然剧烈的震荡起来。}
-{
-     draw gan
-}
-
-#ACTION {你钓到了一条%1。}
-{
-     #delay 1 fullme;
-     #delay 2 fish;
-}
-
-#ACTION {^你身上没有鱼饵了。}
-{
-     #delay 1 {buyer}
-}
-
-#ACTION {^你从刘老实那里买下了%1块鱼饵(Yu er)。}
-{
-     #delay 1 {gofish}
-}
-
+#nop 通用
 #ACTION {“啪”的一声一颗仙丹掉到你面前。}
 {
      get dan
+}
+
+#ACTION {^你渴得要虚脱了。}
+{
+     drink shui dai
+}
+
+#ACTION {^你饿得头晕眼花，看来要赶快找点吃的了。}
+{
+     eat gan liang
+}
+
+#ACTION {^你又饥又渴，觉得自己快要死了。}
+{
+     fullme
+}
+
+#ACTION {【 经 验 】  %1}
+{
+     #variable exp %1;
+     #if {$exp < $min_exp}
+     {
+          #untick fq
+     };
+
+}
+
+#ACTION {【 潜 能 】  %1}
+{
+     #variable pot %1;
+
 }
 
 #ALIAS {fullme}
@@ -34,16 +45,117 @@
      exert regenerate
 }
 
+#ALIAS {todo}
+{
+     #if {$exp > $max_exp}
+     {
+          fq
+     };
+     #elseif {$pot > $max_pot}
+     {
+          home;
+          #delay 1 xuexi;
+     };
+     #else
+     {
+          fish
+     }
+}
+
+#nop 钓鱼
+#ACTION {你的浮子忽然剧烈的震荡起来。}
+{
+     draw gan
+}
+
+#ACTION {你钓到了一条%1。}
+{
+     hp;
+     #variable fish 0;
+     #delay 1 fullme;
+}
+
+#ACTION {^你心中微微一动，对武学的理解又深了一层。}
+{
+     #delay 2 todo;
+}
+
+#ACTION {^你身上没有鱼饵了。}
+{
+     #delay 1 {buyer}
+}
+
+#ACTION {你从刘老实那里买下了%1块鱼饵(Yu er)。}
+{
+     #delay 1 {gofish}
+}
+
 #ALIAS {gofish}
 {
      mgo 157;
+     #var fishing 1;
      #delay 2 fish
 }
 
 #ALIAS {buyer}
 {
      mgo 1359;
-     #delay 2 {buy 100 yu er}
+     #delay 5 {buy 100 yu er}
 }
+
+#nop 放弃经验
+#ALIAS {fq}
+{
+     #TICKER   {fq}  {fangqi exp;hp}  {3}
+}
+
+#VARIABLE {min_exp}  {99999}
+#VARIABLE {max_exp}  {123456}
+
+#nop 学习技能
+#ACTION {^然而你今天太累了，无法再进行任何学习了。}
+{
+     eatdan
+}
+
+#ACTION {^但是你今天太累了，学习了%1次以后只好先停下来。}
+{
+     eatdan2
+}
+
+#ACTION {^你的%1水平有限，无法领会更高深的%2。}
+{
+     #bell
+}
+
+#ACTION {^你的潜能不够学习这么多次了。}
+{
+     #untick xx;
+     gofish
+}
+
+#ALIAS {xuexi}
+{
+     #ticker xx {fullme;xue $master $skill 100} 3
+}
+
+#ALIAS {eatdan}
+{
+     eat guiyuan dan
+}
+
+#ALIAS {eatdan2}
+{
+     eat bujing dan
+}
+
+#ALIAS {home}
+{
+     mgo 3283;
+}
+
+#VARIABLE      {max_pot}  {20000}
+#VARIABLE      {master}  {hebi}
+#VARIABLE      {skill}  {minggu-xinfa}
 
 #CLASS {fish} CLOSE
