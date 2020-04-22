@@ -26,7 +26,11 @@
      #variable exp %1;
      #if {$exp < $min_exp}
      {
-          #untick fq
+          #untick fq;
+          #if {!$fish}
+          {
+               #delay 3 gofish
+          }
      };
 
 }
@@ -54,11 +58,11 @@
      #elseif {$pot > $max_pot}
      {
           home;
-          #delay 1 xuexi;
+          #delay 1 xuexi
      };
      #else
      {
-          fish
+          gofish
      }
 }
 
@@ -80,7 +84,12 @@
      #delay 2 todo;
 }
 
-#ACTION {^你身上没有鱼饵了。}
+#ACTION {你身上没有鱼饵了。}
+{
+     #delay 1 {buyer}
+}
+
+#ACTION {看来是拉杆(draw)拉晚了，白白的赔了一个鱼饵！}
 {
      #delay 1 {buyer}
 }
@@ -93,7 +102,9 @@
 #ALIAS {gofish}
 {
      mgo 157;
-     #var fishing 1;
+     #variable fish 1;
+     #variable xuexi 0;
+     #variable fangqi 0;
      #delay 2 fish
 }
 
@@ -106,11 +117,14 @@
 #nop 放弃经验
 #ALIAS {fq}
 {
+     #variable fish 0;
+     #variable xuexi 0;
+     #variable fangqi 1;
      #TICKER   {fq}  {fangqi exp;hp}  {3}
 }
 
-#VARIABLE {min_exp}  {99999}
-#VARIABLE {max_exp}  {123456}
+#VARIABLE {min_exp}  {130000}
+#VARIABLE {max_exp}  {135000}
 
 #nop 学习技能
 #ACTION {^然而你今天太累了，无法再进行任何学习了。}
@@ -125,7 +139,16 @@
 
 #ACTION {^你的%1水平有限，无法领会更高深的%2。}
 {
-     #bell
+     #bell;
+     #untick xx;
+     gofish
+}
+
+#ACTION {^也许是缺乏实战经验，你对%1的回答总是无法领会。}
+{
+     #bell;
+     #untick xx;
+     gofish
 }
 
 #ACTION {^你的潜能不够学习这么多次了。}
@@ -136,6 +159,9 @@
 
 #ALIAS {xuexi}
 {
+     #variable fish 0;
+     #variable xuexi 1;
+     #variable fangqi 0;
      #ticker xx {fullme;xue $master $skill 100} 3
 }
 
@@ -156,6 +182,6 @@
 
 #VARIABLE      {max_pot}  {20000}
 #VARIABLE      {master}  {hebi}
-#VARIABLE      {skill}  {minggu-xinfa}
+#VARIABLE      {skill}  {literate}
 
 #CLASS {fish} CLOSE
