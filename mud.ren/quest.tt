@@ -506,6 +506,12 @@
      #delay 2 {ask xiao er about $target}
 }
 
+#ALIAS {wenss}
+{
+     mgo 2404;
+     #delay 2 {ask xiao er about $target}
+}
+
 #ALIAS {wenkf}
 {
      mgo 2536;
