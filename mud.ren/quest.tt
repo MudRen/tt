@@ -189,7 +189,7 @@
 
 #ALIAS {qinfo}
 {
-     #var target%*
+     #variable target%*
 }
 
 #nop {==============================送信==============================};
@@ -476,6 +476,12 @@
      #delay 2 {ask xiao er about $target}
 }
 
+#ALIAS {wenxx}
+{
+     mgo 1688;
+     #delay 2 {ask bosi shangren about $target}
+}
+
 #ALIAS {wents}
 {
      mgo 1703;
@@ -523,10 +529,21 @@
      mgo 2605;
      #delay 2 {ask xiao er about $target}
 }
+#ALIAS {wenzn}
+{
+     mgo 2605;
+     #delay 2 {ask xiao er about $target}
+}
 
 #ALIAS {wenkm}
 {
      mgo 2758;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wengw}
+{
+     mgo 3166;
      #delay 2 {ask xiao er about $target}
 }
 
@@ -600,7 +617,15 @@
 
 #ALIAS {maphere}
 {
-     walk;map here
+     walk;
+     #if {$inboat == 1}
+     {
+          #delay 5 {map here}
+     };
+     #else
+     {
+          #delay 0.1 {map here}
+     }
 }
 
 #ALIAS {maprun}
@@ -646,12 +671,26 @@
 #nop {==============================路径处理==============================};
 #ACTION {^你掂量了一下，觉得自己的轻功似乎还没练到家。}
 {
+     #variable inboat 1
      yell boat
 }
 
 #ACTION {^渡船(boat)}
 {
+     #variable inboat 1
+}
 
+#ACTION {^艄公说道：「到啦，上岸吧。」随即把一块踏脚板搭上堤岸。}
+{
+     #if {$inboat == 1}
+     {
+          #variable inboat 0
+     }
+}
+
+#ACTION {明教五散人「冷面先生」冷谦(leng qian)}
+{
+     unwield $weapon[id]
 }
 
 #nop {==============================其他触发==============================};

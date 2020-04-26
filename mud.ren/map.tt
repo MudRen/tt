@@ -161,21 +161,6 @@
      patherror
 }
 
-#ALIAS {gebib}
-{
-     e;
-     #2 s;
-     #3 e
-}
-
-#ALIAS {gebif}
-{
-     #echo {这里 n 路径随机};
-     #3 w;
-     #2 n;
-     w
-}
-
 #ALIAS {gps}
 {
      #if {"%1"==""}
@@ -341,18 +326,6 @@
      #echo 地图数据保存完成！
 }
 
-#ALIAS {shenghub}
-{
-     w;
-     #5 s
-}
-
-#ALIAS {shenghuf}
-{
-     n;
-     #5 e
-}
-
 #ALIAS {static}
 {
      #map flag static
@@ -387,8 +360,8 @@
 #VARIABLE         {pathfs0}  {n;n;w;n;n;nu;nd;su;sd;s;s;w;w;w;w;w;w;nw;se;e;e;e;e;n;s;e;s;n;e;s;s;s;s;w;enter;out;e;n;e;n;s;w;w;e;n;n;n;e;e;e;e;e;e;w;w;w;w;s;n;w;n;s;s;u;d;s;n;n;w}
 #VARIABLE         {pathfz}  {e;n;n;u;d;s;s;su;nd;e;e;e;eu;n;s;wd;n;s;w;w;w;w;n;nu;sd;s;s;w;e;e;w;s;e;w;w;w;w;e;n;s;e;e;s;s;s;s;n;n;n;n;n;n;w;su;nd;n;enter;n;n;s;w;e;s;out;s;w;n;s;s;n;w;w;w;n;s;nw;nw;nu;nd;nu;n;nd;su;s;w;e;sd;w;w;s;n;nu;sd;w;nu;sd;nw;se;e;e;e;su;sd;sw;sw;wu;ed;ne;ne;se;se;e;e;e;e;e}
 #VARIABLE         {pathfz0}  {w;w;w;w;w;nw;nw;sw;sw;wu;ed;ne;ne;nu;nd;w;w;w;nw;se;nu;sd;e;nu;sd;s;n;e;e;nu;w;e;n;nd;su;s;sd;su;sd;se;se;n;s;e;e;e;s;n;n;s;e;n;enter;n;w;e;n;s;s;out;s;su;nd;e;s;s;s;s;s;s;n;n;n;n;w;w;n;s;w;e;e;e;e;w;n;e;w;w;e;n;n;nu;sd;s;e;e;e;e;n;s;eu;n;s;wd;w;w;w;su;nd;n;n;u;d;s;s;w}
-#VARIABLE         {pathgw}  {w;w;e;e;s;w;e;se;e;w;nw;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;n;n;w;s;n;e;s;e;s;n;ne;ne;enter;out;sw;sw;e;ne;e;n;river;se;e;se;e;n;s;e;eu;su;eu;e;eu;se;sw;e;s;wd;s;n;wu;sw;n;s;ne;n;nd;su;e;ne;nw;wd;w;wd;nd;wd;w;w;nw;w;nw;river;s;w;sw;w;w;w;w}
-#VARIABLE         {pathgw0}  {e;e;e;e;ne;e;n;river;se;e;se;e;e;eu;su;eu;e;eu;se;sw;w;nd;su;s;sw;n;s;ne;ed;s;n;eu;n;w;ne;nw;wd;w;wd;nd;wd;w;n;s;w;nw;w;nw;river;s;w;sw;w;ne;ne;enter;out;sw;sw;s;n;w;n;w;s;n;e;s;s;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;se;e;w;nw;w;e;n;w;w;e;e}
+#VARIABLE         {pathgw}  {w;w;e;e;s;w;e;se;e;w;nw;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;n;n;w;s;n;e;s;e;s;n;ne;ne;enter;out;sw;sw;e;ne;e;n;n;se;e;se;e;n;s;e;eu;su;eu;e;eu;se;sw;e;s;wd;s;n;wu;sw;n;s;ne;n;nd;su;e;ne;nw;wd;w;wd;nd;wd;w;w;nw;w;nw;s;s;w;sw;w;w;w;w}
+#VARIABLE         {pathgw0}  {e;e;e;e;ne;e;n;n;se;e;se;e;e;eu;su;eu;e;eu;se;sw;w;nd;su;s;sw;n;s;ne;ed;s;n;eu;n;w;ne;nw;wd;w;wd;nd;wd;w;n;s;w;nw;w;nw;s;s;w;sw;w;ne;ne;enter;out;sw;sw;s;n;w;n;w;s;n;e;s;s;s;s;s;s;s;sw;sw;s;sw;sw;sw;ne;ne;ne;n;ne;ne;n;n;n;n;n;se;e;w;nw;w;e;n;w;w;e;e}
 #VARIABLE         {pathhs}  {ne;sw;su;su;eu;eu;su;eu;eu;wd;wd;nd;wd;wd;nd;nd;nw;w;w;s;n;w;n;s;w;n;s;s;e;w;n;w;nw;sw;ne;nw;w;n;s;nw;n;ne;n;w;e;ne;sw;s;s;w;e;e;w;s;n;n;sw;s;se;e;ne;sw;se;se;s;e;e;w;w;s;w;nw;se;e;s;s;s;s;se;nw;n;n;n;n;n;n;e;e;e;e;e}
 #VARIABLE         {pathhs0}  {w;w;w;w;w;s;s;s;s;s;s;se;nw;n;n;n;n;w;nw;se;e;n;e;e;w;w;n;nw;nw;ne;sw;w;nw;n;ne;s;s;n;e;w;w;e;n;n;ne;sw;w;e;s;sw;s;se;n;s;e;se;sw;ne;se;e;s;e;w;n;n;s;e;n;s;e;s;n;e;e;se;su;su;eu;eu;su;eu;eu;wd;wd;nd;wd;wd;nd;nd;ne;sw}
 #VARIABLE         {pathhz}  {s;s;s;e;e;w;w;n;e;w;n;e;w;n;e;u;d;w;n;e;w;w;nu;nu;sd;sd;w;n;n;s;s;s;se;ne;se;ne;n;ne;w;w;w;w;sw;s;sw;w;sw;n;enter;n;s;out;s;nw;n;w;e;e;w;s;s;w;e;e;w;n;se;s;w;w;e;e;e;e;w;w;n;ne;e;su;sd;s;w;sw;n;e;w;s;e;w;wu;w;e;n;nd;nd;nd;nd;nd;e;ne;n;ne;w;e;e;w;s;w;e;s;s;s;w;n;s;s;n;e;s;e;n;n;e;w;n;n;n;n;e;enter;out;w;n;n;n;n;s;s;e;w;w;s;s;s;s;s;s;w;wu;wu;wu;w;e;ed;ed;ed;e;s;w;e;s;wu;ed;n;e;e;e;w;w;w;n;n;e;e;nu;sd;e;e;enter;out;w;s;wu;wu;wd;wd;w;n;e;e;e;n;e;w;w;w;ne;sw;e;e;n;e;e}
@@ -419,16 +392,10 @@
 #VARIABLE         {pathwdj}  {s;w;s;w;e;n;e;s;s;s;s;s;s;se;sw;s;w;nw;e;w;nw;n;s;sw;n;w;e;s;se;sw;ne;se;s;n;nw;nw;w;n;s;w;s;n;w;w;s;s;se;se;nw;nw;n;n;w;w;n;e;s;s;e;e;n;n;w;w;n;w;w;e;e;n;se;su;su;su;s;n;nd;nd;nd;nw;n;n;n;w;e;e;s;s;s;s;se;sw;s;w}
 #VARIABLE         {pathwg}  {e;n;n;s;s;e;e;e;ne;sw;w;w;w;s;s;e;s;w;s;s;n;se;s;n;e;w;nw;n;w;e;n;n;n;w;s;n;n;n;u;d;s;w;e;s;w;n;s;s;n;w;ne;eu;ne;sw;se;nw;wd;nu;nw;n;s;sw;ne;nw;se;se;sd;sw;e;e;e;n;n}
 #VARIABLE         {pathwg0}  {s;s;w;w;w;ne;nu;nw;nw;se;sw;ne;n;s;se;sd;eu;se;nw;ne;sw;wd;sw;e;s;n;n;s;e;n;w;e;n;u;d;s;s;s;se;e;s;w;e;s;se;e;w;s;n;nw;s;n;n;e;n;w;n;n;e;e;e;ne;sw;w;w;w;n;n;s;s;w}
-#VARIABLE         {pathxiyu}  {su;s;ed;nw;n;s;nw;se;se;wu;n;nu;wu;wu;nu;sd;e;n;s;s;n;e;w;w;ed;ed;sd;nd;n;ne;nw;sw;w;e;se;s;wu;nu;n;s;sd;ed;su;s;ed;se;sw;w;w;w;e;n;shenghuf}
-#VARIABLE         {pathxiyu0}  {shenghub;s;w;e;e;e;ne;nw;wu;n;nd;wu;nu;n;s;sd;ed;n;nw;w;e;ne;se;sw;s;su;nu;wu;wu;e;e;w;s;n;n;s;w;nu;sd;ed;ed;sd;s;ed;nw;nw;se;n;s;se;wu;n;nd}
-#VARIABLE         {pathxiyu1}  {e;e;n;n;wu;s;s;s;w;w;s;wu;ed;n;e;e;s;s;s;wu;wu;su;s;sd;enter;out;ed;eu;wd;wu;nu;n;nd;ed;ed;e;e;nw;wu;nu;sd;ed;se;n;n;n;s;s;s;w;w;n;n;n;n;n;n;ed;s;s;w;w;shenghub}
-#VARIABLE         {pathxiyu10}  {shenghuf;e;e;n;n;wu;s;s;s;s;s;s;e;e;n;n;n;s;s;s;nw;wu;nu;sd;ed;se;w;w;wu;wu;su;s;sd;ed;eu;wd;wu;enter;out;nu;n;nd;ed;ed;n;n;n;w;w;s;wu;ed;n;e;e;n;n;n;ed;s;s;w;w}
-#VARIABLE         {pathxiyu2}  {s;e;e;ne;e;se;e;e;eu;e;e;w;w;wd;w;w;w;w;s;n;gebif}
-#VARIABLE         {pathxiyu20}  {gebib;s;n;e;e;e;e;eu;e;e;w;w;wd;w;w;nw;w;sw;w;w;n}
-#VARIABLE         {pathxiyu3}  {w;w;w;wu;wu;w;w;e;e;nu;nu;nu;sd;sd;sd;ed;ed;e;e;s;s;se;se;n;s;s;n;nw;nw;sw;sw;ne;ne;ne;ne;sw;sw;nw;nw;se;se;n;n;e;wu;w;w;wu;su;w;nw;w;nu;eu;su;su;su;s;w;ne;se;w;s;s;n;n;n;nd;nd;nd;wd;sd;e;se;e;nd;ed;e;e;ed;gebib}
-#VARIABLE         {pathxiyu30}  {gebif;wu;w;w;wu;su;w;nw;w;nu;eu;su;su;su;s;s;s;n;n;e;nw;sw;e;n;nd;nd;nd;wd;sd;e;se;e;nd;ed;e;e;ed;w;s;s;nw;nw;se;se;ne;ne;sw;sw;sw;sw;ne;ne;se;se;s;n;n;s;nw;nw;n;n;w;w;wu;wu;nu;nu;nu;sd;sd;sd;w;w;e;e;ed;ed;e;e;e}
-#VARIABLE         {pathxiyu4}  {w;ne;ne;sw;nu;nu;ne;n;n;w;e;s;s;sw;sd;sd;sw;s;n;w;s;n;w;n;e;w;nu;nu;sd;sd;w;n;n;w;sw;ne;e;s;s;e;s;e;e;e}
-#VARIABLE         {pathxiyu40}  {w;w;w;n;w;n;n;w;sw;ne;e;s;s;e;nu;nu;sd;sd;e;w;s;e;s;n;e;s;n;ne;nu;nu;ne;n;n;w;e;s;s;sw;sd;sd;ne;sw;sw;e}
+#VARIABLE         {pathxiyu}  {}
+#VARIABLE         {pathxiyumj}  {w;w;w;wu;wu;w;w;e;e;nu;nu;nu;sd;sd;sd;ed;ed;e;e;s;s;se;se;n;s;s;n;nw;nw;sw;sw;ne;ne;ne;ne;sw;sw;nw;nw;se;se;n;n;e;wu;w;w;wu;su;w;nw;w;nu;eu;su;su;su;s;w;ne;se;w;s;s;n;n;n;nd;nd;nd;wd;sd;e;se;e;nd;ed;e;e;ed;e;s;s;e;e;e;e}
+#VARIABLE         {pathxiyubt}  {s;e;e;e;w;ne;ne;sw;nu;nu;ne;n;n;w;e;s;s;sw;sd;sd;sw;s;n;w;s;n;w;n;e;w;nu;nu;sd;sd;w;n;n;w;sw;ne;e;s;s;e;s;e;e;e}
+#VARIABLE         {pathxiyuxx}  {wu;ed;n;e;e;s;s;s;wu;wu;su;s;sd;enter;out;ed;eu;wd;wu;nu;n;nd;ed;ed;e;e;nw;wu;nu;sd;ed;se;n;n;n;s;s;s;w;w;n;n;n;n;n;n;ed;s;s;w;w;s;s}
 #VARIABLE         {pathxx}  {su;nu;wu;wu;ed;ed;sd;nd;n;nw;ne;se;sw;s;su;s;ed;se;e;se;e;e;eu;e;w;wd;w;w;nw;w;nw;nw;w;e;e;e;w;w;nw;se;n;s;se;wu;n;nd}
 #VARIABLE         {pathxy}  {e;e;n;n;n;w;n;s;w;n;n;s;w;e;e;w;s;w;n;s;w;n;s;w;e;s;w;e;s;ne;sw;s;s;w;e;e;w;s;s;n;n;n;e;s;n;e;w;w;w;n;s;s;n;w;w;w;e;e;nu;nu;nu;nu;ne;ed;ed;ed;ed;n;w;e;e;w;n;s;s;eu;eu;eu;eu;se;sd;sd;sd;sd;e;e;n;s;w;w;su;su;su;su;sw;wd;wd;wd;wd;wu;wu;wu;wu;nw;nd;nd;nd;nd;e;e;e;e;s;s;s;s;s;w;e;e;w;n;n;w;e;e;w;n;w;e;e;w;n;w;e;e;w;n;n;n;s;s;e;s;n;n;s;e;s;e;w;w;e;n;e;n;s;s;n;e;w;w;n;n;e;w;n;e;w;n;s;w;n}
 #VARIABLE         {pathxy0}  {s;e;n;s;e;w;s;e;w;s;s;e;e;w;s;n;n;s;w;s;w;e;e;w;n;w;n;s;s;n;w;n;n;s;s;s;e;w;w;e;s;e;w;w;e;s;e;w;w;e;s;s;e;w;w;e;n;n;n;n;n;w;w;w;w;su;su;su;su;se;ed;ed;ed;ed;eu;eu;eu;eu;ne;nd;nd;nd;nd;e;e;n;s;w;w;nu;nu;nu;nu;nw;wd;wd;wd;wd;n;n;s;e;w;w;e;s;wu;wu;wu;wu;sw;sd;sd;sd;sd;w;w;e;e;e;s;n;n;s;e;e;e;w;s;n;w;s;s;s;n;n;e;w;w;e;n;n;ne;sw;n;w;e;n;w;e;n;s;e;n;s;e;n;e;w;w;e;n;s;s;e;n;s;e;s;s;s;w;w}
