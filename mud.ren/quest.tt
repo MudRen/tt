@@ -453,6 +453,12 @@
      #delay 2 {ask feng qi about $target}
 }
 
+#ALIAS {wennh}
+{
+     mgo 1157;
+     #delay 2 {ask yu fu about $target}
+}
+
 #ALIAS {wenca}
 {
      mgo 1457;
