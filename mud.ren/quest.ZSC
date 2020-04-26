@@ -1,0 +1,1523 @@
+#ALIAS sl {#sl}
+#ALIAS re {#re}
+#ALIAS wud {re .piao;piao;#4 s;open door;s;give head to zhang;#if @suc=7 {quest zhang};#if @suc=5 {quest zhang}}
+#ALIAS jd {.emei;#wa 2000;.jd}
+#ALIAS jd0 {re .jd;#wa 2000;re .emei}
+#ALIAS ss {#va go ss;#va ljs 21;#t+ majiu;rideto nanyang;.ssmj}
+#ALIAS gw {#va go gw;#va ljs 17;#2 n;#2 e;goto beijing;#if @heal=2 {#var heal 1;yun dispel} {dazuo @dz}}
+#ALIAS gw0 {#t- zhaoren;#t- wentao;#t+ square;#va go gw0;#if @heal=2 {goto beijing;yun dispel} {backyz}}
+#ALIAS ca {#va go ca;#va ljs 34;#t+ majiu;rideto changan;.camj}
+#ALIAS yl {#va go yl;#va ljs 19;#t+ majiu;rideto xingxiu;.ylmj}
+#ALIAS yl0 {#t+ square;#t- wentao;#va go yl0;#if @heal=2 {goto changan;yun dispel} {backyz}}
+#ALIAS wg {#va go wg;#va ljs 11;#t+ majiu;rideto wugong;.wgmj}
+#ALIAS wg0 {#t- zhaoren;#t- wentao;#t+ square;#va go wg0;#if @heal=2 {goto luoyang;yun dispel} {backyz}}
+#ALIAS cd {#va go cd;#va ljs 16;#t+ majiu;rideto chengdu;.cdmj}
+#ALIAS cd0 {#t- zhaoren;#t- wentao;#t+ square;#va go cd0;#if @heal=2 {goto changan;yun dispel} {backyz}}
+#ALIAS xy {#va go xy;#va ljs 28;#t+ majiu;rideto xiangyang;.xymj}
+#ALIAS xy0 {#t- zhaoren;#t- wentao;#t+ square;#va go xy0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS ss0 {#t- zhaoren;#t- wentao;#t+ square;#va go ss0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS yz0 {#t- zhaoren;#t- wentao;#t+ square;#wa 2000;l }
+#ALIAS ca0 {#t- zhaoren;#t- wentao;#t+ square;#va go ca0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS hz {#va go hz;#va ljs 31;#t+ majiu;rideto hangzhou;.hzmj}
+#ALIAS hz0 {#t- zhaoren;#t- wentao;#t+ square;#va go hz0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS sz {#va go sz;#va ljs 30;#t+ majiu;rideto suzhou;.szmj}
+#ALIAS sz0 {#t- zhaoren;#t- wentao;#t+ square;#va go sz0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS bj {#var go bj;#var ljs 29;#t+ majiu;rideto beijing;.bjmj}
+#ALIAS jx {.jx}
+#ALIAS jx0 {re .jx}
+#ALIAS qz0 {#t- zhaoren;#t- wentao;#t+ square;#va go qz0;#if @heal=2 {goto hangzhou;yun dispel} {backyz}}
+#ALIAS qz {#va go qz;#va ljs 15;#t+ majiu;rideto quanzhou;.qzmj}
+#ALIAS bj0 {#t- zhaoren;#t- wentao;#t+ square;#va go bj0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS fs {#va go fs;#va ljs 10;#t+ majiu;rideto foshan;.fsmj}
+#ALIAS fs0 {#t- zhaoren;#t- wentao;#t+ square;#va go fs0;#if @heal=2 {goto hengyang;yun dispel} {backyz}}
+#ALIAS dl {#va go dl;#t- wolf;#va ljs 55;#t+ majiu;rideto dali;.dlmj}
+#ALIAS dl0 {#t- zhaoren;#t- wentao;#t+ square;#va go dl0;#if @heal=2 {goto chengdu;yun dispel} {backyz}}
+#ALIAS wud0 {open door;#5 n;piao;.piao}
+#ALIAS hs {#t- zhaoren;#va go hs;#va ljs 15;rideto huashan;kaishi}
+#ALIAS ba {#ba;#ad huiqu -1;#if @huiqu>-1 {ba} {pfm2;kill @ena3 @ena4;pfm}}
+#ALIAS hs0 {#t- zhaoren;#t- wentao;#t+ square;#wa 3000;#va go hs0;backyz}
+#ALIAS ly {#va go ly;#va ljs 34;#t+ majiu;rideto luoyang;.lymj}
+#ALIAS ly0 {#t- zhaoren;#t- wentao;#t+ square;#va go ly0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS kf {#va go kf;#va ljs 26;#2 n;#2 e;goto kaifeng;#if @heal=2 {#var heal 1;yun dispel} {dazuo @dz}}
+#ALIAS kf0 {#t- zhaoren;#t- wentao;#t+ square;#va go kf0;#if @heal=2 {goto yangzhou;yun dispel} {backyz}}
+#ALIAS emei {.emei}
+#ALIAS emei0 {re .emei}
+#ALIAS jz {#va go jz;#va ljs 18;#t+ majiu;rideto jingzhou;.jzmj}
+#ALIAS jz0 {#t- zhaoren;#t- wentao;#t+ square;#va go jz0;#if @heal=2 {goto changan;yun dispel} {backyz}}
+#ALIAS zz {#va go zz;#va ljs 25;#t+ majiu;rideto zhongzhou;.zzmj}
+#ALIAS zz0 {#t- zhaoren;#t- wentao;#t+ square;#va go zz0;#if @heal=2 {goto luoyang;yun dispel} {backyz}}
+#ALIAS km {#va go km;#va ljs 18;#t+ majiu;rideto kunming;.kmmj}
+#ALIAS km0 {#t- zhaoren;#t- wentao;#t+ square;#va go km;#if @heal=2 {goto xiangyang;yun dispel} {backyz}}
+#ALIAS lx {#va go lx;#va ljs 7;rideto chengdu;.lxmj;#wa 1000;kaishi}
+#ALIAS lx0 {#t- zhaoren;#t- wentao;#t+ square;#if @heal=2 {re .lx;cd0} {backyz}}
+#ALIAS wdj {#t- zhaoren;#t- wolf;#va go wdj;#va ljs 16;rideto dali;.dlmj;.wdj;#wa 2000;kaishi}
+#ALIAS laz0 {#t- zhaoren;#t- wentao;#t+ square;#va go laz0;#if @heal=2 {goto changan;yun dispel} {backyz}}
+#ALIAS liz {#va go liz;#va ljs 15;#t+ majiu;rideto lingzhou;.lzmj}
+#ALIAS liz0 {#t- zhaoren;#t- wentao;#t+ square;#va go liz0;#if @heal=2 {goto beijing;yun dispel} {backyz}}
+#ALIAS shuo {#if @arrow=1 {e;e;s;buy 50 arrow} {#if %begins(@place,北京城) {#va go bj;shuo1};#if %begins(@place,长安城) {#va go ca;shuo1};#if %begins(@place,成都) {#va go cd;shuo1};#if %begins(@place,大理) {#va go dl;shuo1};#if %begins(@place,佛山) {#va go fs;shuo1};#if %begins(@place,南海一带) {#va go fs;shuo1};#if %begins(@place,福州城) {#va go qz;shuo1};#if %begins(@place,关外) {#va go gw;shuo1};#if %begins(@place,华山附近) {#va go hs;shuo1};#if %begins(@place,杭州城) {#va go hz;shuo1};#if %begins(@place,荆州) {#va go jz;shuo1};#if %begins(@place,开封) {#va go kf;shuo1};#if %begins(@place,昆明) {#va go km;shuo1};#if %begins(@place,兰州城) {#va go laz;shuo1};#if %begins(@place,灵州) {#va go liz;shuo1};#if %begins(@place,凌霄城附近) {#va go lx;shuo1};#if %begins(@place,洛阳城) {#va go ly;shuo1};#if %begins(@place,泉州) {#va go qz;shuo1};#if %begins(@place,嵩山) {#va go ss;shuo1};#if %begins(@place,汝州一带) {#va go ss;shuo1};#if %begins(@place,苏州城) {#va go sz;shuo1};#if %begins(@place,五毒教附近) {#va go wdj;shuo1};#if %begins(@place,武功镇) {#va go wg;shuo1};#if %begins(@place,襄阳城) {#va go xy;shuo1};#if %begins(@place,伊梨) {#va go yl;shuo1};#if %begins(@place,天山) {#va go yl;shuo1};#if %begins(@place,星宿海) {#va go yl;shuo1};#if %begins(@place,扬州城) {#va go yz;#t- square;shuo1};#if %begins(@place,终南山) {#va go zn;shuo1};#if %begins(@place,中州) {#va go zz;shuo1};#if %begins(@place,西域) {#va go xiyu;shuo1};#if %begins(@place,很远的地方) {#va suc 8;#t+ square;l}}}
+#ALIAS zn {#va go zn;#va ljs 29;#t+ majiu;rideto wugong;.wgmj}
+#ALIAS zn0 {#t- zhaoren;#t- wentao;#t+ square;#va go zn0;#if @heal=2 {goto luoyang;yun dispel} {backyz}}
+#ALIAS kaishi {#va tuichu 2;#t- xuexibusy;yun recover;#if %ismember(@go,xiyu) {#t+ xiyudz} {#t- xiyudz};#va area 1;#va gbt 0;#va dog 0;#va xutong 0;#va xuming 0;#va wropass 0;#t- wolf;#ma;#pa aaaaa;#t+ dazuo;#t+ kill;#t+ back;#t+ block;#va find 2;#va huiqu 0;#va route 1;#va min 0;#va tsjx 0;#t- zheli;#t- shamokill;#t- shenghukill;#t+ shot;#t+ nondesert;#if @suc=2 {#t+ zhaoren;@dian@go@route};#if @suc=3 {#t- square;@wen@go};#if @suc=4 {#t+ zhaoren;@dian@go@route};yun powerup;special hatred;special agile}
+#ALIAS shuo1 {#t- square;#t- zhaoren;@go}
+#ALIAS startquest {#va questnum 1;quest @zhangmen}
+#ALIAS panduan {#if @huishu<8 {#add huishu 1;kaishi} {#beep;#wa 2000;#beep 16;#t+ square;#va suc 5;@edes@route} }
+#ALIAS wdj0 {#t- zhaoren;#t- wentao;#wa 2000;#t+ square;#if @heal=2 {re .wdj;dl0} {backyz}}
+#ALIAS wen {ask @person about @name}
+#ALIAS wen1 {#va itemnum 0;#va step 1;wen}
+#ALIAS sf {xuexi}
+#ALIAS allmap {#va have 2;#if @mapnum=0 {askhelp};#ad mapnum 1;#echo 【武林群侠传】开始全世界寻找： @mapnum;#va route 0;#va huishu 1;#t- zhaoren;#case @mapnum {#va go bj;#va place 北京城;shuo1} {#va go cd;#va place 成都;shuo1} {#va go fs;#va place 佛山;shuo1} {#va go qz;#va place 泉州;shuo1} {#va go gw;#va place 关外;shuo1} {#va go hs;#va place 华山附近;shuo1} {#va go hz;#va place 杭州城;shuo1} {#va go zz;#va place 中州城;shuo1} {#va go zn;#va place 终南山;shuo1} {#va go laz;#va place 兰州城;shuo1} {#va go liz;#va place 灵州;shuo1} {#va go lx;#va place 凌霄城附近;shuo1} {#va go ly;#va place 洛阳城;shuo1} {#va go ss;#va place 汝州一带;shuo1} {#va go sz;#va place 苏州城;shuo1} {#va go wdj;#va place 五毒教附近;shuo1} {#va go wg;#va place 武功镇;shuo1} {#va go xy;#va place 襄阳城;shuo1} {#va go yl;#va place 天山;shuo1} {#va go yz;#va place 扬州城;shuo1} {#va go ca;#va place 长安城;shuo1} {#va go kf;#va place 开封;shuo1} {#va go km;#va place 昆明;shuo1} {#va go jz;#va place 荆州;shuo1} {#va go dl;#va place 大理;shuo1} {#va go xiyu;#va place 西域;shuo1};#st 第@questnum个quest。现开始全图搜索@name。现在去第@mapnum个地方@place。}
+#ALIAS panduan2 {#if @have=2 {#wa 2000;#t+ square;@edes@route} {#va have 2;#va suc 2;kaishi}}
+#ALIAS case1 {#t- xiyudz;#if @naijiu<40 {#t- square;e;e;s;repair @weapon} {home}}
+#ALIAS case3 {#if @buy=2 {e;e;n;buy yangsheng dan;#va buy 1;#t+ square;#wa 2000;s;w;w} {#t- square;#t- zhaoren;shuo}}
+#ALIAS case4 {#if @buy=2 {e;e;n;buy yangsheng dan;#va buy 1;#t+ square;#wa 2000;s;w;w} {#t- square;#if @mapnum>26 {#va mapnum 0;#va suc 5;#t+ square;l} {allmap}} }
+#ALIAS case5 {#t- zhaoren;#va huishu 1;#if %ismember(@go,zz0) {#va suc 2;#sta 中州找不到@name，去扬州找找。现在是第@huishu回寻找;yz} {#st quest失败! ;home}}
+#ALIAS case2 {#if @buy=2 {e;e;n;buy yangsheng dan;#va buy 1;#t+ square;#wa 2000;s;w;w} {#t- square;#t- zhaoren;shuo}}
+#ALIAS shamo {#show 出沙漠的方法：南疆沙漠一直ne；大沙漠一直e；青城沙漠一直{s;e}}
+#ALIAS timeup {#if @mm>40 {rideto gc;n;e;enter popo;give all to moye;quit} {yun heal}}
+#ALIAS yz {#t- square;#va go yz;#va ljs 32;kaishi}
+#ALIAS zhunbei {e;wield @weapon;wear all;#t- ride;qi ziliuma;qi zaohongma;qi huangbiaoma}
+#ALIAS jihua {.ca;#wa 2000;.laz;#wa 2000;.yl;.jihua}
+#ALIAS jihua0 {re .jihua;#wa 2000;re .yl;#wa 2000;re .laz;#wa 2000;re .ca}
+#ALIAS hpdog {cat}
+#ALIAS chadog {dog}
+#ALIAS scoredog {dog}
+#ALIAS st {#step}
+#ALIAS bac {#back}
+#ALIAS wenbj {#t+ wentao;#va place1 @place;e;e;s;w;#4 ask chen about @name;#4 e;#2 s;#wa 1000;w;n;#4 ask xiao about @name;s;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};bj0}
+#ALIAS wenca {#t+ wentao;#va go wenca;#va place1 @place;.wenca;#4 ask xiaoer about @name;s;#wa 1000;s;#4 ask xiaoer about @name;n;#wa 1000;#if %ismember(@place,@place1) {wenca2} {backyz}}
+#ALIAS wencd {#t+ wentao;#va go wencd;#va place1 @place;w;#4 ask xiao about @name;e;#wa 1000;.wencd;#4 ask seller about @name;n;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wencd2} {backyz}}
+#ALIAS wendl {#t+ wentao;#va go wencd;#va place1 @place;.wendl1;#4 ask saodi seng about @name;n;#wa 1000;s;re .wendl1;#wa 1000;.wendl;#4 ask xiao er about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wendl2} {backyz}}
+#ALIAS wenfs {#t+ wentao;#va go wenfs;#va place1 @place;n;#4 ask feng qi about @name;.wenfs;#wa 1000;s;#4 ask yu fu about @name;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};fs0}
+#ALIAS wengw {#t+ wentao;#va go wengw;#va place1 @place;e;#4 ask xiao about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};gw0}
+#ALIAS wenhs {#t+ wentao;#va go wenhs;#va place1 @place;nw;n;#4 ask teller about @name;s;w;w;#wa 1000;yun regenerate;s;#4 ask seller about @name;.wenhs;#wa 1000;#if %ismember(@place,@place1) {wenhs2} {backyz}}
+#ALIAS wenhz {#t+ wentao;#va go wenfs;#va place1 @place;w;#4 ask xiao about @name;e;#wa 1000;.wenhz;#4 ask xiao er about @name;w;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};hz0}
+#ALIAS wenjz {#t+ wentao;#va go wenjz;#va place1 @place;w;#4 ask xiao er about @name;w;n;#wa 1000;e;#4 ask xiao er about @name;.wenjz;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenjz2} {backyz}}
+#ALIAS wenkf {#t+ wentao;#va place1 @place;w;#4 ask xiao er about @name;w;n;#wa 1000;e;#4 ask liu zhanggui about @name;rideto huashan;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenkf2} {backyz}}
+#ALIAS wenkm {#t+ wentao;#va place1 @place;#va go wenkm;e;#4 ask xiao er about @name;e;n;#wa 1000;e;#4 ask xiao about @name;rideto chengdu;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenkm2} {backyz}}
+#ALIAS wenlaz {#t+ wentao;#va place1 @place;w;w;#4 ask xiao er about @name;e;#wa 1000;.wenlaz;#4 ask xiao er about @name;rideto xingxiu;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenlaz2} {backyz}}
+#ALIAS wenliz {#t+ wentao;#va place1 @place;w;#4 ask xiao about @name;w;#wa 1000;w;#4 ask xiao about @name;#3 e;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};liz0}
+#ALIAS wenlx {#t+ wentao;#va place1 @place;wu;#2 nu;eu;e;#4 ask xiao about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};lx0}
+#ALIAS wenly {#t+ wentao;#va place1 @place;w;#4 ask xiao about @name;e;#wa 1000;.wenly;#4 ask xiao er about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};ly0}
+#ALIAS wenqz {#t+ wentao;#va go wenqz;#va place1 @place;nw;e;#4 ask chuan fu about @name;w;#wa 1000;.wenqz;#4 ask chen about @name;e;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenqz2} {backyz}}
+#ALIAS wenss {#t+ wentao;#va go wenss;#va place1 @place;w;#4 ask xiao er about @name;w;#wa 1000;w;#4 ask xiao er about @name;e;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenss2} {backyz}}
+#ALIAS wensz {#t+ wentao;#va place1 @place;w;#4 ask xiao er about @name;w;yun regenerate;#wa 1000;n;e;#4 ask xiao er about @name;rideto sz;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wensz2} {backyz}}
+#ALIAS wenwdj {#t+ wentao;#va place1 @place;.wenwdj;#wa 1000;#4 ask sun about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};wdj0}
+#ALIAS wenwg {#t+ wentao;#va place1 @place;s;#4 ask xiao er about @name;s;w;#wa 1000;n;n;#4 ask xiao er about @name;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};wg0}
+#ALIAS wenxy {#t+ wentao;#va place1 @place;s;e;#4 ask seller about @name;w;n;#wa 1000;.wenxy;#4 ask xiao er about @name;sw;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};xy0}
+#ALIAS wenyl {#t+ wentao;#va place1 @place;s;se;#4 ask shangren about @name;wu;n;#wa 1000;nu;#4 ask jiuyi daoren about @name;sd;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};yl0}
+#ALIAS wenyz {#t+ wentao;#t- square;#va place1 @place;#va go wenyz;#2 n;e;#4 ask xiao er about @name;w;#wa 1000;#4 s;w;#4 ask aqing sao about @name;yun regenerate;e;#wa 1000;#if %ismember(@place,@place1) {wenyz2} {backyz}}
+#ALIAS wenzn {#t+ wentao;#va place1 @place;.wenzn;#4 ask xiao about @name;#wa 1000;re .wenzn;s;#4 ask xiao about @name;n;yun regenerate;#wa 1000;.wenzn2;#4 ask xiao er about @name;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};zn0}
+#ALIAS wenzz {#t+ wentao;#va go wenzz;#va place1 @place;w;#4 ask xiao about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenzz2} {backyz}}
+#ALIAS wenyz2 {#2 n;.wenyz2;#4 ask xiao er about @name;w;#wa 1000;n;w;ne;#4 ask zu qianqiu about @name;rideto wudang;#wa 1000;.wenyz3;#4 ask xiao er about @name;rideto ss;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenyz3} {backyz}}
+#ALIAS case7 {home}
+#ALIAS wenca2 {yun regenerate;rideto lz;n;n;w;#4 ask xiao er about @name;rideto lz;#wa 1000;.wenca2;#4 ask xiao er about @name;e;#wa 1000;#if %ismember(@place,@place1) {wenca3} {backyz}}
+#ALIAS wenjz2 {e;#4 ask xiao er about @name;rideto km;#wa 1000;s;s;w;#4 ask xiao er about @name;e;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenjz3} {backyz}}
+#ALIAS wenkm2 {n;e;se;#4 ask xiao er about @name;e;#wa 1000;.wencd;#4 ask seller about @name;rideto dl;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenkm3} {backyz}}
+#ALIAS wenss2 {rideto ss;e;n;e;#4 ask lao chuanfu about @name;rideto ss;#wa 1000;yun regenerate;n;#4 ask seller about @name;s;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenss3} {backyz}}
+#ALIAS wenlaz1 {s;#4 ask xiaoer about @name;.wenlaz4;#wa 2000;w;#4 ask xiao er about @name;e;#wa 2000;.wenlaz5;#4 ask jin xiangyu about @name;wenlaz2}
+#ALIAS wenlaz2 {s;ed;#4 ask bosi shangren about @name;rideto lanzhou;yun regenerate;#wa 1000;.wenlaz2;#4 ask xiaoer about @name;s;#wa 1000;s;#4 ask xiaoer about @name;rideto lanzhou;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenlaz3} {backyz}}
+#ALIAS xueskill {#case @skill_num {xue @master @skill1 100} {xue @master @skill2 100} {xue @master @skill3 100} {xue @master @skill4 100} {xue @master @skill5 100}}
+#ALIAS wenzz2 {rideto xy;#4 ask seller about @name;yun regenerate;#wa 1000;rideto sz;#2 n;e;#4 ask xiao er about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};sz0}
+#ALIAS wensz2 {.wensz2;#4 ask zhang tianshi about @name;w;yun regenerate;#wa 1000;sw;#4 ask yu fu about @name;rideto sz;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wensz3} {backyz}}
+#ALIAS jiuyang {#show 学100级的force,100级的特殊内功和100级的medical;#show 到西域悬天石(具体路径:{rideto mj;#2 w;#2 wu;nu;up});#show tiao,注意有身法要求，可以请人背着下去,否则会死人滴;#show climb，注意有轻功要求，可以请人背着上去,要不上不去;#show enter dong,15岁以下才可以进去,这就是九阳的关键限制;#show 进去以后{w;zhuo fish;eat fish},肚子太饱的放个屁再吃;#show 吃出鱼刺后{e;s;lifeheal baiyuan},白猿不在不要在原地等;#show 治疗白猿后get bag捡起地上的油纸包,open bag得经书;#show 把经书还给少林寺的觉远和尚,他就会教授[少林九阳功];#show 九阳解迷关键部分完成……}
+#ALIAS xiyu {#va go xiyu;#va area 1;set brief;#t- dz;#va ljs 50;#t+ majiu;rideto xingxiu;.ylmj}
+#ALIAS xiyu0 {#va area 1;#t- zhaoren;#t- xiyudz;#t- wentao;#t- desert;#t- dashamo;#t- gebi;#t- shamokill;#t+ weigong;#t+ nondesert;#t+ square;#va go xiyu0;#if @heal=2 {goto changan;yun dispel} {backyz}}
+#ALIAS case6 {wenti}
+#ALIAS casegbt2 {#case @gbt {e} {s}}
+#ALIAS casegbt {#case @gbt {w} {n}}
+#ALIAS wenxiyu {#t+ wentao;#t- tsjx;#va go wenxiyu;#va place1 @place;s;se;#4 ask bosi shangren about @name;wu;n;#wa 1000;nu;#4 ask jiuyi daoren about @name;sd;yun regenerate;#wa 2000;#if %ismember(@place,@place1) {wenxiyu2} {backyz}}
+#ALIAS test {#show @go @ljs @route}
+#ALIAS area1 {#t- shamokill;#t- shenghukill;backyz}
+#ALIAS area2 {#t- shamokill;#t- zhaoren;#t- back;tuna 1000000}
+#ALIAS area3 {#t- shenghukill;#t- zhaoren;#t- back;dazuo @xydz}
+#ALIAS area4 {#t- shenghukill;#t- zhaoren;#t- back;#va route 49;dazuo @xydz}
+#ALIAS xiyutao1 {#t+ nobusy}
+#ALIAS xiyutao2 {#wa 5000;tuna 1000000}
+#ALIAS xiyutao3 {#wa 5000;dazuo @xydz}
+#ALIAS xiyutao4 {#wa 5000;#va route 49;dazuo @xydz}
+#ALIAS sandu0 {out;sd;w;e;n;e;s;n;e;w;w;w;knock gate;n;n;nu;n;n;n;n;n;n;u;n}
+#ALIAS sandu {s;d;s;s;s;s;s;s;sd;s;open gate;s;e;e;s;e;s;e;n;n;e;w;s;enter}
+#ALIAS wenca0 {s;se;#4 ask shangren about @name;wu;n;#wa 2000;nu;#4 ask jiuyi daoren about @name;sd;s;ed;nw;n;yun regenerate;goto changan}
+#ALIAS pfm {#if @level=2 {#if %ismember(@go,xiyu) {wield @weapon};perform @perf @ena3 @ena4}}
+#ALIAS shejian {#t+ shot;shot @ena3 @ena4 with arrow}
+#ALIAS areacase {backyz}
+#ALIAS home {#t- wrongway;#t- dazuo;#t+ xuexi;#t+ xuexibusy;master;yun recover;#if @suc=11 {gosleep} {#if @breakup=1 {yun inspire} {home1}}}
+#ALIAS sf0 {hp}
+#ALIAS home0 {backyz}
+#ALIAS thd {.gyz;cross;n;enter;ride diao}
+#ALIAS thd0 {n;n;ride diao}
+#ALIAS wenti {rideto lingzhou;s;e;#wa 1000;#save;#load NpcFree.mud;exert regenerate;#wa 2000;wen1}
+#ALIAS sad {#va go sad;n;n;e;e;goto luoyang;dazuo @dz}
+#ALIAS yang {.sad1;#wa 2000;.sad2;#wa 2000;qian tan;wield yuxiao;ci brick;zhan brick;d;n;#ig;unwield yu xiao;unwield yuxiao;xue yang sad-strike 100;#wa 2000;xue yang sad-strike 100;#wa 2000;xue yang sad-strike 100;#wa 2000;xue yang sad-strike 100;backyang}
+#ALIAS backyang {#4 n;e;se;re .sad2;#wa 2000;re .sad1;wield @weapon;#ig;yun regenerate;wg0;hp}
+#ALIAS wencd2 {.wencd2;#4 ask xiao er about @name;sw;#wa 1000;.wencd3;#4 ask xiao fan about @name;e;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};backyz}
+#ALIAS maidan {purchase 1 dan from @danid with 1 @money}
+#ALIAS xuexi {#ad skill_num 1;#if @skill_num>0 {xueskill;hp;#wa 500;dazuo 1} {sf0;quest;#if @nl>@neednl {#wa 1000;yun regenerate;yun heal} {ds;gosleep}}}
+#ALIAS fanwen {.dl;#ig;#wa 3000;.yideng;xue yideng sanscrit 100;#wa 2000;xue yideng sanscrit 100;#wa 2000;xue yideng sanscrit 100;#wa 2000;xue yideng sanscrit 50;re .yideng;#ig;#wa 3000;hp;#t+ square;re .dl}
+#ALIAS quxue {#if @qn>350 {fanwen} {home}}
+#ALIAS reboot {#va reboot 1;#save;#t- time;#t+ reboot}
+#ALIAS buydan {n;e;#wa 2000;#va buydan 2;rideto yangzhou}
+#ALIAS backthd {flyup;d3;#wa 1000;#if @suc=1 {give head to huang};#if @suc=5 {quest huang};#if @suc=7 {quest huang}}
+#ALIAS ktahd {#va go laz;#va ljs 16;#2 n;#2 e;goto changan;#if @heal=2 {#var heal 1;yun dispel} {dazuo @dz}}
+#ALIAS askhelp {helpme}
+#ALIAS laz {#va go laz;#va ljs 16;#t+ majiu;rideto lanzhou;.lazmj}
+#ALIAS backyz {#t- wentao;#t+ square;#wa 3000;rideto yangzhou}
+#ALIAS ds {#show 机器人原为读书，请自己修改！！！;du book 100}
+#ALIAS case8 {n;e;wenchou}
+#ALIAS case9 {#ad go_num 1;trygo}
+#ALIAS getgo {#va trygo 1;#va suc 2;#va huishu 15;#sta 北丑说|@name|在|@xplace|,现在去|@place|寻找.;#wa 2000;shuo}
+#ALIAS getnameid {pname1=%left(@name,4);nameid="";name1id="";name2id="";name3id="";name4id="";#if (%pos(@pname1,@xing)=0) {pname1=%left(@name,2)};#fo @xing {#if (%pos(@pname1,%i)>0) {name1id=%left(%i,10)}};name1id=%trim(@name1id);pname2=%remove(@pname1,@name);pname3=%left(@pname2,2);#fo @ming {#if (%pos(@pname3,%i)>0) {name3id=%left(%i,10);name3id=%trimright(@name3id)}};#if (%len(@pname2)>2) {pname4=%remove(@pname3,@pname2);#fo @ming {#if (%pos(@pname4,%i)>0) {name4id=%left(%i,10);name4id=%trim(@name4id)}};name2id=%concat(@name3id,@name4id)} {name2id=@name3id};nameid=%concat(@name1id, ,@name2id);#say @name|@nameid|}
+#ALIAS qugold {w;w;qu 10 gold;#wa 5000;e;e;wenchou}
+#ALIAS quqian {w;w;qu 11 gold;#wa 5000;convert 1 gold to silver;#wa 5000;e;e;wenchou}
+#ALIAS qusilver {w;w;qu 1 gold;#wa 5000;convert 1 gold to silver;#wa 5000;e;e;wenchou}
+#ALIAS trygo {#t- quqian;#if @go_num>27 {#va suc 4;#va mapnum 0;allmap} {#if (%pos(@xplace,@{@go_num})=0) {#ad go_num 1;trygo} {place=%left(@{@go_num},12);place=%trim(@place);getgo}}}
+#ALIAS wenchou {ask bei chou about @ena5 @ena6}
+#ALIAS wenhs2 {nw;#4 ask xiao fan about @name;.wenhs2;#wa 1000;ne;#4 ask zu qianqiu about @name;yun regenerate;ne;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};hs0}
+#ALIAS wendl2 {.wendl2;#4 ask xiao er about @name;w;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};dl0}
+#ALIAS wenxiyu2 {.wenxiyu;#4 ask xiao er about @name;rideto baituo;#wa 1000;.wenxiyu1;#4 ask xiao er about @name;rideto chengdu;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenxiyu3} {backyz}}
+#ALIAS wenxiyu3 {#t+ tsjx;#t- klsx;.wenxiyu5;#4 ask xiao er about @name;e;#wa 1000;yun regenerate;.wenxiyu4;#4 ask zhuo ma about @name;rideto mingjiao;#wa 1000;e;#4 ask xiao fan about @name;w;#wa 1000;yun regenerate;#t+ klsx;#if %ismember(@place,@place1) {#va suc 8};backyz}
+#ALIAS eatdan {#if @max_jing<90 {get yangjing dan from budai;eat yangjing dan;hp};#if @max_jing<70 {eat lingyao;hp};eat yingyue dan;eat guiling dan;eat longxian dan;eat haotian}
+#ALIAS wenjian {#show 机器人别名wenjian是向师门要独门兵器,请看情况修改;kkkil}
+#ALIAS lj {yun regenerate;perform @perf}
+#ALIAS jiaotask1 {s;w;give daopao to pang toutuo;#2 e;give jiapu to tang nan;w;s;w;give hsmfang to aqing sao;e;e;give dingdan to wei chunfang;w;s;give bingqipu to shi song;backyz}
+#ALIAS jiaotask2 {n;give sunvjing to ouyang ke;n;e;u;give caipu to xian laoban;d;w;n;give bstu to ma chaoxing ;backyz}
+#ALIAS jiaotask3 {w;s;give cxpifeng to liu susu;n;w;#3 n;give csl to quan guanqing;rideto fuzhou;.lin;give biaoqi to lin zhennan;#wa 2000;rideto beijing;.taijian;give yandao to hai gonggong;backyz}
+#ALIAS jiaotask {#if @task<14 {give @{@task} to @mainid;#ad task 1;jiaotask} {#va task 1}}
+#ALIAS gosleep {#wa 1000;w;s;sleep}
+#ALIAS gosleep0 {n;e;time;yun heal}
+#ALIAS case10 {#va quit 2;home}
+#ALIAS wenca3 {yun regenerate;rideto changan;.wenca3;#4 ask xiao er about @name;n;#wa 1000;#2 s;#4 ask xiao fan about @name;e;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {wenca4} {backyz}}
+#ALIAS wenca4 {yun regenerate;rideto xingxiu;su;s;ed;#4 ask bosi shangren about @name;wu;n;#wa 1000;nu;#4 ask jiuyi daoren about @name;sd;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};backyz}
+#ALIAS wenjz3 {rideto chengdu;n;e;se;#4 ask xiao er about @name;e;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};cd0}
+#ALIAS wenkf2 {nw;n;#4 ask teller about @name;s;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};kf0}
+#ALIAS wenkm3 {e;#4 ask xiao er about @name;w;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};dl0}
+#ALIAS wenlaz3 {.wenca2;#4 ask xiao er about @name;rideto lanzhou;yun regenerate;#wa 1000;.wenlaz3;#4 ask jin xiangyu about @name;s;#wa 1000;#3 w;#4 ask zhubao shang about @name;e;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};laz0}
+#ALIAS wenqz2 {.wenqz2;#4 ask xiao er about @name;w;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenqz3} {backyz}}
+#ALIAS wenqz3 {rideto fs;.wenqz3;#4 ask feng qi about @name;s;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};qz0}
+#ALIAS wenss3 {w;#4 ask xiao fan about @name;.wenss;yun regenerate;#wa 1000;e;#4 ask xiao er about @name;rideto beijing;yun regenerate;#if %ismember(@place,@place1) {wenss4} {backyz}}
+#ALIAS wenss4 {.wenss4;#4 ask xiao er about @name;n;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};backyz}
+#ALIAS wensz3 {.wensz3;#4 ask xiao er about @name;n;#wa 1000;#t- square;rideto gc;.gyz;#4 ask seller about @name;n;yun regenerate;#wa 1000;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};backyz}
+#ALIAS wenxiao {unwield @weapon;ask huang 玉箫;wield yu xiao}
+#ALIAS wenyz3 {w;#4 ask xiao fan about @name;e;e;#wa 1000;s;s;e;#4 ask xiao er about @name;rideto ss;yun regenerate;#wa 1000;.wenyz4;#4 ask xiao er about @name;rideto lz;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenyz4} {backyz}}
+#ALIAS wenyz4 {.wenyz5;#4 ask xiaoer about @name;rideto jz;#wa 1000;yun regenerate;n;n;e;#4 ask xiao er about rumor;rideto luoyang;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {wenyz5} {backyz}}
+#ALIAS wenyz5 {s;e;#4 ask xiao er about @rumor;rideto zhongzhou;#wa 1000;n;e;#4 ask xiao er about  @name;w;#wa 1000;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};backyz}
+#ALIAS tingzhi {#t- end;#ti;#t- square}
+#ALIAS yunxing {#t+ end}
+#ALIAS showskill {#show @skill1 @skill2 @skill3 @skill4 @skill5}
+#ALIAS taixuan {s;s;e;se;w;nw;e;s;s}
+#ALIAS case11 {#t- jiedu;#t+ jiedu1;yun recover;home}
+#ALIAS jiqu {#if @yaojiqu=0 {sf} {derive}}
+#ALIAS home1 {#if @suc=1 {give head to @zhangmen};#if @suc=5 {quest @zhangmen};#if @suc=7 {give head to @zhangmen;quest @zhangmen};#if @suc=10 {gosleep}}
+#ALIAS wenweapon {#show 机器人别名wenweapon向师门要独门兵器,请看情况修改;ask he 两极剑;#show unwield @weapon;#show wield @weapon2}
+#ALIAS food {eat yangsheng dan}
+#ALIAS master {rideto lingjiu;sd;#2 e}
+#ALIAS xx {xuexi}
+#ALIAS full {yun recover;yun regenerate}
+#ALIAS s2m {s;d;open door;enter;s;e;se;se;w;w}
+#ALIAS m2s {e;e;nw;nw;w;n;open door;out;climb;n;wenweapon}
+#ALIAS jinding {rideto emei;#4 wu;#3 su;sw;su;se;wu;su}
+#ALIAS pfm2 {grin}
+#FUNC rna {呼延冉}
+#FUNC fna {}
+#FUNC lna {?}
+#FUNC qna {武将}
+#FUNC ena {getme}
+#FUNC ena2 {ran}
+#FUNC v1 {lv2 如果表达式v1中的pattern包含v2，返回真 }
+#FUNC que {运送农具}
+#FUNC name1 {公良茱}
+#FUNC name2 {毛熊}
+#FUNC place1 {杭州城}
+#FUNC place2 {南海一带}
+#FUNC item {店小二}
+#FUNC ena1 {huyan}
+#FUNC ena3 {huyan}
+#FUNC ena4 {ran}
+#FUNC command {i}
+#FUNC name3 {马唐上}
+#FUNC name4 {卢阆商}
+#FUNC place3 {成都城}
+#FUNC place4 {终南山}
+#FUNC name5 {李可秀}
+#FUNC item2 {玉龙玦}
+#FUNC step {1}
+#FUNC step1 {1}
+#FUNC aa {%time}
+#FUNC des {gw。 中文长安城，英文ca。 中文襄阳城，英文xy}
+#FUNC xx {0}
+#FUNC route {12}
+#FUNC ljs {15}
+#FUNC zou {fs8}
+#FUNC routeca {长安城}
+#FUNC huishu {1}
+#FUNC place {福州城}
+#FUNC quesnum {4}
+#FUNC questnum {259}
+#FUNC abc {0}
+#FUNC ab {0}
+#FUNC renming {苗飞提着一柄长剑}
+#FUNC meiren {1}
+#FUNC name {呼延冉}
+#FUNC juncture {873449}
+#FUNC setp {3}
+#FUNC itemname {紫骝马}
+#FUNC guo {cai}
+#FUNC cang {zhong}
+#FUNC eitem {bait}
+#FUNC ite {〖谣言四起〗某人：听说托儿}
+#FUNC person {xiao er}
+#FUNC itemnum {0}
+#FUNC head {呼延冉}
+#FUNC qz {laz}
+#FUNC suc {1}
+#FUNC weapon {lll}
+#FUNC pri {0}
+#FUNC ren {廖彤露}
+#FUNC tao {0}
+#FUNC perf {club.huan}
+#FUNC www {wen}
+#FUNC huilu {0}
+#FUNC dian {.}
+#FUNC mapnum {23}
+#FUNC have {2}
+#FUNC jingqi {466}
+#FUNC qixue {1019}
+#FUNC qn {29}
+#FUNC exp {347790}
+#FUNC find {2}
+#FUNC dog {0}
+#FUNC snake {0}
+#FUNC nl {968}
+#FUNC tihui {25}
+#FUNC time {16.31.17}
+#FUNC hh {16}
+#FUNC mm {31}
+#FUNC go {qz}
+#FUNC ling {0}
+#FUNC master {li furen}
+#FUNC skill {liangyi-shengong}
+#FUNC char {npc}
+#FUNC passwd {123}
+#FUNC number {1}
+#FUNC naijiu {74}
+#FUNC con {1}
+#FUNC food {yangsheng dan}
+#FUNC yao {1}
+#FUNC skill1 {linji-zhuang}
+#FUNC wupin {天残玉}
+#FUNC gongxian {一百五十}
+#FUNC fangqi {350000}
+#FUNC questren {司马幽}
+#FUNC zhaoren {彭虎}
+#FUNC rentou {呼延冉}
+#FUNC eitem1 {zhulong}
+#FUNC eitem2 {tu}
+#FUNC pass {123}
+#FUNC suc2 {aa}
+#FUNC zheli {6}
+#FUNC huiqu {9}
+#FUNC dz {200}
+#FUNC shuishu {5}
+#FUNC hui {6} {6}
+#FUNC wen {wen}
+#FUNC wentao {2}
+#FUNC bb {1}
+#FUNC cc {1}
+#FUNC plave {下来。}
+#FUNC questnum2 {1}
+#FUNC quest {2}
+#FUNC help {yang}
+#FUNC helper {moye}
+#FUNC min {1}
+#FUNC dd {no}
+#FUNC skill_num {0}
+#FUNC skill2 {linji-zhuang}
+#FUNC skill3 {caiyan-gong}
+#FUNC skill4 {club}
+#FUNC skill5 {hand}
+#FUNC heshang {0}
+#FUNC xutong {0}
+#FUNC xuming {0}
+#FUNC water {256}
+#FUNC buy {1}
+#FUNC shiwu {981}
+#FUNC yinshui {911}
+#FUNC kill {2}
+#FUNC quit {2}
+#FUNC xname {呼延冉}
+#FUNC xydz {30}
+#FUNC gbt {0}
+#FUNC xiyudz {10}
+#FUNC area {1}
+#FUNC zhangmen {li furen}
+#FUNC qi {1}
+#FUNC heal {1}
+#FUNC dongxi {1}
+#FUNC meijing {0}
+#FUNC xcorpse {虚通}
+#FUNC homedz {100}
+#FUNC chae {simon}
+#FUNC wropass {0}
+#FUNC pass1 {123}
+#FUNC tuichu {2}
+#FUNC money {coin}
+#FUNC danid {wisdom}
+#FUNC corpse {1}
+#FUNC reboot {1}
+#FUNC rebootmin {0}
+#FUNC buydan {1}
+#FUNC danmin {0}
+#FUNC level {2}
+#FUNC arrow {2}
+#FUNC cnzhangmen {黄药师}
+#FUNC ena5 {huyan}
+#FUNC ena6 {ran}
+#FUNC zuoqi {紫骝马}
+#FUNC qima {1}
+#FUNC xzuoqi {店小二}
+#FUNC ezui {huangbiaoma}
+#FUNC ezui1 {qing}
+#FUNC ezuoqi2 {ma}
+#FUNC ezuiqi1 {hong}
+#FUNC horse {ziliuma}
+#FUNC contime {20}
+#FUNC contimes {20}
+#FUNC wrontime {20}
+#FUNC ezuoqi1 {hong}
+#FUNC ezuiqi {zaohongma}
+#FUNC horse1 {qing}
+#FUNC horse2 {tianma}
+#FUNC tsjx {0}
+#FUNC reward {活骨灵药昊天果昊天丹钻石碎片玛瑙碎片水晶碎片翡翠碎片千年人参千年灵芝千年雪莲天残玉青鱼牙幻地神珠白虎赐元丹青龙炼睿丹玄武铸骨丹朱雀玲珑丹地脉血泉天香玉露千年参心丹千年灵芝丸千年雪莲膏羊皮碎片蚩尤诛元仙丹神恩通慧仙丹洗髓再造仙丹破阳无极仙丹阎罗绸离火玄冰玉如意通天镢 }
+#FUNC ridetime {0}
+#FUNC fnagqi {140000}
+#FUNC pname1 {端木}
+#FUNC nameid {duanmu haozhu}
+#FUNC name1id {duanmu}
+#FUNC name2id {haozhu}
+#FUNC name3id {hao}
+#FUNC name4id {zhu}
+#FUNC pname2 {蒿著}
+#FUNC pname3 {蒿}
+#FUNC 10 {荆州        兵器库大门北大街药铺饭馆荆州北门青石大道荆州中心荆州衙门衙门正厅西大街万府大门关圣庙后殿后门小山坡乱坟岗林荫道荆州西门青石路江边小路栈道温泉井南大街荆州茶僚打铁铺粮仓大门荆州南门碎石路乱石滩东大街白塔二楼白塔三楼萧湘书院书院后院石阶紫竹林卉园废园小巷尽头荆州东门青石道官道衙门后院}
+#FUNC 11 {昆明        钟楼书房南大街酒楼聚朋茶馆近日古楼北大街王俯大门金马枋小西门官道青石阶草棚报国寺山门碧鸡枋东门青石路石林莲花峰望峰亭阿诗玛小路原始森林红土路山路长江南岸独木桥长江北岸南门黄土路大森林王府大院东走廊王府正厅西走廊}
+#FUNC 12 {成都        草棚南大街东大街望江楼蓉城酒楼蜀都道广场提督府门提督街武侯祠大门刘备殿诸葛亮殿西大街青羊宫西门南河桥浣花溪杜甫草堂济世堂药店北大街兵器铺北门府河桥青石大道青泥小道小桥建福宫南门山路东门官道青石阶报国寺山门小路蜀道瞿塘峡}
+#FUNC 14 {武功镇      东街东门官道中心广场富家大门富家小院花厅侧厅富家大堂帐房后院卧室后花园观景楼富家侧门南街北街民居酒楼二楼西街土地庙西门山路小村庄晒谷场村长家翠屏谷柏树林翠屏峰顶}
+#FUNC 15 {终南山      山路终南山脚翠屏谷柏树林翠屏峰顶道路普光寺山间小径小河边山洞金莲阁日月岩抱子岩神禾原佛爷掌黑凤洞老妪岩山道大校场石阶半山亭试剑岩观日台教碑全真教大门大堂一进大堂二进访真桥遇真宫草堂寺太乙池白马潭终南山主峰空地}
+#FUNC 16 {长安城      兰州东门永登官道长安南城门南安道口南安大道工部青龙街华瑞街民居小镜湖花店面馆永泰南口包子铺永泰大道城隍庙西安道口西安大道扶风道宝象寺大雄宝殿方丈室偏殿兵营长安西城门青石大道汇文阁永泰北口珠宝行望星楼二楼麒祥街水果店茶馆北安道口北安大道长安北城门白虎街国子监冯诩道金水桥皇宫大殿右翼殿左翼殿衙门大门长安府大堂巡捕房凌烟阁东安大道东安道口土路四海钱庄群玉楼大厅群玉楼二楼群玉楼雅室群玉楼三楼首饰店河洛镖局大院河洛镖局大厅回春堂药铺兵器店连德北口戏院连德大道长安东城门大官道终南山口萧家前院萧家大厅偏厅卧室连德南口小酒馆土娼馆杂货铺}
+#FUNC 17 {北京城      四合院鳌府走廊鳌府大院鳌府大厅鳌府后院鳌府牢房鳌拜书房康府大院康府走廊康府大厅康亲王书房韦府走廊韦府大院韦府大厅韦府书房鸟市西长安街客店西单北大街城门口西城门西门外黄土路平定州城西后林北街菜市西四南大街西四北大街地西大街大官道十三皇陵鳌府大门高升茶馆杨柳胡同青木堂大门大院大厅康府大门回春堂药店地安门西街广场西厂大门地安门广场皇宫北门地安门大街镇远镖局地安门东街广场地东大街东厂大门国子监文庙王府井街校场韦府大门东长安街长安广场天安门广场金水桥皇宫正门凡陛桥烟草店全聚德酒楼二楼长安戏院戏院后台怡红院杂货铺刑场朝阳道朝阳门大驿道小路庄府大门金龙峡翠屏谷雪山别院永定门大道天坛北门虎坊路海澄公府大院海澄公府大厅后院厢房花厅面馆永内东街宏升赌场汇英酒楼打铁铺鲜花店}
+#FUNC 18 {关外        集市北城小巷小土屋南城东城香肉馆土路木桥大道宁远官道土窑馆荒路山神庙雪地船厂大门坎子二门坎子满天星谷草垛白河小院子小茅屋密林黑风口小天池长白瀑布达门龙门峰}
+#FUNC 19 {中州        钱庄书院驿站文定北街小巷破庙丐帮中州分舵市中心药铺药铺内院药铺帐房戏院演出大厅化妆间练功房演员房间中州衙门走廊小花园西厢房县太爷府师爷处巡捕房牢房龙门镖局苗家大门中州北门中州道渡口路中州渡延陵西路延陵东路文定南街官道西郊西城楼城楼二层中州贡院杂货铺黄员外府邸东门青石官道寒山寺正殿寒拾殿枫桥铁岭关菜场漕帮里屋小胡同甲胄店大观园茶楼鸦片馆中州南门石板大道青石路青龙外门}
+#FUNC 1 {佛山        英雄楼东镇街油条铺英雄典当东门林间道大镇街南门平原小路南海渔村渔村晒网场渔村小屋南海之滨竹屋北门南岭山口林间大道树林黄土路衡阳西街西镇街英雄会馆北帝庙西门小道}
+#FUNC 20 {苏州城      北大街戏园子沧浪亭春在楼北门青石官道虎丘山头门山万景山庄憨憨泉试剑石真娘墓孙武亭枕石致爽阁千人石二仙亭白莲池山路树林城中心西大街东大街宝带桥南大街苏州府衙兵营书场玄妙观西门寒山寺正殿寒拾殿枫桥铁岭关狮子林燕誉堂揖峰指柏轩真趣亭问梅阁立雪堂茶馆书院听雨轩留园荷花厅古木交诃池塘南门太湖湖畔小径胡同立春堂打铁铺东门嘉兴南门嘉兴城铁枪庙嘉兴南湖嘉兴海港烟雨楼二楼仙霞岭茶亭廿八铺}
+#FUNC 21 {杭州城      青石大道凤池书院铁匠铺楼外楼相约轩红娘庄胡庆余堂清波门聚景园柳浪桥净慈寺青石道夕照山苏堤花港观鱼曲院风荷岳廊岳坟山路黄龙洞西泠桥宝石山保淑塔断桥白堤平湖秋月孤山放鹤亭孤山平台孤山石级蜿蜒小径梅庄大门玉泉沿湖大道郭庄刘庄侧院玉皇山路玉皇山顶玉皇山脚石屋洞虎跑泉碎石路钱塘江畔六和塔底满觉陇水乐洞烟霞洞龙井茶室土路茅家埠黄泥岭洪春桥法镜寺法净寺法喜寺青石山路灵隐寺天王殿大雄宝殿飞来峰清林洞翠微亭龙泓洞射旭洞嘉兴南门茶亭嘉兴城嘉兴南湖铁枪庙}
+#FUNC 22 {扬州城      扬州渡汉水南岸大驿道北门草地树林田地北大街醉仙楼三楼醉仙楼二楼中央广场西大街衙门大门衙门正厅内宅东厅西厅西花扇庄西门大道青山山顶小路关洛道函谷关大官道南大街赌场春来茶馆丽春院南门密林青石大道土路宜兴南浔镇东门青竹林东大街药铺打铁铺杂货铺泰山脚下岱宗坊山路马庄后院柴房马庄大院马庄正厅}
+#FUNC 23 {洛阳城      景云道洛阳中心广场淳熙路唐三彩望星楼二层望星楼三层望星楼四层粮铺衙门正厅内宅北厅南厅文庙科举试场皮货店青石小巷兰薪寺内城北门城北桥大官道青石大道武德道新罗坊四海钱庄孔庙龙腾武馆武馆后院巡捕房牢房金刀王家大校场兵营大门兵器库老僧书店碎石路西城根内城西门城西桥永徽道当铺存储室同仁堂药店壶记茶楼休息室二楼雅座说书大厅长乐坊杂货铺京韵大戏院后台春月楼迎客大厅沉鱼阁落燕厅闭月亭羞花汀打铁铺水果店老庙首饰店鲁氏木器铺苗铺内城南门南城根绿竹林竹林小舍东城根私塾面壁室一线牵育婴堂瓷器店金银铺庙会玩具店风味小吃杂耍表演猪肉铺小胡同茅草屋胡同口内城东门城东桥}
+#FUNC 24 {襄阳城      当铺大官道草地玄武外门玄武内门北大街兵营茶馆丁字街口北内大街大街口胡同东内大街忠烈祠福威镖局东大街街道民居木匠铺青龙内门青龙外门青石路药铺将军府大门将军府大院将军府大堂中央广场安抚府牌楼安抚使衙门西大街南大街钱庄学堂赌场觅香楼兵器铺朱雀内门朱雀外门青石大道土路泸溪客店黄土路郭府大门练功场水上走廊花园男客房物品房西内大街大校场白虎内门白虎外门书店新罗坊石阶北城头西城头南城头东城头}
+#FUNC 25 {五毒教附近  黄土大道上山小路卧龙岗上竹舍山边小路路边小店客房黑森林狼窝边寨风情虎穴深处桃花江西岸桃花江东岸江边小路小村口民居灶房学堂后院村东口竹林深处桃花峪五毒山路五毒教大门松树林草地千毒窟外百毒窟外万毒窟外}
+#FUNC 26 {大理        村东口竹林深处河西镇渔家妃丽湖南岸黄果树瀑布妃丽湖东龙口城妃丽湖畔鲁望镇大竹楼议事堂祭祀屋榕树雨林水田喜州城竹林小路武定镇农田青竹林竹楼下天威径大路双鹤桥黄土路小道林间道南门绿玉溪沿岸黄土大道古道大厅楼梯走廊客房贵宾室山路拈花寺后院碧罗雪山北门大理城北牌坊王府路王府大门御街宫门前殿御花园花廊正殿偏殿御膳坊太和街口蛇骨塔清池太和东街石铺薛记成衣铺药铺中心广场太和居二楼十字路口大和街摆夷字馆摆夷民居土司府门堂后厅议事厅兵营林间小道黑龙岭树林外林荫小道蝴蝶泉玉虚观前清溪三潭大叠水瀑布碧鸡山顶沿池小路滇池沿岸罗伽甸沿池堤岸金汁河畔山区小径茶花山南第一层第二层第三层第四层第五层第六层第七层大森林杆栏中层阳宗镇桑林密林林中山涧半山竹林步雄部养蚕房星云湖畔玉霞山东泸水河谷巴的甸泸水沿岸阿头部高黎山东坡高黎山密林易溪部碧罗山下乌夷民居镇雄梯田祭祀大屋葛鲁城蜜纳甸山林河边河上太和城洱水桥下关城苍山中部苍山山路剑川镇剑川山口川西山路乌弄城乌蒙村落村外草坡大渡河边宏圣寺塔路南石林长湖李子箐石林大，小芝云洞和摩赛石林塔基塔林舍利塔崇圣宝殿无净阁无我阁瑞鹤门无常阁晃天门无乐阁翔鹤门清都瑶台无无境慈悲院雨花院清心阁兜率大士院般若台牟尼堂三无宫斗母宫南诏德化碑官道江边小路无量山后山善人渡铁索桥澜沧江畔山坡}
+#FUNC 27 {西域        山路雪坑大雪山口雪山山谷山洞忘忧谷雪山北麓雪山山路大轮寺雪山山脚湖边小路圣湖土路客店草原丝绸之路深山苗人部落戈壁滩昆仑山下青石阶明教山门黄土小路明教密洞悬天崖烈火旗牌坊青石道广场黄土地门口竹林佛家竹舍道家竹舍青石地草地镇远桥西域山路巴颜喀拉山可可西里山昆仑山垭口昆仑山麓昆仑派山门广场西广场东石屏风前厅天山脚下伊犁天山山路南疆沙漠大湖银瀑沙漠绿洲大沙漠东街打铁铺坟地洞口洞内侧洞西街酒店小桥农舍树林草莓地草坪大门}
+#FUNC 2 {泉州        林间道西门吊桥泉州西门城中心泉州南门海港泉州北门莆仙平原中洲桥}
+#FUNC 3 {福州城      福州南门南门兜校场石桥向阳巷向阳老宅杂货铺南大街味中味提督衙门东街口北大街福州屏山东大街福州于山东小街福州东门树林无相庵鼓山涌泉寺中洲桥莆仙平原西大街福州乌山福威镖局福威镖局大院正厅内宅福威镖局后院西门大街西禅寺西湖福州西门闽中大道酒肆闽江延平府闽赣古道闽浙古道武夷山道榕城驿}
+#FUNC 4 {汝州一带    南阳城汉水北岸大驿道汝州城官道小路商家堡大门小道东海之滨蔚蓝海边沙滩小摊老龙头山海关太室阙山路茅屋郊外天中阁崇圣门中岳大殿山道芦岩瀑布铁梁峡启母石启母阙嵩阳书院石阶山坡田埂边小院小土屋卧室猪舍厨房少林寺广场嵩岳寺塔法王寺月台塔院朝天门峻极禅院山门}
+#FUNC 5 {开封        官道禹王台禹王庙小路野猪林树林稻香居二楼御街开封贡院雅琪轩天波扬府州桥龙亭大殿龙亭园西大街接引佛殿开封铁塔东大街前广场红花会大门宣德门郊外山路朱雀门西角楼延庆观三清殿玉皇阁二层东角楼山陕甘会馆牌坊戏楼关帝庙小角门菜地小茅房空地堂间粪窖柴房明廊素斋厨素斋厅中院小浴室大雄宝殿后院千手千眼佛殿放生池藏经楼二层小院方丈室八宝琉璃殿石拱门天王殿前院钟楼鼓楼相国寺开封府大堂繁塔竹林小茅屋南盈门大道三叉路口}
+#FUNC 6 {华山附近    河套青城黄土高原龙门渡口渭汾流域黄河岸边黄河帮寨门广场侠义厅田地黄土路西村口碎石路玄坛庙民房打谷场前厅内室小巷尽头小土房南村口青石大道杂货店铁匠铺小房间民宅草棚东村口华山脚下玉泉院野猪林小路三叉路口莎萝坪山洪瀑布云门青柯坪回心石千尺幢百尺峡平心石老君沟猢狲愁上天梯苍龙岭舍身崖云台峰金锁关镇岳宫莲花峰小路玉女峰}
+#FUNC 7 {灵州        南大街酒馆灵州南门黄羊滩小坝青铜峡鸣沙洲宣和堡城中心北大街皇宫大门西大街刀店一品堂大门一品堂大院一品堂帐房接引堂一品堂大厅骠骑营马栏小校场营房东大街大将军府衙门将军府大院将军府内宅将军府小院灵州东门落日林林中大路林中小路八仙道观边门林中土路林中空地林中大屋清新泉西夏王陵赤陵德陵恭陵}
+#FUNC 9 {兰州城      北大街小吃店兰州北门丝绸之路黄河南岸荒道塞口龙门客栈破旧长城山路星星峡草原高昌迷宫沙砾小径大漠风光菜市场中央广场东大街西大街南大街兰州东门土路小集市迎风酒店兰州西门六盘山嘉峪关钱庄兰州南门青石大道}
+#FUNC ming {du        都独|dou       篼|ai        艾埃哀皑瑷嫒隘捱蔼|an        安黯谙鞍埯岸鹌|ao        奥傲敖骜翱鳌|ba        罢霸魃跋|bai       白佰|ban       斑般|bang      邦|bei       北倍贝备|biao      表标彪飚飙|bian      边卞弁忭|bu        步不|cao       曹草操漕|cang      苍仓|chang     常长昌敞玚|chi       迟持池赤尺驰炽|ci        此次词茨辞慈|dong      东侗|fa        发乏珐|fan       范凡反泛帆蕃|fang      方访邡昉|feng      风凤封丰奉枫峰锋|fu        夫符弗芙|gao       高皋郜镐|hong      洪红宏鸿虹泓弘|hu        虎忽湖护乎祜浒怙|hua       化花华骅桦|hao       号浩皓蒿浩昊灏淏|ji        积极济技击疾及基集记纪季继吉计冀祭际籍绩忌寂霁稷玑芨蓟戢佶奇诘笈畿犄|jian      渐剑见建间柬坚俭|kan       龛戡刊勘|li        历离里理利立力丽礼黎栗荔沥栎璃|ma        马犸|mao       贸冒貌冒懋矛卯瑁|miao      淼渺邈|nan       楠南腩赧|pian      片翩胼|qian      潜谦倩茜乾虔千|qiang     强羌锖玱|qin       亲琴钦沁芩矜|qing      清庆卿晴|ran       冉然染燃|ren       仁刃壬仞|sha       沙煞|shang     上裳商|shen      深审神申慎参莘|shi       师史石时十世士诗示适炻|shi       始|shui      水|si        思斯丝司祀嗣巳|song      松颂诵|tang      堂唐棠瑭|tong      统通同童彤仝|tian      天田忝|wan       万宛晚|wei       卫微伟维威韦纬炜惟玮为|wu        吴物务武午五巫邬兀毋戊|xiao      潇萧笑晓肖霄骁校|xiong     熊雄|yang      羊洋阳漾央秧炀飏鸯|yi        易意依亦伊夷倚毅义宜仪艺译翼逸忆怡熠沂颐奕弈懿翊轶屹猗翌|yin       隐因引银音寅吟胤訚烟荫|ying      映英影颖瑛应莹郢鹰|you       繇幽悠右忧猷酉|yu        渔郁寓于余玉雨语预羽舆育宇禹域誉瑜屿御渝毓虞禺豫裕钰煜聿|zhi       制至值知质致智志直治执止置芝旨峙芷挚郅炙雉帜|zhong     中忠钟衷|zhou      周州舟胄昼|zhu       竹主驻足朱祝诸珠著竺|zhuo      卓灼灼拙琢濯斫擢焯酌|zi        子资兹紫姿孜梓秭|zong      宗枞|zu        足族祖卒|zuo       作左佐笮凿|ang       昂盎肮|lin       临林|lin       霖琳|xi        西席锡洗夕兮熹惜|lang      浪廊琅阆莨|lang      朗|ke        可科刻珂恪溘牁克|zhou       繇|}
+#FUNC ming2 {dou       都}
+#FUNC xing {baili     百里|chunyu    淳于|dongfang  东方|dongguo   东郭|dongmen   东门|duanmu    端木|dugu      独孤|gongliang 公良|gongsun   公孙|gongyang  公羊|gongzhi   公治|huangfu   皇甫|huyan     呼延|linghu    令狐|murong    慕容幕容|nalan     纳兰|nangong   南宫|nanguan   南官|nanguo    南郭|ouyang    欧阳|shangguan 上官|shentu    申屠|sikong    司空|sima      司马|situ      司徒|tantai    澹台|tuoba     拓拔|wanyan    完颜|wenren    闻人|xiahou    夏侯夏候|xianyu    鲜于|ximen     西门|xuanyuan  轩辕|yangshe   羊舌|yelv      耶律|yuchi     尉迟|yuwen     宇文|zhangsun  长孙|zhongli   钟离|zhongsun  仲孙|zhuge     诸葛|a         阿|ai        艾|bai       白|cai       蔡|cao       曹|chen      陈|dai       戴|dou       窦|deng      邓|di        狄|du        杜|duan      段|fan       范樊|fang      房|feng      风|fu        符福|gao       高|gu        古|guan      关|guo       郭|mao       毛|han       韩|hu        胡|hua       花|hong      洪|hou       侯|huang     黄|jia       贾|jiang     蒋|jin       金|kong      孔|kuang     匡|liao      廖|liang     梁|li        李|lin       林|liu       刘|long      龙|lu        陆卢|luo       罗|ma        马|niu       牛|pang      庞|pei       裴|peng      彭|qi        戚齐|qian      钱|qiao      乔|qin       秦|qiu       邱裘仇|sha       沙|shang     商尚|shao      邵|shen      沈|shi       师施|song      宋|sun       孙|tong      童|wan       万|wang      王|wei       魏卫|wu        吴武|xiao      萧肖|xiang     项|xu        许徐|xue       薛|yang      杨羊阳|yi        易|yin       尹|yu        俞|zhao      赵|zhong     钟|zhou      周|zheng     郑|zhu       朱|}
+#FUNC newsman {黎夫人}
+#FUNC trygo {0}
+#FUNC xplace {石崖客栈}
+#FUNC go_num {8}
+#FUNC needfood {0}
+#FUNC eat {0}
+#FUNC 8 {凌霄城附近  山路石崖客栈天风川木屋雪山温泉分天崖冰梯山崖城外凌霄内门城头冰道冰雪轩回春居打铁铺监狱小厅冰车梅道凌霄殿戏梅亭云海石}
+#FUNC 13 {天山        伊犁赛马场杂货铺阿凡提家院客厅天山脚下丝绸之路草原天山山路缥缈峰山脚断魂崖失足岩百丈涧平台山道山间平台星宿海小路山间平地溶洞日月洞石道逍遥洞}
+#FUNC task {1}
+#FUNC wrongway {0}
+#FUNC ezuoqi {ziliuma}
+#FUNC max_jing {100}
+#FUNC pname4 {著}
+#FUNC neednl {1000}
+#FUNC suc1 {1}
+#FUNC yaojiqu {1}
+#FUNC pker {贾侗}
+#FUNC hp {}
+#FUNC masterweapon {zhenwu jian}
+#FUNC chinese_zhangmen {黎夫人}
+#FUNC breakup {0}
+#FUNC mz {双儿}
+#FUNC weapon2 {lll}
+#PATH lu {2bw4cxcx4cs}
+#PATH guo {nm2emxmxm7e}
+#PATH lu2 {n2e2cxb}
+#PATH gyz {3s4e3le2s}
+#PATH jd {2ec2sw7b2wzbkbk5b3ckclbc}
+#PATH emei {7swhwkw2kwsk2w}
+#PATH hs {5els12wh12w2h2kw}
+#PATH hy {7sclkw}
+#PATH jz {7swx}
+#PATH jx {5else}
+#PATH lx {whw3sh}
+#PATH wdj {ene6slksw}
+#PATH zhuge {ene2s2we3sl3cs}
+#PATH sf {4nwb}
+#PATH wenhz {2w3ne}
+#PATH wenwdj {enjh4nw4sw}
+#PATH wenxy {s3w2sj}
+#PATH wenzn {2s3wjalan3z2b2znwh}
+#PATH wenhs {n3w2hw}
+#PATH wenzz {w8s4w3n}
+#PATH wenyz {5ej2ne}
+#PATH jihua {whbnz2bes}
+#PATH wenhs2 {njs3ej}
+#PATH wenlaz {2sw2s}
+#PATH ca1 {yses2nsest}
+#PATH wud {7swhwkwls2w}
+#PATH bj2 {y2st}
+#PATH bj3 {y3nt}
+#PATH bj4 {yes2newt}
+#PATH bj5 {ys2e2swt}
+#PATH bj6 {yn3st}
+#PATH bj7 {y2st}
+#PATH bj8 {y4nwst}
+#PATH bj9 {yn2e5st}
+#PATH bj10 {y5nest}
+#PATH bj11 {yud2nset}
+#PATH bj12 {ys2nset}
+#PATH bj15 {y3wenwt}
+#PATH bj17 {y4wne2wt}
+#PATH bj18 {yn2ewnent}
+#PATH bj19 {yswnudsw2nt}
+#PATH bj21 {y3nw4nt}
+#PATH bj22 {y5snwt}
+#PATH ca2 {y2nsehljkt}
+#PATH ca3 {yn2sk3wt}
+#PATH ca4 {y3ejnest}
+#PATH ca5 {y2nses2nt}
+#PATH ca6 {yses2nsest}
+#PATH ca7 {y2n2es2nst}
+#PATH ca8 {y2w2n2w2nt}
+#PATH ca9 {ywnsw2nt}
+#PATH ca10 {y4sw2ewt}
+#PATH ca11 {y2s3ewt}
+#PATH aaaaa {}
+#PATH bj1 {y2esweswet}
+#PATH cd1 {ywhjkwt}
+#PATH cd2 {y3s2w2et}
+#PATH cd3 {yhl5nt}
+#PATH cd4 {y2swknzt}
+#PATH cd5 {yxsjhkjt}
+#PATH cd6 {yn3w2nt}
+#PATH cd7 {y2s5et}
+#PATH cd8 {yns2wnht}
+#PATH cd9 {yljhle2nt}
+#PATH cd10 {yn3sejkt}
+#PATH cd11 {yljewks2et}
+#PATH cd12 {y3e2m2bt}
+#PATH cd13 {y2wlekjnst}
+#PATH cd14 {ykwecvkjt}
+#PATH cd15 {yjwh3wst}
+#PATH fs1 {ynud2nsest}
+#PATH fs2 {yn4ewt}
+#PATH fs3 {y5w2st}
+#PATH fs4 {ysw2enswt}
+#PATH fs5 {yswpqent}
+#PATH fs6 {y3nwsnwt}
+#PATH fs7 {yns4wt}
+#PATH fs8 {yhl5et}
+#PATH fs9 {ye2nzvct}
+#PATH fs10 {yxsse2st}
+#PATH qz1 {yhewsn2wt}
+#PATH qz2 {yw3k3jt}
+#PATH qz4 {y2e4nt}
+#PATH qz3 {y3k3jet}
+#PATH qz5 {yne3wnst}
+#PATH qz6 {yw3enet}
+#PATH qz7 {y2we2nzxt}
+#PATH qz8 {yswcvnpnt}
+#PATH qz9 {ysqsws2nt}
+#PATH qz10 {ys3wnsht}
+#PATH qz11 {yh2l4et}
+#PATH qz12 {y2ecv3et}
+#PATH qz13 {ynsansfwt}
+#PATH qz14 {y3w3st}
+#PATH qz15 {y4slt}
+#PATH gw1 {y2eswelet}
+#PATH gw2 {ywh5st}
+#PATH gw3 {y2ks3kt}
+#PATH gw4 {y3jn2jt}
+#PATH gw5 {y7nt}
+#PATH gw6 {ywsnest}
+#PATH gw7 {yesn2jpqt}
+#PATH gw8 {y2kejent}
+#PATH gw9 {o}
+#PATH gw10 {ylelenset}
+#PATH gw11 {yacaealkt}
+#PATH gw12 {yesfsnbkt}
+#PATH gw13 {ynsjnvct}
+#PATH gw14 {yejhfwft}
+#PATH gw15 {yvf2whwht}
+#PATH gw16 {o}
+#PATH hs1 {yljk2c2at}
+#PATH hs2 {yc2a2ft}
+#PATH hs3 {yv2f2vt}
+#PATH hs4 {yh2wsnwnt}
+#PATH hs5 {yswn2set}
+#PATH hs6 {ywnwhkjht}
+#PATH hs7 {ywnshnjt}
+#PATH hs8 {ynwejk2st}
+#PATH hs9 {yw2ews2nt}
+#PATH hs10 {ykslejkt}
+#PATH hs11 {y2ls2e2wt}
+#PATH hs12 {yswhlet}
+#PATH hs13 {y4slht}
+#PATH hs14 {y6nt}
+#PATH hs15 {y5et}
+#PATH hz1 {y2wnewnt}
+#PATH hz2 {yewneudt}
+#PATH hz3 {ywne2w2zt}
+#PATH hz4 {y2xw2nst}
+#PATH hz5 {y2sljljt}
+#PATH hz6 {ynj4wt}
+#PATH hz7 {ykskwknt}
+#PATH hz8 {ypnsqsht}
+#PATH hz9 {ynw2ew2st}
+#PATH hz10 {yw2ewnlt}
+#PATH hz11 {ys2w4et}
+#PATH hz12 {y2wnject}
+#PATH hz13 {yxswknet}
+#PATH hz14 {ywsewbwt}
+#PATH hz15 {yen5vt}
+#PATH hz16 {yejnjw2et}
+#PATH hz17 {ywswe3st}
+#PATH hz18 {ywn2snet}
+#PATH hz19 {yse2newt}
+#PATH hz20 {y4nept}
+#PATH hz21 {yqw4nt}
+#PATH hz22 {y2se2wst}
+#PATH hz23 {y5swbt}
+#PATH hz24 {y2bwe2mt}
+#PATH hz25 {ymeswesbt}
+#PATH hz26 {ymn3e2wt}
+#PATH hz27 {yw2n2ezt}
+#PATH hz28 {yx2epqwt}
+#PATH hz29 {ys2b2fwnt}
+#PATH hz30 {y3ene2wt}
+#PATH jz1 {y2wswn2st}
+#PATH jz2 {ynw3nzt}
+#PATH jz3 {ymewbx2st}
+#PATH jz4 {ys3w3et}
+#PATH jz5 {y2sxeaeat}
+#PATH jz6 {yw2ewst}
+#PATH jz7 {y5snt}
+#PATH jz8 {y6nt}
+#PATH jz9 {yw2ewnet}
+#PATH jz10 {y3sxspqt}
+#PATH jz11 {ynz4nt}
+#PATH jz12 {y2u2dset}
+#PATH jz13 {y2s3nst}
+#PATH jz14 {y3e3wt}
+#PATH jz15 {y2w3nzt}
+#PATH jz16 {ynshlewt}
+#PATH jz17 {yxsw2et}
+#PATH jz18 {ywsw3et}
+#PATH kf1 {y2ws2nzt}
+#PATH kf2 {yv3nbmt}
+#PATH kf3 {y2s4et}
+#PATH kf4 {ynswsbfat}
+#PATH kf5 {ym2enset}
+#PATH kf6 {y3w4st}
+#PATH kf7 {y2ewswnt}
+#PATH kf8 {ywnw2set}
+#PATH kf9 {yn3wswt}
+#PATH kf10 {y2w2e2nt}
+#PATH kf11 {y2ens2wt}
+#PATH kf12 {y4sw2et}
+#PATH kf13 {yw4s2et}
+#PATH kf14 {ypq2w3st}
+#PATH kf15 {ylewl2ht}
+#PATH kf16 {y2kwe2jt}
+#PATH kf17 {y3newnt}
+#PATH kf18 {ywe3nwt}
+#PATH kf19 {y2ew3nt}
+#PATH kf20 {y2n2vnst}
+#PATH kf21 {y2cs2wft}
+#PATH kf22 {y2nambft}
+#PATH kf23 {y3wudet}
+#PATH kf24 {y2en3et}
+#PATH kf25 {ycxw2ewt}
+#PATH kf26 {ye2wesw3et}
+#PATH km1 {y2ene2wt}
+#PATH km2 {yenud2wt}
+#PATH km3 {y3w2kjt}
+#PATH km4 {y2jk3et}
+#PATH km5 {y2e2n2st}
+#PATH km6 {y6et}
+#PATH km7 {yzudxent}
+#PATH km8 {y3nenjt}
+#PATH km9 {y6nt}
+#PATH km10 {ynj4nt}
+#PATH km11 {y4skst}
+#PATH km12 {y6st}
+#PATH km13 {yksw4st}
+#PATH km14 {ywzudxt}
+#PATH km15 {y6wt}
+#PATH km16 {y6skt}
+#PATH km17 {y2s2nj2nt}
+#PATH laz1 {y2we3nt}
+#PATH laz2 {y2hns2lt}
+#PATH laz3 {ys3wnst}
+#PATH laz4 {y3w4et}
+#PATH laz5 {y2e4swt}
+#PATH laz6 {y2s2n2wt}
+#PATH laz7 {yf2whwet}
+#PATH laz8 {yl2w4et}
+#PATH laz9 {ya3esewt}
+#PATH laz10 {y5s2lt}
+#PATH laz11 {ye2sl2et}
+#PATH laz12 {y2wh2nwt}
+#PATH laz13 {y2h4nt}
+#PATH laz14 {y2n4et}
+#PATH laz15 {ykjzx2wt}
+#PATH laz16 {ywnwnet}
+#PATH liz1 {y2w2s2kt}
+#PATH liz2 {y2k4jt}
+#PATH liz3 {y2nwen2nt}
+#PATH liz4 {y2sws2nt}
+#PATH liz5 {y2nsw2et}
+#PATH liz6 {yw2swsnt}
+#PATH liz7 {yhwbmelt}
+#PATH liz8 {ynsw3et}
+#PATH liz9 {yes2nset}
+#PATH liz10 {yj3newt}
+#PATH liz11 {y2w2e2st}
+#PATH liz12 {yjnjpqht}
+#PATH liz13 {yv3n3st}
+#PATH liz14 {yclkskst}
+#PATH lx1 {yb2zaewt}
+#PATH lx2 {y2znw2et}
+#PATH lx3 {ywz2uwet}
+#PATH lx4 {yewe2wet}
+#PATH lx5 {y2dxe2wt}
+#PATH lx6 {yes2xet}
+#PATH lx7 {ywf2xmt}
+#PATH ly1 {y2wswudwt}
+#PATH ly2 {y3ewswet}
+#PATH ly3 {y3e4wt}
+#PATH ly4 {yes2e3wt}
+#PATH ly5 {yesw2ewst}
+#PATH ly6 {yw2ewswt}
+#PATH ly7 {y3e2w2st}
+#PATH ly8 {y2s3n2wt}
+#PATH ly9 {y2wh3nt}
+#PATH ly10 {y2ns2wfat}
+#PATH ly11 {yf5wt}
+#PATH ly12 {y5eat}
+#PATH ly13 {y3es2nst}
+#PATH ly14 {yes2nset}
+#PATH ly15 {y2s3nst}
+#PATH ly16 {yen2snet}
+#PATH ly17 {y7st}
+#PATH ly18 {ys3e3nt}
+#PATH ly19 {ynensw2st}
+#PATH ly20 {y2sej3nt}
+#PATH ly21 {yn2em2et}
+#PATH ly22 {y2wbww2nt}
+#PATH ly23 {y2wn2ent}
+#PATH ly24 {y2sw3snt}
+#PATH ly25 {ywn2snwst}
+#PATH ly26 {y3n2swnt}
+#PATH ly27 {y2snwnwt}
+#PATH ly28 {y2e3u2dt}
+#PATH ly29 {ydwnw2ewt}
+#PATH ly30 {ynw2ewnwt}
+#PATH ly31 {y4e3wt}
+#PATH ly32 {y6n2st}
+#PATH ss1 {y3wesnt}
+#PATH ss2 {y2n3ent}
+#PATH ss3 {ys3wnet}
+#PATH ss4 {ynewswst}
+#PATH ss5 {ywsewamt}
+#PATH ss6 {ysnbf2nt}
+#PATH ss7 {y2nzhwet}
+#PATH ss8 {y2z2xljt}
+#PATH ss9 {ykx3swt}
+#PATH ss10 {y2zb3zet}
+#PATH ss11 {ya3znt}
+#PATH ss12 {yw2ewsxt}
+#PATH ss13 {y2xfw2xt}
+#PATH ss14 {yxm2xwzt}
+#PATH ss15 {yw2n2sht}
+#PATH ss16 {yljkexet}
+#PATH ss17 {y2e3nt}
+#PATH ss18 {ywenw2ht}
+#PATH ss19 {ylkjlent}
+#PATH ss20 {yhljk3st}
+#PATH ss21 {y4s2et}
+#PATH sz1 {y2wne2wt}
+#PATH sz2 {ye2nhkjt}
+#PATH sz3 {yks2nwt}
+#PATH sz4 {yhlesjt}
+#PATH sz5 {ylkswnst}
+#PATH sz6 {yw2n2swt}
+#PATH sz7 {ye2senst}
+#PATH sz8 {yw2n2ent}
+#PATH sz9 {yj5st}
+#PATH sz10 {y4enht}
+#PATH sz11 {y2w2ejnt}
+#PATH sz12 {ysklswet}
+#PATH sz13 {yn2snest}
+#PATH sz14 {ynesnlht}
+#PATH sz15 {ye5wt}
+#PATH sz16 {ys2nshwt}
+#PATH sz17 {yk2snw2st}
+#PATH sz18 {yw2enset}
+#PATH sz19 {ysesnwnt}
+#PATH sz20 {y2wse2wt}
+#PATH sz21 {yese4wt}
+#PATH sz22 {ysn4et}
+#PATH sz23 {yw2skjet}
+#PATH sz24 {yamjewkt}
+#PATH sz25 {ybfw3nt}
+#PATH sz26 {y3nws2nt}
+#PATH sz27 {ysws2nst}
+#PATH sz28 {y4wnswt}
+#PATH wdj1 {yhewhnskt}
+#PATH wdj2 {ynweslkjt}
+#PATH wdj3 {ylsn2hwt}
+#PATH wg1 {y2s3ejt}
+#PATH wg2 {yk3w2st}
+#PATH wg3 {yesw2snt}
+#PATH wg4 {ylsnewht}
+#PATH wg5 {ynwenwht}
+#PATH wg6 {y3nudst}
+#PATH wg7 {yweswn2st}
+#PATH wg8 {ynwjajkt}
+#PATH wg9 {ylhfzht}
+#PATH wg10 {ynskjh2lt}
+#PATH wg11 {yxk3e2nt}
+#PATH xy1 {ysw2nswt}
+#PATH xy2 {y2ewswnt}
+#PATH xy3 {yswnswet}
+#PATH xy4 {yswesjkt}
+#PATH xy5 {y2sw2ewt}
+#PATH xy6 {y2s3net}
+#PATH xy7 {ysnewt}
+#PATH xy8 {y2wn2snt}
+#PATH xy9 {yw2w2ezt}
+#PATH xy10 {y3zj2mt}
+#PATH xy11 {y2mnw2et}
+#PATH xy12 {ywn2s2at}
+#PATH xy13 {y2al4xt}
+#PATH xy14 {y2ens2wt}
+#PATH xy15 {y4ckft}
+#PATH xy16 {y3f4bt}
+#PATH xy17 {yh4v2et}
+#PATH xy18 {y2e5st}
+#PATH xy19 {yw2ew2nt}
+#PATH xy20 {yw2ewnwt}
+#PATH xy21 {y2ewnw2et}
+#PATH xy22 {yw3n2st}
+#PATH xy23 {yes2nset}
+#PATH xy24 {yse2went}
+#PATH xy25 {yen2snet}
+#PATH xy26 {y2w2nt}
+#PATH xy27 {yewnewt}
+#PATH xy28 {ynswnt}
+#PATH yl1 {ysh2lbnt}
+#PATH yl2 {yz2bzxet}
+#PATH yl3 {yn2sne2wt}
+#PATH yl4 {y2mxvnt}
+#PATH yl5 {yjhkwet}
+#PATH yl6 {ylsbznst}
+#PATH yl7 {yxmcsmlet}
+#PATH yl8 {ywkwejhnt}
+#PATH yl9 {ysh2e3went}
+#PATH yz1 {yes2nsest}
+#PATH yz2 {y2nsenst}
+#PATH yz3 {y2ej2n2st}
+#PATH yz4 {yklsnh2wt}
+#PATH yz5 {y4s2wt}
+#PATH yz6 {y2w3nst}
+#PATH yz7 {ywudw3et}
+#PATH yz8 {ywsw2eudt}
+#PATH yz9 {yws4wnt}
+#PATH yz10 {yes3est}
+#PATH yz11 {y3scv2nt}
+#PATH yz12 {ylsnejet}
+#PATH yz13 {y2hwenst}
+#PATH yz14 {y3le2snt}
+#PATH yz15 {yjl2s2nt}
+#PATH yz16 {ykswenjt}
+#PATH yz17 {yhknw3ht}
+#PATH yz18 {y4w3nt}
+#PATH yz19 {ynw2ewnt}
+#PATH yz20 {yeudwnt}
+#PATH yz21 {y4wnhwt}
+#PATH yz22 {yeje2s2et}
+#PATH yz23 {ye3newnt}
+#PATH yz24 {y7st}
+#PATH yz25 {yws2nswt}
+#PATH yz26 {y3n3st}
+#PATH yz27 {ys2nswst}
+#PATH yz28 {ynwsn2kt}
+#PATH yz29 {y2j4wt}
+#PATH zz1 {y4whpqt}
+#PATH zz2 {yl2en3wt}
+#PATH zz3 {y2en2snt}
+#PATH zz4 {y2en2snt}
+#PATH zz5 {ywn2w2nt}
+#PATH zz6 {y2swnswet}
+#PATH zz7 {y5e2wt}
+#PATH zz8 {ynw2ewnt}
+#PATH zz9 {y5nst}
+#PATH zz10 {y7st}
+#PATH zz11 {y2swsnwt}
+#PATH zz12 {ynswnswut}
+#PATH zz13 {yd6wt}
+#PATH zz14 {y7et}
+#PATH zz15 {y3esw2et}
+#PATH zz16 {ysps3kt}
+#PATH zz17 {y2nse2wt}
+#PATH zz18 {ydewue2st}
+#PATH zz19 {yw2ew3st}
+#PATH zz20 {y2w2e2nt}
+#PATH zz21 {y3n2n2et}
+#PATH zz22 {yl2enset}
+#PATH zz23 {y2e4wt}
+#PATH zz24 {ywhns2wt}
+#PATH zz25 {yneudet}
+#PATH wdj4 {ynswsn2wt}
+#PATH wdj5 {y2s2l2h2nt}
+#PATH wdj6 {o}
+#PATH wdj7 {ywnest}
+#PATH wdj8 {yet}
+#PATH wdj9 {ynt}
+#PATH wdj10 {ynt}
+#PATH wdj11 {yst}
+#PATH wdj12 {ynt}
+#PATH wdj13 {y2w2enlt}
+#PATH wdj14 {y3csn3vt}
+#PATH wdj15 {yh3nw2et}
+#PATH wdj16 {y4slkswt}
+#PATH bj25 {yswsw2nt}
+#PATH bj26 {y2sewe2st}
+#PATH bj27 {yw2esewt}
+#PATH wenca {sw7nen}
+#PATH wenca2 {4ezjvw}
+#PATH wenca3 {4sk3wn}
+#PATH wenfs {nw3sen}
+#PATH wenqz {5n3w}
+#PATH wenqz2 {2ene}
+#PATH wenqz3 {nes}
+#PATH wenqz4 {n5e3j3el}
+#PATH wenkf {2s2c12s2kw}
+#PATH wenlaz2 {4ek2s3wn}
+#PATH wenlaz3 {4n3wn}
+#PATH wenlaz4 {n3e2njzjv}
+#PATH wenly {2w2ne}
+#PATH ca {9wh4wb14wf8w}
+#PATH laz {w4n4w2nj2w}
+#PATH yl {5wf2wh}
+#PATH zn1 {y2s3wjt}
+#PATH zn10 {y3z2zlat}
+#PATH zn11 {y2z2x3ct}
+#PATH zn12 {ysn2ve2zt}
+#PATH zn13 {yzns3xat}
+#PATH zn14 {yfwvfh2xt}
+#PATH zn15 {ybvch2vt}
+#PATH zn16 {yn3v3ct}
+#PATH zn17 {ys2clbxt}
+#PATH zn18 {y2z2bcat}
+#PATH zn19 {y2x2sc2kt}
+#PATH zn2 {yzhnshlkt}
+#PATH zn20 {y2swenet}
+#PATH zn21 {ylhwn2jt}
+#PATH zn22 {yv2n2zfvt}
+#PATH zn23 {y2m2xz2mt}
+#PATH zn24 {y3xslest}
+#PATH zn25 {y2x2m3xt}
+#PATH zn26 {ysfhj2zt}
+#PATH zn27 {y2zxexwt}
+#PATH zn28 {y2xkfkt}
+#PATH zn29 {y3e2nt}
+#PATH zn3 {yjlxat}
+#PATH zn4 {yj2zezwzt}
+#PATH zn5 {y4xklat}
+#PATH zn6 {ynwhwsnet}
+#PATH zn7 {yl2ew3zt}
+#PATH zn8 {y2b2znwt}
+#PATH zn9 {yhwenmbt}
+#PATH dl1 {ye2ns2ent}
+#PATH dl10 {y3wbcbfvwt}
+#PATH dl11 {yecamvm3et}
+#PATH dl12 {yn2hwkjet}
+#PATH dl13 {y2lscl3st}
+#PATH dl14 {yhnhljept}
+#PATH dl15 {y3u3dqt}
+#PATH dl16 {y2sw2ewt}
+#PATH dl17 {y2s4nt}
+#PATH dl18 {ywnzjkpqwt}
+#PATH dl19 {yexskh3nt}
+#PATH dl2 {y2snwsewt}
+#PATH dl20 {yzvcen2snt}
+#PATH dl21 {ye2wx3skt}
+#PATH dl22 {yjlsls2wt}
+#PATH dl23 {yzpqxsnbt}
+#PATH dl24 {y2fnwpq2et}
+#PATH dl25 {ywjwznsxt}
+#PATH dl26 {y4sbwemt}
+#PATH dl27 {ylsnewh2nt}
+#PATH dl28 {y2amsklet}
+#PATH dl29 {ypnu2ent}
+#PATH dl3 {ys3neudwt}
+#PATH dl4 {yn2w4ewt}
+#PATH dl5 {ys2nswnwt}
+#PATH dl6 {y4nw2ewnt}
+#PATH dl7 {y5s2ent}
+#PATH dl8 {ysw5njt}
+#PATH dl9 {yj2khxzvt}
+#PATH liz15 {yk2ws2et}
+#PATH bj28 {y5wet}
+#PATH ly33 {y8st}
+#PATH ly34 {ysw3et}
+#PATH bj23 {y2n4snt}
+#PATH yz30 {y4e2kt}
+#PATH bj29 {y3es2wt}
+#PATH hz31 {ywjk2en2et}
+#PATH wenyz1 {9wh4wbw}
+#PATH bj24 {yws4nt}
+#PATH wenlaz5 {ckx4w4n3wn}
+#PATH wenyz3 {4cxcxe}
+#PATH wenca4 {s3esk3wn}
+#PATH wencd {whw2n2ws}
+#PATH wencd2 {4enj}
+#PATH wencd3 {s3elekw}
+#PATH wencd4 {ejwh3wskle}
+#PATH wendl {enene}
+#PATH wendl2 {6se}
+#PATH wendl3 {5nwsw}
+#PATH wenjz {wnz5n}
+#PATH wenjz2 {w5sx2s2e}
+#PATH wenkm {whjn3elek}
+#PATH wenss {esam3scxs}
+#PATH wenss2 {2es3e2ses}
+#PATH wenyz5 {4ek2s3wn}
+#PATH wenyz6 {s3e2se}
+#PATH wenlaz6 {s3w}
+#PATH wenlaz7 {6e2se}
+#PATH wensz {2w8se}
+#PATH wensz2 {6se}
+#PATH wenyz2 {5ej2ne}
+#PATH wenyz4 {sam3scxse}
+#PATH wenzn2 {2sw2n}
+#PATH piao {e7n}
+#PATH yz31 {y2kbm3jt}
+#PATH yz32 {yj4et}
+#PATH wensz3 {6els}
+#PATH wensz4 {2w2s6els}
+#PATH wenlx {w2znz2u}
+#PATH xiyu1 {ysh2lbnt}
+#PATH xiyu2 {yz2bzxet}
+#PATH xiyu3 {yn2sne2wt}
+#PATH xiyu4 {y2mxvnt}
+#PATH xiyu5 {yjhkwet}
+#PATH xiyu6 {ylsbznst}
+#PATH xiyu7 {yxmcsmlt}
+#PATH xiyu8 {yk3went}
+#PATH bj13 {y3w2n2et}
+#PATH bj14 {y2ews2net}
+#PATH bj16 {y5eelhjkt}
+#PATH xiyu9 {n}
+#PATH xiyu10 {y2e2nbt}
+#PATH xiyu11 {y3s2wst}
+#PATH xiyu12 {ybmn2est}
+#PATH xiyu14 {ypqmafbzt}
+#PATH xiyu15 {ynv2m2eht}
+#PATH xiyu16 {ybzxml2nt}
+#PATH xiyu17 {yn3s2wnt}
+#PATH xiyu13 {y2s2bcsxt}
+#PATH xiyu18 {y5nmt}
+#PATH xiyu19 {y2s2wt}
+#PATH xiyu20 {w}
+#PATH xiyu21 {ys2ejelet}
+#PATH xiyu22 {yea2e2wft}
+#PATH xiyu23 {y4wsnt}
+#PATH xiyu24 {w}
+#PATH xiyu25 {y3w2b2wt}
+#PATH xiyu26 {y2e3z2xt}
+#PATH xiyu27 {yx2m2e2st}
+#PATH xiyu28 {y2ln2snht}
+#PATH xiyu29 {yh2k2jt}
+#PATH xiyu30 {y2j2k2h2lt}
+#PATH xiyu31 {y2neb2wbt}
+#PATH xiyu32 {ycwhwzact}
+#PATH xiyu33 {y2cswjlwt}
+#PATH xiyu34 {y2s3n2vt}
+#PATH xiyu35 {yvfxelet}
+#PATH xiyu36 {yvm2emt}
+#PATH xiyu37 {e}
+#PATH xiyu38 {y2ehwh}
+#PATH xiyu49 {e}
+#PATH xiyu50 {y2hnt}
+#PATH wenxiyu {smlk3w}
+#PATH wenxiyu2 {3ejel2w}
+#PATH xiyu39 {k}
+#PATH aaa {pnu2en}
+#PATH ca34 {y3snes2nt}
+#PATH ca33 {y2ewsewt}
+#PATH ca32 {y3whl2et}
+#PATH ca31 {ywsewslht}
+#PATH ca30 {yn2sewset}
+#PATH ca29 {ys2nudswt}
+#PATH ca28 {ysws2nswt}
+#PATH ca27 {y3snws2nt}
+#PATH ca26 {yx3w3ekt}
+#PATH ca25 {ykjlh2njzt}
+#PATH ca24 {ysws2nswt}
+#PATH ca23 {y3s4nt}
+#PATH ca22 {ysws2nswt}
+#PATH ca21 {ywkj5nt}
+#PATH ca20 {y3e4wt}
+#PATH ca19 {y2e3n2et}
+#PATH ca18 {y2snws2et}
+#PATH ca17 {y5sent}
+#PATH ca16 {y2e2n2et}
+#PATH ca15 {y2nw2n2wt}
+#PATH ca14 {yw2sewt}
+#PATH ca13 {yw2s2nwt}
+#PATH ca12 {ynewn2st}
+#PATH wenxiyu4 {whw3s2w2bcsxm}
+#PATH wenxiyu3 {2ehw2hn}
+#PATH xuanbei {sdnzu}
+#PATH xiao {2swn}
+#PATH xuanji {sd3sz}
+#PATH xuanku {sds2e}
+#PATH xuannan {sds2w}
+#PATH chen {2e7nen}
+#PATH dl55 {y5swswt}
+#PATH dl54 {ys2nsfwnt}
+#PATH dl53 {ys2nsnt}
+#PATH dl52 {ywbxzhbwt}
+#PATH dl51 {y6dqt}
+#PATH dl50 {ywp6ut}
+#PATH dl49 {yhwf3n3st}
+#PATH dl48 {ywzvjbfh2wt}
+#PATH dl47 {ywsewsafnt}
+#PATH dl46 {ykcxeneudt}
+#PATH dl45 {yvjeudwkt}
+#PATH dl44 {yudnelamct}
+#PATH dl43 {yezamejest}
+#PATH dl42 {y2nw2n2st}
+#PATH dl41 {y5nejst}
+#PATH dl40 {yweswejht}
+#PATH dl39 {ylsnks2nt}
+#PATH dl38 {y2d2sne2wt}
+#PATH dl37 {y2jsen2ut}
+#PATH dl36 {ynudswesnt}
+#PATH dl35 {yn4sew2kt}
+#PATH dl34 {yw2e4net}
+#PATH dl33 {ysn3vhswt}
+#PATH dl32 {yw3sl3ct}
+#PATH dl31 {ysedsq2et}
+#PATH dl30 {yswns2wnt}
+#PATH wendl1 {ene5nhnje2s}
+#PATH sad1 {2s3wjalan3z2b2znwh}
+#PATH sad2 {n3z2bz2bca2x2sc2ksel}
+#PATH qzqz {cx2s6e3je}
+#PATH qz {7sclk6w}
+#PATH sz29 {y7et}
+#PATH sz30 {y2nw3et}
+#PATH wencd5 {whj2nhw3nw3n}
+#PATH dl {7sclk6wcx2s6whk2w2h2nwsw}
+#PATH yideng {ene2n2w}
+#PATH camj {3s3wn}
+#PATH bjmj {3wn2w}
+#PATH cdmj {2sele}
+#PATH dlmj {swsw}
+#PATH fsmj {e2s}
+#PATH hzmj {3s2e}
+#PATH jzmj {n2e}
+#PATH zzmj {n2e}
+#PATH wgmj {e2n}
+#PATH ylmj {csmhn}
+#PATH xymj {2e3nwn}
+#PATH szmj {n2e}
+#PATH ssmj {2e}
+#PATH kmmj {2s2w}
+#PATH qzmj {l}
+#PATH lymj {s2e}
+#PATH lxmj {5sh}
+#PATH lzmj {s2e}
+#PATH lazmj {2ne}
+#PATH gw17 {yswk4wt}
+#PATH cd16 {ypqklet}
+#PATH km18 {y2ne3wt}
+#PATH wenxiyu1 {xses}
+#PATH wenxiyu5 {nel}
+#PATH yl10 {ys2lt}
+#PATH yl11 {w}
+#PATH xiyu42 {yw2jk2zt}
+#PATH xiyu43 {yj2nwe2skt}
+#PATH xiyu44 {y2xksnwst}
+#PATH xiyu45 {ynwnew2zt}
+#PATH xiyu46 {y2xw2nwt}
+#PATH xiyu47 {ykje2set}
+#PATH xiyu48 {ys3et}
+#PATH yl18 {ys3et}
+#PATH yl12 {yw2jk2zt}
+#PATH yl13 {yj2nwe2skt}
+#PATH yl14 {y2xksnwst}
+#PATH yl15 {ynwnew2zt}
+#PATH yl16 {y2xw2nwt}
+#PATH yl17 {ykje2set}
+#PATH yl19 {e}
+#PATH home {za3ck}
+#PATH lin {4wnpn}
+#PATH taijian {3w6n4e4s}
+#PATH wenss4 {2ses}
+#PATH sleep {4n2en}
+#PATH bj20 {yswn5st}
+#PATH shifu {2ev5ne}
+#PATH master {za3c6sc2w}
+#PATH fzmj {e2n}
+#TRIGGER {说道：(%x)听说是在(%x)啊，不过前一阵好像来过这里的。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：听说那(%x)和人一场血战，最后还是全身而退，好像是去了(%x)吧。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：听说(%x)被人打伤逃走，据说是躲到(%x)去了。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：听说(%x)和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了(%x)。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {^(%x)脚下一个不稳，跌在地上一动也不动了。} {xname=%1;#if %ismember(@xname,@name) {#t- back;wield @weapon;#t- fangqi;#t- wentao;#t- shot}} {} 519
+#TRIGGER {哦？好像听人说过是在(%x)。} {#t- zhaoren;place=%1;#va huishu 1;#va suc 2;#t- wentao;#st @name 逃去了@place。现在是第@huishu次寻找。} {wentao} 519
+#TRIGGER {^你现在气血充盈，不需要疗伤。} {hp;#if @suc=10 {#va suc 2;#va quit 1;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#wa 2000;backyz} {eatdan;quest @zhangmen;#echo wenti} } {} 519
+#TRIGGER {^师长交给你的任务，你已经连续完成了 (%d) 个。} {questnum=%1} {} 519
+#TRIGGER {^你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。} {#t+ square;#va suc 7;#sta 自由任务阶段。;#save;case6} {} 519
+#TRIGGER {^你运功完毕，吐出一口瘀血，脸色看起来好多了。} {hp;#if @suc=10 {#va suc 2;#va quit 1;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#wa 2000;backyz} {eatdan;#echo wenti;quest @zhangmen} } {} 519
+#TRIGGER {^大门坎子} {#if @route=9 {dazuo 1}} {dmkz} 519
+#TRIGGER {^船厂} {#if @route=16 {dazuo 1};#if @route=9 {yell boat}} {chuanchang} 519
+#TRIGGER {^你的眼前一黑，接著什么也不知道了....} {#if @heal=2 {#sta 又中毒又被打晕，需要手动处理！;#di} {#beep 16;#con;#va pass1 @pass;#va pass 12345;#va tuichu 1}} {} 519
+#TRIGGER {^电光火石间你举起} {#wa 4000;shot @ena3 @ena4 with arrow} {shot} 519
+#TRIGGER {^你身上没有 arrow 这样物品可以发射。} {#wa 2000;perform @perf} {shot} 519
+#TRIGGER {^你现在忙着呢。} {#wa 2000;shot @ena3 @ena4 with arrow} {shot} 519
+#TRIGGER {^你左手猛地抬起} {#wa 4000;shot @ena3 @ena4 with arrow} {shot} 519
+#TRIGGER {^霎时只听「嗖」的一声破空声响，那根羽箭已从你的} {#wa 4000;shot @ena3 @ena4 with arrow} {shot} 519
+#TRIGGER {^你将实战中获得的体会心得充分的消化吸收了。} {sf} {} 519
+#TRIGGER {^你到了扬州，下了车。} {halt;w;w;s;s} {go} 519
+#TRIGGER {^你到了灵州，下了车。} {halt;#if %ismember(@go,liz) {kaishi}} {go} 519
+#TRIGGER {^你到了关外，下了车。} {halt;yun recover;#if %ismember(@go,gw) {kaishi}} {go} 519
+#TRIGGER {^你的真气不够。} {gosleep} {} 519
+#TRIGGER {您的英文名字(新玩家可以选择一喜欢的名字)：} {#t- fangqi;#va skill_num -1;#t- dz;#wa 2000;@char} { autolog} 963
+#TRIGGER {请输入密码：} {@pass;#T- autolog;ok} { autolog} 963
+#TRIGGER {^你叹了口气，摇摇晃晃的站了起来。} {#wa 5000;yun heal} {} 519
+#TRIGGER {^铁匠道：“好了。”随手把(%x)还给了你，你看了看，满意的掏出了一些钱付了帐。} {l @weapon;#wa 5000;#wa 5000;#wa 5000;#wa 5000;#t- square;n;w;w;home} {} 519
+#TRIGGER {^如果你的确想修理这件物品，请再输入一次这条命令。} {repair @weapon} {} 519
+#TRIGGER {^你现在没有充足的体力用来吸收实战的心得。} {yun heal} {} 519
+#TRIGGER {^店小二不耐烦道：没看见我这儿正忙着么？} {#wa 2000;buy @food} {zhunbei} 519
+#TRIGGER {(%x)~((%w) (%w)~)} {item=%1;#if %ismember(@item,@wupin) {eitem1=%2;eitem2=%3}} {wupin} 519
+#TRIGGER {^白无常用奇异的眼光盯著你，好像要看穿你的一切似的。} {#di} {} 519
+#TRIGGER {^  一颗(%x)~((%w) (%w)~)} {item=%1;#if %ismember(@item,@wupin) {eitem1=%2;eitem2=%3}} {wupin} 519
+#TRIGGER {^  一块(%x)~((%w) (%w)~)} {item=%1;#if %ismember(@item,@wupin) {eitem1=%2;eitem2=%3}} {wupin} 519
+#TRIGGER {^    这里(%x)的出口是 } {#ad huiqu 1} {zheli} 519
+#TRIGGER {^你到了长安，下了车。} {halt;#if %ismember(@go,cd) {goto chengdu;dazuo @dz};#if %ismember(@go,dl) {goto chengdu;dazuo @dz};#if %ismember(@go,wdj) {goto chengdu;dazuo @dz};#if %ismember(@go,dl0) {goto yangzhou;dazuo @dz};#if %ismember(@go,lx) {goto chengdu;dazuo @dz};#if %ismember(@go,cd0) {goto yangzhou;dazuo @dz};#if %ismember(@go,jz) {goto jingzhou;dazuo @dz};#if %ismember(@go,jz0) {goto yangzhou;dazuo @dz};#if %ismember(@go,km) {goto xiangyang;dazuo @dz};#if %ismember(@go,km0) {goto yangzhou;dazuo @dz};#if %ismember(@go,laz) {goto lanzhou;dazuo @dz};#if %ismember(@go,laz0) {goto yangzhou;dazuo @dz};#if %ismember(@go,yl) {goto yili;dazuo @dz};#if %ismember(@go,yl0) {goto yangzhou;dazuo @dz};#if %ismember(@go,xiyu) {goto yili;dazuo @dz};#if %ismember(@go,xiyu0) {goto yangzhou;dazuo @dz};#if %ismember(@go,wenxiyu) {goto chengdu;dazuo @dz};#if %ismember(@go,wenyz) {.wenca;#4 ask xiaoer about @name;s;#wa 2000;n;re .wenca;goto zhongzhou;yun regenerate;dazuo @dz};#if %ismember(@go,wenca) {.wenca;#4 ask xiaoer about @name;s;#wa 2000;s;#4 ask xiaoer about @name;n;#wa 2000;.wenca2;#4 ask xiao er about @name;.wenca3;yun regenerate;e;#wa 2000;w;#4 ask xiao er about @name;re .wenca3;#wa 2000;re .wenca2;#wa 2000;n;re .wenca;wenca2};#if %ismember(@go,ca) {kaishi}} {go} 519
+#TRIGGER {^你到了成都，下了车。} {halt;#if %ismember(@go,cd) {yun recover;kaishi};#if %ismember(@go,lx) {.lx;kaishi};#if %ismember(@go,dl) {goto dali;dazuo @dz};#if %ismember(@go,wdj) {goto dali;dazuo @dz};#if %ismember(@go,dl0) {goto changan;dazuo @dz};#if %ismember(@go,wenjz) {w;#4 ask xiao er about @name;e;wenjz2};#if %ismember(@go,wenkm) {w;#4 ask xiao er about @name;e;#wa 2000;.wenkm;w;#4 ask xiao fan about @name;e;re .wenkm;goto dali};#if %ismember(@go,wenxiyu) {#t+ tsjx;w;#4 ask xiao er about @name;e;#wa 2000;.wenxiyu4;#4 ask zhuo ma about @name;#wa 2000;re .wenxiyu4;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};cd0}} {go} 519
+#TRIGGER {^你到了衡阳，下了车。} {halt;#if %ismember(@go,fs) {goto foshan;dazuo @dz};#if %ismember(@go,fs0) {goto yangzhou;dazuo @dz}} {go} 519
+#TRIGGER {^你到了佛山，下了车。} {halt;#if %ismember(@go,fs) {kaishi}} {go} 519
+#TRIGGER {^你到了杭州，下了车。} {halt;#if %ismember(@go,hz) {kaishi};#if %ismember(@go,qz) {goto quanzhou;dazuo @dz};#if %ismember(@go,qz0) {goto yangzhou;dazuo @dz}} {go} 519
+#TRIGGER {^你到了泉州，下了车。} {halt;#if %ismember(@go,qz) {kaishi}} {go} 519
+#TRIGGER {^你到了荆州，下了车。} {halt;#if %ismember(@go,jz) {kaishi}} {go} 519
+#TRIGGER {^你到了开封，下了车。} {halt;#if %ismember(@go,kf) {kaishi};#if %ismember(@go,wenyz) {w;#4 ask xiao er about @name;e;goto luoyang}} {go} 519
+#TRIGGER {^你到了昆明，下了车。} {halt;#if %ismember(@go,km) {kaishi};#if %ismember(@go,wenjz) {e;#4 ask xiao er about @name;w;goto chengdu}} {go} 519
+#TRIGGER {^你到了兰州，下了车。} {halt;#if %ismember(@go,laz) {kaishi}} {go} 519
+#TRIGGER {^你到了洛阳，下了车。} {halt;#if %ismember(@go,ly) {kaishi};#if %ismember(@go,wg) {goto wugong;dazuo @dz};#if %ismember(@go,wg0) {goto yangzhou;dazuo @dz};#if %ismember(@go,zz) {goto zhongzhou;dazuo @dz};#if %ismember(@go,zz0) {goto yangzhou;dazuo @dz};#if %ismember(@go,zn) {goto wugong;dazuo @dz};#if %ismember(@go,zn0) {goto yangzhou;dazuo @dz};#if %ismember(@go,wenyz) {w;#4 ask xiao er about @name;e;goto changan;yun regenerate;dazuo @dz};#if %ismember(@go,sad) {goto wugong;dazuo @dz}} {go} 519
+#TRIGGER {^你到了南阳，下了车。} {halt;#if %ismember(@go,ss) {kaishi};#if %ismember(@go,wenyz) {w;#4 ask xiao er about @name;e;#wa 2000;.wenyz4;#4 ask xiao fan about @name;re .wenyz4;#t+ square;goto yangzhou;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8}}} {go} 519
+#TRIGGER {^你到了苏州，下了车。} {halt;#if %ismember(@go,sz) {kaishi};#if %ismember(@go,wenzz) {w;#4 ask xiao er about @name;e;wenzz2}} {go} 519
+#TRIGGER {^你到了大理，下了车。} {halt;#if %ismember(@go,dl) {kaishi};#if %ismember(@go,wdj) {.wdj;#wa 3000;kaishi};#if %ismember(@go,wenkm) {.wendl;#4 ask xiao er about @name;re .wendl;wenkm2}} {go} 519
+#TRIGGER {^你到了武功镇，下了车。} {halt;#if %ismember(@go,wg) {kaishi};#if %ismember(@go,zn) {kaishi};#if %ismember(@go,sad) {yang}} {go} 519
+#TRIGGER {^你到了中州，下了车。} {halt;#if %ismember(@go,zz) {kaishi};#if %ismember(@go,wenyz) {w;#4 ask xiao er about @name;e;yun regenerate;goto nanyang;dazuo @dz}} {go} 519
+#TRIGGER {^  一盒(%x)~((%w) (%w)~)} {item=%1;#if %ismember(@item,@wupin) {eitem1=%2;eitem2=%3}} {wupin} 519
+#TRIGGER {^你运功完毕，深深吸了口气，站了起来。} {#wa 2000;yun heal} {dz} 519
+#TRIGGER {^你现在精不够，无法控制内息的流动！} {#ad meijing 1;#if @meijing>2 {#va meijing 0;eat san;#wa 3000;yun regenerate;dazuo 500} {#wa 3000;yun regenerate;dazuo 500}} {dz} 519
+#TRIGGER {^你现在的气太少了，无法产生内息运行全身经脉。} {#ad qi 1;#wa 2000;#if @qi>3 {yun heal;#va qi 0} {dazuo 500}} {dz} 519
+#TRIGGER {^你到了伊犁，下了车。} {halt;#if %ismember(@go,yl) {kaishi};#if %ismember(@go,xiyu) {kaishi};#if %ismember(@go,wenca) {s;se;#4 ask shangren about @name;wu;n;#wa 2000;nu;#4 ask jiuyi daoren about @name;sd;s;ed;nw;n;yun regenerate;goto changan;dazuo @dz}} {go} 519
+#TRIGGER {^这里没有这个人。} {#if @number=2 {l};#t- zhaoren;#ad route -1;#va find 2;#va huiqu 0;#t- zheli;#t+ dazuo;#if @number=1 {#10 bac} {#wa 2000;#10 bac}} {back} 519
+#TRIGGER {^你的内功还没有达到那个境界！} {#if (%ismember(@go,xy)&@level=1) {yun recover};#if (%ismember(@go,hs)) {yun recover;yun regenerate};#if %ismember(@go@route,liz4) {open door};#if @suc=3 {#t- zhaoren} {#t+ zhaoren};#if @find=2 {#ma;#show @go@route;#pa aaaaa};#if @find=1 {#t- dazuo;#t- zhaoren;ba};#if (@find=2&@suc=1&@dog<1) {#ad route 1;#if @route>@ljs {#va route 0;#wa 500;@go@route} {#wa 500;@dian@go@route}};#if (@find=2&@suc=2&@dog<1) {#t- zheli;#ad route 1;#if @route>@ljs {#va route 0;#va area 1} {#wa 500;@dian@go@route};#if (@route=0&@huishu<15) {#ad huishu 1;#ad route 1;#wa 2000;@dian@go@route};#if (@route=0&@huishu>14) {#if @trygo=0 {#va suc 5};#if @trygo=1 {#va suc 9;#sta 在@place找不到@name.};#va huishu 1;#wa 500;@go@route}};#if (@find=2&@suc=4&@dog<1) {#if @route<@ljs {#add route 1;#wa 500;@dian@go@route} {#va route 0;#wa 500;@go@route}};#if @suc=3 {#if @route<@ljs {#ad route 1;#wa 500;@dian@go@route} {#va route 0;#wa 500;@wen@go}}} {dazuo} 519
+#TRIGGER {^这里不准战斗。} {#t- zhaoren;#ad route -1;#va find 2;#va huiqu 0;#t- zheli;#t+ dazuo;#10 bac} {back} 519
+#TRIGGER {^你感觉自己的实战经验还有欠缺，还无法领会更高境界的武学修养。} {sf} {} 519
+#TRIGGER {^  秃尾巴狼王~(} {#if %ismember(@go,wdj) {#if (@route>6&@route<13) {#add dog 1}}} {wolf} 519
+#TRIGGER {^  白眼狼~(} {#if %ismember(@go,wdj) {#if (@route>6&@route<13) {#add dog 1}}} {wolf} 519
+#TRIGGER {^  母狼~(} {#if %ismember(@go,wdj) {#if (@route>6&@route<13) {#add dog 1}}} {wolf} 519
+#TRIGGER {^  公狼~(} {#if %ismember(@go,wdj) {#if (@route>6&@route<13) {#add dog 1}}} {wolf} 519
+#TRIGGER {^  饿狼~(} {#if %ismember(@go,wdj) {#if (@route>6&@route<13) {#add dog 1}}} {wolf} 519
+#TRIGGER {^~( 你上一个动作还没有完成，不能施用外功。)} {#wa 2000;#if @level=1 {shot @ena3 @ena4 with arrow} {perform @perf}} {attack} 519
+#TRIGGER {^~( 你似乎十分疲惫，看来需要好好休息了。)} {yun recover} {huifu} 519
+#TRIGGER {^~( 你已经一副头重脚轻的模样，正在勉力支撑著不倒下去。)} {yun recover} {huifu} 519
+#TRIGGER {^~( 你已经陷入半昏迷状态，随时都可能摔倒晕去。)} {#va suc 10;#sta 遭到敌人重创，需回门派疗伤！;#con} {danger} 519
+#TRIGGER {^慢慢地你终于又有了知觉....} {#va min 0;#save;quit} {} 519
+#TRIGGER {^桃花江东岸} {#if @route=6 {yell boat}} {} 519
+#TRIGGER {^桃花江西岸} {#if @route=6 {dazuo 1}} {wb} 519
+#TRIGGER {^武敦儒喝道：什么人？郭府门前可由不得你放肆！} {#t- zhaoren;#ad route -1;#va find 2;#va huiqu 0;#t- zheli;#t+ dazuo;#10 bac} {back} 519
+#TRIGGER {^你要向谁求教？} {#va skill_num -1} {} 519
+#TRIGGER {^你现在正忙着做其他事，不能退出游戏！} {#va min 0} {} 519
+#TRIGGER {^虚明扑在地上挣扎了几下，腿一伸，} {#va xuming 0;#if (@xuming=0&@xutong=0) {#t+ dazuo;dazuo 1}} {} 519
+#TRIGGER {^虚通扑在地上挣扎了几下，腿一伸，} {#va xutong 0;#if (@xuming=0&@xutong=0) {#t+ dazuo;dazuo 1}} {} 519
+#TRIGGER {^店小二不耐烦道：没看见我这儿正忙着么？} {#wa 2000;buy @food} {zhunbei2} 519
+#TRIGGER {^(%x)狼扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！} {#add dog -1;#if (@dog<1&@find=2) {#t+ dazuo;#wa 2000;dazuo 1}} {wolf} 519
+#TRIGGER {^秃尾巴狼王扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！} {#add dog -1;#if (@dog<1&@find=2) {#t+ dazuo;#wa 2000;dazuo 1}} {wolf} 519
+#TRIGGER {^你费力的走在蜀道上，累的气喘吁吁。} {#t- sudao;yun recover;#wa 5000;#t+ sudao} {sudao} 519
+#TRIGGER {^看起来(%x)想杀死你！} {ren=%1;#if %ismember(@ren,@name) {heng @ena3 @ena4} {#va number 2}} {} 548
+#TRIGGER {^你现在精不够，无法控制内息的流动！} {#if @area>2 {get yangjing dan from budai;eat yangjing dan;#wa 2000;yun regenerate;dazuo @xydz}} {xiyudz} 519
+#TRIGGER {^你累得半死，终於走出了沙漠。} {#ad route 1;#if @route=50 {#t- zhaoren;#t- shamokill;#t- shenghukill;nw;nw;n;dazuo 1} {dazuo 100}} {} 519
+#TRIGGER {^你到了北京，下了车。} {halt;#if %ismember(@go,liz) {goto lingzhou;dazuo @dz};#if %ismember(@go,liz0) {goto yangzhou;dazuo @dz};#if %ismember(@go,gw) {goto guanwai;dazuo @dz};#if %ismember(@go,gw0) {goto yangzhou;dazuo @dz};#if %ismember(@go,bj) {kaishi};#if %ismember(@go,wenss) {.wenss2;#4 ask xiao er about @name;re .wenss2;yun regenerate;#if %ismember(@place,@place1) {#va suc 8};#if %ismember(@place,很远的地方) {#va suc 8};bj0};#if %ismember(@go,wenti) {e;e;s;w;#save;#wa 2000;#load dumbfree.mud;wen1}} {go} 519
+#TRIGGER {^雾气散开，你的眼前豁然开朗起来。} {#ad route 1;tuna 10000000} {} 519
+#TRIGGER {^大沙漠} {hp;#va tsjx 0;#va min 0;#va area 4;#t- zhaoren;#t- back;#t- shenghukill;#t+ shamokill;yun regenerate;yun recover;#if @needfood=1 {#va needfood 0;food};#t- dz;#t+ xiyudz;#va xydz 30;dazuo @xydz} {} 519
+#TRIGGER {^沙漠绿洲} {#va min 0;#ad route 1;food;yun regenerate;yun recover;#t- dz;#t+ xiyudz;#va xydz 10;dazuo @xydz} {} 519
+#TRIGGER {^南疆沙漠} {hp;#va min 0;#va area 3;#t- zhaoren;#t- back;#t- shenghukill;#t+ shamokill;yun regenerate;yun recover;#if @needfood=1 {#va needfood 0;food};#t- dz;#t+ xiyudz;#va xydz 10;dazuo @xydz} {} 519
+#TRIGGER {^戈壁滩} {#va area 2;#ad gbt 1;#t- zhaoren;#t- back;#t- shamokill;#t+ shenghukill;tuna 1000000} {} 519
+#TRIGGER {^你现在的气太少了，无法产生内息运行全身经脉。} {#if @area>2 {#wa 5000;yun recover;dazuo 100}} {xiyudz} 519
+#TRIGGER {^你的内力不够。} {#if @area>2 {dazuo 200}} {xiyudz} 519
+#TRIGGER {^你所使用的外功中没有这种功能。} {summon @weapon;wield @weapon;#wa 1000;perform @perf} {} 519
+#TRIGGER {^圣湖} {#va min 0;#va area 2;#t- zhaoren;#t- back;#t- dz;#t- shamokill;#t+ shenghukill;tuna 1000000} {} 519
+#TRIGGER {^你现在精不足，无法修行精力！} {#if @find=1 {kill @ena3 @ena4;pfm} {#if (@route=9&@find=2) {e};#if (@route=10&@find=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=20&@find=2) {s};#if (@route=21&@find=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=24&@find=2) {casegbt};#if (@route=25&@find=2&@suc=1) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=25&@find=2&@suc=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=25&@find=2&@suc=4) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=37&@find=2) {casegbt2};#if (%ismember(@go,xiyu)&@route=25&@suc=3) {#va route 37;e};#if (@route=38&@find=2) {#ad route -1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1}}} {tuna} 519
+#TRIGGER {^  少林派第四十一代弟子「知客僧」虚明~(} {#if (@find=2&@route<11) {#t- dazuo;#va min -3;kill xu ming;#va xuming 1}} {heshang} 519
+#TRIGGER {^  少林派第四十一代弟子「知客僧」虚通~(} {#if (@find=2&@route<11) {#t- dazuo;#va min -3;kill xu tong;#va xutong 1}} {heshang} 519
+#TRIGGER {^你现在的(%x)~((%*)~)中并没有这种外功。} {summon @weapon;wield @weapon;perform @perf} {} 519
+#TRIGGER {^说时迟，那时快！突然转出(%x)个人，一起冲上前来，看来是早有防备！} {#if @find=1 {#va number 2;#va con 2;#va find 2;#con}} {} 519
+#TRIGGER {^深山} {#if %ismember(@go,xiyu) {#if @route=37 {#if %ismember(@go,xiyu) {#ad route 1;#t+ tsjx;tuna 1000000} {.wenxiyu3;yun regenerate;goto changan;dazuo @dz}}}} {} 519
+#TRIGGER {^这里没有这个人。} {#va find 2;dazuo @xydz} {shamokill} 519
+#TRIGGER {^这里没有这个人。} {#va find 2;tuna 1000000} {shenghukill} 519
+#TRIGGER {^(%x)狂叫一声，狂吐几口鲜血} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^你还是有空了再和(%x)谈这些问题吧！} {#wa 2000;#if @max_jing<92 {get yangjing dan from budai;eat yangjing dan;hp};#if @max_jing<70 {eat lingyao;hp};quest @zhangmen} {} 519
+#TRIGGER {^你到了襄阳，下了车。} {halt;#if %ismember(@go,xy) {yun recover;kaishi};#if %ismember(@go,km) {goto kunming;dazuo @dz};#if %ismember(@go,km0) {goto changan;dazuo @dz}} {go} 519
+#TRIGGER {^秃尾巴狼王慢慢睁开眼睛，清醒了过来。} {#add dog -1;#if (@dog<1&@find=2) {#t+ dazuo;#wa 2000;dazuo 1}} {wolf} 519
+#TRIGGER {(%x)狼慢慢睁开眼睛，清醒了过来。} {#add dog -1;#if (@dog<1&@find=2) {#t+ dazuo;#wa 2000;dazuo 1}} {wolf} 519
+#TRIGGER {^你现在正忙着呢。} {#if @area>2 {#wa 2000;dazuo @xydz}} {xiyudz} 519
+#TRIGGER {^战斗中不能练内功，会走火入魔。} {#if @area>2 {#wa 2000;dazuo @xydz}} {xiyudz} 519
+#TRIGGER {^练(%x)必须空手。} {unwield @weapon;unwield @weapon2} {} 519
+#TRIGGER {^你的潜能不够*这么多次了。} {#t- xuexibusy;#va skill_num -1} {} 519
+#TRIGGER {^你的动作还没有完成，不能移动。} {hp;#wa 3000;u} {fangqiexp} 548
+#TRIGGER {^这个方向没有出路。} {hp;#wa 2000;#if @exp>@fangqi {fangqi exp;u} {#t- fangqiexp;yun heal}} {fangqiexp} 548
+#TRIGGER {^对方都已经这样了，用不着这么费力吧？} {#wa 2000;perform @perf} {} 519
+#TRIGGER {^忽然浑身一阵剧痛，你*了！} {#va heal 2} {poison} 519
+#TRIGGER {^忽然一股寒流夹着一阵灼热涌上心来，你中的生死符发作了！} {#va heal 2} {poison} 519
+#TRIGGER {^你见滔天热浪扑面涌来，只觉眼前一片通红，已被卷入火浪，毒焰席卷全身} {#va heal 2} {poison} 519
+#TRIGGER {^  (%x)的尸体~(Corpse~)} {xcorpse=%1;#if %ismember(@xcorpse,@name) {#va suc 1;get head from corpse;cut head from corpse 2;#status  目前是第@questnum个quest。@place的@name已被杀死。;#wa 5000;backyz}} {} 519
+#TRIGGER {^你现在真气不够，} {#t- nobusy;#if @heal=2 {yun dispel} {areacase}} {nobusy} 548
+#TRIGGER {^你正在和人家生死相扑呢。} {#if @level=1 {shejian}} {shejian} 519
+#TRIGGER {^你看了看晕倒在地的*，冷笑一声，} {#if @level=1 {shejian}} {shejian} 519
+#TRIGGER {^铁匠不耐烦道：没看见我这儿正忙着么？} {#wa 2000;buy 100 arrow from tie jiang} {buyarrow} 519
+#TRIGGER {^(%x)扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！} {head=%1;#if %ismember(@head,@name) {cut head from corpse;cut head from corpse 2;get head;#va suc 1;#t- zhaoren;#va have 2;#va find 2;#t- back;get silver from corpse;#if @heal=1 {lian dodge 5};hp;#status  目前是第@questnum个quest。@place的@name已被杀死。;#va huishu 1;#if @number=2 {#va number 1;#va con 1;#con} {#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 2000;backyz} {perform @perf}}}} {} 519
+#TRIGGER {^你*不*，难以*「*」。} {eat xueqi dan;eat huoqi dan;eat guiyuan dan;#wa 5000;perform @perf} {} 519
+#TRIGGER {^只见你被*一掌拍中，紧接着身子一颤，} {#va heal 2} {poison} 519
+#TRIGGER {^耐久度：(%d)~%} {naijiu=%1} {} 519
+#TRIGGER {^你的如鬼似魅施展完毕，身形一顿，又慢了下来。} {special agile} {} 519
+#TRIGGER {^你拿出(%x)的人头(%*)给} {rentou=%1;#va quit 2;#if @heal=2 {yun dispel} {#if %ismember(@rentou,@name) {#t- xiyudz;#t+ dz;#if @exp>@fangqi {yun regenerate;#t+ fangqiexp;fangqi exp;#wa 5000;u} {#if @tihui>100 {yun recover;jiqu} {sf}}} {drop head;give head to @zhangmen}}} {end} 519
+#TRIGGER {^你施展完天神降世，松了一口气。} {special power} {} 519
+#TRIGGER {^你终于飞到了桃花岛，白雕落了下来。} {s;s;#if @suc=1 {give head to @zhangmen};#if @suc=5 {quest @zhangmen};#if @suc=7 {give head to huang;quest @zhangmen}} {} 519
+#TRIGGER {^你终于飞到了中原，白雕落了下来。} {out;s;cross;re .gyz} {} 519
+#TRIGGER {密码错误！} {#ad wropass 1;#show contimes=@wropass;#if @wropass>10 {#va wropass 0;#va tuichu 1;#va pass @pass1;#save}} {} 519
+#TRIGGER {^(*)和你一碰面，二话不说就打了起来！} {#t- block;#if @level=1 {shot @ena3 @ena4 with arrow} {perform @perf}} {block} 519
+#TRIGGER {^(%x)一眼瞥见你，「哼」的一声冲了过来！} {#t- block;#if @level=1 {shot @ena3 @ena4 with arrow} {perform @perf}} {block} 519
+#TRIGGER {^(%x)对著你一声大喝，蓦地直冲过来！} {#t- block;#if @level=1 {shot @ena3 @ena4 with arrow} {perform @perf}} {block} 519
+#TRIGGER {^(%x)和你仇人相见分外眼红，立刻打了起来！} {#t- block;#if @level=1 {shot @ena3 @ena4 with arrow} {perform @perf}} {block} 519
+#TRIGGER {^你一招「蛇困愁城」，手中宝剑边的诡异无比，} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^^(%x)目前正自顾不暇，放胆攻击吧。} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^只见你没精打采的挥袖卷出，拍出一掌，正是} {#wa 3000;perform @perf} {attack} 519
+#TRIGGER {^忽然你觉得四肢百赅是似乎有无数小虫在游走，麻痒难忍！} {#va heal 2} {poison} 519
+#TRIGGER {^你只觉全身灼热无比，身体上燃起的碧焰直焚心髓。} {#va heal 2} {poison} 519
+#TRIGGER {^~( 你摇头晃脑、歪歪斜斜地站都站不稳，眼看就要倒在地上。)} {yun recover} {huifu} 519
+#TRIGGER {TICK IN 5 SECONDS.} {#add rebootmin 1;#show 等待数据备份中... @rebootmin;#if @rebootmin>20 {#va rebootmin 0;#va reboot 1;#save;#t- reboot;#t+ time;yun heal}} {reboot} 548
+#TRIGGER {^你吃下一颗*神农丹，} {#va danmin 0} {} 519
+#TRIGGER {TICK IN 5 SECONDS.} {#t- time;#add min 1;#add danmin 1;#if (@min>1&@quit=1) {#va min 0;#if @suc=1 {#va suc 7};backyz};#if (@min>2&@quit=2) {#va min 0;#if @suc=1 {#va suc 7};backyz};#if @danmin>10 {#va danmin 0;#va buydan 1};#wa 5000;#wa 5000;#t+ time} {time} 519
+#TRIGGER {^你现在精神不够好，无法使用*攻击对手。} {#wa 2000;yun regenerate;shot @ena3 @ena4 with arrow} {} 519
+#TRIGGER {^你没有那么多的*箭。} {#va arrow 1} {buyarrow} 519
+#TRIGGER {^你从铁匠那里买下了*箭} {#va arrow 2;#T+ square;#wa 2000;n;w;w} {buyarrow} 519
+#TRIGGER {^你连连进击，眼看便要得手，接连数招，让(%x)已} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^(%x)晃了两下，忽然跌倒。} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^(%x)身负重伤，已然不敌，} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^(%x)摇摇欲坠，眼看就要跌倒} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^(%x)再退一步，却慢了小许，} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^只见(%x)深吸一口气，} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^在你一阵狂攻之下，(%x)只有招架之功，} {name1=%1;#if %begins(@name1,@name) {#sta @name又逃跑了。;#va suc 3;#va find 2;#va kill 2;#t- zhaoren;#t- back;#t+ dazuo;#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}} {tao} 519
+#TRIGGER {^你对著(%x)喝道：} {xname=%1;#if %ismember(@name,@xname) {#if @level=1 {shejian}}} {shejian} 519
+#TRIGGER {^获得(%x)需要消耗你(%x)点门派贡献，你是否愿意} {wupin=%1;gongxian=%2;#if @questnum<90 {#va yao 2};#if @questnum=100 {#va yao 2};#if @questnum=200 {#va yao 2};#if @questnum=300 {#va yao 2};#if @questnum=400 {#va yao 2};#if @questnum=500 {#va yao 2};#if @questnum=600 {#va yao 1};#if @questnum=700 {#va yao 2};#if @questnum=800 {#va yao 1};#if @questnum=900 {#va yao 2};#if @questnum>900 {#va yao 1};#if %begins(@wupin,八仙石) {#va yao 1};#if %begins(@wupin,昆仑石) {#va yao 1};#if %begins(@wupin,镇龙石) {#va yao 2};#if %begins(@wupin,邯郸石) {#va yao 2};#if %begins(@wupin,碧血石) {#va yao 2};#if %begins(@wupin,钛金竹) {#va yao 2};#if %begins(@wupin,紫金矿) {#va yao 2};#if %begins(@wupin,紫宵觖) {#va yao 2};#if %begins(@wupin,乌金矿) {#va yao 2};#if %begins(@wupin,天罡碳) {#va yao 1};#if %begins(@wupin,青龙牙) {#va yao 1};#if %begins(@wupin,息壤) {#va yao 1};#if %begins(@wupin,天香玉露) {#va yao 1};#if %begins(@wupin,如意通天镢) {#va yao 1};#if %begins(@wupin,地脉血泉) {#va yao 1};#if %begins(@wupin,青龍图腾) {#va yao 1};#if %begins(@wupin,窫窳图腾) {#va yao 1};#if %begins(@wupin,赤蛇图腾) {#va yao 1};#if %begins(@wupin,五彩玲珑珠) {#va yao 1};#if %begins(@wupin,幻地神珠) {#va yao 1};#if %begins(@wupin,千年) {#va yao 1};#if %begins(@wupin,活骨灵药) {#va yao 1};#if %begins(@wupin,昊天) {#va yao 1};#if %begins(@wupin,养生丹) {#va yao 2};#if %begins(@wupin,百年) {#va yao 2};#if %begins(@wupin,锤谱残篇) {#va yao 2};#if %begins(@wupin,九宫器法残篇) {#va yao 2};#if %begins(@wupin,棍) {#va yao 2};#if %begins(@wupin,杖) {#va yao 2};#if (%pos(舍利,@wupin)>0) {#va yao 2};#if (%pos(菩提,@wupin)>0) {#va yao 2};#if %ismember(@gongxian,一) {#va yao 1}} {奖励物品} 519
+#TRIGGER {^你现在的精神不太好，没法向别人打听。} {yun regenerate} {} 519
+#TRIGGER {^你一头从(%x)上面栽了下来！} {zuoqi=%1;#va qima 0} {zuoqi} 519
+#TRIGGER {(%x)~((%w) (%w)~)} {xzuoqi=%1;#if %ismember(@xzuoqi,@zuoqi) {ezuoqi1=%2;ezuoqi2=%3} } {zuoqi} 519
+#TRIGGER {(%x)~((%w)~)} {xzuoqi=%1;#if %ismember(@xzuoqi,@zuoqi) {ezuoqi=%2}} {zuoqi} 519
+#TRIGGER {^你没有座骑！} {quit} {zuoqi} 519
+#TRIGGER {^你从店小二那里买下了一只(%x)。} {#t- list;zuoqi=%1;i;l;#wa 2000;drop @ezuoqi;drop @ezuoqi1 @ezuoqi2;qi @ezuoqi;qi @ezuoqi1 @ezuoqi2;#if @mapnum>0 {#add mapnum -1};#if @suc=1 {#va suc 7};#if @level=1 {w;s;w;qu 10 gold;#t- square;#wa 5000;e;s;e;e;s;buy long bow;buy 50 arrow} {backyz}} {zuoqi} 519
+#TRIGGER {^你连线进入*。} {#ts 60;#t- zhunbei2;wield @weapon;remove all;wear jia;#t- square;#t- question;#t- fangqi;w;#if @breakup=0 {s;e;s;buy sleepbag;#wa 2000;n;e;n;buy dan;#wa 3000;#wa 3000;buy dan;#wa 3000;#wa 2000;buy yao;#wa 2000;#wa 2000;s;w;w;n;w;qu 1 gold;#wa 5000;e;n;e;zhunbei} {w;qu 1 gold;#wa 5000;e;n;e;zhunbei}} {} 519
+#TRIGGER {^请敲回车键［ＲＥＴＵＲＮ］．．．．．} {ok} {} 519
+#TRIGGER {^你得先把*弓拿*在手中才行。} {hand gong;shot @ena3 @ena4 with arrow} {} 519
+#TRIGGER {^然而你今天太累了，无法再进行任何学习了。} {#va skill_num -1} {} 519
+#TRIGGER {^你必须先把木门打开} {open door} {} 519
+#TRIGGER {*驹~((%w) (%w)~)} {horse1=%1;horse2=%2;buy @horse1 @horse2} {list} 548
+#TRIGGER {*驹~((%w)~)} {horse=%1;buy @horse} {list} 548
+#TRIGGER {*马~((%w) (%w)~)} {horse1=%1;horse2=%2;buy @horse1 @horse2} {list} 548
+#TRIGGER {*马~((%w)~)} {horse=%1;buy @horse} {list} 548
+#TRIGGER {^店小二目前出售以下物品：} {#show 暂未使用的触发} {zuoqi} 519
+#TRIGGER {^你已经有座骑了！} {#t- ride;home} {ride} 519
+#TRIGGER {^这里没有这样东西可骑。} {l} {ride} 519
+#TRIGGER {^你飞身跃上*，身手很是矫捷。} {#t+ ride} {} 519
+#TRIGGER {^天山脚下} {#if %ismember(@go,xiyu) {#va tsjx 1;#if (@suc=1&@route=38) {#va route 50;nw;n;dazuo 1;#va tsjx 0};#if (@suc=3&@route=38) {#va route 50;nw;n;dazuo 1;#va tsjx 0};#if (@suc=2&@route=38) {#t- zhaoren;#t- shamokill;#t- shenghukill;dazuo 1;#va tsjx 0};#if (@suc=4&@route=38) {#t- zhaoren;#t- shamokill;#t- shenghukill;dazuo 1;#va tsjx 0}}} {tsjx} 519
+#TRIGGER {^你运功完毕，深深吸了口气，站了起来。} {#if @suc=1 {#t+ nobusy;perform @perf} {#if @area>2 {#if @route=39 {nw};#if @route=49 {#t- tsjx;rideto xingxiu;.ylmj;#wa 1000;#va route 50;#t- zhaoren;#t- shamokill;#t- shenghukill;dazuo 1};#if @route=19 {#t- tsjx;rideto xingxiu;.ylmj;#wa 1000;#va route 50;#t- zhaoren;#t- shamokill;#t- shenghukill;dazuo 1};#if @route=41 {w};#if @route=11 {w};#if @route=40 {#ad route 1;ne;se;w};#if (@route=42&@find=2) {#va min 0;#va area 1;#t+ zhaoren;#t+ back;#t+ nondesert;#t- shenghukill;#t- shamokill;#ad route -1;dazuo 1};#if (@route=12&@find=2) {#va min 0;#va area 1;#t+ zhaoren;#t+ back;#t+ nondesert;#t- shenghukill;#t- shamokill;#ad route -1;dazuo 1}}}} {xiyudz} 519
+#TRIGGER {^你现在精神不济，难以抓住实战体会中的秘要！} {#wa 5000;yun regenerate;jiqu} {} 519
+#TRIGGER {^只见你双掌交叠，云贯而出} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你又饥又渴} {#di} {} 519
+#TRIGGER {*鹿~((%w) (%w)~)} {horse1=%1;horse2=%2;buy @horse1 @horse2} {list} 548
+#TRIGGER {*鹿~((%w)~)} {horse=%1;buy @horse} {list} 548
+#TRIGGER {^北丑说道：好了} {#va suc 7} {} 519
+#TRIGGER {^  英雄壁~(heros wall~)} {#t+ wrongway;#t- questbusy;#t- buyfood;#t- xuexi;#t- xuexibusy;#case @suc {case1} {case2} {case3} {case4} {case5} {case6} {case7} {case8} {case9} {case10} {case11}} {square} 519
+#TRIGGER {^北丑嘿嘿奸笑两声，对你小声道} {#t+ quqian;give 10 gold to chou} {wenchou} 519
+#TRIGGER {^北丑看着你，皱了皱眉头，说道：“我从没听说过} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑说道：“嗯……这我可不清楚，你最好} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑耸了耸肩，很抱歉地说：“对不起，无可奉告。”} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑想了一会儿，说道：“对不起，你问的事} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑摇摇头，说道：“没听说过，没听说过。”} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑疑惑地看着你，摇了摇头。} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑在你的耳边悄声说道：据可靠消息，这个人刚才在(%x)。} {xplace=%1;#va suc 2;#va trygo 1;#va go_num 1;#t- square;w;s;trygo} {wenchou} 519
+#TRIGGER {^北丑睁大眼睛望着你，显然不知道你在说什么。} {#t- wenchou1;#va suc 4;#va mapnum 0;#t+ square;w;s} {wenchou1} 548
+#TRIGGER {^北丑皱了皱眉头，对你摇摇头道：} {#t+ quqian;give 10 silver to chou} {wenchou} 519
+#TRIGGER {^你只觉得伤口一阵灼伤，随即便跟着麻木起来。} {#va heal 2} {poison} 517
+#TRIGGER {^你只觉丹田处有如火焚，便似有千万钢针一齐扎入体内。} {#va heal 2} {poison} 519
+#TRIGGER {^突然你只觉丹田忽然一热，随即变得冷冰冰，不禁} {#va heal 2} {poison} 517
+#TRIGGER {^你身上没有这样东西。} {#t- quqian;quqian} {quqian} 548
+#TRIGGER {^你没有那么多的白银。} {#t- quqian;qusilver} {quqian} 548
+#TRIGGER {^你没有那么多的黄金。} {#t- quqian;qugold} {quqian} 548
+#TRIGGER {(%x)~((%w) (%w)~)} {rna=%1;ena1=%2;ena2=%3;#if %ismember(@rna,@name) {#va ena3 @ena1;#va ena4 @ena2;#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。};#t+ zheli;#t- zhaoren}} {zhaoren} 519
+#TRIGGER {(%x)~((%w) (%w)~)} {rna=%1;ena1=%2;ena2=%3;#if %ismember(@rna,@name) {halt;#va ena3 @ena1;#va ena4 @ena2;#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。}}} {shenghukill} 519
+#TRIGGER {(%x)~((%w) (%w)~)} {rna=%1;ena1=%2;ena2=%3;#if %ismember(@rna,@name) {halt;#va ena3 @ena1;#va ena4 @ena2;#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。};kill @ena3 @ena4;pfm}} {shamokill} 519
+#TRIGGER {(%x)离开。} {ren=%1;#if %begins(@ren,@name) {#va have 1;#t+ kill;#va huishu 1;#va suc 2;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#st @name就在@place,现在第@huishu次寻找。}}} {zhaoren} 519
+#TRIGGER {(%x)正坐在地下} {rna=%1;ena1=%2;ena2=%3;#if %begins(@rna,@name) {#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。};#t+ zheli;#t- zhaoren}} {zhaoren} 519
+#TRIGGER {(%x)正坐在地下} {rna=%1;ena1=%2;ena2=%3;#if %begins(@rna,@name) {halt;#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。};kill @ena3 @ena4;pfm}} {shamokill} 519
+#TRIGGER {(%x)正坐在地下} {rna=%1;ena1=%2;ena2=%3;#if %begins(@rna,@name) {halt;#va find 1;#va have 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va huishu 1;#va suc 2;#st @name就在@place,现在第@huishu次寻找。}}} {shenghukill} 519
+#TRIGGER {(%x)走了过来。} {ren=%1;#if %begins(@ren,@name) {#va have 1;#t+ kill;#va huishu 1;#if @trygo=1 {#va trygo 0;#va huishu 1;#st @name就在@place,现在第@huishu次寻找。};#if @suc=4 {#va suc 2;#st @name就在@place,现在第@huishu次寻找。}}} {zhaoren} 519
+#TRIGGER {^你向(%x)打听有关} {newsman=%1;#if %ismember(@newsman,北丑) {#t- wentao;#t+ wenchou1} {#t- wenchou1;#t+ wentao}} {} 519
+#TRIGGER {【 经 验 】(%s)(%d)} {exp=%2;#t- hp} {hp} 548
+#TRIGGER {【 饮 水 】(%s)(%d)} {yinshui=%2;#if @yinshui<300 {#va needfood 1;#va eat 1}} {hp} 548
+#TRIGGER {【 体 会 】(%s)(%d)} {tihui=%2} {hp} 548
+#TRIGGER {【 食 物 】(%s)(%d)} {shiwu=%2;#if @shiwu<300 {#va needfood 1;#va eat 1}} {hp} 548
+#TRIGGER {【 潜 能 】(%s)(%d)} {qn=%2} {hp} 548
+#TRIGGER {【 气 血 】(%s)(%d)} {qixue=%2} {hp} 548
+#TRIGGER {【 内 力 】(%s)(%d)} {nl=%2} {hp} 548
+#TRIGGER {^你目前的状态属性如下：} {#t+ hp} {} 519
+#TRIGGER {^你饿得头晕眼花，渴得喉咙冒烟，看来要赶快找点吃喝的东西了。} {food} {} 519
+#TRIGGER {^你见招式变换莫测，只是微微一愣，已被} {#va heal 2} {poison} 517
+#TRIGGER {^你剑招大开大阖，看似杂乱无章，但招招皆} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你随手一剑指向} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你反手横剑刺向} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你今天太累了，结果什么也没有研究成。} {#va skill_num -1} {} 519
+#TRIGGER {^这个方向没有出路。} {#ad wrongway 1;#if @wrongway>9 {#va wrongway 0;#ig;#wa 5000;#ig;backyz}} {wrongway} 548
+#TRIGGER {^你现在没有力气战斗了。} {#va suc 10;#sta 遭到敌人重创，需回门派疗伤！;#con} {danger} 519
+#TRIGGER {^重新连线完毕。} {#t+ wrongway;#if @heal=2 {yun dispel} {#if @suc=10 {backyz} {#if @qima=0 {#va qima 1;l};#t- wentao;#t- dz;#if @area=1 {#t- shamokill;#t- shenghukill};#if @area=2 {#t- shamokill};#if area>2 {#t- shenghukill};#if %begins(@go,yz) {#t- square};#if @tuichu=1 {#va tuichu 2;#wa 4000;qi @ezuoqi;qi @ezuoqi1 @ezuoqi2;#if @suc=1 {#va suc 7};backyz} {#if @con=2 {#va con 1;kill @ena3 @ena4;pfm} {#t+ nobusy;#if @level=1 {#wa 4000;backyz} {perform @perf}}}}}} {} 519
+#TRIGGER {^你随意挥洒手中的} {#wa 4000;#va min 0;perform @perf} {attack} 519
+#TRIGGER {【 精 气 】(%s)(%d)~/(%s)(%d)(%s)~((%s)(%d)} {jingqi=%2;max_jing=%7} {hp} 548
+#TRIGGER {^只听你惨叫一声，被} {#va heal 2} {poison} 519
+#TRIGGER {^你只觉蟾蛊毒攻心，头晕目眩，一阵说不出的恶心。} {#va heal 2} {poison} 517
+#TRIGGER {^你闪避不及，登被*，伤口竟渗出黑血，隐隐发着磷光。} {#va heal 2} {poison} 519
+#TRIGGER {【 精 气 】(%s)(%d)~/(%s)(%d)(%s)~((%d)} {jingqi=%2;max_jing=%6} {hp} 548
+#TRIGGER {^你上一个动作还没有完成！} {#wa 500;backyz} {questbusy} 519
+#TRIGGER {^你现在还年轻，以后再练吧！} {#if @find=1 {kill @ena3 @ena4;pfm} {#if (@route=9&@find=2) {e};#if (@route=10&@find=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=20&@find=2) {s};#if (@route=21&@find=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=24&@find=2) {casegbt};#if (@route=25&@find=2&@suc=1) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=25&@find=2&@suc=2) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=25&@find=2&@suc=4) {#ad route -1;#va area 1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1};#if (@route=37&@find=2) {casegbt2};#if (%ismember(@go,xiyu)&@route=25&@suc=3) {#va route 37;e};#if (@route=38&@find=2) {#ad route -1;#t+ zhaoren;#t+ back;#t- shamokill;#t- shenghukill;dazuo 1}}} {tuna} 519
+#TRIGGER {^你只觉毒气攻心，顿时感到一股莫名的恶心，全身瘫软无力！} {#va heal 2} {poison} 519
+#TRIGGER {^你身上没有这样东西。} {#va buy 2} {buyfood} 548
+#TRIGGER {^你的内功还没有达到那个境界！} {#va min 0;#ad skill_num 1;#if @skill_num>0 {xueskill;hp;#wa 800;dazuo 1} {sf0;quest;#if @nl>@neednl {yun regenerate;yun heal} {ds;gosleep}}} {xuexi} 548
+#TRIGGER {^你现在正忙着呢。} {#t- xuexibusy;#t- xuexi;#wa 3000;#t+ xuexibusy;#t+ xuexi;dazuo 1} {xuexibusy} 548
+#TRIGGER {^你觉得身上的*了，不禁长长的吁了一口气。} {#wa 2000;#if @quit=2 {yun dispel}} {zzz} 519
+#TRIGGER {^只觉得自己精神不济，疲惫不堪，看来是受到达摩伤神剑的干扰。} {#va heal 2} {zzz} 519
+#TRIGGER {^你调息完毕，将内力收回丹田。} {#wa 2000;#t+ nobusy;perform @perf} {jiedu} 519
+#TRIGGER {^你运用内功，将*尽数*。} {#wa 2000;#t+ nobusy;perform @perf} {jiedu} 519
+#TRIGGER {^结果你没发现自己有任何异常。} {#t+ time;#va heal 1;#if @quit=1 {#t+ nobusy;perform @perf} {#wa 4000;gosleep}} {jiedu} 519
+#TRIGGER {^结果你只觉气海穴上一痛，眼前一团黑，阵阵晕眩，难以继续战斗。} {#va heal 2} {poison} 519
+#TRIGGER {^昆仑山下} {unwield @weapon;unwield @masterweapon;#va gbt 0;#if @route=24 {#ad route 1;tuna 1000000}} {klsx} 519
+#TRIGGER {^你已经受伤过重，只怕一运真气便有生命危险！} {get yao from bag;eat jinchuang yao;#wa 4000;yun heal} {} 519
+#TRIGGER {^你双手合十，双目微闭，} {#va min 0;#wa 3000;perform @perf} {attack} 519
+#TRIGGER {^霎时间你只觉思绪狂涌，} {#va min 0;#wa 3000;perform @perf} {attack} 519
+#TRIGGER {^你感到胸口处传来阵阵刺痛，全身血液竟似要凝结住一般。} {#va heal 2} {poison} 519
+#TRIGGER {^你必须先把铜皮大门打开！} {open door} {} 519
+#TRIGGER {^马厩} {#t- majiu;#wa 1000;kaishi} {majiu} 548
+#TRIGGER {^你现在精神饱满，有什么好激励的？} {#if @suc=1 {give head to @zhangmen};#if @suc=5 {quest @zhangmen};#if @suc=7 {give head to @zhangmen;quest @zhangmen};#if @suc=10 {gosleep}} {homeinspire} 519
+#TRIGGER {^你缓缓睁开双目，精光四射，神清意爽。} {#if @suc=1 {give head to @zhangmen};#if @suc=5 {quest @zhangmen};#if @suc=7 {give head to @zhangmen;quest @zhangmen};#if @suc=10 {gosleep}} {homeinspire} 519
+#TRIGGER {^只听嗤的*右掌如击败革，正中你胸口，震断了数根肋骨。} {#va heal 2} {poison} 517
+#TRIGGER {^你的内力不足，无法运满一个周天。} {#va heal 2;#sta 不够内力解毒，需回门派恢复！;#wa 2000;#va suc1 @suc;#va suc 11;backyz} {jiedu} 519
+#TRIGGER {^结果你没发现自己有任何异常。} {#t+ time;#va heal 1;#t+ jiedu;#t- jiedu1;#va suc @suc1;#wa 5000;backyz} {jiedu1} 548
+#TRIGGER {^你运用内功，将*尽数*。} {#va min 0;#wa 3000;sleep} {jiedu1} 548
+#TRIGGER {^你调息完毕，将内力收回丹田。} {#va min 0;#if @heal=1 {#t+ jiedu;#t- jiedu1;#va suc @suc1;#wa 5000;backyz} {#wa 3000;sleep}} {jiedu1} 548
+#TRIGGER {^你的内力不足，无法运满一个周天。} {#va heal 2;#va min 0;#wa 3000;sleep} {jiedu1} 548
+#TRIGGER {^你一觉醒来，只觉精力充沛。该活动一下了。} {#if @suc=11 {#t- jiedu;#t+ jiedu1;yun dispel} {gosleep0}} {sleep} 519
+#TRIGGER {^却见那毒丸射至中途，竟蓦地爆裂开，化作一团莹绿色的碧焰飘然袭向你。} {#va heal 2} {poison} 519
+#TRIGGER {^你只觉全身肌肤便似腐烂了一般，散发出一股极难闻的恶臭。} {#va heal 2} {poison} 519
+#TRIGGER {^你情不自禁的纵声长啸，霎时之间，千百种招式纷至沓来，涌} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你使用的武器不对，难以施展「白首太玄经」。} {summon @weapon;wield @weapon;#wa 1000;perform @perf} {attack} 519
+#TRIGGER {^你的精损伤太重，现在难以振奋自己。} {eat huogu lingyao;#wa 4000;yun inspire} {} 519
+#TRIGGER {^(%x)对著你大喝一声道：看招！} {pker=%1;#if %ismember(@pker,@name) {wa} {#ig;kill shimen;#wa 4000;#ig;perform @perf}} {pkhit} 519
+#TRIGGER {^(%x)对著你一声大喝，蓦地直冲过来！} {pker=%1;#if %ismember(@pker,@name) {wa} {#ig;kill shimen;#wa 4000;#ig;perform @perf}} {pk} 519
+#TRIGGER {^(%x)和你仇人相见分外眼红，立刻打了起来！} {pker=%1;#if %ismember(@pker,@name) {wa} {#ig;kill shimen;#wa 4000;#ig;perform @perf}} {pk} 519
+#TRIGGER {^(%x)和你一碰面，二话不说就打了起来！} {pker=%1;#if %ismember(@pker,@name) {wa} {#ig;kill shimen;#wa 4000;#ig;perform @perf}} {pk} 519
+#TRIGGER {^(%x)一眼瞥见你，} {pker=%1;#if %ismember(@pker,@name) {wa} {#ig;kill shimen;#wa 4000;#ig;perform @perf}} {pk} 519
+#TRIGGER {^如果你要和*性命相搏，请你也对这个人~((%w)~)下一次} {#ig;kill %1;#wa 4000;#ig;perform @perf} {pkpk} 519
+#TRIGGER {^只见你暮地里一声清啸，剑法忽变，} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你跨前一步，平平挥出一剑，横} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^^霎那间你已被*阴寒掌劲拂中要害，不由得浑身一颤，难受之极。} {#va heal 2} {poison} 519
+#TRIGGER {^你呼出一口气站了起来，可惜伤势还没有完全恢复。} {#wa 5000;yun heal} {heal} 519
+#TRIGGER {^你运功完毕，站起身来，看上去气色饱满，精神抖擞。} {hp;#if @suc=10 {#va suc 2;#va quit 1;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#wa 2000;backyz} {eatdan;quest @zhangmen} } {} 519
+#TRIGGER {^“喀喇”一声响，你大声惨叫，连退数步。} {#va heal 2} {poison} 519
+#TRIGGER {^你脸色变了变，有些不太自然。} {#di} {} 519
+#TRIGGER {^你凝神聚气，手中*回转，划出一个闪亮的剑圈，套} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^@chinese_zhangmen对你皱眉道：我问你话呢，那东西你到底要} {#if @yao=2 {answer n;#va yao 1;quest @zhangmen} {answer y;#va dongxi 1;quest @zhangmen}} {奖励物品} 519
+#TRIGGER {^@chinese_zhangmen呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。} {#va suc 3;#t- dazuo;#sta 第@questnum个quest。那个叫@name的家伙在@place失踪了。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。} {领任务3} 519
+#TRIGGER {^@chinese_zhangmen摆摆手，对你道：你干不了就算了，让别人做吧！} {#va questnum 0} {领任务3} 519
+#TRIGGER {^@chinese_zhangmen一脸怒容对你道：我不是让你(%x)之前杀了(%x)的吗？现在是} {xname=%2;#va min 0;#ts 60;#if (%ismember(@xname,@name)&@suc=7) {quest cancel;quest @zhangmen};#if (%ismember(@xname,@name)&@suc=5) {quest cancel;quest @zhangmen}} {领任务3} 519
+#TRIGGER {^看来该找机会逃跑} {#va suc 10;#sta 遭到敌人重创，需回门派疗伤！;#con} {danger} 519
+#TRIGGER {^*只能*使用。} {#t- nobusy;#if @heal=2 {yun recover;yun dispel} {areacase}} {nobusy} 548
+#TRIGGER {^【天灾人祸】@mz被一阵旋风刮起，重重摔在了地上。} {halt;eat lingyao} {} 519
+#TRIGGER {^【天灾人祸】@mz一声惨叫，软软的倒了下去。} {halt;eat lingyao} {} 519
+#TRIGGER {^@chinese_zhangmen对你说道：我早就看(%x)不顺眼} {name=%1} {领任务1} 519
+#TRIGGER {^@chinese_zhangmen对你道：(%x)这个败类打家劫舍，无恶不作，} {name=%1} {领任务1} 519
+#TRIGGER {@name~((%x) (%x)~)} {ena5=%1;ena6=%2} {} 519
+#TRIGGER {^@chinese_zhangmen对你道：(%x)这个所谓大侠屡次和我派作对，} {name=%1} {领任务1} 519
+#TRIGGER {^“啪”的一声} {get gold;get dan} {} 519
+#TRIGGER {^你迷迷糊糊的睁开双眼，爬了起来。} {hp;wenti;#echo gosleep0} {sleep} 519
+#TRIGGER {^你飞身一跃而起，手中*一抖，剑身顿时幻作一道电光} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你精神一松懈，杀气荡然无存。} {special hatred} {} 519
+#TRIGGER {老君沟} {exert recover;exert regenerate} {} 519
+#TRIGGER {^你微微一笑，左手横握剑柄，右手五指对准*剑脊轻轻弹拨，剑身微颤，声若龙吟。} {#wa 2000;perform @perf} {attack} 519
+#TRIGGER {^你没有那么多的养生丹。} {#va buy 2} {buyfood} 548
+#TRIGGER {^你只感疲劳一扫而空，再也不觉得饥饿。} {#va shiwu 900;#va yinshui 900;#va needfood 0;#va buy 1;#va eat 0} {} 519
+#TRIGGER {^你一声阴笑，突然使出一招「无声无色」，疾向*背后刺去。} {#wa 3000;perform @perf} {attack} 519
+#TRIGGER {^只见你一不小心脚下踏空，摔了下来。} {climb;n} {} 519
+#TRIGGER {^你心中连叹：“太可惜了！”} {home;#wa 1000;yun heal} {event} 519
+#TRIGGER {^你心头闪过一道灵光，似乎受到了某种启迪。} {home;#wa 1000;yun heal} {event} 519
+#TRIGGER {^你蓦地施出「云霞幻生」绝技，手中*由一变二} {#wa 3000;perform @perf} {attack} 519
+#TRIGGER {最近(%x)在(%x)作恶多端，你去把*除了，提头来见。} {hp;name=%1;#t+ questbusy;#t+ wrongway;#va wrongway 0;#va trygo 0;go="";#va quit 1;#va heal 1;#t- fangqiexp;l @weapon;#t+ kill;#t- wentao;#t- zhaoren;#t- dz;#t- xiyudz;#t- shamokill;#t- shenghukill;#va number 1;#va min 0;#va area 1;#va route 1;#ts 30;#va find 2;#va have 2;#t+ shot;place=%4;#t+ back;#va suc 2;#va huishu 1;#ad questnum 1;#t+ square;#t+ buyfood;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#if @level=1 {give 30 arrow to @zhangmen};give 5 @food to @zhangmen;#if @eat=1 {#wa 2000;food;backyz} {backyz}} {领任务2} 519
+#TRIGGER {听说*最近在(*)，你去做了*，带*的人头来交差！} {hp;wield @weapon;wear @weapon;#t+ questbusy;#t+ wrongway;#va wrongway 0;#va trygo 0;go="";#va quit 1;#va heal 1;#t- fangqiexp;l @weapon;#t+ kill;#t- wentao;#t- zhaoren;#t- dz;#t- xiyudz;#t- shamokill;#t- shenghukill;#va number 1;#va min 0;#va area 1;#va route 1;#ts 30;#va find 2;#va have 2;#t+ shot;place=%1;#t+ back;#va suc 2;#va huishu 1;#ad questnum 1;#t+ square;#t+ buyfood;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#if @level=1 {give 30 arrow to @zhangmen};give 5 @food to @zhangmen;#if @eat=1 {#wa 2000;food;backyz} {backyz}} {领任务2} 519
+#TRIGGER {听说*最近在(%x)，你去宰了*，提头来见！} {hp;wield @weapon;wear @weapon;#t+ questbusy;#t+ wrongway;#va wrongway 0;#va trygo 0;go="";#va quit 1;#va heal 1;#t- fangqiexp;l @weapon;#t+ kill;#t- wentao;#t- zhaoren;#t- dz;#t- xiyudz;#t- shamokill;#t- shenghukill;#va number 1;#va min 0;#va area 1;#va route 1;#ts 30;#va find 2;#va have 2;#t+ shot;place=%1;#t+ back;#va suc 2;#va huishu 1;#ad questnum 1;#t+ square;#t+ buyfood;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#if @level=1 {give 30 arrow to @zhangmen};give 5 @food to @zhangmen;#if @eat=1 {#wa 2000;food;backyz} {backyz}} {领任务2} 519
+#TRIGGER {听说*最近在(%x)，你去除掉*，提头来见我！} {hp;wield @weapon;wear @weapon;#t+ questbusy;#t+ wrongway;#va wrongway 0;#va trygo 0;go="";#va quit 1;#va heal 1;#t- fangqiexp;l @weapon;#t+ kill;#t- wentao;#t- zhaoren;#t- dz;#t- xiyudz;#t- shamokill;#t- shenghukill;#va number 1;#va min 0;#va area 1;#va route 1;#ts 30;#va find 2;#va have 2;#t+ shot;place=%1;#t+ back;#va suc 2;#va huishu 1;#ad questnum 1;#t+ square;#t+ buyfood;#status  目前是第@questnum个quest。将@place的@name杀了。现在是第@huishu次寻找。经验：@exp。潜能：@qn。精气：@jingqi。气血：@qixue。内力：@nl。;#if @level=1 {give 30 arrow to @zhangmen};give 5 @food to @zhangmen;#if @eat=1 {#wa 2000;food;backyz} {backyz}} {领任务2} 519
+#TRIGGER {说道：听说(%x)听到了江湖上*风声，已经躲到(%x)去了。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：这事我也不太清楚，不过听说*好像在(%x)。} {#t- zhaoren;place=%1;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。} {wentao} 519
+#TRIGGER {说道：有人说(%x)就在咱们这地界呢，但是也有人说在(%x)，不知道是真是假。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {^结果只听扑的一声，你被*一掌拍中，} {#va heal 2} {poison} 519
+#TRIGGER {^你惊慌失措，连忙后退，然而没能避开，被*这一爪抓得鲜血淋漓！} {#va heal 2} {poison} 517
+#TRIGGER {说道：听说(%x)被人打死了吧？咦？不过听人说在(%x)也见过*呀！} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：(%x)呀，有人说在(%x)看到过*，好像还受伤了。} {zhaoren=%1;#if %ismember(@zhaoren,@name) {#t- zhaoren;place=%2;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。}} {wentao} 519
+#TRIGGER {说道：你找*干啥？*不是在(%x)么？} {#t- zhaoren;place=%1;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。} {wentao} 519
+#TRIGGER {^前两天*还来过我们这儿呢，现在应该是去了(%x)吧。} {#t- zhaoren;place=%1;#va huishu 1;#t- wentao;#va suc 2;#st @name 逃去了@place。现在是第@huishu次寻找。} {wentao} 519
+#KEY KEY5 {look}
+#KEY KEY7 {flee}
+#KEY KEY2 {~s}
+#KEY KEY3 {~d}
+#KEY KEY4 {~w}
+#KEY KEY6 {~e}
+#KEY KEY8 {~n}
+#KEY KEY9 {~u}
+#KEY F5 {quest;#save}
+#KEY F12 {#t- square;#va suc 9;#sta 现在为非quest状态。}
+#KEY F11 {ask chou @ena5 @ena6}
+#KEY F9 {jiali max;jianu max;yun powerup;yun shield;special agile;special hatred;special ironskin;special power}
+#KEY F10 {quest;quest @zhangmen}
+#KEY F8 {rideto gc;n;e;enter}
+#KEY F7 {#show 你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。}
+#KEY F4 {shot @ena3 @ena4 with arrow}
+#KEY F2 {#con}
+#KEY F6 {#echo *对你说道：我早就看@name不顺眼，听说*最近在@place，你去做了*，带*的人头来交差！}
+#KEY F3 {perform @perf}

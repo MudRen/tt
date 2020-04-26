@@ -9,7 +9,7 @@
 #CONFIG           {COMMAND ECHO}  {ON}
 #CONFIG           {CONNECT RETRY}  {   0.0}
 #CONFIG           {HISTORY SIZE}  {1000}
-#CONFIG           {LOG MODE}  {RAW}
+#CONFIG           {LOG MODE}  {HTML}
 #CONFIG           {MOUSE TRACKING}  {OFF}
 #CONFIG           {PACKET PATCH}  {AUTO}
 #CONFIG           {RANDOM SEED}  {4249676523}

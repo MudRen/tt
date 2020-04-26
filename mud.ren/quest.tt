@@ -1,0 +1,446 @@
+#CLASS {quest} OPEN
+
+#nop {==============================个人设置==============================};
+#nop {===师傅路径===}
+#ALIAS {sf}
+{
+     mgo 3283
+}
+#nop {===掌门路径===}
+#ALIAS {master}
+{
+     mgo 玄冥峰
+}
+#nop {===回门指令===}
+#ALIAS {home}
+{
+     rideto lingzhou;
+     master
+}
+#nop {===个人绝招===}
+#ALIAS {pfm}
+{
+     perform dagger.dian
+}
+#nop {===属性强化===}
+#ALIAS {buff}
+{
+     perform dodge.piao;
+}
+#nop {===任务完成后准备工作===}
+#ALIAS {eatdan}
+{
+     eat xueqi dan
+}
+
+#nop {==============================物品奖励==============================};
+#ACTION {获得昊天果需要消耗你十点门派贡献，你是否愿意(answer Y|N)接受？}
+{
+
+}
+#ACTION {获得活骨灵药需要消耗你三十点门派贡献，你是否愿意(answer Y|N)接受？}
+{
+
+}
+#ACTION {获得昊天丹需要消耗你八十点门派贡献，你是否愿意(answer Y|N)接受？}
+{
+
+}
+#nop {==============================危险==============================};
+#ACTION {( 你看起来可能有些累了。)}
+{
+     pfm
+}
+#ACTION {( 你动作似乎有点不太灵光，但仍然有条不紊。)}
+{
+     pfm
+}
+#ACTION {( 你似乎有些疲惫，但是仍然十分有活力。)}
+{
+     pfm
+}
+#ACTION {( 你气喘嘘嘘，看起来状况并不太好。)}
+{
+     ff
+}
+#ACTION {( 你似乎十分疲惫，看来需要好好休息了。)}
+{
+     ff
+}
+#ACTION {^( 你已经陷入半昏迷状态，随时都可能摔倒晕去。)}
+{
+     ff;
+     #end
+}
+#ACTION {^( 你看起来已经力不从心了。)}
+{
+     ff;
+     #end
+}
+#ACTION {^你的眼前一黑，接著什么也不知道了....}
+{
+     #end
+}
+
+#nop {==============================任务==============================};
+#ACTION {$master(%1)}
+{
+     #variable master_id %1
+}
+
+#ACTION {^据说此人前不久曾经在%1出没。}
+{
+     #if {$status < 2}
+     {
+          #variable target_place %1
+     }
+
+}
+
+#ACTION {^这里没有这个人，你怎么领任务？}
+{
+     #bell
+}
+
+#ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
+{
+     fullme;
+     exert heal
+}
+
+#ACTION {你现在气血充盈，不需要疗伤。}
+{
+     #if {$quest == "on"}
+     {
+          #switch {$status}
+          {
+               #case {1}
+               {
+                    qm
+               }
+          }
+     }
+}
+
+#ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
+{
+     ready
+}
+
+#ALIAS {finish}
+{
+     give head to $master_id
+}
+
+#ALIAS {qm}
+{
+     #variable quest on;
+     quest $master_id
+}
+
+#ALIAS {questok}
+{
+     fullme;
+     #delay 1 {home;#delay 2 {finish}}
+}
+
+#ALIAS {questrun}
+{
+     #path load ${path$placelist[$target_place][path]};
+     rideto $placelist[$target_place][id];
+     #map goto $placelist[$target_place][vnum];
+     #path run 0.2;
+}
+
+#ALIAS {ready}
+{
+     eatdan;
+     #delay 5 {exert heal}
+}
+
+#ALIAS {todo}
+{
+     #path destroy;
+     kill $target_id;
+     pfm
+}
+
+#nop {==============================送信==============================};
+#ACTION {^%1交给你一张回执。}
+{
+     #path destroy;
+     fullme;
+     rideto gc;
+     #delay 3 {home;#delay 2 {finish}}
+}
+
+#ACTION {^%1吩咐你在%2月%3日之前把信件送到%4(%5)手中，取回执交差。}
+{
+     #variable master %1;
+     #variable target %4;
+     #variable target_id %5
+}
+
+#ACTION {^%1对你道：这封信你帮我交到%2手中，他现在应该在%3，然后把回执带回来给我！}
+{
+     #variable master %1;
+     #variable target %2;
+     #variable target_place %3;
+     quest;
+     #delay 2 {questrun}
+}
+
+#nop {==============================杀人==============================};
+#ACTION {^%1吩咐你在%2之前割下%3(%4)的人头，回%5交差。}
+{
+     #variable master %1;
+     #variable target %3;
+     #variable target_id %4
+}
+
+#ACTION {^%1对你道：%2这个所谓大侠屡次和我派作对，听说%3最近在%4，你去宰了%3，提头来见！}
+{
+     #variable master %1;
+     #variable target %2;
+     #variable target_place %4;
+     #variable status 1;
+     quest;
+     #delay 2 {questrun}
+}
+
+#ACTION {^$master呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。}
+{
+     #variable status 2
+}
+
+#ACTION {^$target扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！}
+{
+     cut head from corpse;
+     get silver from corpse;
+     fullme;
+     rideto gc;
+     #delay 3 {home;#delay 2 {finish}}
+}
+
+#ACTION {^$target说道：哼！找死！}
+{
+     buff
+}
+
+#nop {==============================目标逃跑==============================};
+#ACTION {$target莫慌，我来也！}
+{
+     #variable status 2;
+}
+
+#ACTION {仅这一霎，$target身形一转，飘然退去}
+{
+     #variable status 2;
+}
+
+#ACTION {只见眼前一阵红雾，待得雾散去，哪里还有$target的影子}
+{
+     #variable status 2;
+}
+
+#ACTION {$target身负重伤，已然不敌，悲愤间只放声疾呼，一时震得你耳鼓欲破}
+{
+     #variable status 2;
+}
+
+#ACTION {你略一疏神，已被$target连环数招逼退，只见$target迈开大步，逃遁而走。}
+{
+     #variable status 2;
+}
+
+#nop {==============================寻找目标==============================};
+#ACTION {^%1说道：这事我也不太清楚，不过听说他好像在%2。}
+{
+     #variable target_place %2;
+     questrun;
+}
+{1}
+
+#ACTION {^%1说道：不知道……哦？好像听人说过是在%2。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：听说$target被人打伤逃走，据说是躲到%2去了。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：听说$target听到了江湖上有人追杀的风声，已经躲到%2去了。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：听说$target被人打死了吧？咦？不过听人说在%2也见过%3呀！}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {^%1说道：听说$target和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了%2。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：有人说$target就在咱们这地界呢，但是也有人说在%2，不知道是真是假。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：$target呀，有人说在%2看到过%3，好像还受伤了。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {%1说道：$target听说是在%2啊，不过前一阵好像来过这里的。}
+{
+     #variable target_place %2;
+     questrun
+}
+
+#ACTION {^%1说道：你找%2干啥？%2不是在%3么？}
+{
+     #if {"%3" == "很远的地方"}
+     {
+          wenchou
+     };
+     #else
+     {
+          #variable target_place %3;
+          questrun;
+     }
+}
+
+#ACTION {^北丑皱了皱眉头，对你摇摇头道：看来你这次确实是遇到了困难，收你十两白银就是了。}
+{
+     give 10 silver to bei chou
+}
+
+#ACTION {^北丑在你的耳边悄声说道：据可靠消息，这个人刚才在%1。}
+{
+     #variable target_local %1;
+     gps %1
+}
+
+#ALIAS {wenchou}
+{
+     rideto gc;
+     mgo 137;
+     #delay 2 {ask bei chou about $target_id}
+}
+
+#ALIAS {wt}
+{
+     ask %1 about $target
+
+}
+
+#ALIAS {wenbj}
+{
+     mgo 2370;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wencd}
+{
+     mgo 2068;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenfs}
+{
+     mgo 1143;
+     #delay 2 {ask feng qi about $target}
+}
+
+#ALIAS {wenfz}
+{
+     mgo 1100;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenlx}
+{
+     mgo 2103;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenzz}
+{
+     mgo 607;
+     #delay 2 {ask xiao er about $target}
+}
+
+#nop {==============================其他触发==============================};
+
+
+#nop {==============================发现目标==============================};
+#ACTION {^$target走了过来。}
+{
+     todo
+}
+
+#ACTION {^%s$target($target_id)}
+{
+     todo
+}
+
+#ACTION {^$target往%1离开。}
+{
+     #switch {"%1"}
+     {
+          #case {"北方"} {n};
+          #case {"南方"} {s};
+          #case {"西方"} {w};
+          #case {"东方"} {e};
+     }
+}
+
+#nop {==============================别名和变量==============================};
+#nop {===常用路径===}
+#ALIAS {bxh}
+{
+     mgo 106;
+     buy xionghuang
+}
+
+#nop {===基本别名===}
+#ALIAS {ff}
+{
+     exert recover;
+     #delay 1 {exert regenerate}
+}
+
+#ALIAS {food}
+{
+     eat gan liang;
+     drink shui dai
+}
+
+#ALIAS {fullme}
+{
+     exert recover;
+     exert regenerate;
+     food
+}
+
+#nop {===其他设置===}
+#ALIAS {zzz}
+{
+     #end
+}
+
+#VARIABLE         {placelist}  {{中州城}{{id}{zhongzhou}{path}{zz}{vnum}{3}}{五毒教附近}{{id}{dali}{path}{wdj}{vnum}{19}}{佛山一带}{{id}{foshan}{path}{fs}{vnum}{8}}{兰州城}{{id}{lanzhou}{path}{laz}{vnum}{13}}{关外}{{id}{guanwai}{path}{gw}{vnum}{20}}{凌霄城附近}{{id}{chengdu}{path}{lx}{vnum}{14}}{北京城}{{id}{beijing}{path}{bj}{vnum}{15}}{华山附近}{{id}{huashan}{path}{hs}{vnum}{38}}{南海一带}{{id}{nanhai}{path}{nh}{vnum}{24}}{大理一带}{{id}{dali}{path}{dl}{vnum}{19}}{天山}{{id}{lingjiu}{path}{ts}{vnum}{34}}{嵩山一带}{{id}{nanyang}{path}{ss}{vnum}{16}}{开封城}{{id}{kaifeng}{path}{kf}{vnum}{17}}{成都城}{{id}{chengdu}{path}{cd}{vnum}{14}}{扬州城}{{id}{yangzhou}{path}{yz}{vnum}{1}}{昆明城}{{id}{kunming}{path}{km}{vnum}{18}}{星宿海}{{id}{xingxiu}{path}{xx}{vnum}{45}}{杭州城}{{id}{hangzhou}{path}{hz}{vnum}{12}}{武功镇}{{id}{wugong}{path}{wg}{vnum}{25}}{汝州一带}{{id}{nanyang}{path}{ss}{vnum}{16}}{泉州城}{{id}{quanzhou}{path}{qz}{vnum}{7}}{洛阳城}{{id}{luoyang}{path}{ly}{vnum}{10}}{灵州城}{{id}{lingzhou}{path}{liz}{vnum}{21}}{福州城}{{id}{fuzhou}{path}{fz}{vnum}{6}}{终南山}{{id}{zhongnan}{path}{zn}{vnum}{26}}{苏州城}{{id}{suzhou}{path}{sz}{vnum}{2}}{荆州城}{{id}{jingzhou}{path}{jz}{vnum}{5}}{襄阳城}{{id}{xiangyang}{path}{xy}{vnum}{4}}{西域}{{id}{mingjiao}{path}{xiyu}{vnum}{35}}{长安城}{{id}{changan}{path}{ca}{vnum}{11}}}
+
+#CLASS {quest} CLOSE

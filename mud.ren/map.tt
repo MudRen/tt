@@ -147,7 +147,8 @@
 
 #ACTION {^你的动作还没有完成，不能移动。}
 {
-     #map undo
+     #map undo;
+     #path move backward
 }
 
 #ACTION {^看来%1不打算让你过去。}
