@@ -306,6 +306,7 @@
 
 #ALIAS {pathend}
 {
+     #variable pathend 1;
      chat* sweat
 }
 
