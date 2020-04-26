@@ -97,9 +97,19 @@
 
 }
 
+#ACTION {^你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。}
+{
+
+}
+
 #ACTION {^这里没有这个人，你怎么领任务？}
 {
      #bell
+}
+
+#ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
+{
+     ready
 }
 
 #ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
@@ -120,11 +130,6 @@
                }
           }
      }
-}
-
-#ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
-{
-     ready
 }
 
 #ALIAS {finish}
@@ -161,8 +166,8 @@
 #ALIAS {todo}
 {
      #path destroy;
-     kill $target_id;
-     pfm
+     buff;
+     kill $target_id
 }
 
 #nop {==============================送信==============================};
@@ -224,7 +229,7 @@
 
 #ACTION {^$target说道：哼！找死！}
 {
-     buff
+     pfm
 }
 
 #nop {==============================目标逃跑==============================};
@@ -253,72 +258,77 @@
      #variable status 2;
 }
 
+#ACTION {$target晃了两下，忽然跌倒。你收住招式，笑道：“$target，你……”}
+{
+     #variable status 2;
+}
+
 #nop {==============================寻找目标==============================};
 #ACTION {^%1说道：这事我也不太清楚，不过听说他好像在%2。}
 {
      #variable target_place %2;
-     questrun;
+     #delay 1 questrun;
 }
 {1}
 
 #ACTION {^%1说道：不知道……哦？好像听人说过是在%2。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：听说$target被人打伤逃走，据说是躲到%2去了。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：听说$target听到了江湖上有人追杀的风声，已经躲到%2去了。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：听说$target被人打死了吧？咦？不过听人说在%2也见过%3呀！}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {^%1说道：听说$target和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了%2。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：有人说$target就在咱们这地界呢，但是也有人说在%2，不知道是真是假。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：$target呀，有人说在%2看到过%3，好像还受伤了。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {%1说道：$target听说是在%2啊，不过前一阵好像来过这里的。}
 {
      #variable target_place %2;
-     questrun
+     #delay 1 questrun
 }
 
 #ACTION {^%1说道：你找%2干啥？%2不是在%3么？}
 {
      #if {"%3" == "很远的地方"}
      {
-          wenchou
+          #delay 1 wenchou
      };
      #else
      {
           #variable target_place %3;
-          questrun;
+          #delay 1 questrun;
      }
 }
 
@@ -346,9 +356,63 @@
 
 }
 
+#ALIAS {wentao}
+{
+     #switch {$target_place}
+     {
+          #case "洛阳城" {wenly};
+          #case "北京城" {wenbj};
+          #case "长安城" {wenca};
+          #case "开封城" {};
+          #case "中州城" {wenzz};
+          #case "苏州城" {};
+          #case "杭州城" {};
+          #case "襄阳城" {wenxy};
+          #case "扬州城" {};
+          #case "昆明城" {wenkm};
+          #case "荆州城" {};
+          #case "兰州城" {};
+          #case "成都城" {wencd};
+          #case "福州城" {wenfz};
+          #case "灵州城" {};
+          #case "武功镇" {};
+          #case "泉州城" {};
+          #case "华山附近" {};
+          #case "凌霄城附近" {};
+          #case "五毒教附近" {};
+          #case "佛山一带" {};
+          #case "南海一带" {};
+          #case "汝州一带" {};
+          #case "嵩山一带" {};
+          #case "终南山" {wenwg};
+          #case "星宿海" {};
+          #case "天山" {wents};
+          #case "关外" {};
+          #case "西域" {};
+          #case "大理一带" {};
+     }
+}
+
+#ALIAS {wenly}
+{
+     mgo 781;
+     #delay 2 {ask xiao er about $target}
+}
+
 #ALIAS {wenbj}
 {
      mgo 2370;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenca}
+{
+     mgo 1457;
+     #delay 2 {ask xiao er about $target}
+}
+#ALIAS {wenca2}
+{
+     mgo 1459;
      #delay 2 {ask xiao er about $target}
 }
 
@@ -364,6 +428,12 @@
      #delay 2 {ask feng qi about $target}
 }
 
+#ALIAS {wents}
+{
+     mgo 1703;
+     #delay 2 {ask jiuyi daoren about $target}
+}
+
 #ALIAS {wenfz}
 {
      mgo 1100;
@@ -376,14 +446,29 @@
      #delay 2 {ask xiao er about $target}
 }
 
+#ALIAS {wenkm}
+{
+     mgo 2758;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenwg}
+{
+     mgo 2605;
+     #delay 2 {ask xiao er about $target}
+}
+
+#ALIAS {wenxy}
+{
+     mgo 952;
+     #delay 2 {ask xiao er about $target}
+}
+
 #ALIAS {wenzz}
 {
      mgo 607;
      #delay 2 {ask xiao er about $target}
 }
-
-#nop {==============================其他触发==============================};
-
 
 #nop {==============================发现目标==============================};
 #ACTION {^$target走了过来。}
@@ -406,6 +491,9 @@
           #case {"东方"} {e};
      }
 }
+
+#nop {==============================其他触发==============================};
+
 
 #nop {==============================别名和变量==============================};
 #nop {===常用路径===}
