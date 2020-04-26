@@ -99,7 +99,7 @@
 
 #ACTION {^你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。}
 {
-
+     #variable quest free;
 }
 
 #ACTION {^这里没有这个人，你怎么领任务？}
@@ -120,13 +120,17 @@
 
 #ACTION {你现在气血充盈，不需要疗伤。}
 {
-     #if {$quest == "on"}
+     #if {$quest == "quest"}
      {
           #switch {$status}
           {
                #case {1}
                {
                     qm
+               };
+               #case {2}
+               {
+                    wentao
                }
           }
      }
@@ -139,7 +143,7 @@
 
 #ALIAS {qm}
 {
-     #variable quest on;
+     #variable quest quest;
      quest $master_id
 }
 
@@ -154,7 +158,13 @@
      #path load ${path$placelist[$target_place][path]};
      rideto $placelist[$target_place][id];
      #map goto $placelist[$target_place][vnum];
-     #path run 0.2;
+     #switch {$quest}
+     {
+          #case {"quest"} {#path run 0.2};
+          #case {"free"} {#path run 0.2};
+          #case {"map"} {map here};
+     }
+
 }
 
 #ALIAS {ready}
@@ -490,10 +500,25 @@
           #case {"西方"} {w};
           #case {"东方"} {e};
      }
+
+}
+#nop {==============================map here==============================};
+#ALIAS {maphere}
+{
+     #variable quest map;
+}
+
+#nop {==============================学习技能==============================};
+#ALIAS {xuexi}
+{
+     #tick xx {xue $sf $sk 100;eatdan} 3
 }
 
 #nop {==============================其他触发==============================};
-
+#ACTION {“啪”的一声一颗仙丹掉到你面前。}
+{
+     get dan;store dan
+}
 
 #nop {==============================别名和变量==============================};
 #nop {===常用路径===}
