@@ -12,15 +12,15 @@ quest 参数说明：
           map       画地图
      status :
           0 - 发呆
-          1 - 准备任务询问状态
-          2 - 已经获取任务信息状态
+          1 - 未接或已完成任务状态
+          2 - 已接且未完成任务状态
           3
           4
           5
           6 - 目标逃跑
           7
           8
-          9 - 任务完成状态
+          9
 rumor 参数说明：
      type :
           1 - capture 追杀
@@ -140,6 +140,7 @@ rumor 参数说明：
 #ACTION {^你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。}
 {
      #variable quest[type] rumor;
+     #delay 3 wentao
 }
 
 #ACTION {通过这次锻炼，你获得了%1点经验、%2点潜能、%3点江湖阅历}
@@ -304,6 +305,7 @@ rumor 参数说明：
 #ACTION {^%1对你说道：我这里暂时也没什么事情，你还是自己锻炼一段时间吧。}
 {
      #variable master[name] %1;
+     food;
 }
 
 #ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
@@ -432,12 +434,19 @@ rumor 参数说明：
      #variable target[place] %4;
      #variable quest[status] 2;
      quest;
-     #delay 2 {questrun}
+     #if {$quest[status] == 6}
+     {
+          #delay 3 wentao
+     };
+     #else
+     {
+          #delay 3 questrun
+     }
 }
 
 #ACTION {^$master[name]呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。}
 {
-     #variable quest[status] 6
+     #variable quest[status] 6;
 }
 
 #ACTION {^$target[name]扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！}
@@ -459,31 +468,43 @@ rumor 参数说明：
 #ACTION {$target[name]莫慌，我来也！}
 {
      #variable quest[status] 6;
+     ready
+}
+
+#ACTION {在你一阵狂攻之下，$target[name]只有招架之功，哪里还有还手之力？}
+{
+     #variable quest[status] 6;
+     ready
 }
 
 #ACTION {仅这一霎，$target[name]身形一转，飘然退去}
 {
      #variable quest[status] 6;
+     ready
 }
 
 #ACTION {只见眼前一阵红雾，待得雾散去，哪里还有$target[name]的影子}
 {
      #variable quest[status] 6;
+     ready
 }
 
 #ACTION {$target[name]身负重伤，已然不敌，悲愤间只放声疾呼，一时震得你耳鼓欲破}
 {
      #variable quest[status] 6;
+     ready
 }
 
 #ACTION {你略一疏神，已被$target[name]连环数招逼退，只见$target[name]迈开大步，逃遁而走。}
 {
      #variable quest[status] 6;
+     ready
 }
 
 #ACTION {$target[name]晃了两下，忽然跌倒。你收住招式，笑道：“$target[name]，你……”}
 {
      #variable quest[status] 6;
+     ready
 }
 
 #nop {==============================寻找目标==============================};
@@ -712,13 +733,13 @@ rumor 参数说明：
 #ALIAS {wenca}
 {
      mgo 1457;
-     #variable rumor[knower] {xiao er};
+     #variable rumor[knower] {xiaoer};
      #delay 2 wenxr
 }
 #ALIAS {wenca2}
 {
      mgo 1459;
-     #variable rumor[knower] {xiao er};
+     #variable rumor[knower] {xiaoer};
      #delay 2 wenxr
 }
 
