@@ -4,13 +4,40 @@
      2. 在个人设置中根据自己的门派修改别名
      3. 在掌门处手动接任务启动任务
      4. 如果只是需要画地图，做好准备工作后输入【maprun】,开始画城市的地图
+quest 参数说明：
+     type :
+          letter    送信
+          quest     杀人
+          rumor     自由任务
+          map       画地图
+     status :
+          0 - 发呆
+          1 - 准备任务询问状态
+          2 - 已经获取任务信息状态
+          3
+          4
+          5
+          6 - 目标逃跑
+          7
+          8
+          9 - 任务完成状态
+rumor 参数说明：
+     type :
+          1 - capture 追杀
+          2 - deliver 送货
+          3 - explore 寻找物品
+          4 - judge 单正
+          5 - search 宝物归还
+          6 - shen 正负神
+          7 - supply
+          8 - trace 找人
 };
 
 #nop {==============================个人设置==============================};
 #nop {===师傅路径===}
 #ALIAS {sf}
 {
-     mgo 3283
+     mgo 3279
 }
 #nop {===掌门路径===}
 #ALIAS {master}
@@ -38,17 +65,38 @@
 {
      eat xueqi dan
 }
+#nop {==============================基本动作==============================};
+#ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
+{
+     fullme;
+     exert heal
+}
+
+#ACTION {你现在气血充盈，不需要疗伤。}
+{
+     #if {$quest[type] == "quest"}
+     {
+          #switch {$quest[status]}
+          {
+               #case {1}
+               {
+                    qm
+               };
+               #case {6}
+               {
+                    wentao
+               }
+          }
+     }
+}
+
+#ACTION {这里没有这个人。}
+{
+     #bell
+}
 
 #nop {==============================物品奖励==============================};
-#ACTION {获得昊天果需要消耗你十点门派贡献，你是否愿意(answer Y|N)接受？}
-{
-
-}
-#ACTION {获得活骨灵药需要消耗你三十点门派贡献，你是否愿意(answer Y|N)接受？}
-{
-
-}
-#ACTION {获得昊天丹需要消耗你八十点门派贡献，你是否愿意(answer Y|N)接受？}
+#ACTION {获得%1需要消耗你%2点门派贡献，你是否愿意(answer Y|N)接受？}
 {
 
 }
@@ -88,24 +136,164 @@
      #end
 }
 
-#nop {==============================任务==============================};
-#ACTION {$master(%1)}
-{
-     #variable master_id %1
-}
-
-#ACTION {^据说此人前不久曾经在%1出没。}
-{
-     #if {$status < 2}
-     {
-          #variable target_place %1
-     }
-
-}
-
+#nop {==============================rumor==============================};
 #ACTION {^你突然想到：现在江湖正值动乱，何不四处走访，也许可提高自己的经验阅历。}
 {
-     #variable quest free;
+     #variable quest[type] rumor;
+}
+
+#ACTION {通过这次锻炼，你获得了%1点经验、%2点潜能、%3点江湖阅历}
+{
+     #variable quest[status] 1;
+     food;
+     #delay 5 wenlaz
+}
+
+#ACTION {$rumor[item](%1)}
+{
+     #variable rumor[itemid] %1
+}
+
+#ACTION {%1说道：前两天还听人家说过『%2』呢。}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable rumor[info] %2;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：你没有听到大家都在议论『%2』吗？}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable rumor[info] %2;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：也没什么大事，只是听说过『%2』罢了。}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable rumor[info] %2;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：最近正在盛传『%2』这件事情呢！}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable rumor[info] %2;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：你可曾听过最近有关『%2』的传闻？}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable rumor[info] %2;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：倒是最近听来往的商人说起『%2』的事来。}
+{
+     wenxr
+}
+
+#ACTION {%1说道：嗯，稍等啊，就好…好了，你刚才说啥？}
+{
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：唉呀呀，听说%2那家伙不知怎么搞的，居然把江湖上六大门派全都给惹了}
+{
+     #if {$quest[status] == 2}
+     {
+          #variable target[name] %2;
+          #variable rumor[target] %2;
+          #echo wenrr;
+          wenxr
+     }
+}
+
+#ACTION {%1说道：哦，听说最近六大门派已经上%2找%3去了，我看%3这次是小命不保罗。}
+{
+     #if {$quest[status] == 2}
+     {
+          #variable target[place] %2;
+          #echo questrun;
+     }
+}
+
+#ACTION {%1说道：听说%2丢了%3，有人说不知怎么的就落到了%4手中了。}
+{
+     #if {$quest[status] == 2}
+     {
+          #variable rumor[to] %2;
+          #variable rumor[item] %3;
+          #variable rumor[from] %4;
+          #variable rumor[target] %4;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：哦，%2呀，据说正在%3，大家都奔%2去了，看来%2不妙噢！}
+{
+     #if {$quest[status] == 2}
+     {
+          #variable rumor[from_place] %3;
+          #variable rumor[target] $rumor[to];
+          wenrr
+     }
+}
+
+#ACTION {%1说道：哦，%2呀，据说正在%3，找%2的$rumor[item]呢！}
+{
+     #if {$quest[status] == 2}
+     {
+          #variable rumor[to_place] %3;
+          #variable target[name] $rumor[from];
+          #variable target[place] $rumor[from_place];
+          questrun
+     }
+}
+
+#ACTION {$rumor[from]把$rumor[item]交给了你。}
+{
+     i;
+     #variable quest[status] 4;
+     #variable target[name] $rumor[to];
+     #variable target[place] $rumor[to_place];
+     #delay 2 questrun
+}
+
+#ACTION {%1说道：听说%2和%3在%4发生了纠纷，不知道为什么，要是单正在就好了。}
+{
+     wenxr
+}
+
+#ACTION {%1说道：听说%2和%3在%4被仇家围追堵杀，双方火拼了几个时辰}
+{
+     wenxr
+}
+
+#ALIAS {wenfr}
+{
+     ask %1 about rumor
+}
+
+#nop {==============================quest==============================};
+#ACTION {$master[name](%1)}
+{
+     #variable master[id] %1
 }
 
 #ACTION {^这里没有这个人，你怎么领任务？}
@@ -113,65 +301,57 @@
      #bell
 }
 
+#ACTION {^%1对你说道：我这里暂时也没什么事情，你还是自己锻炼一段时间吧。}
+{
+     #variable master[name] %1;
+}
+
 #ACTION {通过这次锻炼你获得了%1点经验，%2点潜能及%3点实战体会。}
 {
      ready
 }
 
-#ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
+#ACTION {^据说此人前不久曾经在%1出没。}
 {
-     fullme;
-     exert heal
-}
-
-#ACTION {你现在气血充盈，不需要疗伤。}
-{
-     #if {$quest == "quest"}
+     #if {$quest[status] < 4}
      {
-          #switch {$status}
-          {
-               #case {1}
-               {
-                    qm
-               };
-               #case {2}
-               {
-                    wentao
-               }
-          }
+          #variable target[place] %1
      }
-}
 
-#ALIAS {finish}
-{
-     give head to $master_id
 }
 
 #ALIAS {qm}
 {
-     #variable quest quest;
-     quest $master_id
+     #variable quest[status] 1;
+     #variable quest[type] quest;
+     quest $master[id]
 }
 
 #ALIAS {questok}
 {
-     fullme;
+     fullme;#variable quest[status] 4;
      #delay 1 {home;#delay 2 {finish}}
+}
+
+#ALIAS {finish}
+{
+     #variable quest[status] 1;
+     give head to $master[id]
 }
 
 #ALIAS {questrun}
 {
-     #path load ${path$placetable[$target_place][path]};
+     #path load ${path$placetable[$target[place]][path]};
      #variable pathend 0;
-     rideto $placetable[$target_place][id];
-     #map goto $placetable[$target_place][vnum];
-     #switch {"$quest"}
+     rideto $placetable[$target[place]][id];
+     #map goto $placetable[$target[place]][vnum];
+     #switch {"$quest[type]"}
      {
+          #case {"letter"} {#path run 0.2};
           #case {"quest"} {#path run 0.2};
-          #case {"free"} {#path run 0.2};
+          #case {"rumor"} {#path run 0.2};
           #case {"map"} {map here};
      }
-
 }
 
 #ALIAS {ready}
@@ -184,12 +364,32 @@
 {
      #path destroy;
      buff;
-     kill $target_id
+     #if {"$quest[type]" == "letter"}
+     {
+          give letter to $target[id]
+     };
+     #elseif {"$quest[type]" == "quest"}
+     {
+          kill $target[id]
+     };
+     #elseif {"$quest[type]" == "rumor"}
+     {
+          #if {"$target[name]" == "$rumor[from]"}
+          {
+               ask $target[id] about $rumor[item]
+          };
+          #elseif {"$target[name]" == "$rumor[to]"}
+          {
+               give $rumor[itemid] to $target[id]
+          }
+     }
 }
 
 #ALIAS {qinfo}
 {
-     #variable target%*
+     #variable quest;
+     #variable target;
+     #variable rumor
 }
 
 #nop {==============================送信==============================};
@@ -203,16 +403,16 @@
 
 #ACTION {^%1吩咐你在%2月%3日之前把信件送到%4(%5)手中，取回执交差。}
 {
-     #variable master %1;
-     #variable target %4;
-     #variable target_id %5
+     #variable master[name] %1;
+     #variable target[name] %4;
+     #variable target[id] %5
 }
 
 #ACTION {^%1对你道：这封信你帮我交到%2手中，他现在应该在%3，然后把回执带回来给我！}
 {
-     #variable master %1;
-     #variable target %2;
-     #variable target_place %3;
+     #variable master[name] %1;
+     #variable target[name] %2;
+     #variable target[place] %3;
      quest;
      #delay 2 {questrun}
 }
@@ -220,27 +420,27 @@
 #nop {==============================杀人==============================};
 #ACTION {^%1吩咐你在%2之前割下%3(%4)的人头，回%5交差。}
 {
-     #variable master %1;
-     #variable target %3;
-     #variable target_id %4
+     #variable master[name] %1;
+     #variable target[name] %3;
+     #variable target[id] %4
 }
 
 #ACTION {^%1对你道：%2这个所谓大侠屡次和我派作对，听说%3最近在%4，你去宰了%3，提头来见！}
 {
-     #variable master %1;
-     #variable target %2;
-     #variable target_place %4;
-     #variable status 1;
+     #variable master[name] %1;
+     #variable target[name] %2;
+     #variable target[place] %4;
+     #variable quest[status] 2;
      quest;
      #delay 2 {questrun}
 }
 
-#ACTION {^$master呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。}
+#ACTION {^$master[name]呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。}
 {
-     #variable status 2
+     #variable quest[status] 6
 }
 
-#ACTION {^$target扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！}
+#ACTION {^$target[name]扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！}
 {
      cut head from corpse;
      get silver from corpse;
@@ -249,108 +449,118 @@
      #delay 3 {home;#delay 2 {finish}}
 }
 
-#ACTION {^$target说道：哼！找死！}
+#nop {==============================任务行动==============================};
+#ACTION {^$target[name]说道：哼！找死！}
 {
      pfm
 }
 
 #nop {==============================目标逃跑==============================};
-#ACTION {$target莫慌，我来也！}
+#ACTION {$target[name]莫慌，我来也！}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
-#ACTION {仅这一霎，$target身形一转，飘然退去}
+#ACTION {仅这一霎，$target[name]身形一转，飘然退去}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
-#ACTION {只见眼前一阵红雾，待得雾散去，哪里还有$target的影子}
+#ACTION {只见眼前一阵红雾，待得雾散去，哪里还有$target[name]的影子}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
-#ACTION {$target身负重伤，已然不敌，悲愤间只放声疾呼，一时震得你耳鼓欲破}
+#ACTION {$target[name]身负重伤，已然不敌，悲愤间只放声疾呼，一时震得你耳鼓欲破}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
-#ACTION {你略一疏神，已被$target连环数招逼退，只见$target迈开大步，逃遁而走。}
+#ACTION {你略一疏神，已被$target[name]连环数招逼退，只见$target[name]迈开大步，逃遁而走。}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
-#ACTION {$target晃了两下，忽然跌倒。你收住招式，笑道：“$target，你……”}
+#ACTION {$target[name]晃了两下，忽然跌倒。你收住招式，笑道：“$target[name]，你……”}
 {
-     #variable status 2;
+     #variable quest[status] 6;
 }
 
 #nop {==============================寻找目标==============================};
 #ACTION {^%1说道：这事我也不太清楚，不过听说他好像在%2。}
 {
-     #variable target_place %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #variable target[place] %2;
+          #delay 1 questrun;
+     }
 }
 {1}
 
 #ACTION {^%1说道：不知道……哦？好像听人说过是在%2。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+      #if {$quest[status] == 6}
+     {
+          #variable target[place] %2;
+          #delay 1 questrun;
+     }
 }
 
-#ACTION {%1说道：听说$target被人打伤逃走，据说是躲到%2去了。}
+#ACTION {%1说道：听说$target[name]被人打伤逃走，据说是躲到%2去了。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {%1说道：听说$target听到了江湖上有人追杀的风声，已经躲到%2去了。}
+#ACTION {%1说道：听说$target[name]听到了江湖上有人追杀的风声，已经躲到%2去了。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {%1说道：听说$target被人打死了吧？咦？不过听人说在%2也见过%3呀！}
+#ACTION {%1说道：听说$target[name]被人打死了吧？咦？不过听人说在%2也见过%3呀！}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {^%1说道：听说$target和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了%2。}
+#ACTION {^%1说道：听说$target[name]和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了%2。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {%1说道：有人说$target就在咱们这地界呢，但是也有人说在%2，不知道是真是假。}
+#ACTION {%1说道：有人说$target[name]就在咱们这地界呢，但是也有人说在%2，不知道是真是假。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {%1说道：$target呀，有人说在%2看到过%3，好像还受伤了。}
+#ACTION {%1说道：$target[name]呀，有人说在%2看到过%3，好像还受伤了。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
-#ACTION {%1说道：$target听说是在%2啊，不过前一阵好像来过这里的。}
+#ACTION {%1说道：$target[name]听说是在%2啊，不过前一阵好像来过这里的。}
 {
-     #variable target_place %2;
-     #delay 1 questrun
+     #variable target[place] %2;
+     #delay 1 questrun;
 }
 
 #ACTION {^%1说道：你找%2干啥？%2不是在%3么？}
 {
-     #if {"%3" == "很远的地方"}
+     #if {$quest[status] == 6}
      {
-          #delay 1 wenchou
-     };
-     #else
-     {
-          #variable target_place %3;
-          #delay 1 questrun;
+          #if {"%3" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %3;
+               #delay 1 questrun;
+          }
      }
 }
 
@@ -369,202 +579,272 @@
 {
      rideto gc;
      mgo 137;
-     #delay 2 {ask bei chou about $target_id}
+     #delay 2 {ask bei chou about $target[id]}
 }
 
 #ALIAS {wt}
 {
-     ask %1 about $target
+     ask %1 about $target[name]
 
 }
 
 #ALIAS {wentao}
 {
-     wen{$placetable[$target_place][path]};
+     wen${placetable[$target[place]][path]};
+}
+
+#ALIAS {wenrr}
+{
+     #if {$quest[status] == 1}
+     {
+          #variable quest[status] 2;
+          ask $rumor[knower] about $rumor[info]
+     };
+     #elseif {$quest[status] == 2}
+     {
+          ask $rumor[knower] about $rumor[target]
+     }
+}
+
+#ALIAS {wenxr}
+{
+     #if {"$quest[type]" == "quest"}
+     {
+          ask $rumor[knower] about $target[name]
+     };
+     #else
+     {
+          #variable quest[status] 1;
+          #variable quest[type] rumor;
+          ask $rumor[knower] about rumor
+     }
 }
 
 #ALIAS {wenyz}
 {
      mgo 124;
-     #delay 2 {ask aqing sao about $target}
+     #variable rumor[knower] {aqing sao};
+     #delay 2 wenxr
 }
 #ALIAS {wenyz2}
 {
      mgo 276;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenhs}
 {
      mgo 293;
-     #delay 2 {ask fortune teller about $target}
+     #variable rumor[knower] {fortune teller};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenjz}
 {
      mgo 456;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wensz}
 {
      mgo 506;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenzz}
 {
      mgo 607;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenly}
 {
      mgo 781;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenxy}
 {
      mgo 908;
-     #delay 2 {ask seller about $target}
+     #variable rumor[knower] {seller};
+     #delay 2 wenxr
 }
 #ALIAS {wenxy2}
 {
      mgo 952;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenfz}
 {
      mgo 1100;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenqz}
 {
      mgo 1110;
-     #delay 2 {ask chuan fu about $target}
+     #variable rumor[knower] {chuan fu};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenfs}
 {
      mgo 1143;
-     #delay 2 {ask feng qi about $target}
+     #variable rumor[knower] {feng qi};
+     #delay 2 wenxr
 }
 
 #ALIAS {wennh}
 {
      mgo 1157;
-     #delay 2 {ask yu fu about $target}
+     #variable rumor[knower] {yu fu};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenca}
 {
      mgo 1457;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 #ALIAS {wenca2}
 {
      mgo 1459;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenhz}
 {
      mgo 1580;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
+}
+
+#ALIAS {wenlaz}
+{
+     mgo 1652;
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenxx}
 {
      mgo 1688;
-     #delay 2 {ask bosi shangren about $target}
+     #variable rumor[knower] {bosi shangren};
+     #delay 2 wenxr
 }
 
 #ALIAS {wents}
 {
      mgo 1703;
-     #delay 2 {ask jiuyi daoren about $target}
+     #variable rumor[knower] {jiuyi daoren};
+     #delay 2 wenxr
 }
 
 #ALIAS {wencd}
 {
      mgo 2068;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenlx}
 {
      mgo 2103;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenbj}
 {
      mgo 2195;
-     #delay 2 {ask chen laotou about $target}
+     #variable rumor[knower] {chen laotou};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenbj}
 {
      mgo 2370;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenss}
 {
      mgo 2404;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenkf}
 {
      mgo 2536;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenwg}
 {
      mgo 2605;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 #ALIAS {wenzn}
 {
      mgo 2605;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenkm}
 {
      mgo 2758;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wengw}
 {
      mgo 3166;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #ALIAS {wenliz}
 {
      mgo 3227;
-     #delay 2 {ask xiao er about $target}
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
 }
 
 #nop {==============================发现目标==============================};
-#ACTION {^$target走了过来。}
+#ACTION {^$target[name]走了过来。}
 {
+     l
+}
+
+#ACTION {^%s$target[name](%1)}
+{
+     #variable target[id] %1;
+     #echo follow %1;
      todo
 }
 
-#ACTION {^%s$target($target_id)}
+#ACTION {^你决定开始跟随$target[name]一起行动。}
 {
-     todo
+     #variable quest[status] 3;
 }
 
-#ACTION {^$target往%1离开。}
+#ACTION {^$target[name]往%1离开。}
 {
      #switch {"%1"}
      {
@@ -578,7 +858,7 @@
 #nop {==============================map here==============================};
 #ACTION {你精心的绘制了%1附近的地形。}
 {
-     #if {"$quest" == "map"}
+     #if {"$quest[type]" == "map"}
      {
           #delay 3 {maphere}
      }
@@ -586,7 +866,7 @@
 
 #ACTION {你已经绘制过这附近的地图了，没有必要再重复了。}
 {
-     #if {"$quest" == "map"}
+     #if {"$quest[type]" == "map"}
      {
           #if {$pathend == 1}
           {
@@ -601,7 +881,7 @@
 
 #ACTION {你觉得这里没什么好画的。}
 {
-     #if {"$quest" == "map"}
+     #if {"$quest[type]" == "map"}
      {
           #delay 0.1 {maphere}
      }
@@ -609,7 +889,7 @@
 
 #ACTION {只有在户外才有必要绘制地图。}
 {
-     #if {"$quest" == "map"}
+     #if {"$quest[type]" == "map"}
      {
           #delay 0.1 {maphere}
      }
@@ -630,7 +910,7 @@
 
 #ALIAS {maprun}
 {
-     #variable quest map;
+     #variable quest[type] map;
      #if {"%1"==""}
      {
           #math city {$city+1};
@@ -639,7 +919,7 @@
      };
      #else
      {
-          #variable target_place %1;
+          #variable target[place] %1;
           questrun
      }
 }
