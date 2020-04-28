@@ -300,6 +300,16 @@
      #echo {请在 patherror 别名设置路径错误的处理方式}
 }
 
+#ALIAS {rideoff}
+{
+     #map at 99 {#map room avoid on}
+}
+
+#ALIAS {rideon}
+{
+     #map at 99 {#map room avoid off}
+}
+
 #ALIAS {river}
 {
      cross

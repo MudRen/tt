@@ -15,14 +15,13 @@ quest 参数说明：
           1 - 未接或已完成任务状态
           2 - 已接且未完成任务状态
           3
-          4
+          4 - 任务失败
           5
           6 - 目标逃跑
           7
           8
           9
-rumor 参数说明：
-     type :
+rumor 类型说明：
           1 - capture 追杀
           2 - deliver 送货
           3 - explore 寻找物品
@@ -65,6 +64,9 @@ rumor 参数说明：
 {
      eat xueqi dan
 }
+#nop {===经验控制===}
+#VARIABLE         {max}  {{exp}{220000}{pot}{22000}}
+#VARIABLE         {min}  {{exp}{215000}}
 #nop {==============================基本动作==============================};
 #ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
 {
@@ -76,16 +78,27 @@ rumor 参数说明：
 {
      #if {$quest[type] == "quest"}
      {
-          #switch {$quest[status]}
+          #if {$my[exp] > $max[exp]}
           {
-               #case {1}
+               #tick {fq} {fangqi exp;hp} 3
+          };
+          #elseif {$my[pot] >= $max[pot]}
+          {
+               sf;xuexi
+          };
+          #else
+          {
+               #switch {$quest[status]}
                {
-                    qm
+                    #case {1}
+                    {
+                         qm
+                    };
+                    #case {6}
+                    {
+                         wentao
+                    }
                };
-               #case {6}
-               {
-                    wentao
-               }
           }
      }
 }
@@ -124,16 +137,16 @@ rumor 参数说明：
 #ACTION {^( 你已经陷入半昏迷状态，随时都可能摔倒晕去。)}
 {
      ff;
-     #end
+     #zap
 }
 #ACTION {^( 你看起来已经力不从心了。)}
 {
      ff;
-     #end
+     #zap
 }
 #ACTION {^你的眼前一黑，接著什么也不知道了....}
 {
-     #end
+     #zap
 }
 
 #nop {==============================rumor==============================};
@@ -148,11 +161,6 @@ rumor 参数说明：
      #variable quest[status] 1;
      food;
      #delay 5 wenlaz
-}
-
-#ACTION {$rumor[item](%1)}
-{
-     #variable rumor[itemid] %1
 }
 
 #ACTION {%1说道：前两天还听人家说过『%2』呢。}
@@ -200,6 +208,11 @@ rumor 参数说明：
      }
 }
 
+#ACTION {%1说道：据说提督府的%2急需一批%3。嘿！你说他想干什么？}
+{
+     #delay 1 wenxr
+}
+
 #ACTION {%1说道：倒是最近听来往的商人说起『%2』的事来。}
 {
      wenxr
@@ -212,6 +225,20 @@ rumor 参数说明：
           #variable quest[status] 1;
           wenrr
      }
+}
+
+#ACTION {%1说道：就好…就好…好了，你说啥？}
+{
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+
+#ACTION {%1说道：据说官府正在捉拿飞贼%2，这家伙，可不是好人啊。}
+{
+     #delay 2 wenxr
 }
 
 #ACTION {%1说道：唉呀呀，听说%2那家伙不知怎么搞的，居然把江湖上六大门派全都给惹了}
@@ -270,7 +297,6 @@ rumor 参数说明：
 #ACTION {$rumor[from]把$rumor[item]交给了你。}
 {
      i;
-     #variable quest[status] 4;
      #variable target[name] $rumor[to];
      #variable target[place] $rumor[to_place];
      #delay 2 questrun
@@ -315,7 +341,7 @@ rumor 参数说明：
 
 #ACTION {^据说此人前不久曾经在%1出没。}
 {
-     #if {$quest[status] < 4}
+     #if {$quest[status] < 3}
      {
           #variable target[place] %1
      }
@@ -331,7 +357,7 @@ rumor 参数说明：
 
 #ALIAS {questok}
 {
-     fullme;#variable quest[status] 4;
+     fullme;
      #delay 1 {home;#delay 2 {finish}}
 }
 
@@ -349,17 +375,42 @@ rumor 参数说明：
      #map goto $placetable[$target[place]][vnum];
      #switch {"$quest[type]"}
      {
-          #case {"letter"} {#path run 0.2};
-          #case {"quest"} {#path run 0.2};
-          #case {"rumor"} {#path run 0.2};
+          #case {"letter"} {#path run 0.3};
+          #case {"quest"} {#path run 0.3};
+          #case {"rumor"} {#path run 0.3};
           #case {"map"} {map here};
+     }
+}
+
+#ALIAS {start}
+{
+     ok;
+     #if {$quest[status] == 6}
+     {
+          #delay 2 wentao
+     };
+     #elseif {$quest[status] == 2}
+     {
+          #delay 2 questrun
+     };
+     #elseif {$quest[status] == 1}
+     {
+          home;quest
      }
 }
 
 #ALIAS {ready}
 {
-     eatdan;
-     #delay 5 {exert heal}
+     #if {$quest[status] == 0}
+     {
+          bfd;
+          #delay 2 {bxh;#delay 1 home}
+     };
+     #else
+     {
+          eatdan;
+          #delay 5 {exert heal}
+     }
 }
 
 #ALIAS {todo}
@@ -397,7 +448,6 @@ rumor 参数说明：
 #nop {==============================送信==============================};
 #ACTION {^%1交给你一张回执。}
 {
-     #path destroy;
      fullme;
      rideto gc;
      #delay 3 {home;#delay 2 {finish}}
@@ -412,6 +462,8 @@ rumor 参数说明：
 
 #ACTION {^%1对你道：这封信你帮我交到%2手中，他现在应该在%3，然后把回执带回来给我！}
 {
+     #variable quest[type] letter;
+     #variable quest[status] 2;
      #variable master[name] %1;
      #variable target[name] %2;
      #variable target[place] %3;
@@ -424,7 +476,8 @@ rumor 参数说明：
 {
      #variable master[name] %1;
      #variable target[name] %3;
-     #variable target[id] %4
+     #variable target[id] %4;
+     #variable quest[type] quest
 }
 
 #ACTION {^%1对你道：%2这个所谓大侠屡次和我派作对，听说%3最近在%4，你去宰了%3，提头来见！}
@@ -432,16 +485,10 @@ rumor 参数说明：
      #variable master[name] %1;
      #variable target[name] %2;
      #variable target[place] %4;
+     #variable quest[type] quest;
      #variable quest[status] 2;
      quest;
-     #if {$quest[status] == 6}
-     {
-          #delay 3 wentao
-     };
-     #else
-     {
-          #delay 3 questrun
-     }
+     #delay 3 start;
 }
 
 #ACTION {^$master[name]呆了半晌，这才对你叹道：这事麻烦了，看来只有靠你自己努力了。}
@@ -462,6 +509,12 @@ rumor 参数说明：
 #ACTION {^$target[name]说道：哼！找死！}
 {
      pfm
+}
+
+#ACTION {某人：听说$target[name]隐居到了深山老泽，从此不再出没在世间。}
+{
+     #bell;faint;
+     #variable quest[status] 4;
 }
 
 #nop {==============================目标逃跑==============================};
@@ -535,8 +588,18 @@ rumor 参数说明：
 
 #ACTION {%1说道：听说$target[name]听到了江湖上有人追杀的风声，已经躲到%2去了。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%3" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：听说$target[name]被人打死了吧？咦？不过听人说在%2也见过%3呀！}
@@ -592,7 +655,7 @@ rumor 参数说明：
 
 #ACTION {^北丑在你的耳边悄声说道：据可靠消息，这个人刚才在%1。}
 {
-     #variable target_local %1;
+     #variable target[where] %1;
      gps %1
 }
 
@@ -848,21 +911,43 @@ rumor 参数说明：
 }
 
 #nop {==============================发现目标==============================};
-#ACTION {^$target[name]走了过来。}
+#ACTION {^$target[name]%*走了过来。}
 {
      l
 }
 
+#ACTION {$target[name]正坐在地下修炼内力。}
+{
+     todo
+}
+
+#ACTION {$target[name]一眼瞥见你，「哼」的一声冲了过来！}
+{
+     todo
+}
+
+#ACTION {$target[name]和你一碰面，二话不说就打了起来！}
+{
+     todo
+}
+
 #ACTION {^%s$target[name](%1)}
 {
-     #variable target[id] %1;
-     #echo follow %1;
-     todo
+     #if {"$target[name]" == "$rumor[item]"}
+     {
+          #variable rumor[itemid] %1
+     };
+     #else
+     {
+          #variable target[id] %1;
+          todo;
+          follow %1
+     }
 }
 
 #ACTION {^你决定开始跟随$target[name]一起行动。}
 {
-     #variable quest[status] 3;
+     grin
 }
 
 #ACTION {^$target[name]往%1离开。}
@@ -970,9 +1055,10 @@ rumor 参数说明：
 }
 
 #nop {==============================路径处理==============================};
-#ACTION {^你掂量了一下，觉得自己的轻功似乎还没练到家。}
+#ACTION {你掂量了一下，觉得自己的轻功似乎还没练到家。}
 {
-     #variable inboat 1
+     #path move b;
+     #path run 5;
      yell boat
 }
 
@@ -981,11 +1067,12 @@ rumor 参数说明：
      #variable inboat 1
 }
 
-#ACTION {^艄公说道：「到啦，上岸吧。」随即把一块踏脚板搭上堤岸。}
+#ACTION {艄公说道：「到啦，上岸吧。」随即把一块踏脚板搭上堤岸。}
 {
      #if {$inboat == 1}
      {
-          #variable inboat 0
+          #variable inboat 0;
+          #path run 0.3
      }
 }
 
@@ -998,12 +1085,15 @@ rumor 参数说明：
 #ACTION {【 经 验 】  %1}
 {
      #variable my[exp] %1;
+     #if {%1 <= min[exp]}
+     {
+          #untick fq
+     }
 }
 
 #ACTION {【 潜 能 】  %1}
 {
      #variable my[pot] %1;
-
 }
 
 #ACTION {“啪”的一声一颗仙丹掉到你面前。}
@@ -1031,7 +1121,12 @@ rumor 参数说明：
 #ALIAS {bxh}
 {
      mgo 106;
-     buy xionghuang
+     #delay 2 {buy xionghuang}
+}
+#ALIAS {bfd}
+{
+     mgo 276;
+     #delay 2 {buy shui dai;buy 50 gan liang}
 }
 
 #nop {===基本别名===}
@@ -1057,7 +1152,7 @@ rumor 参数说明：
 #nop {===其他设置===}
 #ALIAS {zzz}
 {
-     #end
+     #zap
 }
 
 #VARIABLE         {placelist}  {{1}{洛阳城}{2}{北京城}{3}{长安城}{4}{开封城}{5}{中州城}{6}{苏州城}{7}{杭州城}{8}{襄阳城}{9}{扬州城}{10}{昆明城}{11}{荆州城}{12}{兰州城}{13}{成都城}{14}{福州城}{15}{灵州城}{16}{武功镇}{17}{泉州城}{18}{华山附近}{19}{凌霄城附近}{20}{五毒教附近}{21}{佛山一带}{22}{南海一带}{23}{汝州一带}{24}{嵩山一带}{25}{终南山}{26}{星宿海}{27}{天山}{28}{关外}{29}{西域}{30}{大理一带}}
