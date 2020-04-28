@@ -378,9 +378,9 @@ rumor 类型说明：
      #map goto $placetable[$target[place]][vnum];
      #switch {"$quest[type]"}
      {
-          #case {"letter"} {#path run 0.3};
-          #case {"quest"} {#path run 0.3};
-          #case {"rumor"} {#path run 0.3};
+          #case {"letter"} {#path run 0.2};
+          #case {"quest"} {#path run 0.2};
+          #case {"rumor"} {#path run 0.2};
           #case {"map"} {map here};
      }
 }
@@ -411,7 +411,7 @@ rumor 类型说明：
      };
      #else
      {
-          eatdan;
+          #delay 1 eatdan;
           #delay 5 {exert heal}
      }
 }
@@ -553,6 +553,12 @@ rumor 类型说明：
 }
 
 #ACTION {你略一疏神，已被$target[name]连环数招逼退，只见$target[name]迈开大步，逃遁而走。}
+{
+     #variable quest[status] 6;
+     ready
+}
+
+#ACTION {只见$target[name]深吸一口气，神色略微好了一些，陡然迸发出惊天动地的一声大吼}
 {
      #variable quest[status] 6;
      ready
@@ -900,6 +906,20 @@ rumor 类型说明：
      #delay 2 wenxr
 }
 
+#ALIAS {wendl}
+{
+     mgo 2885;
+     #variable rumor[knower] {xiao er};
+     #delay 2 wenxr
+}
+
+#ALIAS {wenwdj}
+{
+     mgo 3008;
+     #variable rumor[knower] {sun erniang};
+     #delay 2 wenxr
+}
+
 #ALIAS {wengw}
 {
      mgo 3166;
@@ -952,6 +972,11 @@ rumor 类型说明：
 #ACTION {^你决定开始跟随$target[name]一起行动。}
 {
      grin
+}
+#ACTION {这里没有 $target[id]。}
+{
+     sweat;
+     questrun
 }
 
 #ACTION {^$target[name]往%1离开。}
@@ -1084,7 +1109,7 @@ rumor 类型说明：
      };
      #if {$pathrun == 1}
      {
-          #path run 0.3
+          #path run 0.2
      }
 }
 
