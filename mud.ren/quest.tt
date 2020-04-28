@@ -64,6 +64,8 @@ rumor 类型说明：
 {
      eat xueqi dan
 }
+#nop {===武器===}
+#VARIABLE         {weapon} {{name}{鹤形笔}{id}{hexing bi}}
 #nop {===经验控制===}
 #VARIABLE         {max}  {{exp}{220000}{pot}{22000}}
 #VARIABLE         {min}  {{exp}{215000}}
@@ -370,6 +372,7 @@ rumor 类型说明：
 #ALIAS {questrun}
 {
      #path load ${path$placetable[$target[place]][path]};
+     #variable pathrun 1;
      #variable pathend 0;
      rideto $placetable[$target[place]][id];
      #map goto $placetable[$target[place]][vnum];
@@ -415,6 +418,7 @@ rumor 类型说明：
 
 #ALIAS {todo}
 {
+     #variable pathrun 0;
      #path destroy;
      buff;
      #if {"$quest[type]" == "letter"}
@@ -1057,9 +1061,13 @@ rumor 类型说明：
 #nop {==============================路径处理==============================};
 #ACTION {你掂量了一下，觉得自己的轻功似乎还没练到家。}
 {
-     #path move b;
-     #path run 5;
-     yell boat
+     #if {$pathrun == 1} {#path stop;yell boat} {yell boat};
+     #ALIAS river {#if {$pathrun == 1} {#path stop;yell boat} {yell boat}}
+}
+
+#ACTION {你鼓足中气，高喊一声：「船家」声音远远传了出去。}
+{
+
 }
 
 #ACTION {^渡船(boat)}
@@ -1072,6 +1080,10 @@ rumor 类型说明：
      #if {$inboat == 1}
      {
           #variable inboat 0;
+
+     };
+     #if {$pathrun == 1}
+     {
           #path run 0.3
      }
 }
