@@ -230,7 +230,7 @@ rumor 类型说明：
 
 #ACTION {等…等等，你说什么？没听清楚。}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -242,7 +242,7 @@ rumor 类型说明：
 }
 #ACTION {阿嚏！有点感冒，不好意思。}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -254,7 +254,7 @@ rumor 类型说明：
 }
 #ACTION {嗯，稍等啊，就好…好了，你刚才说啥？}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -266,7 +266,7 @@ rumor 类型说明：
 }
 #ACTION {唉呦！不好意思，是你问我么？}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -278,7 +278,7 @@ rumor 类型说明：
 }
 #ACTION {这个…这个…哦，好了，啊？你问我呢？}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -290,7 +290,7 @@ rumor 类型说明：
 }
 #ACTION {就好…就好…好了，你说啥？}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -302,7 +302,7 @@ rumor 类型说明：
 }
 #ACTION {嗯，你稍等一下，我这里还没忙完。}
 {
-     #if {$target[status] == 6}
+     #if {$quest[status] == 6}
      {
           #delay 1 wenxr
      };
@@ -719,6 +719,12 @@ rumor 类型说明：
 }
 
 #ACTION {%1说道：$target[name]听说是在%2啊，不过前一阵好像来过这里的。}
+{
+     #variable target[place] %2;
+     #delay 1 questrun;
+}
+
+#ACTION {%1说道：听说那$target[name]和人一场血战，最后还是全身而退，好像是去了%2吧。}
 {
      #variable target[place] %2;
      #delay 1 questrun;
