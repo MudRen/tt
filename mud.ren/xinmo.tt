@@ -1,0 +1,61 @@
+#CLASS {xinmo} OPEN
+
+#ACTION {击毙心魔之后，你获得了%1点经验、%2点潜能、%3点江湖阅历、%4点江湖威望，能力得到了提升。}
+{
+    exert heal
+}
+
+#ACTION {你现在气血充盈，不需要疗伤。}
+{
+    food;ggg
+}
+
+#ACTION {这个方向没有出路。}
+{
+    l
+}
+
+#ACTION {看起来心魔想杀死你！}
+{
+    #untick ggg;
+    kill xin mo;
+    perform dodge.piao;
+    perform dagger.dian
+}
+
+#ACTION {心魔扑在地上挣扎了几下，腿一伸，口中喷出几口鲜血，死了！}
+{
+    l corpse;
+    get silver from corpse;
+    eat xueqi dan
+}
+
+#ALIAS ff
+{
+    exert recover;
+    exert regenerate
+}
+
+#ALIAS food
+{
+    eat gan liang;
+    drink shui dai
+}
+
+#ALIAS ggg
+{
+    #tick ggg {
+        #switch {@rnd{4}}
+        {
+            #case 1 {n};
+            #case 2 {w};
+            #case 3 {s};
+            #case 4 {e};
+        }
+    } 3
+
+}
+
+#function {rnd} {#math {result} {1 d %1}}
+
+#CLASS {xinmo} CLOSE

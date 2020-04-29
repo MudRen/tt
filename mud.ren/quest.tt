@@ -65,10 +65,14 @@ rumor 类型说明：
      eat xueqi dan
 }
 #nop {===武器===}
+#ALIAS {askwp}
+{
+     ask hebi about $weapon[name]
+}
 #VARIABLE         {weapon} {{name}{鹤形笔}{id}{hexing bi}}
 #nop {===经验控制===}
-#VARIABLE         {max}  {{exp}{220000}{pot}{22000}}
-#VARIABLE         {min}  {{exp}{215000}}
+#VARIABLE         {max}  {{exp}{219876}{pot}{22000}}
+#VARIABLE         {min}  {{exp}{212345}}
 #nop {==============================基本动作==============================};
 #ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
 {
@@ -298,8 +302,8 @@ rumor 类型说明：
 
 #ACTION {$rumor[from]把$rumor[item]交给了你。}
 {
+     #variable target[name] $rumor[item];
      i;
-     #variable target[name] $rumor[to];
      #variable target[place] $rumor[to_place];
      #delay 2 questrun
 }
@@ -959,6 +963,7 @@ rumor 类型说明：
 {
      #if {"$target[name]" == "$rumor[item]"}
      {
+          #variable target[name] $rumor[to];
           #variable rumor[itemid] %1
      };
      #else
@@ -1163,7 +1168,7 @@ rumor 类型说明：
 #ALIAS {bfd}
 {
      mgo 276;
-     #delay 2 {buy shui dai;buy 50 gan liang}
+     #delay 2 {buy shui dai;#delay 2 {buy 50 gan liang}}
 }
 
 #nop {===基本别名===}
