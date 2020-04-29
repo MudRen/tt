@@ -1211,9 +1211,10 @@ rumor 类型说明：
 #ACTION {【 经 验 】  %1}
 {
      #variable my[exp] %1;
-     #if {%1 <= min[exp]}
+     #if {%1 <= $min[exp]}
      {
-          #untick fq
+          #untick fq;
+          #delay 3 ready
      }
 }
 
