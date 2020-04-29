@@ -117,7 +117,7 @@ rumor 类型说明：
 #nop {==============================物品奖励==============================};
 #ACTION {获得%1需要消耗你%2点门派贡献，你是否愿意(answer Y|N)接受？}
 {
-
+     answer n
 }
 #nop {==============================危险==============================};
 #ACTION {( 你看起来可能有些累了。)}
@@ -129,6 +129,10 @@ rumor 类型说明：
      pfm
 }
 #ACTION {( 你似乎有些疲惫，但是仍然十分有活力。)}
+{
+     pfm
+}
+#ACTION {( $target[name]气喘嘘嘘，看起来状况并不太好。)}
 {
      pfm
 }
@@ -224,17 +228,84 @@ rumor 类型说明：
      wenxr
 }
 
-#ACTION {%1说道：嗯，稍等啊，就好…好了，你刚才说啥？}
+#ACTION {等…等等，你说什么？没听清楚。}
 {
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
      #if {"$quest[type]" == "rumor"}
      {
           #variable quest[status] 1;
           wenrr
      }
 }
-
-#ACTION {%1说道：就好…就好…好了，你说啥？}
+#ACTION {阿嚏！有点感冒，不好意思。}
 {
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+#ACTION {嗯，稍等啊，就好…好了，你刚才说啥？}
+{
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+#ACTION {唉呦！不好意思，是你问我么？}
+{
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+#ACTION {这个…这个…哦，好了，啊？你问我呢？}
+{
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+#ACTION {就好…就好…好了，你说啥？}
+{
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
+     #if {"$quest[type]" == "rumor"}
+     {
+          #variable quest[status] 1;
+          wenrr
+     }
+}
+#ACTION {嗯，你稍等一下，我这里还没忙完。}
+{
+     #if {$target[status] == 6}
+     {
+          #delay 1 wenxr
+     };
      #if {"$quest[type]" == "rumor"}
      {
           #variable quest[status] 1;
@@ -380,6 +451,7 @@ rumor 类型说明：
      #variable pathend 0;
      rideto $placetable[$target[place]][id];
      #map goto $placetable[$target[place]][vnum];
+     #tick questrun {questrun};
      #switch {"$quest[type]"}
      {
           #case {"letter"} {#path run 0.2};
@@ -423,6 +495,7 @@ rumor 类型说明：
 #ALIAS {todo}
 {
      #variable pathrun 0;
+     #untick questrun;
      #path destroy;
      buff;
      #if {"$quest[type]" == "letter"}
@@ -575,6 +648,11 @@ rumor 类型说明：
 }
 
 #nop {==============================寻找目标==============================};
+#ACTION {vnum:%s%1%sdist:%s%2 %3 name: $target[where]}
+{
+     chat %1
+}
+
 #ACTION {^%1说道：这事我也不太清楚，不过听说他好像在%2。}
 {
      #if {$quest[status] == 6}
@@ -604,7 +682,7 @@ rumor 类型说明：
 {
      #if {$quest[status] == 6}
      {
-          #if {"%3" == "很远的地方"}
+          #if {"%2" == "很远的地方"}
           {
                #delay 1 wenchou
           };
