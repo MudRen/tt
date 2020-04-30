@@ -52,7 +52,7 @@ rumor 类型说明：
 #nop {===个人绝招===}
 #ALIAS {pfm}
 {
-     perform dagger.dian
+     perform staff.tong
 }
 #nop {===属性强化===}
 #ALIAS {buff}
@@ -117,7 +117,12 @@ rumor 类型说明：
 #nop {==============================物品奖励==============================};
 #ACTION {获得%1需要消耗你%2点门派贡献，你是否愿意(answer Y|N)接受？}
 {
-     answer n
+     #switch {"%2"}
+     {
+          #case "一" {answer y};
+          #case "十" {answer y};
+          #default {answer n}
+     }
 }
 #nop {==============================危险==============================};
 #ACTION {( 你看起来可能有些累了。)}
@@ -434,8 +439,8 @@ rumor 类型说明：
 
 #ALIAS {questok}
 {
-     fullme;
-     #delay 1 {home;#delay 2 {finish}}
+     home;
+     #delay 3 {finish}
 }
 
 #ALIAS {finish}
@@ -583,7 +588,7 @@ rumor 类型说明：
      get silver from corpse;
      fullme;
      rideto gc;
-     #delay 3 {home;#delay 2 {finish}}
+     #delay 3 {questok}
 }
 
 #nop {==============================任务行动==============================};
@@ -612,6 +617,12 @@ rumor 类型说明：
 }
 
 #ACTION {仅这一霎，$target[name]身形一转，飘然退去}
+{
+     #variable quest[status] 6;
+     ready
+}
+
+#ACTION {令人目瞪口呆！只见$target[name]刹间变做一个黑影，渐渐消失。}
 {
      #variable quest[status] 6;
      ready
@@ -657,25 +668,49 @@ rumor 类型说明：
 {
      #if {$quest[status] == 6}
      {
-          #variable target[place] %2;
-          #delay 1 questrun;
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
      }
 }
 {1}
 
 #ACTION {^%1说道：不知道……哦？好像听人说过是在%2。}
 {
-      #if {$quest[status] == 6}
+     #if {$quest[status] == 6}
      {
-          #variable target[place] %2;
-          #delay 1 questrun;
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
      }
 }
 
 #ACTION {%1说道：听说$target[name]被人打伤逃走，据说是躲到%2去了。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：听说$target[name]听到了江湖上有人追杀的风声，已经躲到%2去了。}
@@ -696,38 +731,98 @@ rumor 类型说明：
 
 #ACTION {%1说道：听说$target[name]被人打死了吧？咦？不过听人说在%2也见过%3呀！}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {^%1说道：听说$target[name]和人动手，差点被打死，不过最后还是侥幸逃走了，好像去了%2。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：有人说$target[name]就在咱们这地界呢，但是也有人说在%2，不知道是真是假。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：$target[name]呀，有人说在%2看到过%3，好像还受伤了。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：$target[name]听说是在%2啊，不过前一阵好像来过这里的。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {%1说道：听说那$target[name]和人一场血战，最后还是全身而退，好像是去了%2吧。}
 {
-     #variable target[place] %2;
-     #delay 1 questrun;
+     #if {$quest[status] == 6}
+     {
+          #if {"%2" == "很远的地方"}
+          {
+               #delay 1 wenchou
+          };
+          #else
+          {
+               #variable target[place] %2;
+               #delay 1 questrun;
+          }
+     }
 }
 
 #ACTION {^%1说道：你找%2干啥？%2不是在%3么？}
@@ -883,8 +978,8 @@ rumor 类型说明：
      #variable rumor[knower] {feng qi};
      #delay 2 wenxr
 }
-
-#ALIAS {wennh}
+#ALIAS {wennh} {wenfs}
+#ALIAS {wennh2}
 {
      mgo 1157;
      #variable rumor[knower] {yu fu};
