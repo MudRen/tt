@@ -67,9 +67,9 @@ rumor 类型说明：
 #nop {===武器===}
 #ALIAS {askwp}
 {
-     ask hebi about $weapon[name]
+     ask ke about $weapon[name]
 }
-#VARIABLE         {weapon} {{name}{鹤形笔}{id}{hexing bi}}
+#VARIABLE         {weapon} {{name}{鹿头杖}{id}{lutou zhang}}
 #nop {===经验控制===}
 #VARIABLE         {max}  {{exp}{219876}{pot}{22000}}
 #VARIABLE         {min}  {{exp}{212345}}
@@ -99,6 +99,10 @@ rumor 类型说明：
                     #case {1}
                     {
                          qm
+                    };
+                    #case {2}
+                    {
+                         questrun
                     };
                     #case {6}
                     {
@@ -440,7 +444,7 @@ rumor 类型说明：
 #ALIAS {questok}
 {
      home;
-     #delay 3 {finish}
+     #delay 5 {finish}
 }
 
 #ALIAS {finish}
