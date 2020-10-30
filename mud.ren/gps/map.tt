@@ -255,7 +255,8 @@
      };
      #else
      {
-          #map find %1
+          #map find %1;
+          #path map
      }
 }
 
