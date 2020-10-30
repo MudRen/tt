@@ -186,7 +186,9 @@
      {
           #map goto %1
      };
-     mapon
+     mapon;
+     rideoff;
+     #echo {<afc>地图系统载入完成，请输入 maphelp 查看使用帮助。}
 }
 
 #ALIAS {loadmap}
@@ -196,10 +198,13 @@
 
 #ALIAS {maphelp}
 {
-     #echo {-== 炎黄地图导航系统 ==-};
-     #echo {使用方法: 到达扬州中央广场后输入 initmap 载入地图并初始化位置};
-     #echo {地点查询：输入“gps 地名|vnum”可查询指定地点的vnum和距离};
-     #echo {自动寻路：输入“mgo 地名|vnum”可快速到达最近的目的地}
+     #echo {<fac>-== 炎黄地图导航系统 ==-};
+     #echo {<cfa>使用方法: 到达扬州中央广场后输入 initmap 载入地图并初始化位置};
+     #echo {<cfa>地点查询：输入“gps 地名|vnum”可查询指定地点的vnum和距离};
+     #echo {<cfa>自动寻路：输入“mgo 地名|vnum”可快速到达最近的目的地};
+     #echo {<cfa>默认为步行导航，如果要开启骑马导航，请输入 rideon};
+     #echo {<cfa>输入 "mf 地名|vnum"可查看到达指定地点的路径};
+     #echo {<cfa>输入 mapinfo 可查看部分重要地点的位置ID};
 }
 
 #ALIAS {mapinfo}
@@ -298,7 +303,7 @@
 
 #ALIAS {patherror}
 {
-     #echo {请在 patherror 别名设置路径错误的处理方式}
+     #echo {<fac>路径错误！你可以在 patherror 别名中设置如何处理。}
 }
 
 #ALIAS {rideoff}
