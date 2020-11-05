@@ -2,15 +2,22 @@
 
 #ACTION {^然而你今天太累了，无法再进行任何学习了。}
 {
-     eat huoqi dan
+     eatdan
 }
+
+#ACTION {^你的潜能不够学习这么多次了。}
+{
+     #untick xx
+}
+
+#ALIAS {eatdan} {eat xueqi dan}
 
 #ALIAS {xuexi}
 {
      #ticker xx {xue $master $skill 100} 3
 }
 
-#VARIABLE         {master}  {hebi}
+#VARIABLE         {master}  {he}
 #VARIABLE         {skill}  {dodge}
 
 #CLASS {xuexi} CLOSE

@@ -161,16 +161,20 @@
      patherror
 }
 
-#ALIAS {gps}
+#ALIAS {river}
 {
-     #if {"%1"==""}
-     {
-          #echo 请输入目的地名称或编号!
-     };
-     #else
-     {
-          #map list %1
-     }
+     cross
+}
+
+#ALIAS {pathend}
+{
+     #variable pathend 1;
+     chat* sweat
+}
+
+#ALIAS {patherror}
+{
+     #echo {<fac>路径错误！你可以在 patherror 别名中设置如何处理。}
 }
 
 #ALIAS {initmap}
@@ -191,11 +195,6 @@
      #echo {<afc>地图系统载入完成，请输入 maphelp 查看使用帮助。}
 }
 
-#ALIAS {loadmap}
-{
-     #map read world.map
-}
-
 #ALIAS {maphelp}
 {
      #echo {<fac>-== 炎黄地图导航系统 ==-};
@@ -205,6 +204,11 @@
      #echo {<cfa>默认为步行导航，如果要开启骑马导航，请输入 rideon};
      #echo {<cfa>输入 "mf 地名|vnum"可查看到达指定地点的路径};
      #echo {<cfa>输入 mapinfo 可查看部分重要地点的位置ID};
+     #echo {<caf>-关于#map 的常用指令-};
+     #echo {<afc>#map leave -- 离开地图};
+     #echo {<afc>#map return -- 返回地图};
+     #echo {<afc>#map goto 地名|vnum -- 地图位置移动到指定房间};
+     #echo {<afc>#map travel 方向 -- 向指定方向移动直到达到十字路口};
 }
 
 #ALIAS {mapinfo}
@@ -241,15 +245,21 @@
      #map flag static on
 }
 
-#ALIAS {mapping}
+#ALIAS {mi}
 {
-     #map flag static off;
-     #variable mapset 1
+     #map info
 }
 
-#ALIAS {mdn}
+#ALIAS {gps}
 {
-     #map dig %1 new
+     #if {"%1"==""}
+     {
+          #echo 请输入目的地名称或编号!
+     };
+     #else
+     {
+          #map list %1
+     }
 }
 
 #ALIAS {mf}
@@ -278,11 +288,6 @@
      }
 }
 
-#ALIAS {mi}
-{
-     #map info
-}
-
 #ALIAS {mrun}
 {
      #if {"%1"==""}
@@ -295,17 +300,6 @@
      }
 }
 
-#ALIAS {pathend}
-{
-     #variable pathend 1;
-     chat* sweat
-}
-
-#ALIAS {patherror}
-{
-     #echo {<fac>路径错误！你可以在 patherror 别名中设置如何处理。}
-}
-
 #ALIAS {rideoff}
 {
      #map at 99 {#map room avoid on}
@@ -316,9 +310,15 @@
      #map at 99 {#map room avoid off}
 }
 
-#ALIAS {river}
+#ALIAS {mapping}
 {
-     cross
+     #map flag static off;
+     #variable mapset 1
+}
+
+#ALIAS {mdn}
+{
+     #map dig %1 new
 }
 
 #ALIAS {rma}
@@ -336,15 +336,25 @@
      #map set roomsymbol %1
 }
 
+#ALIAS {rmw}
+{
+     #map set roomweight %1
+}
+
+#ALIAS {static}
+{
+     #map flag static
+}
+
 #ALIAS {savemap}
 {
      #map write world.map;
      #echo 地图数据保存完成！
 }
 
-#ALIAS {static}
+#ALIAS {loadmap}
 {
-     #map flag static
+     #map read world.map
 }
 
 #ALIAS {walk}
