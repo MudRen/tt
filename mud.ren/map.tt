@@ -153,7 +153,8 @@
 
 #ACTION {^看来%1不打算让你过去。}
 {
-     #map undo
+     #map undo;
+     #path move b;
 }
 
 #ACTION {这个方向没有出路。}
@@ -161,9 +162,23 @@
      patherror
 }
 
+#ACTION {你飞身跃上%1，身手很是矫捷。}
+{
+     rideon
+}
+
+#ACTION {你还没有坐骑！}
+{
+     rideoff;
+     #path stop
+}
+
 #ALIAS {river}
 {
-     cross
+     #path stop;
+     yell boat;
+     #delay 7 {#path run 0.1};
+     #path map;
 }
 
 #ALIAS {pathend}
@@ -207,7 +222,9 @@
      #echo {<caf>-关于#map 的常用指令-};
      #echo {<afc>#map leave -- 离开地图};
      #echo {<afc>#map return -- 返回地图};
+     #echo {<afc>#map undo -- 取消上一步地图操作};
      #echo {<afc>#map goto 地名|vnum -- 地图位置移动到指定房间};
+     #echo {<afc>#map move 方向 -- 地图位置向指定方向移动};
      #echo {<afc>#map travel 方向 -- 向指定方向移动直到达到十字路口};
 }
 

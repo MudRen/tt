@@ -5,6 +5,12 @@
 
 }
 
+#ACTION {你运功完毕，吐出一口瘀血，脸色看起来好多了。}
+{
+    hp;
+    #delay 3 {exert heal}
+}
+
 #ACTION {你现在气血充盈，不需要疗伤。}
 {
     food;ggg
@@ -27,7 +33,7 @@
 {
     l corpse;
     get silver from corpse;
-    eat xueqi dan;
+    eat huoqi dan;
     #delay 5 {exert heal}
 }
 
