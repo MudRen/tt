@@ -13,7 +13,8 @@ map = map or {}
 map.help = {[[
     <cyan>炎黄MUD地图导航系统<reset>
 
-    本脚本是根据mudlet内置的Jor'Mox's Generic Map Script修改，使用时请禁用mudlet内置的generic_mapper脚本。
+    本脚本是根据mudlet内置的Jor'Mox's Generic Map Script修改。
+    <red>注意：使用时请禁用mudlet内置的generic_mapper脚本。<reset>
 
     <cyan>基本命令:<reset>
         These are commands used to get the mapper functional on a basic level
@@ -1078,11 +1079,11 @@ local function check_room(roomID, name, exits, onlyName)
         error("Check Room Error: No ID",2)
     end
     -- 直接根据hash判断
-    -- if gmcp.Room.Info.hash ~= getRoomHashByID(roomID) then
-    --     return false
-    -- else
-    --     return true
-    -- end
+    if gmcp.Room.Info.hash ~= getRoomHashByID(roomID) then
+        return false
+    else
+        return true
+    end
 
     if name ~= getRoomName(roomID) then return false end
 
@@ -1137,12 +1138,13 @@ local function create_room(name, exits, dir, coords)
     name = gmcp.Room.Info.name
     exits = gmcp.Room.Info.exits
     if map.mapping then
-        name = map.sanitizeRoomName(name)
+        -- name = map.sanitizeRoomName(name)
         map.echo("New Room: " .. name,false,false,(dir or find_portal or force_portal) and true or false)
         local newID = createRoomID()
         addRoom(newID)
         setRoomArea(newID, map.currentArea)
         setRoomName(newID, name)
+        setRoomIDbyHash(newID, gmcp.Room.Info.hash)
         for k,v in ipairs(exits) do
             if stubmap[v] then
                 if stubmap[v] <= 20 then
@@ -1679,7 +1681,7 @@ function map.set_area(name)
     if map.mapping then
         find_area(name)
         if map.currentRoom and getRoomArea(map.currentRoom) ~= map.currentArea then
-            setRoomArea(map.currentRoom,map.currentArea)
+            setRoomArea(map.currentRoom, map.currentArea)
             set_room(map.currentRoom)
         end
     else
