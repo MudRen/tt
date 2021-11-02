@@ -710,8 +710,8 @@ end
 local exitmap = {
     n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
     w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
-    u = 'up',       d = 'down',         enter = 'enter',    out = 'out',
-    l = 'look',     ["in"] = 'in',
+    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
+    l = 'look',
     ed = 'eastdown',    eu = 'eastup',  nd = 'northdown',   nu = 'northup',
     sd = 'southdown',   su = 'southup', wd = 'westdown',    wu = 'westup',
 }
@@ -727,13 +727,11 @@ local stubmap = {
     up = 9,         down = 10,          ["in"] = 11,        out = 12,
     northup = 13,   southdown = 14,     southup = 15,       northdown = 16,
     eastup = 17,    westdown = 18,      westup = 19,        eastdown = 20,
-    enter = 21,
     [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
     [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
     [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
     [13] = "northup", [14] = "southdown",[15] = "southup",  [16] = "northdown",
     [17] = "eastup", [18] = "westdown", [19] = "westup",    [20] = "eastdown",
-    [21] = "enter",
 }
 
 local coordmap = {
@@ -742,7 +740,6 @@ local coordmap = {
     [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
     [13] = {0,1,1},     [14] = {0,-1,-1},   [15] = {0,-1,1},    [16] = {0,1,-1},
     [17] = {1,0,1},     [18] = {-1,0,-1},   [19] = {-1,0,1},    [20] = {1,0,-1},
-    [21] = {0,0,0},
 }
 
 local reverse_dirs = {
@@ -933,7 +930,7 @@ local function set_room(roomID)
         map.set("currentName", getRoomName(map.currentRoom))
         map.set("currentExits", getRoomExits(map.currentRoom))
         -- check handling of custom exits here
-        for i = 13,#stubmap do
+        for i = 21,#stubmap do
             map.currentExits[stubmap[i]] = tonumber(getRoomUserData(map.currentRoom,"exit " .. stubmap[i]))
         end
     end
@@ -1016,7 +1013,7 @@ local function getRoomStubs(roomID)
     if type(stubs) ~= "table" then stubs = {} end
     -- check handling of custom exits here
     local tmp
-    for i = 13,#stubmap do
+    for i = 21,#stubmap do
         tmp = tonumber(getRoomUserData(roomID,"stub"..stubmap[i]))
         if tmp then table.insert(stubs,tmp) end
     end
@@ -1037,12 +1034,12 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
     end
     dir2 = dir2 or reverse_dirs[dir1]
     -- check handling of custom exits here
-    if stubmap[dir1] <= 12 then
+    if stubmap[dir1] <= 20 then
         setExit(ID1,ID2,stubmap[dir1])
     else
         setRoomUserData(ID1,"exit " .. dir1,ID2)
     end
-    if stubmap[dir1] > 13 then
+    if stubmap[dir1] > 20 then
         -- check handling of custom exits here
         setRoomUserData(ID1,"stub"..dir1,"")
     end
@@ -1060,12 +1057,12 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
         if stubs[dir2] then match = true end
         if (match or no_check) then
             -- check handling of custom exits here
-            if stubmap[dir1] <= 12 then
+            if stubmap[dir1] <= 20 then
                 setExit(ID2,ID1,stubmap[dir2])
             else
                 setRoomUserData(ID2,"exit " .. dir2,ID1)
             end
-            if stubmap[dir2] > 13 then
+            if stubmap[dir2] > 20 then
                 -- check handling of custom exits here
                 setRoomUserData(ID2,"stub"..dir2,"")
             end
@@ -1080,6 +1077,13 @@ local function check_room(roomID, name, exits, onlyName)
     if not roomID then
         error("Check Room Error: No ID",2)
     end
+    -- 直接根据hash判断
+    -- if gmcp.Room.Info.hash ~= getRoomHashByID(roomID) then
+    --     return false
+    -- else
+    --     return true
+    -- end
+
     if name ~= getRoomName(roomID) then return false end
 
     -- used in mode "lazy" to match only the room name
@@ -1087,7 +1091,7 @@ local function check_room(roomID, name, exits, onlyName)
 
     local t_exits = table.union(getRoomExits(roomID),getRoomStubs(roomID))
     -- check handling of custom exits here
-    for i = 13,#stubmap do
+    for i = 21,#stubmap do
         t_exits[stubmap[i]] = tonumber(getRoomUserData(roomID,"exit " .. stubmap[i]))
     end
     for k,v in ipairs(exits) do
@@ -1141,7 +1145,7 @@ local function create_room(name, exits, dir, coords)
         setRoomName(newID, name)
         for k,v in ipairs(exits) do
             if stubmap[v] then
-                if stubmap[v] <= 12 then
+                if stubmap[v] <= 20 then
                     setExitStub(newID, stubmap[v], true)
                 else
                     -- check handling of custom exits here
@@ -1249,7 +1253,7 @@ local function move_map()
         local exits = (map.currentRoom and getRoomExits(map.currentRoom)) or {}
         -- check handling of custom exits here
         if map.currentRoom then
-            for i = 13, #stubmap do
+            for i = 21, #stubmap do
                 exits[stubmap[i]] = tonumber(getRoomUserData(map.currentRoom,"exit " .. stubmap[i]))
             end
         end
@@ -1350,7 +1354,7 @@ local function deduplicate_exits(exits)
   for _, v in ipairs(exits) do
     deduplicated_exits[v] = true
   end
-
+--   display(deduplicated_exits)
   return table.keys(deduplicated_exits)
 end
 local function capture_room_info(name, exits)
@@ -1363,19 +1367,23 @@ local function capture_room_info(name, exits)
         map.set("currentName", name)
         if exits:ends(".") then exits = exits:sub(1,#exits-1) end
         if not map.configs.use_translation then
-            exits = string.gsub(string.lower(exits)," and "," ")
+            exits = string.gsub(string.lower(exits)," 和 ","、")
         end
         map.set("currentExits", {})
         for w in string.gmatch(exits,"%a+") do
+            -- display(w)
             if map.configs.use_translation then
                 local dir = map.configs.translate and map.configs.translate[w]
-                if dir then table.insert(map.currentExits,dir) end
+                if dir then table.insert(map.currentExits, dir) end
             else
-                table.insert(map.currentExits,w)
+                table.insert(map.currentExits, w)
             end
         end
+        -- display(map.currentExits)
         undupeExits = deduplicate_exits(map.currentExits)
-        map.set("currentExits", undupeExits)
+        -- map.set("currentExits", undupeExits)
+        -- display(gmcp.Room.Info.exits)
+        map.set("currentExits", gmcp.Room.Info.exits)
         map.echo(string.format("Exits Captured: %s (%s)",exits, table.concat(map.currentExits, " ")),true)
         move_map()
     elseif vision_fail then
@@ -1428,7 +1436,7 @@ function map.set_exit(dir,roomID)
 
         if not string.starts(dir, "-p ") then
             local exit
-            if stubmap[exitmap[dir] or dir] <= 12 then
+            if stubmap[exitmap[dir] or dir] <= 20 then
                 exit = short[exitmap[dir] or dir]
                 setExit(map.currentRoom,roomID,exit)
             else
@@ -1698,7 +1706,7 @@ function map.set_door(dir,status,one_way)
         local exits = getRoomExits(map.currentRoom)
         local exit
         -- check handling of custom exits here
-        for i = 13,#stubmap do
+        for i = 21,#stubmap do
             exit = "exit " .. stubmap[i]
             exits[stubmap[i]] = tonumber(getRoomUserData(map.currentRoom,exit))
         end
@@ -1706,7 +1714,7 @@ function map.set_door(dir,status,one_way)
         if target_room then
             exits = getRoomExits(target_room)
             -- check handling of custom exits here
-            for i = 13,#stubmap do
+            for i = 21,#stubmap do
                 exit = "exit " .. stubmap[i]
                 exits[stubmap[i]] = tonumber(getRoomUserData(target_room,exit))
             end
@@ -1751,7 +1759,7 @@ local function check_link(firstID, secondID, dir)
     local exits2 = table.union(getRoomExits(secondID),getRoomStubs(secondID))
     local exit
     -- check handling of custom exits here
-    for i = 13,#stubmap do
+    for i = 21,#stubmap do
         exit = "exit " .. stubmap[i]
         exits1[stubmap[i]] = tonumber(getRoomUserData(firstID,exit))
         exits2[stubmap[i]] = tonumber(getRoomUserData(secondID,exit))
@@ -1891,7 +1899,7 @@ function map.merge_rooms()
                         end
                     end
                     -- check handling of custom exits here for doors and exits, and reverse exits
-                    for i = 13,#stubmap do
+                    for i = 21,#stubmap do
                         local door = "door " .. stubmap[i]
                         local tmp = tonumber(getRoomUserData(v,door))
                         if tmp then
@@ -2087,7 +2095,7 @@ end
 
 local function handle_exits(exits)
     local room = map.prompt.room or name_search()
-    room = map.sanitizeRoomName(room)
+    -- room = map.sanitizeRoomName(room)
     exits = map.prompt.exits or exits
     exits = string.lower(exits)
     exits = string.gsub(exits,"%a+", exitmap)
@@ -2281,7 +2289,7 @@ end
 
 function map.eventHandler(event, ...)
     if event == "onNewRoom" then
-        handle_exits(arg[1])
+        handle_exits(arg[1]) --"north、east、west 和 southup"
         if walking and map.configs.speedwalk_wait then
             continue_walk(true)
         end
