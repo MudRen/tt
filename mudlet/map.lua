@@ -11,25 +11,11 @@ mudlet.mapper_script = true
 map = map or {}
 
 map.help = {[[
-    <cyan>Generic Map Script<reset>
+    <cyan>炎黄MUD地图导航系统<reset>
 
-    This script allows for semi-automatic mapping using the included triggers.
-    While different games can have dramatically different ways of displaying
-    information, some effort has been put into giving the script a wide range of
-    potential patterns to look for, so that it can work with minimal effort in
-    many cases. The script locates the room name by searching up from the
-    detected exits line until a prompt is found or it runs out of text to
-    search, clearing saved text each time a prompt is detected or a movement
-    command is sent, with the room name being set to the last line of text
-    found. An accurate prompt pattern is necessary for this to work well, and
-    sometimes other text can end up being shown between the prompt and the room
-    name, or on the same line as the room name, which can be handled by
-    providing appropriate patterns telling the script to ignore that text. Below
-    is an overview of the included commands and important events that this
-    script uses to work. Additional information on each command or event is
-    available in individual help files.
+    本脚本是根据mudlet内置的Jor'Mox's Generic Map Script修改，使用时请禁用mudlet内置的generic_mapper脚本。
 
-    <cyan>Fundamental Commands:<reset>
+    <cyan>基本命令:<reset>
         These are commands used to get the mapper functional on a basic level
 
         <link: show>map show</link> - Displays or hides a map window
@@ -618,10 +604,10 @@ local profilePath = getMudletHomeDir()
 profilePath = profilePath:gsub("\\","/")
 
 map.defaults = {
-    mode = "normal", -- can be lazy, simple, normal, or complex
+    mode = "lazy", -- can be lazy, simple, normal, or complex
     stretch_map = true,
     search_on_look = true,
-    speedwalk_delay = 1,
+    speedwalk_delay = 0.1,
     speedwalk_wait = true,
     speedwalk_random = true,
     max_search_distance = 1,
@@ -642,6 +628,10 @@ map.defaults = {
         u = 'u', d = 'd', ["in"] = 'in', out = 'out', north = 'north', northeast = 'northeast',
         east = 'east', west = 'west', south = 'south', southeast = 'southeast', southwest = 'southwest',
         northwest = 'northwest', up = 'up', down = 'down', l = 'l', look = 'look',
+        ed = 'ed', eu = 'eu', eastdown = 'eastdown', eastup = 'eastup',
+        nd = 'nd', nu = 'nu', northdown = 'northdown', northup = 'northup',
+        sd = 'sd', su = 'su', southdown = 'southdown', southup = 'southup',
+        wd = 'wd', wu = 'wu', westdown = 'westdown', westup = 'westup',
     },
     debug = false,
     download_path = "https://raw.githubusercontent.com/Mudlet/Mudlet/development/src/mudlet-lua/lua/generic-mapper",
@@ -678,9 +668,9 @@ local function config()
         stubmap[v[1]] = count
     end
     -- update to the current download path
-    if map.configs.download_path == "https://raw.githubusercontent.com/JorMox/Mudlet/development/src/mudlet-lua/lua/generic-mapper" then
-        map.configs.download_path = "https://raw.githubusercontent.com/Mudlet/Mudlet/development/src/mudlet-lua/lua/generic-mapper"
-    end
+    -- if map.configs.download_path == "https://raw.githubusercontent.com/JorMox/Mudlet/development/src/mudlet-lua/lua/generic-mapper" then
+    --     map.configs.download_path = "https://raw.githubusercontent.com/Mudlet/Mudlet/development/src/mudlet-lua/lua/generic-mapper"
+    -- end
 
     -- setup metatable to store sensitive values
     local protected = {"mapping", "currentRoom", "currentName", "currentExits", "currentArea",
@@ -720,8 +710,10 @@ end
 local exitmap = {
     n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
     w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
-    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
-    l = 'look'
+    u = 'up',       d = 'down',         enter = 'enter',    out = 'out',
+    l = 'look',     ["in"] = 'in',
+    ed = 'eastdown',    eu = 'eastup',  nd = 'northdown',   nu = 'northup',
+    sd = 'southdown',   su = 'southup', wd = 'westdown',    wu = 'westup',
 }
 
 local short = {}
@@ -733,21 +725,32 @@ local stubmap = {
     north = 1,      northeast = 2,      northwest = 3,      east = 4,
     west = 5,       south = 6,          southeast = 7,      southwest = 8,
     up = 9,         down = 10,          ["in"] = 11,        out = 12,
+    northup = 13,   southdown = 14,     southup = 15,       northdown = 16,
+    eastup = 17,    westdown = 18,      westup = 19,        eastdown = 20,
+    enter = 21,
     [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
     [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
     [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
+    [13] = "northup", [14] = "southdown",[15] = "southup",  [16] = "northdown",
+    [17] = "eastup", [18] = "westdown", [19] = "westup",    [20] = "eastdown",
+    [21] = "enter",
 }
 
 local coordmap = {
     [1] = {0,1,0},      [2] = {1,1,0},      [3] = {-1,1,0},     [4] = {1,0,0},
     [5] = {-1,0,0},     [6] = {0,-1,0},     [7] = {1,-1,0},     [8] = {-1,-1,0},
     [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
+    [13] = {0,1,1},     [14] = {0,-1,-1},   [15] = {0,-1,1},    [16] = {0,1,-1},
+    [17] = {1,0,1},     [18] = {-1,0,-1},   [19] = {-1,0,1},    [20] = {1,0,-1},
+    [21] = {0,0,0},
 }
 
 local reverse_dirs = {
     north = "south", south = "north", west = "east", east = "west", up = "down",
     down = "up", northwest = "southeast", northeast = "southwest", southwest = "northeast",
     southeast = "northwest", ["in"] = "out", out = "in",
+    northup = "southdown", southdown = "northup", southup = "northdown", northdown = "southup",
+    eastup = "westdown", westdown = "eastup", westup = "eastdown", eastdown = "westup",
 }
 
 local wait_echo = {}
@@ -1072,6 +1075,8 @@ end
 
 local function check_room(roomID, name, exits, onlyName)
     -- check to see if room name or/and exits match expectations
+    -- display(roomID.." - "..name)
+    -- display(exits)
     if not roomID then
         error("Check Room Error: No ID",2)
     end
@@ -1123,6 +1128,10 @@ local function create_room(name, exits, dir, coords)
     -- makes a new room with captured name and exits
     -- links with other rooms as appropriate
     -- links to adjacent rooms in direction of exits if in simple mode
+    -- display(exits)
+    -- display(coords);
+    name = gmcp.Room.Info.name
+    exits = gmcp.Room.Info.exits
     if map.mapping then
         name = map.sanitizeRoomName(name)
         map.echo("New Room: " .. name,false,false,(dir or find_portal or force_portal) and true or false)
@@ -1227,6 +1236,7 @@ local function find_link(name, exits, dir, max_distance)
             set_room(match)
         else
             x,y,z = getRoomCoordinates(map.currentRoom)
+            display([[---[find_link]create room---]])
             create_room(name, exits, dir,{x+dx,y+dy,z+dz})
         end
     end
@@ -1258,6 +1268,7 @@ local function move_map()
         elseif force_portal then
             find_portal = false
             map.echo("Creating portal destination")
+            display([[---[move_map]create room---]])
             create_room(map.currentName, map.currentExits, nil, {getRoomCoordinates(map.currentRoom)})
             force_portal = false
         elseif move == "recall" and map.save.recall[map.character] then
@@ -1266,7 +1277,7 @@ local function move_map()
             -- this check isn't working as intended, find out why
             map.find_me(map.currentName,map.currentExits)
         else
-        	local onlyName
+            local onlyName
             if map.mode == "lazy" then
               onlyName = true
             else
@@ -1344,6 +1355,7 @@ local function deduplicate_exits(exits)
 end
 local function capture_room_info(name, exits)
     -- captures room info, and tries to move map to match
+    -- display(exits) -- "west、southwest 和 northup"
     if (not vision_fail) and name and exits then
         map.set("prevName", map.currentName)
         map.set("prevExits", map.currentExits)
@@ -1362,8 +1374,8 @@ local function capture_room_info(name, exits)
                 table.insert(map.currentExits,w)
             end
         end
-    undupeExits = deduplicate_exits(map.currentExits)
-    map.set("currentExits", undupeExits)
+        undupeExits = deduplicate_exits(map.currentExits)
+        map.set("currentExits", undupeExits)
         map.echo(string.format("Exits Captured: %s (%s)",exits, table.concat(map.currentExits, " ")),true)
         move_map()
     elseif vision_fail then
@@ -1631,6 +1643,7 @@ function map.start_mapping(area_name)
         if map.currentRoom and getRoomName(map.currentRoom) == map.currentName then
             map.set_area(area_name)
         else
+            display([[---[start_mapping]create room---]])
             create_room(map.currentName, map.currentExits, nil, {0,0,0})
         end
     elseif map.currentRoom and map.currentArea ~= getRoomArea(map.currentRoom) then
@@ -1803,12 +1816,13 @@ function map.find_me(name, exits, dir, manual)
             map.echo("Room found, ID: " .. match_IDs[1],true)
         else
             map.echo("Creating portal destination",false,false,true)
+            display([[---[find_me]create room---]])
             create_room(map.currentName, map.currentExits, nil, {getRoomCoordinates(map.currentRoom)})
         end
         find_portal = false
     elseif table.is_empty(match_IDs) then
         if not manual then
-            map.echo("Room not found in map database", true, true)
+            map.echo("Room not found in map database!", true, true)
         else
             map.echo("Room not found in map database", false, true)
         end
@@ -2068,43 +2082,7 @@ local function grab_line()
 end
 
 local function name_search()
-    local room_name
-    if map.configs.custom_name_search then
-        room_name = mudlet.custom_name_search(lines)
-    else
-        local line_count = #lines + 1
-        local cur_line, last_line
-        local prompt_pattern = map.save.prompt_pattern[map.character]
-        if not prompt_pattern then return end
-        while not room_name do
-            line_count = line_count - 1
-            if not lines[line_count] then break end
-            cur_line = lines[line_count]
-            for k,v in ipairs(map.save.ignore_patterns) do
-                cur_line = string.trim(string.gsub(cur_line,v,""))
-            end
-            if string.find(cur_line,prompt_pattern) then
-                cur_line = string.trim(string.gsub(cur_line,prompt_pattern,""))
-                if cur_line ~= "" then
-                    room_name = cur_line
-                else
-                    room_name = last_line
-                end
-            elseif line_count == 1 then
-                cur_line = string.trim(cur_line)
-                if cur_line ~= "" then
-                    room_name = cur_line
-                else
-                    room_name = last_line
-                end
-            elseif not string.match(cur_line,"^%s*$") then
-                last_line = cur_line
-            end
-        end
-        lines = {}
-        room_name = room_name:sub(1,100)
-    end
-    return room_name
+    return gmcp.Room.Info.name
 end
 
 local function handle_exits(exits)
@@ -2362,7 +2340,7 @@ function map.eventHandler(event, ...)
         walking = false
         map.echo("Mapping and speedwalking stopped.")
     elseif event == "sysManualLocationSetEvent" then
-      set_room(arg[1])
+        set_room(arg[1])
     elseif event == "sysUninstallPackage" and not map.updatingMapper and arg[1] == "generic_mapper" then
         for _,id in ipairs(map.registeredEvents) do
             killAnonymousEventHandler(id)
