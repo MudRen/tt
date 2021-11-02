@@ -1028,14 +1028,16 @@ end
 
 local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
     -- makes a connection between rooms
+    -- display([[connect_rooms]])
     -- can make backwards connection without a check
     local match = false
     if not ID1 and ID2 and dir1 then
         error("Connect Rooms: Missing Required Arguments.",2)
     end
     dir2 = dir2 or reverse_dirs[dir1]
+    -- display(ID1.." "..ID2.." "..dir1.." "..dir2)
     -- check handling of custom exits here
-    if stubmap[dir1] <= 20 then
+    if stubmap[dir1] <= 12 then
         setExit(ID1,ID2,stubmap[dir1])
     else
         setRoomUserData(ID1,"exit " .. dir1,ID2)
@@ -1058,7 +1060,7 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
         if stubs[dir2] then match = true end
         if (match or no_check) then
             -- check handling of custom exits here
-            if stubmap[dir1] <= 20 then
+            if stubmap[dir1] <= 12 then
                 setExit(ID2,ID1,stubmap[dir2])
             else
                 setRoomUserData(ID2,"exit " .. dir2,ID1)
@@ -1073,8 +1075,6 @@ end
 
 local function check_room(roomID, name, exits, onlyName)
     -- check to see if room name or/and exits match expectations
-    -- display(roomID.." - "..name)
-    -- display(exits)
     if not roomID then
         error("Check Room Error: No ID",2)
     end
@@ -1129,12 +1129,20 @@ local function stretch_map(dir,x,y,z)
     end
 end
 
+function map.create_room(name, x, y, z)
+    local newID = createRoomID()
+    addRoom(newID)
+    setRoomArea(newID, gmcp.Room.Info.area)
+    setRoomName(newID, name)
+    setRoomCoordinates(newID, x, y, z)
+    display([[---create_room---]])
+end
+
 local function create_room(name, exits, dir, coords)
     -- makes a new room with captured name and exits
     -- links with other rooms as appropriate
     -- links to adjacent rooms in direction of exits if in simple mode
-    -- display(exits)
-    -- display(coords);
+    display(coords)
     name = gmcp.Room.Info.name
     exits = gmcp.Room.Info.exits
     if map.mapping then
@@ -1208,6 +1216,7 @@ end
 local function find_link(name, exits, dir, max_distance)
     -- search for matching room in desired direction
     -- in lazy mode check_room search only by name
+    -- display([[find_link]]..name)
     local x,y,z = getRoomCoordinates(map.currentRoom)
     if map.mapping and x then
         if max_distance < 1 then
@@ -1217,32 +1226,13 @@ local function find_link(name, exits, dir, max_distance)
         end
         if not stubmap[dir] or not coordmap[stubmap[dir]] then return end
         local dx,dy,dz = unpack(coordmap[stubmap[dir]])
-        local minx, maxx, miny, maxy, minz, maxz = find_area_limits(map.currentArea)
-        local rooms, match, stubs
-        if max_distance then
-            minx, maxx = x - max_distance, x + max_distance
-            miny, maxy = y - max_distance, y + max_distance
-            minz, maxz = z - max_distance, z + max_distance
-        end
-        repeat
-            x, y, z = x + dx, y + dy, z + dz
-            rooms = getRoomsByPosition(map.currentArea,x,y,z)
-        until (x > maxx or x < minx or y > maxy or y < miny or z > maxz or z < minz or not table.is_empty(rooms))
-        for k,v in pairs(rooms) do
-            if check_room(v,name,exits,false) then
-                match = v
-                break
-            elseif map.mode == "lazy" and check_room(v,name,exits,true) then
-                match = v
-                break
-            end
-        end
-        if match then
-            connect_rooms(map.currentRoom, match, dir)
-            set_room(match)
+        local room = getRoomIDbyHash(gmcp.Room.Info.hash)
+        if room > 0 then
+            connect_rooms(map.currentRoom, room, dir)
+            set_room(room)
         else
             x,y,z = getRoomCoordinates(map.currentRoom)
-            display([[---[find_link]create room---]])
+            display([[---[find_link]create room---]]..x..","..y..","..z)
             create_room(name, exits, dir,{x+dx,y+dy,z+dz})
         end
     end
@@ -1285,9 +1275,9 @@ local function move_map()
         else
             local onlyName
             if map.mode == "lazy" then
-              onlyName = true
+                onlyName = true
             else
-              onlyName = false
+                onlyName = false
             end
             if exits[move] and (vision_fail or check_room(exits[move], map.currentName, map.currentExits, onlyName)) then
                 set_room(exits[move])
@@ -1352,16 +1342,15 @@ local function capture_move_cmd(dir,priority)
 end
 
 local function deduplicate_exits(exits)
-  local deduplicated_exits = {}
-  for _, v in ipairs(exits) do
-    deduplicated_exits[v] = true
-  end
---   display(deduplicated_exits)
-  return table.keys(deduplicated_exits)
+    local deduplicated_exits = {}
+    for _, v in ipairs(exits) do
+        deduplicated_exits[v] = true
+    end
+    return table.keys(deduplicated_exits)
 end
 local function capture_room_info(name, exits)
     -- captures room info, and tries to move map to match
-    -- display(exits) -- "west、southwest 和 northup"
+    -- exits = "west、southwest 和 northup"
     if (not vision_fail) and name and exits then
         map.set("prevName", map.currentName)
         map.set("prevExits", map.currentExits)
@@ -1373,7 +1362,6 @@ local function capture_room_info(name, exits)
         end
         map.set("currentExits", {})
         for w in string.gmatch(exits,"%a+") do
-            -- display(w)
             if map.configs.use_translation then
                 local dir = map.configs.translate and map.configs.translate[w]
                 if dir then table.insert(map.currentExits, dir) end
@@ -1381,10 +1369,8 @@ local function capture_room_info(name, exits)
                 table.insert(map.currentExits, w)
             end
         end
-        -- display(map.currentExits)
         undupeExits = deduplicate_exits(map.currentExits)
         -- map.set("currentExits", undupeExits)
-        -- display(gmcp.Room.Info.exits)
         map.set("currentExits", gmcp.Room.Info.exits)
         map.echo(string.format("Exits Captured: %s (%s)",exits, table.concat(map.currentExits, " ")),true)
         move_map()
@@ -1438,7 +1424,7 @@ function map.set_exit(dir,roomID)
 
         if not string.starts(dir, "-p ") then
             local exit
-            if stubmap[exitmap[dir] or dir] <= 20 then
+            if stubmap[exitmap[dir] or dir] <= 12 then
                 exit = short[exitmap[dir] or dir]
                 setExit(map.currentRoom,roomID,exit)
             else
@@ -1778,6 +1764,19 @@ function map.find_me(name, exits, dir, manual)
     -- tries to locate the player using the current room name and exits, and if provided, direction of movement
     -- if direction of movement is given, narrows down possibilities using previous room info
     if move ~= "recall" then move_queue = {} end
+    -- display([[map.find_me]])
+    -- 直接根据hash查找
+    local room = getRoomIDbyHash(gmcp.Room.Info.hash)
+    if room > 0 then
+        set_room(room)
+        map.echo("Room found, ID: " .. room,true)
+        return
+    else
+        map.echo("Room not found in map database", false, true)
+        return
+    end
+
+    -- todo 清理以下代码
     local check = dir and map.currentRoom and table.contains(exitmap,dir)
     name = name or map.currentName
     exits = exits or map.currentExits
