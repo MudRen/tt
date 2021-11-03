@@ -1175,7 +1175,7 @@ local function create_room(name, exits, dir, coords)
   -- makes a new room with captured name and exits
   -- links with other rooms as appropriate
   -- links to adjacent rooms in direction of exits if in simple mode
-  display(coords)
+  -- display(coords)
   name = gmcp.Room.Info.name
   exits = gmcp.Room.Info.exits
   if map.mapping then
@@ -1191,6 +1191,12 @@ local function create_room(name, exits, dir, coords)
         if stubmap[v] <= 12 then
           setExitStub(newID, stubmap[v], true)
         else
+          -- if the table has just a few values, you can skip making a local, named table:
+          if string.find(v, "up") then
+            setExitStub(newID, "up", true)
+          elseif string.find(v, "down") then
+            setExitStub(newID, "down", true)
+          end
           -- check handling of custom exits here
           setRoomUserData(newID, "stub" .. v, stubmap[v])
         end
