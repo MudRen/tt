@@ -1035,14 +1035,15 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
         error("Connect Rooms: Missing Required Arguments.",2)
     end
     dir2 = dir2 or reverse_dirs[dir1]
-    -- display(ID1.." "..ID2.." "..dir1.." "..dir2)
+    -- display(ID1.." "..ID2.." "..dir1.." "..dir2) -- "134 133 eastup westdown"
     -- check handling of custom exits here
     if stubmap[dir1] <= 12 then
-        setExit(ID1,ID2,stubmap[dir1])
+        setExit(ID1, ID2, stubmap[dir1])
     else
-        setRoomUserData(ID1,"exit " .. dir1,ID2)
+        addSpecialExit(ID1, ID2, dir1)
+        setRoomUserData(ID1, "exit " .. dir1, ID2)
     end
-    if stubmap[dir1] > 20 then
+    if stubmap[dir1] > 12 then
         -- check handling of custom exits here
         setRoomUserData(ID1,"stub"..dir1,"")
     end
@@ -1061,11 +1062,12 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
         if (match or no_check) then
             -- check handling of custom exits here
             if stubmap[dir1] <= 12 then
-                setExit(ID2,ID1,stubmap[dir2])
+                setExit(ID2, ID1, stubmap[dir2])
             else
-                setRoomUserData(ID2,"exit " .. dir2,ID1)
+                addSpecialExit(ID2, ID1, dir2)
+                setRoomUserData(ID2, "exit " .. dir2, ID1)
             end
-            if stubmap[dir2] > 20 then
+            if stubmap[dir2] > 12 then
                 -- check handling of custom exits here
                 setRoomUserData(ID2,"stub"..dir2,"")
             end
@@ -1155,7 +1157,7 @@ local function create_room(name, exits, dir, coords)
         setRoomIDbyHash(newID, gmcp.Room.Info.hash)
         for k,v in ipairs(exits) do
             if stubmap[v] then
-                if stubmap[v] <= 20 then
+                if stubmap[v] <= 12 then
                     setExitStub(newID, stubmap[v], true)
                 else
                     -- check handling of custom exits here
