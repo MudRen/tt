@@ -1037,7 +1037,7 @@ local function getRoomStubs(roomID)
   -- check handling of custom exits here
   local tmp
   for i = 21, #stubmap do
-    tmp = tonumber(getRoomUserData(roomID, "stub" .. stubmap[i]))
+    tmp = tonumber(getRoomUserData(roomID, "stub " .. stubmap[i]))
     if tmp then
       table.insert(stubs, tmp)
     end
@@ -1068,7 +1068,7 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
   end
   if stubmap[dir1] > 12 then
     -- check handling of custom exits here
-    setRoomUserData(ID1, "stub" .. dir1, "")
+    setRoomUserData(ID1, "stub " .. dir1, "")
   end
   local doors1, doors2 = getDoors(ID1), getDoors(ID2)
   local dstatus1, dstatus2 =
@@ -1095,7 +1095,7 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
       end
       if stubmap[dir2] > 12 then
         -- check handling of custom exits here
-        setRoomUserData(ID2, "stub" .. dir2, "")
+        setRoomUserData(ID2, "stub " .. dir2, "")
       end
     end
   end
@@ -1198,7 +1198,7 @@ local function create_room(name, exits, dir, coords)
             setExitStub(newID, "down", true)
           end
           -- check handling of custom exits here
-          setRoomUserData(newID, "stub" .. v, stubmap[v])
+          setRoomUserData(newID, "stub " .. v, stubmap[v])
         end
       end
     end
@@ -2075,7 +2075,7 @@ function map.echoRoomList(areaname, exact)
     for _, areaname in ipairs(multiples) do
       echo("  ")
       setUnderline(true)
-      cechoLink(format("<%s>%-40s (%d rooms)", othercolor, areaname, countrooms(areaname)), 
+      cechoLink(format("<%s>%-40s (%d rooms)", othercolor, areaname, countrooms(areaname)),
                 'map.echoRoomList("' .. areaname .. '", true)',
                 "Click to view the room list for " .. areaname, true)
       setUnderline(false)
