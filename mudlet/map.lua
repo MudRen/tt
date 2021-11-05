@@ -2220,6 +2220,16 @@ continue_walk = function(new_room)
   end
 end
 
+function map.pauseSpeedwalk()
+  map.echo("pauseSpeedwalk!")
+  walking = false
+end
+
+function map.resumeSpeedwalk()
+  map.echo("resumeSpeedwalk!")
+  walking = true
+end
+
 function map.speedwalk(roomID, walkPath, walkDirs)
   roomID = roomID or speedWalkPath[#speedWalkPath]
   getPath(map.currentRoom, roomID)
