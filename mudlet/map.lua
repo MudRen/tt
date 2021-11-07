@@ -643,71 +643,6 @@ local move_queue, lines = {}, {}
 local find_portal, vision_fail, room_detected, random_move, force_portal, find_prompt, downloading, walking, help_shown
 local mt = getmetatable(map) or {}
 
-local function config()
-  local defaults = map.defaults
-  local configs = map.configs or {}
-  local path = profilePath .. "/map downloads"
-  if not io.exists(path) then
-    lfs.mkdir(path)
-  end
-  -- load stored configs from file if it exists
-  if io.exists(path .. "/configs.lua") then
-    table.load(path .. "/configs.lua", configs)
-  end
-  -- overwrite default values with stored config values
-  configs = table.update(defaults, configs)
-  map.configs = configs
-  map.configs.translate = {}
-  for k, v in pairs(map.configs.lang_dirs) do
-    map.configs.translate[v] = k
-  end
-  -- incorporate custom exits
-  for k, v in pairs(map.configs.custom_exits) do
-    exitmap[k] = v[1]
-    reverse_dirs[v[1]] = v[2]
-    short[v[1]] = k
-    local count = #coordmap
-    coordmap[count] = {v[3], v[4], v[5]}
-    stubmap[count] = v[1]
-    stubmap[v[1]] = count
-  end
-
-  -- setup metatable to store sensitive values
-  local protected = {"mapping", "currentRoom", "currentName", "currentExits", "currentArea",
-                     "prevRoom", "prevName", "prevExits", "mode", "version"}
-  mt = getmetatable(map) or {}
-  mt.__index = mt
-  mt.__newindex =
-    function(tbl, key, value)
-      if not table.contains(protected, key) then
-        rawset(tbl, key, value)
-      else
-        error("Protected Map Table Value")
-      end
-    end
-  mt.set =
-    function(key, value)
-      if table.contains(protected, key) then
-        mt[key] = value
-      end
-    end
-  setmetatable(map, mt)
-  map.set("mode", configs.mode)
-  map.set("version", version)
-  local saves = {}
-  if io.exists(path .. "/map_save.dat") then
-    table.load(path .. "/map_save.dat", saves)
-  end
-  saves.prompt_pattern = saves.prompt_pattern or {}
-  saves.ignore_patterns = saves.ignore_patterns or {}
-  saves.recall = saves.recall or {}
-  map.save = saves
-
-  if map.configs.map_window.shown then
-    map.showMap(true)
-  end
-end
-
 local exitmap = {
     n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
     w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
@@ -756,6 +691,70 @@ local mapper_tag = "<112,229,0>(<73,149,0>mapper<112,229,0>): <255,255,255>"
 local debug_tag = "<255,165,0>(<200,120,0>debug<255,165,0>): <255,255,255>"
 local err_tag = "<255,0,0>(<178,34,34>error<255,0,0>): <255,255,255>"
 
+local function config()
+  local defaults = map.defaults
+  local configs = map.configs or {}
+  local path = profilePath .. "/map downloads"
+  if not io.exists(path) then
+    lfs.mkdir(path)
+  end
+  -- load stored configs from file if it exists
+  if io.exists(path .. "/configs.lua") then
+    table.load(path .. "/configs.lua", configs)
+  end
+  -- overwrite default values with stored config values
+  configs = table.update(defaults, configs)
+  map.configs = configs
+  map.configs.translate = {}
+  for k, v in pairs(map.configs.lang_dirs) do
+    map.configs.translate[v] = k
+  end
+  -- incorporate custom exits
+  for k, v in pairs(map.configs.custom_exits) do
+    exitmap[k] = v[1]
+    reverse_dirs[v[1]] = v[2]
+    short[v[1]] = k
+    local count = #coordmap + 1
+    coordmap[count] = {v[3], v[4], v[5]}
+    stubmap[count] = v[1]
+    stubmap[v[1]] = count
+  end
+
+  -- setup metatable to store sensitive values
+  local protected = {"mapping", "currentRoom", "currentName", "currentExits", "currentArea",
+                     "prevRoom", "prevName", "prevExits", "mode", "version"}
+  mt = getmetatable(map) or {}
+  mt.__index = mt
+  mt.__newindex =
+    function(tbl, key, value)
+      if not table.contains(protected, key) then
+        rawset(tbl, key, value)
+      else
+        error("Protected Map Table Value")
+      end
+    end
+  mt.set =
+    function(key, value)
+      if table.contains(protected, key) then
+        mt[key] = value
+      end
+    end
+  setmetatable(map, mt)
+  map.set("mode", configs.mode)
+  map.set("version", version)
+  local saves = {}
+  if io.exists(path .. "/map_save.dat") then
+    table.load(path .. "/map_save.dat", saves)
+  end
+  saves.prompt_pattern = saves.prompt_pattern or {}
+  saves.ignore_patterns = saves.ignore_patterns or {}
+  saves.recall = saves.recall or {}
+  map.save = saves
+
+  if map.configs.map_window.shown then
+    map.showMap(true)
+  end
+end
 
 local function parse_help_text(text)
   text = text:gsub("%$ROOM_NAME_STATUS", (map.currentName and map.currentName ~= "") and '✔️' or '❌')
@@ -865,7 +864,7 @@ function map.setConfigs(key, val, sub_key)
     elseif key == "custom_exits" then
       if type(val) == "table" then
         for k, v in pairs(val) do
-          map.configs.custom_exit[k] = v
+          map.configs.custom_exits[k] = v
           map.echo(string.format("Custom Exit short direction %s, long direction %s", k, v[1]))
           map.echo(string.format("    set to: x: %s, y: %s, z: %s, reverse: %s", v[3], v[4], v[5], v[2]))
         end
