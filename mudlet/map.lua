@@ -666,7 +666,7 @@ local stubmap = {
     [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
     [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
     [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
-    [13] = "northup", [14] = "southdown",[15] = "southup",  [16] = "northdown",
+    [13] = "northup", [14] = "southdown", [15] = "southup", [16] = "northdown",
     [17] = "eastup", [18] = "westdown", [19] = "westup",    [20] = "eastdown",
 }
 

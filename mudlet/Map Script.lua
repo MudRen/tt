@@ -1,7 +1,7 @@
 -- Jor'Mox's Generic Map Script
 -- the script self-updates, changing this value will bring an update to all installations
 -- make sure versions.lua has the latest version in it
-local version = "2.0.22"
+local version = "2.0.23"
 
     -- look into options for non-standard door usage for speedwalk
     -- come up with aliases to set translations and custom exits, add appropriate help info
@@ -651,44 +651,6 @@ local move_queue, lines = {}, {}
 local find_portal, vision_fail, room_detected, random_move, force_portal, find_prompt, downloading, walking, help_shown
 local mt = getmetatable(map) or {}
 
-local exitmap = {
-    n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
-    w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
-    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
-    l = 'look'
-}
-
-local short = {}
-for k,v in pairs(exitmap) do
-    short[v] = k
-end
-
-local stubmap = {
-    north = 1,      northeast = 2,      northwest = 3,      east = 4,
-    west = 5,       south = 6,          southeast = 7,      southwest = 8,
-    up = 9,         down = 10,          ["in"] = 11,        out = 12,
-    [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
-    [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
-    [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
-}
-
-local coordmap = {
-    [1] = {0,1,0},      [2] = {1,1,0},      [3] = {-1,1,0},     [4] = {1,0,0},
-    [5] = {-1,0,0},     [6] = {0,-1,0},     [7] = {1,-1,0},     [8] = {-1,-1,0},
-    [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
-}
-
-local reverse_dirs = {
-    north = "south", south = "north", west = "east", east = "west", up = "down",
-    down = "up", northwest = "southeast", northeast = "southwest", southwest = "northeast",
-    southeast = "northwest", ["in"] = "out", out = "in",
-}
-
-local wait_echo = {}
-local mapper_tag = "<112,229,0>(<73,149,0>mapper<112,229,0>): <255,255,255>"
-local debug_tag = "<255,165,0>(<200,120,0>debug<255,165,0>): <255,255,255>"
-local err_tag = "<255,0,0>(<178,34,34>error<255,0,0>): <255,255,255>"
-
 local function config()
     local defaults = map.defaults
     local configs = map.configs or {}
@@ -710,7 +672,7 @@ local function config()
         exitmap[k] = v[1]
         reverse_dirs[v[1]] = v[2]
         short[v[1]] = k
-        local count = #coordmap + 1
+        local count = #coordmap
         coordmap[count] = {v[3],v[4],v[5]}
         stubmap[count] = v[1]
         stubmap[v[1]] = count
@@ -754,6 +716,45 @@ local function config()
         map.showMap(true)
     end
 end
+
+local exitmap = {
+    n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
+    w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
+    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
+    l = 'look'
+}
+
+local short = {}
+for k,v in pairs(exitmap) do
+    short[v] = k
+end
+
+local stubmap = {
+    north = 1,      northeast = 2,      northwest = 3,      east = 4,
+    west = 5,       south = 6,          southeast = 7,      southwest = 8,
+    up = 9,         down = 10,          ["in"] = 11,        out = 12,
+    [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
+    [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
+    [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
+}
+
+local coordmap = {
+    [1] = {0,1,0},      [2] = {1,1,0},      [3] = {-1,1,0},     [4] = {1,0,0},
+    [5] = {-1,0,0},     [6] = {0,-1,0},     [7] = {1,-1,0},     [8] = {-1,-1,0},
+    [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
+}
+
+local reverse_dirs = {
+    north = "south", south = "north", west = "east", east = "west", up = "down",
+    down = "up", northwest = "southeast", northeast = "southwest", southwest = "northeast",
+    southeast = "northwest", ["in"] = "out", out = "in",
+}
+
+local wait_echo = {}
+local mapper_tag = "<112,229,0>(<73,149,0>mapper<112,229,0>): <255,255,255>"
+local debug_tag = "<255,165,0>(<200,120,0>debug<255,165,0>): <255,255,255>"
+local err_tag = "<255,0,0>(<178,34,34>error<255,0,0>): <255,255,255>"
+
 
 local function parse_help_text(text)
   text = text:gsub("%$ROOM_NAME_STATUS", (map.currentName and map.currentName ~= "") and '✔️' or '❌')
@@ -853,7 +854,7 @@ function map.setConfigs(key, val, sub_key)
         elseif key == "custom_exits" then
             if type(val) == "table" then
                 for k, v in pairs(val) do
-                    map.configs.custom_exits[k] = v
+                    map.configs.custom_exit[k] = v
                     map.echo(string.format("Custom Exit short direction %s, long direction %s",k,v[1]))
                     map.echo(string.format("    set to: x: %s, y: %s, z: %s, reverse: %s",v[3],v[4],v[5],v[2]))
                 end
@@ -2139,6 +2140,7 @@ continue_walk = function(new_room)
         -- check to see if we are done
         if #map.walkDirs == 0 then
             walking = false
+            raiseEvent("sysSpeedwalkFinished")
         end
     end
     -- make tempTimer to send next command if necessary
@@ -2196,11 +2198,13 @@ function map.speedwalk(roomID, walkPath, walkDirs)
             send(dir)
         end
         walking = false
+        raiseEvent("sysSpeedwalkFinished")
     end
 end
 
 function doSpeedWalk()
     if #speedWalkPath ~= 0 then
+        raiseEvent("sysSpeedwalkStarted")
         map.speedwalk(nil, speedWalkPath, speedWalkDir)
     else
         map.echo("No path to chosen room found.",false,true)
