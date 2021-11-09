@@ -1150,11 +1150,9 @@ local function create_room(name, exits, dir, coords)
                 if stubmap[v] <= 12 then
                     setExitStub(newID, stubmap[v], true)
                 else
-                    -- add up/down stub for XXup/XXdown to prompt special exit
-                    if string.find(v, "up") then
-                        setExitStub(newID, "up", true)
-                    elseif string.find(v, "down") then
-                        setExitStub(newID, "down", true)
+                    -- add special char to prompt special exit
+                    if string.find(v, "up") or string.find(v, "down") then
+                        setRoomChar(newID, "◎")
                     end
                     -- check handling of custom exits here
                     setRoomUserData(newID, "stub "..v,stubmap[v])
