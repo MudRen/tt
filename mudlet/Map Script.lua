@@ -2262,6 +2262,20 @@ function doSpeedWalk()
     end
 end
 
+function map.pauseSpeedwalk()
+    -- map.echo("pauseSpeedwalk!")
+    walking = false
+end
+
+function map.resumeSpeedwalk()
+    -- map.echo("resumeSpeedwalk!")
+    map.find_me(nil, nil, nil, true)
+    if #speedWalkDir ~= 0 then
+        walking = true
+        tempTimer(1, "doSpeedWalk()")
+    end
+end
+
 local function check_version()
     downloading = false
     local path = profilePath .. "/map downloads/versions.lua"
