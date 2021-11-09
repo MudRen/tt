@@ -1090,6 +1090,15 @@ local function check_room(roomID, name, exits, onlyName)
     if not roomID then
         error("Check Room Error: No ID",2)
     end
+    -- check with room hash id
+    if map.prompt.hash then
+        if map.prompt.hash == getRoomHashByID(roomID) then
+            return true
+        else
+            return false
+        end
+    end
+
     if name ~= getRoomName(roomID) then return false end
 
     -- used in mode "lazy" to match only the room name
@@ -1098,7 +1107,7 @@ local function check_room(roomID, name, exits, onlyName)
     local t_exits = table.union(getRoomExits(roomID),getRoomStubs(roomID))
     -- check handling of custom exits here
     for i = 13,#stubmap do
-        t_exits[stubmap[i]] = tonumber(getRoomUserData(roomID,"exit " .. stubmap[i]))
+        t_exits[stubmap[i]] = tonumber(getRoomUserData(roomID,"exit " .. stubmap[i])) or (tonumber(getRoomUserData(roomID,"stub " .. stubmap[i])) and 0)
     end
     for k,v in ipairs(exits) do
         if short[v] and not table.contains(t_exits,v) then return false end
@@ -1145,6 +1154,9 @@ local function create_room(name, exits, dir, coords)
         addRoom(newID)
         setRoomArea(newID, map.currentArea)
         setRoomName(newID, name)
+        if map.prompt.hash then
+            setRoomIDbyHash(newID, map.prompt.hash)
+        end
         for k,v in ipairs(exits) do
             if stubmap[v] then
                 if stubmap[v] <= 12 then
@@ -1228,17 +1240,25 @@ local function find_link(name, exits, dir, max_distance)
             miny, maxy = y - max_distance, y + max_distance
             minz, maxz = z - max_distance, z + max_distance
         end
-        repeat
-            x, y, z = x + dx, y + dy, z + dz
-            rooms = getRoomsByPosition(map.currentArea,x,y,z)
-        until (x > maxx or x < minx or y > maxy or y < miny or z > maxz or z < minz or not table.is_empty(rooms))
-        for k,v in pairs(rooms) do
-            if check_room(v,name,exits,false) then
-                match = v
-                break
-            elseif map.mode == "lazy" and check_room(v,name,exits,true) then
-                match = v
-                break
+        -- find link from room hash first
+        if map.prompt.hash then
+            local room = getRoomIDbyHash(map.prompt.hash)
+            if room > 0 then
+                match = room
+            end
+        else
+            repeat
+                x, y, z = x + dx, y + dy, z + dz
+                rooms = getRoomsByPosition(map.currentArea,x,y,z)
+            until (x > maxx or x < minx or y > maxy or y < miny or z > maxz or z < minz or not table.is_empty(rooms))
+            for k,v in pairs(rooms) do
+                if check_room(v,name,exits,false) then
+                    match = v
+                    break
+                elseif map.mode == "lazy" and check_room(v,name,exits,true) then
+                    match = v
+                    break
+                end
             end
         end
         if match then
@@ -1774,6 +1794,18 @@ function map.find_me(name, exits, dir, manual)
     -- tries to locate the player using the current room name and exits, and if provided, direction of movement
     -- if direction of movement is given, narrows down possibilities using previous room info
     if move ~= "recall" then move_queue = {} end
+    -- find from room hash id
+    if map.prompt.hash then
+        local room = getRoomIDbyHash(map.prompt.hash)
+        if room > 0 then
+            set_room(room)
+            map.echo("Room found, ID: " .. room, true)
+            return
+        else
+            map.echo("Room not found in map database!", false, true)
+            return
+        end
+    end
     local check = dir and map.currentRoom and table.contains(exitmap,dir)
     name = name or map.currentName
     exits = exits or map.currentExits
