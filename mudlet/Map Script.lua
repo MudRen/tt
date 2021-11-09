@@ -642,6 +642,10 @@ map.defaults = {
         u = 'u', d = 'd', ["in"] = 'in', out = 'out', north = 'north', northeast = 'northeast',
         east = 'east', west = 'west', south = 'south', southeast = 'southeast', southwest = 'southwest',
         northwest = 'northwest', up = 'up', down = 'down', l = 'l', look = 'look',
+        ed = 'ed', eu = 'eu', eastdown = 'eastdown', eastup = 'eastup',
+        nd = 'nd', nu = 'nu', northdown = 'northdown', northup = 'northup',
+        sd = 'sd', su = 'su', southdown = 'southdown', southup = 'southup',
+        wd = 'wd', wu = 'wu', westdown = 'westdown', westup = 'westup',
     },
     debug = false,
     download_path = "https://raw.githubusercontent.com/Mudlet/Mudlet/development/src/mudlet-lua/lua/generic-mapper",
@@ -650,6 +654,54 @@ map.defaults = {
 local move_queue, lines = {}, {}
 local find_portal, vision_fail, room_detected, random_move, force_portal, find_prompt, downloading, walking, help_shown
 local mt = getmetatable(map) or {}
+
+local exitmap = {
+    n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
+    w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
+    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
+    l = 'look',
+    ed = 'eastdown',    eu = 'eastup',  nd = 'northdown',   nu = 'northup',
+    sd = 'southdown',   su = 'southup', wd = 'westdown',    wu = 'westup',
+}
+
+local short = {}
+for k,v in pairs(exitmap) do
+    short[v] = k
+end
+
+local stubmap = {
+    north = 1,      northeast = 2,      northwest = 3,      east = 4,
+    west = 5,       south = 6,          southeast = 7,      southwest = 8,
+    up = 9,         down = 10,          ["in"] = 11,        out = 12,
+    northup = 13,   southdown = 14,     southup = 15,       northdown = 16,
+    eastup = 17,    westdown = 18,      westup = 19,        eastdown = 20,
+    [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
+    [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
+    [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
+    [13] = "northup", [14] = "southdown", [15] = "southup", [16] = "northdown",
+    [17] = "eastup", [18] = "westdown", [19] = "westup",    [20] = "eastdown",
+}
+
+local coordmap = {
+    [1] = {0,1,0},      [2] = {1,1,0},      [3] = {-1,1,0},     [4] = {1,0,0},
+    [5] = {-1,0,0},     [6] = {0,-1,0},     [7] = {1,-1,0},     [8] = {-1,-1,0},
+    [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
+    [13] = {0,1,1},     [14] = {0,-1,-1},   [15] = {0,-1,1},    [16] = {0,1,-1},
+    [17] = {1,0,1},     [18] = {-1,0,-1},   [19] = {-1,0,1},    [20] = {1,0,-1},
+}
+
+local reverse_dirs = {
+    north = "south", south = "north", west = "east", east = "west", up = "down",
+    down = "up", northwest = "southeast", northeast = "southwest", southwest = "northeast",
+    southeast = "northwest", ["in"] = "out", out = "in",
+    northup = "southdown", southdown = "northup", southup = "northdown", northdown = "southup",
+    eastup = "westdown", westdown = "eastup", westup = "eastdown", eastdown = "westup",
+}
+
+local wait_echo = {}
+local mapper_tag = "<112,229,0>(<73,149,0>mapper<112,229,0>): <255,255,255>"
+local debug_tag = "<255,165,0>(<200,120,0>debug<255,165,0>): <255,255,255>"
+local err_tag = "<255,0,0>(<178,34,34>error<255,0,0>): <255,255,255>"
 
 local function config()
     local defaults = map.defaults
@@ -672,7 +724,7 @@ local function config()
         exitmap[k] = v[1]
         reverse_dirs[v[1]] = v[2]
         short[v[1]] = k
-        local count = #coordmap
+        local count = #coordmap + 1
         coordmap[count] = {v[3],v[4],v[5]}
         stubmap[count] = v[1]
         stubmap[v[1]] = count
@@ -716,45 +768,6 @@ local function config()
         map.showMap(true)
     end
 end
-
-local exitmap = {
-    n = 'north',    ne = 'northeast',   nw = 'northwest',   e = 'east',
-    w = 'west',     s = 'south',        se = 'southeast',   sw = 'southwest',
-    u = 'up',       d = 'down',         ["in"] = 'in',      out = 'out',
-    l = 'look'
-}
-
-local short = {}
-for k,v in pairs(exitmap) do
-    short[v] = k
-end
-
-local stubmap = {
-    north = 1,      northeast = 2,      northwest = 3,      east = 4,
-    west = 5,       south = 6,          southeast = 7,      southwest = 8,
-    up = 9,         down = 10,          ["in"] = 11,        out = 12,
-    [1] = "north",  [2] = "northeast",  [3] = "northwest",  [4] = "east",
-    [5] = "west",   [6] = "south",      [7] = "southeast",  [8] = "southwest",
-    [9] = "up",     [10] = "down",      [11] = "in",        [12] = "out",
-}
-
-local coordmap = {
-    [1] = {0,1,0},      [2] = {1,1,0},      [3] = {-1,1,0},     [4] = {1,0,0},
-    [5] = {-1,0,0},     [6] = {0,-1,0},     [7] = {1,-1,0},     [8] = {-1,-1,0},
-    [9] = {0,0,1},      [10] = {0,0,-1},    [11] = {0,0,0},     [12] = {0,0,0},
-}
-
-local reverse_dirs = {
-    north = "south", south = "north", west = "east", east = "west", up = "down",
-    down = "up", northwest = "southeast", northeast = "southwest", southwest = "northeast",
-    southeast = "northwest", ["in"] = "out", out = "in",
-}
-
-local wait_echo = {}
-local mapper_tag = "<112,229,0>(<73,149,0>mapper<112,229,0>): <255,255,255>"
-local debug_tag = "<255,165,0>(<200,120,0>debug<255,165,0>): <255,255,255>"
-local err_tag = "<255,0,0>(<178,34,34>error<255,0,0>): <255,255,255>"
-
 
 local function parse_help_text(text)
   text = text:gsub("%$ROOM_NAME_STATUS", (map.currentName and map.currentName ~= "") and '✔️' or '❌')
@@ -854,7 +867,7 @@ function map.setConfigs(key, val, sub_key)
         elseif key == "custom_exits" then
             if type(val) == "table" then
                 for k, v in pairs(val) do
-                    map.configs.custom_exit[k] = v
+                    map.configs.custom_exits[k] = v
                     map.echo(string.format("Custom Exit short direction %s, long direction %s",k,v[1]))
                     map.echo(string.format("    set to: x: %s, y: %s, z: %s, reverse: %s",v[3],v[4],v[5],v[2]))
                 end
@@ -1014,7 +1027,7 @@ local function getRoomStubs(roomID)
     -- check handling of custom exits here
     local tmp
     for i = 13,#stubmap do
-        tmp = tonumber(getRoomUserData(roomID,"stub"..stubmap[i]))
+        tmp = tonumber(getRoomUserData(roomID,"stub "..stubmap[i]))
         if tmp then table.insert(stubs,tmp) end
     end
 
@@ -1037,11 +1050,12 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
     if stubmap[dir1] <= 12 then
         setExit(ID1,ID2,stubmap[dir1])
     else
+        addSpecialExit(ID1, ID2, dir1)
         setRoomUserData(ID1,"exit " .. dir1,ID2)
     end
-    if stubmap[dir1] > 13 then
+    if stubmap[dir1] > 12 then
         -- check handling of custom exits here
-        setRoomUserData(ID1,"stub"..dir1,"")
+        setRoomUserData(ID1,"stub "..dir1, stubmap[dir1])
     end
     local doors1, doors2 = getDoors(ID1), getDoors(ID2)
     local dstatus1, dstatus2 = doors1[short[dir1]] or doors1[dir1], doors2[short[dir2]] or doors2[dir2]
@@ -1060,11 +1074,12 @@ local function connect_rooms(ID1, ID2, dir1, dir2, no_check)
             if stubmap[dir1] <= 12 then
                 setExit(ID2,ID1,stubmap[dir2])
             else
+                addSpecialExit(ID2, ID1, dir2)
                 setRoomUserData(ID2,"exit " .. dir2,ID1)
             end
-            if stubmap[dir2] > 13 then
+            if stubmap[dir2] > 12 then
                 -- check handling of custom exits here
-                setRoomUserData(ID2,"stub"..dir2,"")
+                setRoomUserData(ID2,"stub "..dir2, stubmap[dir2])
             end
         end
     end
@@ -1135,8 +1150,14 @@ local function create_room(name, exits, dir, coords)
                 if stubmap[v] <= 12 then
                     setExitStub(newID, stubmap[v], true)
                 else
+                    -- add up/down stub for XXup/XXdown to prompt special exit
+                    if string.find(v, "up") then
+                        setExitStub(newID, "up", true)
+                    elseif string.find(v, "down") then
+                        setExitStub(newID, "down", true)
+                    end
                     -- check handling of custom exits here
-                    setRoomUserData(newID, "stub"..v,stubmap[v])
+                    setRoomUserData(newID, "stub "..v,stubmap[v])
                 end
             end
         end
@@ -1266,7 +1287,7 @@ local function move_map()
             -- this check isn't working as intended, find out why
             map.find_me(map.currentName,map.currentExits)
         else
-        	local onlyName
+            local onlyName
             if map.mode == "lazy" then
               onlyName = true
             else
@@ -1362,8 +1383,8 @@ local function capture_room_info(name, exits)
                 table.insert(map.currentExits,w)
             end
         end
-    undupeExits = deduplicate_exits(map.currentExits)
-    map.set("currentExits", undupeExits)
+        undupeExits = deduplicate_exits(map.currentExits)
+        map.set("currentExits", undupeExits)
         map.echo(string.format("Exits Captured: %s (%s)",exits, table.concat(map.currentExits, " ")),true)
         move_map()
     elseif vision_fail then
