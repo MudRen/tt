@@ -2267,16 +2267,33 @@ function doSpeedWalk()
 end
 
 function map.pauseSpeedwalk()
-    -- map.echo("pauseSpeedwalk!")
-    walking = false
+    if #speedWalkDir ~= 0 then
+        map.echo("Speedwalking paused.")
+        walking = false
+        raiseEvent("sysSpeedwalkPaused")
+    else
+        map.echo("No active speedwalk found.")
+    end
 end
 
-function map.resumeSpeedwalk()
-    -- map.echo("resumeSpeedwalk!")
-    map.find_me(nil, nil, nil, true)
+function map.resumeSpeedwalk(delay)
     if #speedWalkDir ~= 0 then
-        walking = true
-        tempTimer(1, "doSpeedWalk()")
+        map.echo("Speedwalking resumed.")
+        map.find_me(nil, nil, nil, true)
+        raiseEvent("sysSpeedwalkResumed")
+        tempTimer(delay or 0, function() map.speedwalk(nil, speedWalkPath, speedWalkDir) end)
+    else
+        map.echo("No active speedwalk found.")
+    end
+end
+
+function map.toggleSpeedwalk(what)
+    assert(what == nil or what == "on" or what == "off", "map.toggleSpeedwalk wants 'on', 'off' or nothing as an argument")
+
+    if what == "on" or (what == nil and walking) then
+        map.pauseSpeedwalk()
+    elseif  what == "off" or (what == nil and not walking) then
+        map.resumeSpeedwalk()
     end
 end
 
