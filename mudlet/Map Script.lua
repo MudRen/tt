@@ -2195,6 +2195,7 @@ continue_walk = function(new_room)
         -- check to see if we are done
         if #map.walkDirs == 0 then
             walking = false
+            speedWalkPath, speedWalkWeight = {}, {}
             raiseEvent("sysSpeedwalkFinished")
         end
     end
